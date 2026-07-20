@@ -1,0 +1,47 @@
+{
+  "john": {
+    "password": "1234",
+    "products": [
+      {
+        "id": 1,
+        "name": "Laptop",
+        "target_price": 700,
+        "last_price": 750
+      }
+    ]
+  },
+  "asha": {
+    "password": "5678",
+    "products": [
+      {
+        "id": 1,
+        "name": "Headphones",
+        "target_price": 50,
+        "last_price": 60
+      }
+    ]
+  },
+  "Sabi": {
+    "password": "1234",
+    "products": [
+      {
+        "id": 1,
+        "name": "TV",
+        "target_price": 900.0,
+        "last_price": 1000.0
+      },
+      {
+        "id": 2,
+        "name": "Air Fryer",
+        "target_price": 399.0,
+        "last_price": 8000.0
+      },
+      {
+        "id": 3,
+        "name": "Camera",
+        "target_price": 3000.0,
+        "last_price": 4000.0
+      }
+    ]
+  }
+}

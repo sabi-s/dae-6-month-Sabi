@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Laptop",
+    "target_price": 700,
+    "last_price": 700.0
+  },
+  {
+    "id": 2,
+    "name": "Headphones",
+    "target_price": 50,
+    "last_price": 60.0
+  },
+  {
+    "id": 3,
+    "name": "apple-watch-ultra",
+    "target_price": 800.0,
+    "last_price": 899.0
+  }
+]

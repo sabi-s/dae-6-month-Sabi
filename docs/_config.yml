@@ -1,7 +1,7 @@
 title: "Sabitha S. Karanavar"
 description: "Portfolio of Sabitha S. Karanavar, specializing in Identity and Access Management (IAM) and Web Development."
-url: https://sabithask.github.io # Update this if needed
-baseurl: "" # Update if pushing to a subfolder
+url: "https://sabi-s.github.io"
+baseurl: "/dae-6-month-Sabi"
 remote_theme: mmistakes/minimal-mistakes
 minimal_mistakes_skin: air
 author:
@@ -16,7 +16,7 @@ author:
     url: https://www.linkedin.com/in/sabithaskaranavar/
   - label: GitHub
     icon: fab fa-fw fa-github
-    url: https://github.com/sabithask
+    url: https://github.com/sabi-s
   - label: Resume
     icon: fas fa-fw fa-file-pdf
     url: /assets/files/Sabitha_S_Karanavar_Web_Developer.pdf

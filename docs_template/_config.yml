@@ -1,0 +1,46 @@
+title: Akhila Chennamaneni
+description: Portfolio showcasing IAM, GRC, and Salesforce projects.
+url: https://Akchrao.github.io
+baseurl: "/dae_6mon_coh2_AC"
+remote_theme: mmistakes/minimal-mistakes
+minimal_mistakes_skin: air # Using a cleaner base for premium customization
+author:
+  name: Akhila Chennamaneni
+  avatar: /assets/img/Linkedin_image.png # Generic avatar placeholder
+  bio: "IAM GRC Analyst & Salesforce Administrator"
+  location: "Stamford, CT"
+  email: akchrao@gmail.com
+  links:
+  - label: LinkedIn
+    icon: fab fa-fw fa-linkedin
+    url: https://www.linkedin.com/in/akhila-chennamaneni-228651236
+  - label: GitHub
+    icon: fab fa-fw fa-github
+    url: https://github.com/Akchrao/dae_6mon_coh2_AC
+  - label: Resume
+    icon: fas fa-fw fa-file-pdf
+    url: /assets/files/Akhila_Ch.docx # Updated link to her docx
+
+logo: /assets/img/dae-logo.png
+title_separator: "|"
+subtitle: "IAM | GRC | Salesforce CRM | Cybersecurity Capstone"
+plugins:
+- jekyll-feed
+- jekyll-seo-tag
+- jekyll-include-cache
+- jekyll-remote-theme
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+defaults:
+- scope:
+    path: ''
+    type: pages
+  values:
+    layout: single
+    toc: true
+    toc_sticky: true
+    author_profile: true
+footer_scripts:
+- /assets/js/dae-link.js
+- /assets/js/mobile-menu.js

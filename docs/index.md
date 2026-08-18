@@ -1,63 +1,49 @@
 ---
-layout: default
-title: Home
+layout: single
+title: ""
+permalink: /
 ---
 
-<div class="dae-brand">
-  <img src="{{ '/assets/images/dae_logo_color.jpeg' | relative_url }}" alt="dae logo">
+<div class="hero-premium">
+  <h1 class="text-gradient">IAM Security Analyst & <br>Web Developer</h1>
+  <p style="font-size: 1.4rem; color: #555; margin-bottom: 2rem; max-width: 600px;">
+    Bridging the gap between Full-Stack Web Development and Identity & Access Management (IAM) Operations.
+  </p>
+  <div style="display: flex; gap: 1rem;">
+    <a href="/projects/" class="btn btn--primary btn--large">View Portfolio Projects</a>
+    <a href="/contact/" class="btn btn--light btn--large" style="border-radius: 99px; border: 1px solid #eee;">Get in Touch</a>
+  </div>
 </div>
 
-<nav class="portfolio-nav" aria-label="Portfolio navigation">
-  <a href="{{ '/' | relative_url }}">Home</a>
-  <span aria-hidden="true"> · </span>
-  <a href="{{ '/about.html' | relative_url }}">About</a>
-  <span aria-hidden="true"> · </span>
-  <a href="{{ '/projects.html' | relative_url }}">Projects</a>
-  <span aria-hidden="true"> · </span>
-  <a href="{{ '/contact.html' | relative_url }}">Contact</a>
-</nav>
+<div class="grid__wrapper">
+  <div class="project-card">
+    <h2 style="margin-top: 0;">Healthcare IAM Operations</h2>
+    <p>Healthcare IAM Capstone project demonstrating identity lifecycle management, RBAC, and security compliance in a simulated environment.</p>
+    <ul style="padding-left: 1.2rem; color: #666;">
+      <li>Active Directory & Microsoft Entra ID</li>
+      <li>JML Lifecycle Automation (PowerShell)</li>
+      <li>HIPAA/NIST Security Controls</li>
+    </ul>
+  </div>
 
-
-# SABITHA S. KARANAVAR
-
-**Identity and Access Management (IAM) Analyst | Web Developer**
-
-**Graduation:** 03-DEC-2026
-
-![Sabitha S. Karanavar]({{ '/assets/images/SabithaSK.png' | relative_url }})
-
-<div class="resume-download">
-  <a href="{{ '/assets/files/Sabitha_S_Karanavar_Web_Developer.pdf' | relative_url }}" class="btn" download>Download Resume (PDF)</a>
-  <a href="{{ '/assets/files/Sabitha S - Webdeveloper.docx' | relative_url }}" class="btn btn-secondary" download>Download Resume (DOCX)</a>
+  <div class="project-card">
+    <h2 style="margin-top: 0;">Smart Deal Alert</h2>
+    <p>A multi-user Python application for real-time price monitoring and automated alerts, featuring secure user authentication and data persistence.</p>
+    <ul style="padding-left: 1.2rem; color: #666;">
+      <li>Python Backend & JSON Persistence</li>
+      <li>Secure User Login & Product Tracking</li>
+      <li>Automated Price Drop Notifications</li>
+    </ul>
+  </div>
 </div>
 
-## About Me
+<div style="margin-top: 4rem; padding: 2rem; background: #fafafa; border-radius: 12px; border: 1px solid #eee;">
+  <h3 style="margin-top: 0;">Currently Focused On</h3>
+  <p>Leveraging my professional background in **Web Development** to excel as an **IAM Analyst**, ensuring secure and efficient access governance in complex healthcare and enterprise environments.</p>
+</div>
 
-I am an aspiring Identity and Access Management (IAM) Analyst with a strong background in web development and a passion for cybersecurity. My expertise lies in designing enterprise-level security environments, managing identity lifecycles, and ensuring robust access controls.
-
-I am currently completing a **12-week Healthcare IAM Operations Home Lab**, where I design and manage a complete IAM environment including Role-Based Access Control (RBAC), Active Directory, Microsoft Entra ID, Joiner-Mover-Leaver (JML) processes, and Multi-Factor Authentication (MFA).
-
-## Featured Projects
-
-### Healthcare IAM Operations Home Lab
-![Healthcare IAM Project]({{ '/assets/images/project-placeholder.svg' | relative_url }})
-
-A comprehensive 12-week project focused on designing and managing IAM operations for a healthcare environment. 
-- **Key Tasks:** Implementing RBAC, Active Directory/Entra ID administration, PowerShell automation, and security compliance reviews.
-
-### Smart Deal Alert (Python Price Tracker)
-![Smart Deal Alert]({{ '/assets/images/project-placeholder.svg' | relative_url }})
-
-A Python-based application that tracks product prices and alerts users when prices drop.
-- **Technologies:** Python, JSON, Data persistence algorithms.
-
-### Git & GitHub Beginner's Guide
-![Git Guide]({{ '/assets/images/project-placeholder.svg' | relative_url }})
-
-An instructional guide authored to help beginners understand version control best practices and collaborative workflows.
-
-## Contact
-
-- **Email:** [sabithaskaranavar@gmail.com](mailto:sabithaskaranavar@gmail.com)
-- **LinkedIn:** [LinkedIn Profile](https://www.linkedin.com/in/sabithaskaranavar/) <!-- Update with actual URL if known -->
-- **GitHub:** [GitHub Profile](https://github.com/sabithask) <!-- Update with actual URL if known -->
+<div style="text-align: center; margin-top: 4rem; opacity: 0.6;">
+  <a href="https://www.mydae.org/" target="_blank" rel="noopener">
+    <img src="{{ '/assets/img/dae_logo_color.jpeg' | relative_url }}" alt="DAE Logo" class="footer-logo" style="height: 32px;">
+  </a>
+</div>

@@ -1,0 +1,177 @@
+---
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'air' }}";
+@import "minimal-mistakes";
+
+/* ==========================================================================
+   HIGH-END VISUAL CUSTOMIZATION (Akhila Chennamaneni Portfolio)
+   ========================================================================== */
+
+:root {
+  --primary-color: #000000;
+  --accent-color: #0070f3; /* Premium tech blue */
+  --text-color: #111111;
+  --bg-color: #ffffff;
+  --card-bg: #ffffff;
+  --border-radius: 12px;
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Global Typography */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Geist", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+/* Premium Header & Navigation */
+.masthead {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+.site-title {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: lowercase;
+}
+
+.greedy-nav a {
+  font-weight: 500;
+  color: var(--text-color);
+  opacity: 0.7;
+  transition: var(--transition);
+}
+
+.greedy-nav a:hover {
+  opacity: 1;
+  color: var(--accent-color);
+}
+
+/* Author Profile / Sidebar */
+.author__avatar {
+  border-radius: 20%; /* Modern soft square */
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+}
+
+.author__avatar:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.author__name {
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.author__bio {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+/* High-End Hero Section (Home Page) */
+.hero-premium {
+  padding: 4rem 0;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.hero-premium h1 {
+  font-size: 3.5rem;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, #000, #666);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .hero-premium h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Project & Lab Cards */
+.project-card, .skill-category {
+  background: var(--card-bg);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  transition: var(--transition);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent-color);
+}
+
+/* Buttons */
+.btn--primary {
+  background: var(--primary-color) !important;
+  color: #fff !important;
+  border-radius: 99px !important;
+  padding: 0.8rem 2rem !important;
+  font-weight: 600 !important;
+  transition: var(--transition) !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Footer note customization */
+.footer-note {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 4rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.footer-logo {
+  filter: grayscale(100%);
+  opacity: 0.5;
+  transition: var(--transition);
+}
+
+.footer-logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Code Highlights */
+.highlight {
+  border-radius: 8px;
+  background: #fbfbfb !important;
+  border: 1px solid #eee;
+}
+
+/* Custom Utilities */
+.text-gradient {
+  background: linear-gradient(135deg, #0070f3, #00dfd8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}

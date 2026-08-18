@@ -1,4 +1,46 @@
-title: "Sabitha S. Karanavar | IAM Security Analyst & Web Developer"
+title: "Sabitha S. Karanavar"
 description: "Portfolio of Sabitha S. Karanavar, specializing in Identity and Access Management (IAM) and Web Development."
-theme: jekyll-theme-cayman
-show_downloads: true
+url: https://sabithask.github.io # Update this if needed
+baseurl: "" # Update if pushing to a subfolder
+remote_theme: mmistakes/minimal-mistakes
+minimal_mistakes_skin: air
+author:
+  name: Sabitha S. Karanavar
+  avatar: /assets/img/SabithaSK.png
+  bio: "IAM Security Analyst & Web Developer"
+  location: "USA" # Update if known
+  email: sabithaskaranavar@gmail.com
+  links:
+  - label: LinkedIn
+    icon: fab fa-fw fa-linkedin
+    url: https://www.linkedin.com/in/sabithaskaranavar/
+  - label: GitHub
+    icon: fab fa-fw fa-github
+    url: https://github.com/sabithask
+  - label: Resume
+    icon: fas fa-fw fa-file-pdf
+    url: /assets/files/Sabitha_S_Karanavar_Web_Developer.pdf
+
+logo: /assets/img/dae_logo_color.jpeg
+title_separator: "|"
+subtitle: "IAM Security Analyst | Web Developer"
+plugins:
+- jekyll-feed
+- jekyll-seo-tag
+- jekyll-include-cache
+- jekyll-remote-theme
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+defaults:
+- scope:
+    path: ''
+    type: pages
+  values:
+    layout: single
+    toc: true
+    toc_sticky: true
+    author_profile: true
+footer_scripts:
+- /assets/js/dae-link.js
+- /assets/js/mobile-menu.js

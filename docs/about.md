@@ -1,55 +1,43 @@
 ---
-layout: default
-title: About
+layout: single
+title: About Me
+permalink: /about/
 ---
-
-<div class="dae-brand">
-  <img src="{{ '/assets/images/dae_logo_color.jpeg' | relative_url }}" alt="dae logo">
-</div>
-
-<nav class="portfolio-nav" aria-label="Portfolio navigation">
-  <a href="{{ '/' | relative_url }}">Home</a>
-  <span aria-hidden="true"> · </span>
-  <a href="{{ '/about.html' | relative_url }}">About</a>
-  <span aria-hidden="true"> · </span>
-  <a href="{{ '/projects.html' | relative_url }}">Projects</a>
-  <span aria-hidden="true"> · </span>
-  <a href="{{ '/contact.html' | relative_url }}">Contact</a>
-</nav>
-
-
-# About Me
-
-![Sabitha S. Karanavar]({{ '/assets/images/SabithaSK.png' | relative_url }})
-
-## Sabitha S. Karanavar
-
-**Graduation:** 03-DEC-2026
 
 I am a highly motivated professional transitioning from **Web Development** to **Identity and Access Management (IAM)**. With a solid foundation in full-stack development (HTML, CSS, JavaScript) and a deep interest in cybersecurity, I am dedicated to securing digital identities and managing access in enterprise environments.
 
-My current focus is on a **12-week Healthcare IAM Operations Home Lab**, where I am building hands-on experience in:
-- **Identity Governance & Administration (IGA):** Implementing RBAC and JML processes.
-- **Directory Services:** Managing Active Directory and Microsoft Entra ID.
-- **Security Operations:** Configuring MFA, PAM, and conducting access reviews.
-- **Automation:** Using PowerShell to streamline identity administration.
+### Professional Summary
 
-## Career Direction
+My background in Web Development provides me with a unique perspective on identity security, combining technical implementation skills with a deep understanding of application security and user experience. I am currently focused on a **12-week Healthcare IAM Operations Home Lab**, where I am building hands-on experience in:
+
+- **Identity Governance & Administration (IGA):** Implementing Role-Based Access Control (RBAC) and Joiner-Mover-Leaver (JML) processes.
+- **Directory Services:** Managing Active Directory and Microsoft Entra ID (formerly Azure AD).
+- **Security Operations:** Configuring Multi-Factor Authentication (MFA), Privileged Access Management (PAM), and conducting periodic access reviews.
+- **Automation:** Using PowerShell to streamline identity administration and automate routine tasks.
+
+### Career Aspirations
 
 **Preferred role(s):** 
 - Identity and Access Management (IAM) Analyst
 - Identity Governance Administration (IGA) Analyst
 - Identity & Access Operations Analyst
 - Access Management Analyst
+- Information Security Analyst (IAM-focused)
 
-**Work environment:** 
-I thrive in collaborative, security-conscious organizations that value mentorship, documentation, and continuous improvement. I am particularly interested in healthcare, government, and higher education sectors.
+**Ideal Work Environment:** 
+I am looking for a collaborative, security-focused organization that values continuous learning, mentorship, and professional growth. I enjoy environments where standard operating procedures, documentation, automation, and teamwork are used to improve security while supporting business operations. I am particularly interested in healthcare, government, higher education, and other organizations that manage critical systems and sensitive information.
 
-**Ideal job description:** 
-A role that involves managing the full identity lifecycle, provisioning/deprovisioning accounts, maintaining RBAC, and automating routine tasks to enhance organizational security and compliance.
+**Ideal Job:** 
+My ideal role involves managing user identities throughout the Joiner-Mover-Leaver (JML) lifecycle, provisioning and deprovisioning accounts, administering Active Directory and Microsoft Entra ID, maintaining Role-Based Access Control (RBAC), supporting Multi-Factor Authentication (MFA), conducting periodic access reviews, documenting IAM processes, and automating routine identity administration tasks using PowerShell. I enjoy roles that combine technical work with process improvement and security compliance.
 
-**Team:** 
-A supportive team of security professionals and system administrators who encourage knowledge sharing and collaborative problem-solving.
+**Ideal Team:** 
+I want to work with a supportive team of IAM professionals, security analysts, system administrators, and cloud engineers who encourage knowledge sharing, collaboration, and continuous improvement. I value teams that solve security challenges together, follow best practices, and provide opportunities to learn new technologies and contribute to meaningful security initiatives.
 
-**Future goals:** 
-To become a Senior IAM Engineer or Identity Governance specialist, earning certifications like CompTIA Security+, Microsoft Certified: Identity and Access Administrator, and deepening my expertise in cloud identity and automation.
+### Future Goals
+
+My immediate goal is to begin my career as an IAM Analyst and gain practical experience supporting enterprise identity and access management operations. Over time, I plan to:
+- Deepen my expertise in Microsoft Entra ID, Active Directory, and Identity Governance.
+- Explore Privileged Access Management (PAM) and cloud identity solutions.
+- Master IAM automation using PowerShell and Python.
+- Earn industry certifications such as **CompTIA Security+** and **Microsoft Certified: Identity and Access Administrator**.
+- Progress into senior IAM, Identity Governance, or IAM Engineering roles while continuing to improve organizational security through effective identity management and access governance.

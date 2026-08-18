@@ -20,9 +20,9 @@ title: Contact
 
 # Contact
 
-- **Name:** [YOUR FULL NAME]
-- **Email:** [YOUR EMAIL]
-- **LinkedIn:** [YOUR LINKEDIN URL]
-- **GitHub:** [YOUR GITHUB URL]
+- **Name:** Sabitha S. Karanavar
+- **Email:** [sabithaskaranavar@gmail.com](mailto:sabithaskaranavar@gmail.com)
+- **LinkedIn:** [LinkedIn Profile](https://www.linkedin.com/in/sabithaskaranavar/)
+- **GitHub:** [GitHub Profile](https://github.com/sabithask)
 
-[OPTIONAL SHORT CONTACT MESSAGE]
+Feel free to reach out to me for opportunities in Identity and Access Management (IAM) or Web Development!

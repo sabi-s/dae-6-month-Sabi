@@ -18,56 +18,46 @@ title: Home
 </nav>
 
 
-# [YOUR FULL NAME]
+# SABITHA S. KARANAVAR
 
-**Graduation:** [YOUR GRADUATION DATE]
+**Identity and Access Management (IAM) Analyst | Web Developer**
 
-![Professional headshot placeholder]({{ '/assets/images/profile-placeholder.svg' | relative_url }})
+**Graduation:** 03-DEC-2026
+
+![Sabitha S. Karanavar]({{ '/assets/images/SabithaSK.png' | relative_url }})
+
+<div class="resume-download">
+  <a href="{{ '/assets/files/Sabitha_S_Karanavar_Web_Developer.pdf' | relative_url }}" class="btn" download>Download Resume (PDF)</a>
+  <a href="{{ '/assets/files/Sabitha S - Webdeveloper.docx' | relative_url }}" class="btn btn-secondary" download>Download Resume (DOCX)</a>
+</div>
 
 ## About Me
 
-[Write a short personal introduction here. Include your interests, values, and aspirations. Do not leave this placeholder in the final portfolio.]
+I am an aspiring Identity and Access Management (IAM) Analyst with a strong background in web development and a passion for cybersecurity. My expertise lies in designing enterprise-level security environments, managing identity lifecycles, and ensuring robust access controls.
 
-## Career Aspirations
-
-**Preferred role(s):** [YOUR PREFERRED ROLE(S)]
-
-**Ideal work environment:** [DESCRIBE THE WORK ENVIRONMENT YOU ARE LOOKING FOR]
-
-**Ideal job:** [DESCRIBE YOUR IDEAL JOB]
-
-**Ideal team:** [DESCRIBE THE KIND OF TEAM YOU WANT TO WORK WITH]
-
-**Future goals:** [DESCRIBE YOUR FUTURE CAREER GOALS]
+I am currently completing a **12-week Healthcare IAM Operations Home Lab**, where I design and manage a complete IAM environment including Role-Based Access Control (RBAC), Active Directory, Microsoft Entra ID, Joiner-Mover-Leaver (JML) processes, and Multi-Factor Authentication (MFA).
 
 ## Featured Projects
 
-### [PROJECT 1 NAME]
+### Healthcare IAM Operations Home Lab
+![Healthcare IAM Project]({{ '/assets/images/project-placeholder.svg' | relative_url }})
 
-![Project 1 image placeholder]({{ '/assets/images/project-placeholder.svg' | relative_url }})
+A comprehensive 12-week project focused on designing and managing IAM operations for a healthcare environment. 
+- **Key Tasks:** Implementing RBAC, Active Directory/Entra ID administration, PowerShell automation, and security compliance reviews.
 
-[PROJECT 1 DESCRIPTION]
+### Smart Deal Alert (Python Price Tracker)
+![Smart Deal Alert]({{ '/assets/images/project-placeholder.svg' | relative_url }})
 
-[Project repository or live demo](#)
+A Python-based application that tracks product prices and alerts users when prices drop.
+- **Technologies:** Python, JSON, Data persistence algorithms.
 
-### [PROJECT 2 NAME]
+### Git & GitHub Beginner's Guide
+![Git Guide]({{ '/assets/images/project-placeholder.svg' | relative_url }})
 
-![Project 2 image placeholder]({{ '/assets/images/project-placeholder.svg' | relative_url }})
-
-[PROJECT 2 DESCRIPTION]
-
-[Project repository or live demo](#)
-
-### [PROJECT 3 NAME]
-
-![Project 3 image placeholder]({{ '/assets/images/project-placeholder.svg' | relative_url }})
-
-[PROJECT 3 DESCRIPTION]
-
-[Project repository or live demo](#)
+An instructional guide authored to help beginners understand version control best practices and collaborative workflows.
 
 ## Contact
 
-- **Email:** [YOUR EMAIL]
-- **LinkedIn:** [YOUR LINKEDIN URL]
-- **GitHub:** [YOUR GITHUB URL]
+- **Email:** [sabithaskaranavar@gmail.com](mailto:sabithaskaranavar@gmail.com)
+- **LinkedIn:** [LinkedIn Profile](https://www.linkedin.com/in/sabithaskaranavar/) <!-- Update with actual URL if known -->
+- **GitHub:** [GitHub Profile](https://github.com/sabithask) <!-- Update with actual URL if known -->

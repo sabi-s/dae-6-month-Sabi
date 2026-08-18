@@ -20,37 +20,26 @@ title: Projects
 
 # Projects
 
-Choose **2–3 of your strongest projects** for the finished portfolio.
+## Healthcare IAM Operations Home Lab
+![Healthcare IAM Project]({{ '/assets/images/project-placeholder.svg' | relative_url }})
 
-## [PROJECT 1 NAME]
+A 12-week intensive project focused on designing and managing a complete Identity and Access Management (IAM) environment for a healthcare organization.
 
-![Project 1 image placeholder]({{ '/assets/images/project-placeholder.svg' | relative_url }})
+- **What I contributed:** Designed the RBAC structure, managed user lifecycles (JML), and configured directory services.
+- **Tools/technologies:** Active Directory, Microsoft Entra ID, PowerShell, MFA, PAM.
 
-[PROJECT 1 DESCRIPTION]
+## Smart Deal Alert (Python Price Tracker)
+![Smart Deal Alert]({{ '/assets/images/project-placeholder.svg' | relative_url }})
 
-- **Repository:** [PROJECT 1 GITHUB URL]
-- **Live demo:** [PROJECT 1 LIVE URL, IF APPLICABLE]
-- **What I contributed:** [YOUR CONTRIBUTION]
-- **Tools/technologies:** [TOOLS OR TECHNOLOGIES]
+A Python application designed to monitor product prices across multiple users and send alerts when targets are met.
 
-## [PROJECT 2 NAME]
+- **What I contributed:** Developed the core price-tracking logic, user authentication system, and JSON-based data persistence.
+- **Tools/technologies:** Python, JSON, Algorithm design.
 
-![Project 2 image placeholder]({{ '/assets/images/project-placeholder.svg' | relative_url }})
+## Git & GitHub Beginner's Guide
+![Git Guide]({{ '/assets/images/project-placeholder.svg' | relative_url }})
 
-[PROJECT 2 DESCRIPTION]
+A comprehensive guide for beginners to master version control and collaborative development workflows.
 
-- **Repository:** [PROJECT 2 GITHUB URL]
-- **Live demo:** [PROJECT 2 LIVE URL, IF APPLICABLE]
-- **What I contributed:** [YOUR CONTRIBUTION]
-- **Tools/technologies:** [TOOLS OR TECHNOLOGIES]
-
-## [PROJECT 3 NAME]
-
-![Project 3 image placeholder]({{ '/assets/images/project-placeholder.svg' | relative_url }})
-
-[PROJECT 3 DESCRIPTION]
-
-- **Repository:** [PROJECT 3 GITHUB URL]
-- **Live demo:** [PROJECT 3 LIVE URL, IF APPLICABLE]
-- **What I contributed:** [YOUR CONTRIBUTION]
-- **Tools/technologies:** [TOOLS OR TECHNOLOGIES]
+- **What I contributed:** Authored the entire guide, focusing on practical commands and best practices.
+- **Tools/technologies:** Git, GitHub, Documentation.

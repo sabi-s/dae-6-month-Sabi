@@ -20,22 +20,36 @@ title: About
 
 # About Me
 
-![Professional headshot placeholder]({{ '/assets/images/profile-placeholder.svg' | relative_url }})
+![Sabitha S. Karanavar]({{ '/assets/images/SabithaSK.png' | relative_url }})
 
-## [YOUR FULL NAME]
+## Sabitha S. Karanavar
 
-**Graduation:** [YOUR GRADUATION DATE]
+**Graduation:** 03-DEC-2026
 
-[Expand your About Me section here. Include your interests, values, background, and aspirations.]
+I am a highly motivated professional transitioning from **Web Development** to **Identity and Access Management (IAM)**. With a solid foundation in full-stack development (HTML, CSS, JavaScript) and a deep interest in cybersecurity, I am dedicated to securing digital identities and managing access in enterprise environments.
+
+My current focus is on a **12-week Healthcare IAM Operations Home Lab**, where I am building hands-on experience in:
+- **Identity Governance & Administration (IGA):** Implementing RBAC and JML processes.
+- **Directory Services:** Managing Active Directory and Microsoft Entra ID.
+- **Security Operations:** Configuring MFA, PAM, and conducting access reviews.
+- **Automation:** Using PowerShell to streamline identity administration.
 
 ## Career Direction
 
-**Preferred role(s):** [YOUR PREFERRED ROLE(S)]
+**Preferred role(s):** 
+- Identity and Access Management (IAM) Analyst
+- Identity Governance Administration (IGA) Analyst
+- Identity & Access Operations Analyst
+- Access Management Analyst
 
-**Work environment:** [YOUR PREFERRED WORK ENVIRONMENT]
+**Work environment:** 
+I thrive in collaborative, security-conscious organizations that value mentorship, documentation, and continuous improvement. I am particularly interested in healthcare, government, and higher education sectors.
 
-**Ideal job description:** [YOUR IDEAL JOB DESCRIPTION]
+**Ideal job description:** 
+A role that involves managing the full identity lifecycle, provisioning/deprovisioning accounts, maintaining RBAC, and automating routine tasks to enhance organizational security and compliance.
 
-**Team:** [THE KIND OF TEAM YOU WANT TO WORK WITH]
+**Team:** 
+A supportive team of security professionals and system administrators who encourage knowledge sharing and collaborative problem-solving.
 
-**Future goals:** [YOUR FUTURE GOALS]
+**Future goals:** 
+To become a Senior IAM Engineer or Identity Governance specialist, earning certifications like CompTIA Security+, Microsoft Certified: Identity and Access Administrator, and deepening my expertise in cloud identity and automation.

@@ -25,13 +25,22 @@ Markdown can help me:
   4. Tested and reviewed the file
 
 
- ```
- dsfsdfsg
  
- 
-  dsvgdg
-```
 
 ## Helpful Resourse
 
 I used the [Visual Studio Code Markdown documentation](http://code.visualstudio.com/docs/languages/markdown)
+
+
+## Code Example
+
+The filename `hello.py` is displayed as inline code.
+```python
+ print("Hello, Markdown!")
+```
+
+## Reflection
+ 
+ Markdown lets me write readable plain text and preview it as a formatted document.
+
+ <!--Comment-->

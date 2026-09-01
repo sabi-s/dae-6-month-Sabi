@@ -16,3 +16,18 @@ Markdown can help me:
   - organise a README
   - format project documentation
   - write content for GitHub Pages
+ 
+  ## Steps I Followed
+
+  1. Created a `.md` file
+  2. Added Markdown syntax
+  3. Opened the preview
+  4. Tested and reviewed the file
+
+
+ ```
+ dsfsdfsg
+ 
+ 
+  dsvgdg
+```

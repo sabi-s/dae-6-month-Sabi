@@ -31,3 +31,7 @@ Markdown can help me:
  
   dsvgdg
 ```
+
+## Helpful Resourse
+
+I used the [Visual Studio Code Markdown documentation](http://code.visualstudio.com/docs/languages/markdown)

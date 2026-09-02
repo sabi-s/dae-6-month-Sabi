@@ -44,3 +44,20 @@ The filename `hello.py` is displayed as inline code.
  Markdown lets me write readable plain text and preview it as a formatted document.
 
  <!--Comment-->
+
+<!-- Using Color Names -->
+
+ <span style="color:red">This text is red.</span>
+
+  <span style="color:#28a745">This text is green.</span>
+
+   <span style="color:rgb(0, 208, 255)">This text is blue.</span>
+
+<span style="color:rgb(168, 100, 4)">Hello World.</span>
+
+
+
+
+
+
+

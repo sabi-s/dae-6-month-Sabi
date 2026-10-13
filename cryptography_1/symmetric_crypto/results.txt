@@ -1,0 +1,80 @@
+HVMC Symmetric Cryptography - test and demo run
+Python 3.9.6 on Darwin arm64, 2026-10-13 15:34; cryptography package: 50.0.2
+
+=== Unit tests ===
+test_cbc_random_iv (__main__.TestAES) ... ok
+test_fips197_appendix_c (__main__.TestAES) ... ok
+test_matches_cryptography_library (__main__.TestAES) ... ok
+test_pkcs7 (__main__.TestAES) ... ok
+test_round_trip_all_key_sizes_and_lengths (__main__.TestAES) ... ok
+test_sbox_from_maths (__main__.TestAES) ... ok
+test_sp800_38a_cbc (__main__.TestAES) ... ok
+test_sp800_38a_ecb (__main__.TestAES) ... ok
+test_matches_cryptography_library (__main__.TestChaCha20) ... ok
+test_rfc8439_encryption_vector (__main__.TestChaCha20) ... ok
+test_rfc8439_quarter_round (__main__.TestChaCha20) ... ok
+test_round_trip (__main__.TestChaCha20) ... ok
+test_envelope_round_trip_tamper_and_rotation (__main__.TestKeyManagement) ... ok
+test_generate_key (__main__.TestKeyManagement) ... ok
+test_key_wrap_matches_library (__main__.TestKeyManagement) ... ok
+test_pbkdf2_salt (__main__.TestKeyManagement) ... ok
+test_rfc3394_vectors (__main__.TestKeyManagement) ... ok
+test_unwrap_with_wrong_kek_fails (__main__.TestKeyManagement) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.124s
+
+OK
+tests run: 18, failures: 0, errors: 0, skipped: 0
+
+=== Demo 1: ECB vs CBC on an image (the 'ECB penguin' with the HVMC logo) ===
+image 320x128, 10,240 AES blocks; distinct blocks: original 4, ECB 4, CBC 10,240
+ECB keeps every repeated plaintext block repeated -> the logo stays visible. CBC output has no repeats.
+
+=== Demo 2: ECB leaks equal values in patient records ===
+Patient-0001  dx=E11.9 T2 Diabet  ECB dx-block 87a562144fa2f6fb…   CBC dx-block 81160194bcc48965…
+Patient-0002  dx=I10 Hypertensio  ECB dx-block c331a36819daa4cd…   CBC dx-block c644f946309884ef…
+Patient-0003  dx=E11.9 T2 Diabet  ECB dx-block 87a562144fa2f6fb…   CBC dx-block ed590f89447da094…
+Patient-0004  dx=J45 Asthma       ECB dx-block f709cfc53fbb7a64…   CBC dx-block 778a1d5d7eb87450…
+Patient-0005  dx=E11.9 T2 Diabet  ECB dx-block 87a562144fa2f6fb…   CBC dx-block 85e2711822241891…
+Patient-0006  dx=I10 Hypertensio  ECB dx-block c331a36819daa4cd…   CBC dx-block 64e75a0ceacd086e…
+ECB: 6 records but only 3 distinct diagnosis blocks -> an attacker sees who shares a diagnosis.
+CBC: every block is different because of the random IV.
+
+=== Demo 3: CBC needs a fresh random IV every time ===
+fixed IV : 1 identical leading block(s) -> attacker learns the messages share a prefix
+random IV: 0 identical blocks
+
+=== Demo 4: CBC bit-flipping - changing ciphertext without the key ===
+original : role=nurse;user=lisa.tran;ward=4B;exp=2026-10-20
+forged   : role=admin;user=lisa.tran;ward=4B;exp=2026-10-20
+same attack on encrypt-then-MAC envelope detected: True
+
+=== Demo 5: padding-oracle attack decrypts CBC without the key ===
+recovered plaintext: {"mrn":"HVMC-004417","dx":"F32.1 depression"}
+correct: True; 7,322 oracle queries, 0.4 s, key never used by attacker
+
+=== Demo 6: ChaCha20 stream cipher ===
+nonce      : 24d8f4d04c1571b7bfa307d4
+ciphertext : 517a6e58d40559d045fc814796cf1c0be52d44119ac63e10beddf8390e1697c0 … (73 bytes = plaintext length, no padding)
+decrypted  : LIS -> EHR | MRN HVMC-004417 | Potassium 4.1 mmol/L | verified E. Petrova
+first keystream block (64 bytes): 1d333d78f93b79950daea13bb6824e45c565125cd9eb0e20 …
+
+=== Demo 7: nonce reuse turns ChaCha20 into a two-time pad ===
+c1 XOR c2 == p1 XOR p2: True
+attacker recovers p2 : MRN HVMC-004418 HbA1c 9.8% HIGH    
+
+=== Demo 8: key management ===
+CSPRNG 256-bit key   : 7c382dec665f8f426bd3269f183b31d8 …  (secrets.token_bytes, os.urandom)
+PBKDF2 600,000 iter   : 139 ms per guess on this Mac -> ~7 guesses/second/core
+same password, 2 salts: fe8de5955c198318 vs 8cd6d8aaf8224e52 (different keys)
+1 iteration          : 0.6 µs per guess -> stretching makes guessing ~230,679x slower
+envelope encryption  : lab/HVMC-004417.json -> KEK v1, wrapped DEK ee516097dc15…, lab/HVMC-004418.json -> KEK v1, wrapped DEK 45371e3fdc27…, rx/HVMC-004417.json -> KEK v1, wrapped DEK 72b2d84500a6…
+rotate KEK v1 -> v2   : 3 DEKs re-wrapped in 7 ms, bulk ciphertext unchanged: True
+retire v1             : new records decrypt: True; old v1-wrapped copies blocked: True
+record moved to another patient's file detected (context bound into MAC): True
+
+=== Demo 9: production comparison (cryptography package) ===
+AES-256-CBC 64 KiB: from-scratch 211 ms vs cryptography 0.094 ms (2,247x slower)
+ChaCha20   64 KiB: from-scratch 65 ms
+AES-256-GCM (recommended): ciphertext+16-byte tag; bit-flip detected -> InvalidTag: True

@@ -1,0 +1,127 @@
+{
+  "tests": {
+    "run": 18,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "names": [
+      "TestAES.test_cbc_random_iv",
+      "TestAES.test_fips197_appendix_c",
+      "TestAES.test_matches_cryptography_library",
+      "TestAES.test_pkcs7",
+      "TestAES.test_round_trip_all_key_sizes_and_lengths",
+      "TestAES.test_sbox_from_maths",
+      "TestAES.test_sp800_38a_cbc",
+      "TestAES.test_sp800_38a_ecb",
+      "TestChaCha20.test_matches_cryptography_library",
+      "TestChaCha20.test_rfc8439_encryption_vector",
+      "TestChaCha20.test_rfc8439_quarter_round",
+      "TestChaCha20.test_round_trip",
+      "TestKeyManagement.test_envelope_round_trip_tamper_and_rotation",
+      "TestKeyManagement.test_generate_key",
+      "TestKeyManagement.test_key_wrap_matches_library",
+      "TestKeyManagement.test_pbkdf2_salt",
+      "TestKeyManagement.test_rfc3394_vectors",
+      "TestKeyManagement.test_unwrap_with_wrong_kek_fails"
+    ]
+  },
+  "image": {
+    "w": 320,
+    "h": 128,
+    "blocks": 10240,
+    "distinct": {
+      "original": 4,
+      "ecb": 4,
+      "cbc": 10240
+    }
+  },
+  "records": {
+    "rows": [
+      [
+        "Patient-0001",
+        "E11.9 T2 Diabet",
+        "87a562144fa2f6fb",
+        "81160194bcc48965"
+      ],
+      [
+        "Patient-0002",
+        "I10 Hypertensio",
+        "c331a36819daa4cd",
+        "c644f946309884ef"
+      ],
+      [
+        "Patient-0003",
+        "E11.9 T2 Diabet",
+        "87a562144fa2f6fb",
+        "ed590f89447da094"
+      ],
+      [
+        "Patient-0004",
+        "J45 Asthma",
+        "f709cfc53fbb7a64",
+        "778a1d5d7eb87450"
+      ],
+      [
+        "Patient-0005",
+        "E11.9 T2 Diabet",
+        "87a562144fa2f6fb",
+        "85e2711822241891"
+      ],
+      [
+        "Patient-0006",
+        "I10 Hypertensio",
+        "c331a36819daa4cd",
+        "64e75a0ceacd086e"
+      ]
+    ],
+    "groups": 3
+  },
+  "iv_reuse": {
+    "fixed": 1,
+    "random": 0
+  },
+  "bit_flip": {
+    "original": "role=nurse;user=lisa.tran;ward=4B;exp=2026-10-20",
+    "forged": "role=admin;user=lisa.tran;ward=4B;exp=2026-10-20",
+    "detected": true
+  },
+  "padding_oracle": {
+    "recovered": "{\"mrn\":\"HVMC-004417\",\"dx\":\"F32.1 depression\"}",
+    "correct": true,
+    "queries": 7322,
+    "seconds": 0.4,
+    "blocks": 3
+  },
+  "chacha": {
+    "nonce": "24d8f4d04c1571b7bfa307d4",
+    "ct": "517a6e58d40559d045fc814796cf1c0be52d44119ac63e10beddf8390e1697c0",
+    "ok": true,
+    "length": 73
+  },
+  "nonce_reuse": {
+    "recovered": "MRN HVMC-004418 HbA1c 9.8% HIGH",
+    "ok": true
+  },
+  "pbkdf2": {
+    "ms": 139,
+    "guesses": 7,
+    "slowdown": 230679
+  },
+  "envelope": {
+    "files": 3,
+    "distinct": true,
+    "rot_ms": 7,
+    "unchanged": true,
+    "ok_new": true,
+    "old_blocked": true,
+    "ctx": true
+  },
+  "library": {
+    "version": "50.0.2",
+    "ours_ms": 211,
+    "lib_ms": 0.094,
+    "ratio": 2247,
+    "chacha_ms": 65,
+    "gcm_detect": true
+  }
+}

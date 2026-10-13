@@ -1,0 +1,110 @@
+{
+  "tests": {
+    "run": 12,
+    "failures": 0,
+    "errors": 0,
+    "names": [
+      "TestDiffieHellman.test_generator_order_is_q",
+      "TestDiffieHellman.test_miller_rabin_known_values",
+      "TestDiffieHellman.test_mod_pow_matches_builtin",
+      "TestDiffieHellman.test_rejects_bad_public_keys",
+      "TestDiffieHellman.test_rfc3526_prime_is_safe_prime",
+      "TestDiffieHellman.test_rfc3526_prime_known_hex",
+      "TestDiffieHellman.test_shared_key_agreement",
+      "TestDiffieHellman.test_toy_example_p23",
+      "TestSHA256.test_hmac_matches_stdlib",
+      "TestSHA256.test_matches_hashlib_random",
+      "TestSHA256.test_nist_vectors",
+      "TestSHA256.test_padding_is_block_aligned"
+    ]
+  },
+  "integrity": {
+    "original": "15e92e4781cd8a6c698998b5f6dcde9817c5db1a7bfc12a760e089403aad9ed2",
+    "tampered": "d7b760b0c3642d5f944992254aae25ab4b6f5821337752a81cf4bd5b92d54471",
+    "bits": 124
+  },
+  "avalanche": {
+    "trials": 1000,
+    "mean": 127.5,
+    "sd": 8.11,
+    "min": 102,
+    "max": 158
+  },
+  "birthday": [
+    {
+      "bits": 16,
+      "mean": 329,
+      "expected": 321
+    },
+    {
+      "bits": 20,
+      "mean": 1299,
+      "expected": 1283
+    },
+    {
+      "bits": 24,
+      "mean": 5116,
+      "expected": 5134
+    }
+  ],
+  "preimage": {
+    "bits": 16,
+    "mean": 22160,
+    "expected": 65536
+  },
+  "length_extension": {
+    "naive_forged": true,
+    "hmac_forged": false
+  },
+  "dh": {
+    "match": true,
+    "ms": 123,
+    "key": "b7496a373a6076029829120fd12fa155ccf5eb20457a5e163cda9ec2f8439d77",
+    "A": "b2f2fdbf090ca339f3c877dbcca00bc7",
+    "B": "2cd7f693cf0174a177f8b45ffa0f7feb"
+  },
+  "dlog": [
+    {
+      "bits": 16,
+      "p": 51827,
+      "q": 25913,
+      "mean_steps": 12965,
+      "mean_s": 0.0004,
+      "full_s": 0.001,
+      "ok": true
+    },
+    {
+      "bits": 20,
+      "p": 1018859,
+      "q": 509429,
+      "mean_steps": 238801,
+      "mean_s": 0.0079,
+      "full_s": 0.017,
+      "ok": true
+    },
+    {
+      "bits": 24,
+      "p": 16057583,
+      "q": 8028791,
+      "mean_steps": 3382628,
+      "mean_s": 0.113,
+      "full_s": 0.268,
+      "ok": true
+    }
+  ],
+  "mitm": {
+    "ehr_eq_lis": false,
+    "m_ehr": true,
+    "m_lis": true
+  },
+  "ephemeral": [
+    "ce55ef9503d33036",
+    "351105316f6a3819",
+    "8ff1752846a8a5d1"
+  ],
+  "speed": {
+    "ours_ms": 111.0,
+    "lib_ms": 0.027,
+    "ratio": 4110
+  }
+}

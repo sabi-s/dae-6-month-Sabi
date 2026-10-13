@@ -1,0 +1,81 @@
+HVMC Cryptographic Fundamentals - test and demo run
+Python 3.9.6 on Darwin arm64, 2026-10-13 14:45
+
+=== Unit tests ===
+test_generator_order_is_q (__main__.TestDiffieHellman) ... ok
+test_miller_rabin_known_values (__main__.TestDiffieHellman) ... ok
+test_mod_pow_matches_builtin (__main__.TestDiffieHellman) ... ok
+test_rejects_bad_public_keys (__main__.TestDiffieHellman) ... ok
+test_rfc3526_prime_is_safe_prime (__main__.TestDiffieHellman) ... ok
+test_rfc3526_prime_known_hex (__main__.TestDiffieHellman) ... ok
+test_shared_key_agreement (__main__.TestDiffieHellman) ... ok
+test_toy_example_p23 (__main__.TestDiffieHellman) ... ok
+test_hmac_matches_stdlib (__main__.TestSHA256) ... ok
+test_matches_hashlib_random (__main__.TestSHA256) ... ok
+test_nist_vectors (__main__.TestSHA256) ... ok
+test_padding_is_block_aligned (__main__.TestSHA256) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 4.488s
+
+OK
+tests run: 12, failures: 0, errors: 0
+
+=== Demo 1: integrity of an HVMC lab result with SHA-256 ===
+original : {"mrn":"HVMC-004417","test":"Potassium","value":"4.1","unit":"mmol/L","verified_by":"Elena Petrova","ts":"2026-10-13T09:42:00Z"}
+digest   : 15e92e4781cd8a6c698998b5f6dcde9817c5db1a7bfc12a760e089403aad9ed2
+tampered : value 4.1 -> 7.1 (dangerous hyperkalemia)
+digest   : d7b760b0c3642d5f944992254aae25ab4b6f5821337752a81cf4bd5b92d54471
+bits that changed: 124 of 256
+
+=== Demo 2: avalanche effect (1000 one-bit flips) ===
+mean bits changed = 127.50 (ideal 128), std dev = 8.11 (ideal 8.0), min = 102, max = 158
+
+=== Demo 3: birthday attack on truncated SHA-256 ===
+16-bit hash: collision after 329 hashes on average (theory sqrt(pi/2 * 2^16) = 321)
+20-bit hash: collision after 1,299 hashes on average (theory sqrt(pi/2 * 2^20) = 1,283)
+24-bit hash: collision after 5,116 hashes on average (theory sqrt(pi/2 * 2^24) = 5,134)
+full 256-bit SHA-256: ~2^128 hashes needed -> infeasible
+
+=== Demo 4: preimage search on 16-bit truncated SHA-256 ===
+found a preimage after 22,160 tries on average (theory 2^16 = 65,536)
+full 256-bit SHA-256: ~2^256 tries needed -> infeasible
+
+=== Demo 5: length-extension attack on naive MAC = SHA-256(secret || message) ===
+original message: user=lisa.tran&role=nurse
+forged message  : b'user=lisa.tran&role=nurse\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01H&role=admin'
+server accepts forged MAC without knowing the secret: True
+same attack against HMAC-SHA256 succeeds: False
+
+=== Demo 6: worked example with small numbers (p=23, g=5) ===
+Alice: a=6, A = 5^6 mod 23 = 8
+Bob  : b=15, B = 5^15 mod 23 = 19
+Alice: s = B^a = 19^6 mod 23 = 2
+Bob  : s = A^b = 8^15 mod 23 = 2
+Eve brute-forces a from A=8: a = 6  (trivial for tiny p)
+
+=== Demo 7: 2048-bit Diffie-Hellman between HVMC EHR and LIS ===
+p (first/last 16 hex): ffffffffffffffff ... ffffffffffffffff (2048 bits)
+EHR public A = g^a mod p (first 32 hex): b2f2fdbf090ca339f3c877dbcca00bc7 ...
+LIS public B = g^b mod p (first 32 hex): 2cd7f693cf0174a177f8b45ffa0f7feb ...
+EHR session key: b7496a373a6076029829120fd12fa155ccf5eb20457a5e163cda9ec2f8439d77
+LIS session key: b7496a373a6076029829120fd12fa155ccf5eb20457a5e163cda9ec2f8439d77
+keys match: True   (2 key pairs + 2 shared secrets in 123 ms)
+
+=== Demo 8: brute-force discrete log vs. key size ===
+16-bit p=51827: key recovered in 12,965 steps on average over 5 keys, 0.000 s (search space q=25,913; all correct: True)
+20-bit p=1018859: key recovered in 238,801 steps on average over 5 keys, 0.008 s (search space q=509,429; all correct: True)
+24-bit p=16057583: key recovered in 3,382,628 steps on average over 5 keys, 0.113 s (search space q=8,028,791; all correct: True)
+Each extra bit doubles brute-force work. 2048-bit groups resist the best known attack
+(number field sieve) at about 112-bit security (NIST SP 800-57).
+
+=== Demo 9: man-in-the-middle on unauthenticated Diffie-Hellman ===
+EHR key == LIS key        : False
+Mallory shares EHR's key  : True
+Mallory shares LIS's key  : True
+=> Mallory can decrypt, read and re-encrypt all traffic. DH needs authentication (signatures/certificates).
+
+=== Demo 10: fresh (ephemeral) keys per session ===
+three sessions, three unrelated keys: ['ce55ef9503d33036', '351105316f6a3819', '8ff1752846a8a5d1']
+
+=== Demo 11: speed on 64 KiB === from-scratch 111.0 ms vs hashlib 0.027 ms (4,110x slower)

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HVMC Risk Dashboard</title>
+<style>
+:root{color-scheme:light;
+ --page:#f9f9f7;--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--ring:rgba(11,11,11,.10);
+ --s1:#2a78d6;--s2:#eb6834;--crit:#d03b3b;--serious:#ec835a;--warn:#fab219;--good:#0ca30c;--elim:#9fb3cf;--wash:rgba(42,120,214,.08);--navy:#1f3864}
+@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){color-scheme:dark;
+ --page:#0d0d0d;--surface:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--ring:rgba(255,255,255,.10);
+ --s1:#3987e5;--s2:#d95926;--elim:#5b6b80;--wash:rgba(57,135,229,.14);--navy:#9ec5f4}}
+:root[data-theme="dark"]{color-scheme:dark;--page:#0d0d0d;--surface:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;
+ --ring:rgba(255,255,255,.10);--s1:#3987e5;--s2:#d95926;--elim:#5b6b80;--wash:rgba(57,135,229,.14);--navy:#9ec5f4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:16px}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;justify-content:space-between}
+h1{font-size:20px;margin:0;color:var(--navy)}
+.sub{color:var(--ink2);font-size:12.5px}
+.card{background:var(--surface);border:1px solid var(--ring);border-radius:10px;padding:14px;min-width:0}
+.grid{display:grid;gap:12px}
+.tiles{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin:12px 0}
+.tile .v{font-size:28px;font-weight:650}
+.tile .l{color:var(--ink2);font-size:12.5px}
+.tile .d{font-size:12px;color:var(--muted)}
+.two{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}
+@media (max-width:900px){.two{grid-template-columns:1fr}}
+h2{font-size:15px;margin:0 0 8px}
+.alert{border-left:4px solid var(--crit);background:color-mix(in srgb,var(--crit) 9%,var(--surface));border-radius:8px;padding:10px 12px;margin-top:12px}
+.alert b{color:var(--crit)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{border:1px solid var(--ring);background:var(--surface);color:var(--ink);border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer}
+.chip:hover,.row:hover,tr.click:hover td{background:var(--wash)}
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0 12px}
+select,button.btn{font:inherit;font-size:13px;padding:5px 8px;border-radius:6px;border:1px solid var(--axis);background:var(--surface);color:var(--ink)}
+button.btn{cursor:pointer}
+.st{display:inline-flex;align-items:center;gap:4px;font-weight:600;font-size:12px;white-space:nowrap}
+.st i{font-style:normal;display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;color:#fff;font-size:10px}
+.heat{display:grid;grid-template-columns:28px repeat(5,1fr);gap:2px;font-size:12px}
+.heat .c{aspect-ratio:1.4;border-radius:4px;display:grid;place-items:center;font-weight:650;cursor:pointer;border:2px solid transparent;color:#0b0b0b}
+.heat .c.sel{border-color:var(--ink)}
+.heat .ax{color:var(--muted);display:grid;place-items:center}
+.row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 112px;gap:8px;align-items:center;padding:4px 6px;border-radius:6px;cursor:pointer}
+.row .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12.5px}
+.bar{position:relative;height:14px;background:var(--grid);border-radius:0 4px 4px 0}
+.bar .f{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0}
+.bar .tick{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink)}
+.num{font-variant-numeric:tabular-nums;text-align:right;font-size:12.5px}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th{text-align:left;color:var(--ink2);font-weight:600;border-bottom:1px solid var(--axis);padding:6px}
+td{border-bottom:1px solid var(--grid);padding:6px;vertical-align:top}
+tr.click{cursor:pointer}
+.tablewrap{overflow-x:auto}
+.kpis{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.kpi{cursor:pointer}
+.kpi .n{font-size:12.5px;font-weight:600}
+.kpi .tag{font-size:11px;color:var(--muted)}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--ink2);align-items:center}
+.sw{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:4px;border-radius:2px}
+#tip{position:fixed;pointer-events:none;background:var(--surface);color:var(--ink);border:1px solid var(--ring);border-radius:6px;padding:6px 8px;font-size:12px;box-shadow:0 4px 14px rgba(0,0,0,.15);display:none;z-index:20}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--surface);border-left:1px solid var(--ring);box-shadow:-8px 0 24px rgba(0,0,0,.12);
+ transform:translateX(105%);transition:transform .2s;overflow-y:auto;padding:16px;z-index:10}
+#drawer.open{transform:none}
+.crumb{font-size:12px;color:var(--muted);margin-bottom:6px}
+.crumb a{color:var(--s1);cursor:pointer}
+.kv{display:grid;grid-template-columns:130px 1fr;gap:4px 10px;font-size:12.5px;margin:8px 0}
+.kv div:nth-child(odd){color:var(--ink2)}
+.fac{display:grid;grid-template-columns:90px 1fr 24px;gap:6px;align-items:center;font-size:12px;margin:3px 0}
+.link{color:var(--s1);cursor:pointer;text-decoration:underline}
+.muted{color:var(--muted)}
+footer{color:var(--muted);font-size:12px;margin-top:14px}
+</style></head><body><div class="wrap">
+<header><div><h1>HVMC Cyber Risk Dashboard</h1><div class="sub">Horizon Valley Medical Center · Healthcare IAM Operations Simulation</div></div>
+<div class="sub" id="asof"></div></header>
+<div class="alert" id="alert"></div>
+<div class="grid tiles" id="tiles"></div>
+<div class="filters"><b style="font-size:13px">Filter</b>
+ <label>Rating <select id="fRating"><option value="">All</option><option>Critical</option><option>High</option><option>Medium</option><option>Low</option></select></label>
+ <label>Strategy <select id="fStrat"><option value="">All</option><option>Mitigate</option><option>Avoid</option><option>Transfer</option><option>Accept</option></select></label>
+ <label>Owner <select id="fOwner"><option value="">All</option></select></label>
+ <button class="btn" id="clear">Clear</button>
+ <button class="btn" id="tableToggle" aria-pressed="false">Show data table</button></div>
+<div class="grid two">
+ <div class="card"><h2>Risk heat map</h2><div class="sub" style="margin-bottom:6px">Likelihood × weighted impact. Click a cell to drill into its risks.</div><div id="heat"></div></div>
+ <div class="card"><h2>Risks — current score vs target after mitigation</h2>
+  <div class="legend" style="margin-bottom:6px"><span><span class="sw" style="background:var(--muted);height:10px"></span>Current weighted score (colour = rating)</span><span><span class="sw" style="background:var(--ink);width:3px;height:12px"></span>Target residual</span></div>
+  <div id="bars"></div><div id="table" hidden class="tablewrap"></div></div>
+</div>
+<div class="card" style="margin-top:12px"><h2>Key risk indicators — automated (kri_monitor.py)</h2><div class="sub" style="margin-bottom:6px">Red = alert raised. Click a row to see the linked risk.</div><div class="tablewrap" id="kris"></div></div>
+<div class="card" style="margin-top:12px"><h2>KPI framework — leading and lagging indicators</h2>
+ <div class="legend" style="margin-bottom:8px"><span><span class="sw" style="background:var(--s1)"></span>Actual</span><span><span class="sw" style="background:var(--s2)"></span>Target trajectory</span><span class="muted">Click a KPI for its definition and thresholds.</span></div>
+ <div class="grid kpis" id="kpis"></div></div>
+<div class="card" style="margin-top:12px"><h2>Critical asset exposure</h2><div class="sub" style="margin-bottom:6px">Click an asset to drill into its linked risks.</div><div class="tablewrap" id="assets"></div></div>
+<footer>Data: weighted risk model (Risk Evaluation Methods), mitigation plan (Risk Mitigation Planning), live KRIs from Azure. Figures for future months are targets, not actuals.</footer>
+</div>
+<div id="drawer" role="dialog" aria-modal="false" aria-label="Details"></div><div id="tip"></div>
+<script>
+const D = {"generated": "2026-10-14T18:34:16Z", "kris": [{"id": "K01", "name": "EHR storage public network access", "risk": "R02", "control": "C02", "value": "Enabled", "status": "Red", "target": "Disabled", "source": "az storage account show"}, {"id": "K02", "name": "EHR storage shared-key access", "risk": "R02", "control": "C02", "value": true, "status": "Amber", "target": "false", "source": "az storage account show"}, {"id": "K03", "name": "EHR blob versioning", "risk": "R05", "control": "C05", "value": "Disabled", "status": "Red", "target": "Enabled", "source": "blob-service-properties"}, {"id": "K04", "name": "Blob soft-delete retention (days)", "risk": "R05", "control": "C05", "value": 7, "status": "Amber", "target": "\u2265 30", "source": "blob-service-properties"}, {"id": "K05", "name": "Data-tier explicit deny rule", "risk": "R03", "control": "C03", "value": "Missing", "status": "Red", "target": "Present", "source": "az network nsg rule list"}, {"id": "K06", "name": "Global Administrators", "risk": "R04", "control": "C04", "value": 1, "status": "Red", "target": "2\u20134 incl. break-glass", "source": "Graph directoryRoles"}, {"id": "K07", "name": "Activity log exported to Log Analytics", "risk": "R01", "control": "C01", "value": 0, "status": "Red", "target": "\u2265 1", "source": "az monitor diagnostic-settings subscription list"}, {"id": "K08", "name": "Activity-log alert rules", "risk": "R01", "control": "C01", "value": 0, "status": "Red", "target": "\u2265 3", "source": "az monitor activity-log alert list"}, {"id": "K09", "name": "Network flow logs", "risk": "R01", "control": "C01", "value": 0, "status": "Amber", "target": "\u2265 1", "source": "az network watcher flow-log list"}, {"id": "K10", "name": "Defender for Storage", "risk": "R11", "control": "C06", "value": "Free", "status": "Amber", "target": "Standard", "source": "az security pricing show"}, {"id": "K11", "name": "Security alert contacts", "risk": "R11", "control": "C06", "value": 0, "status": "Amber", "target": "\u2265 1", "source": "az security contact list"}, {"id": "K12", "name": "Users can register applications", "risk": "R08", "control": "C08", "value": true, "status": "Amber", "target": "false", "source": "Graph authorizationPolicy"}, {"id": "K13", "name": "Guest invitations allowed from", "risk": "R08", "control": "C08", "value": "everyone", "status": "Amber", "target": "adminsAndGuestInviters", "source": "Graph authorizationPolicy"}, {"id": "K14", "name": "Test/shared accounts in production", "risk": "R07", "control": "C14", "value": 1, "status": "Amber", "target": "0", "source": "az ad user list"}, {"id": "K15", "name": "Resource locks on production RG", "risk": "R15", "control": "A01", "value": 0, "status": "Amber", "target": "\u2265 1 (accepted risk)", "source": "az lock list"}], "summary": {"Red": 6, "Amber": 9, "Green": 0}, "risks": [{"id": "R01", "title": "Security incident goes undetected for months (no central logging or alerting)", "asset": "All Azure resources", "threat": "External attacker / insider (T1562.008 Disable Cloud Logs)", "vuln": "V01: 0 Log Analytics workspaces, 0 activity-log diagnostic settings, 0 alert rules, 0 NSG flow logs", "owner": "Fatima Ali", "L": 4, "f": [5, 3, 5, 4], "wi": 4.16, "score": 16.64, "rating": "High", "residual": 6.66, "residual_rating": "Medium", "strategy": "Mitigate", "why": "Alerts cut dwell time from months to hours (lower impact) and deter attackers (L 4\u21922)", "ale": 864926, "ale_after": 345971, "controls": [{"id": "C01", "name": "Central logging, alerting and flow logs", "strategy": "Mitigate", "owner": "Fatima Ali", "kpi": "Resources sending logs / alert-to-triage time", "target": "100% / < 15 min", "start": 3, "weeks": 2}], "kris": ["K07", "K08", "K09"], "assets": ["Security Monitoring Portal"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "20", "by": "Sabitha S Karanavar", "reason": "HIPAA matrix gap G1 (audit controls)"}]}, {"id": "R02", "title": "ePHI exfiltration from EHR storage over the public internet", "asset": "hvmcehrstorage (ePHI)", "threat": "External attacker using stolen key or SAS token (T1530 Data from Cloud Storage)", "vuln": "V02: public network access Enabled, firewall default Allow, shared-key access enabled", "owner": "Fatima Ali", "L": 3, "f": [5, 2, 5, 5], "wi": 3.92, "score": 11.76, "rating": "High", "residual": 3.92, "residual_rating": "Low", "strategy": "Mitigate + Transfer", "why": "No internet path to storage; exploitation needs an insider with RBAC (L 3\u21921)", "ale": 600643, "ale_after": 120129, "controls": [{"id": "C02", "name": "EHR storage network lockdown", "strategy": "Mitigate", "owner": "Fatima Ali", "kpi": "publicNetworkAccess / allowSharedKeyAccess", "target": "Disabled / false", "start": 1, "weeks": 1}, {"id": "T01", "name": "Cyber liability insurance", "strategy": "Transfer", "owner": "Brian Adeyemi", "kpi": "Policy in force / coverage vs residual ALE", "target": "Yes / \u2265 100%", "start": 7, "weeks": 2}], "kris": ["K01", "K02"], "assets": ["hvmcehrstorage"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "15", "by": "Sabitha S Karanavar", "reason": "HIPAA matrix gap G2 (storage public access)"}]}, {"id": "R03", "title": "Lateral movement from Web tier to Data tier", "asset": "HVMC-Data-Subnet (SQL 1433)", "threat": "Attacker on compromised web server (T1021 Remote Services)", "vuln": "V03: HVMC-Data-NSG has no deny rule; default AllowVnetInBound (65000) permits Web\u2192Data on any port", "owner": "Fatima Ali", "L": 3, "f": [5, 4, 5, 4], "wi": 4.52, "score": 13.56, "rating": "High", "residual": 4.52, "residual_rating": "Low", "strategy": "Mitigate", "why": "Deny rule leaves only SQL 1433 from the App tier (L 3\u21921)", "ale": null, "ale_after": null, "controls": [{"id": "C03", "name": "Enforced network segmentation", "strategy": "Mitigate", "owner": "Fatima Ali", "kpi": "Web\u2192Data test on non-1433 port / Policy compliance", "target": "Blocked / 100%", "start": 1, "weeks": 1}], "kris": ["K05"], "assets": ["EHR application", "HVMC-Prod-VNet \u2014 Data subnet", "Pharmacy Management System"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "15", "by": "Sabitha S Karanavar", "reason": "HIPAA matrix gap G3 (Data NSG)"}]}, {"id": "R04", "title": "Loss or takeover of the only Global Administrator account", "asset": "Entra ID tenant", "threat": "Phishing / account lockout (T1078.004 Valid Cloud Accounts)", "vuln": "V04: 1 Global Administrator, no break-glass account, same person is subscription Owner", "owner": "Sabitha S Karanavar", "L": 3, "f": [3, 4, 3, 2], "wi": 3.24, "score": 9.72, "rating": "Medium", "residual": 3.24, "residual_rating": "Low", "strategy": "Mitigate", "why": "Break-glass and second admin remove lockout; PIM removes standing privilege (L 3\u21921)", "ale": null, "ale_after": null, "controls": [{"id": "C04", "name": "Privileged access resilience", "strategy": "Mitigate", "owner": "Sabitha S Karanavar", "kpi": "Standing Global Admins / break-glass alert test", "target": "\u2264 2 + break-glass / pass", "start": 1, "weeks": 1}], "kris": ["K06"], "assets": ["Entra ID tenant", "IT Administration Console"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "12", "by": "Sabitha S Karanavar", "reason": "HIPAA matrix gap G4 (single Global Admin)"}]}, {"id": "R05", "title": "Ransomware or malicious deletion destroys EHR data", "asset": "hvmcehrstorage (ePHI)", "threat": "Ransomware group (T1486 Data Encrypted for Impact, T1485 Data Destruction)", "vuln": "V05: blob versioning off, soft delete only 7 days, 0 resource locks, restore never tested", "owner": "Fatima Ali", "L": 3, "f": [5, 5, 4, 5], "wi": 4.67, "score": 14.01, "rating": "High", "residual": 9.0, "residual_rating": "Medium", "strategy": "Mitigate + Transfer", "why": "Attacks still likely, but versioned, immutable backups cap outage within MTD (impact 5\u21923)", "ale": 1057132, "ale_after": 288309, "controls": [{"id": "C05", "name": "Ransomware-resilient recovery", "strategy": "Mitigate", "owner": "Fatima Ali", "kpi": "Restore test result vs RTO/RPO", "target": "\u2264 4 h / \u2264 15 min", "start": 3, "weeks": 3}, {"id": "T01", "name": "Cyber liability insurance", "strategy": "Transfer", "owner": "Brian Adeyemi", "kpi": "Policy in force / coverage vs residual ALE", "target": "Yes / \u2265 100%", "start": 7, "weeks": 2}], "kris": ["K03", "K04"], "assets": ["hvmcehrstorage", "EHR application"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "8", "by": "Sabitha S Karanavar", "reason": "HIPAA matrix gap G8 (versioning off, DR untested)"}, {"date": "2026-10-13", "event": "Re-scored", "old": "8", "new": "15", "by": "Anthony Ruiz", "reason": "Threat assessment: ransomware is the leading healthcare threat (L2\u21923) and EHR loss is patient-safety impact (I4\u21925)."}]}, {"id": "R06", "title": "Contractor retains access after engagement ends; no BAA", "asset": "VPN Portal", "threat": "Trusted third party (T1078 Valid Accounts)", "vuln": "V06: Carlos Diaz account has no expiry date; no business associate agreement on file", "owner": "Kevin O'Brien", "L": 2, "f": [2, 1, 4, 2], "wi": 2.3, "score": 4.6, "rating": "Low", "residual": 1.97, "residual_rating": "Low", "strategy": "Transfer", "why": "Expiry limits exposure; BAA moves liability to contractor firm (L 2\u21921, C 4\u21923)", "ale": null, "ale_after": null, "controls": [{"id": "C12", "name": "Contractor lifecycle and BAA", "strategy": "Transfer", "owner": "Kevin O'Brien", "kpi": "Contractor accounts with end date / BAA on file", "target": "100% / yes", "start": 1, "weeks": 2}], "kris": [], "assets": ["Entra ID tenant", "VPN Portal"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "8", "by": "Sabitha S Karanavar", "reason": "HIPAA matrix gap G6 (contractor)"}]}, {"id": "R07", "title": "Shared test account in production can read ePHI", "asset": "hvmcehrstorage (ePHI)", "threat": "Insider or attacker reusing test credentials (T1078)", "vuln": "V07: Test Nurse - EHR holds HVMC-Nurse-EHR-ReadOnly on hvmcehrstorage", "owner": "Sabitha S Karanavar", "L": 2, "f": [1, 1, 3, 2], "wi": 1.78, "score": 3.56, "rating": "Low", "residual": 0.0, "residual_rating": "Eliminated", "strategy": "Avoid", "why": "Account removed \u2014 risk eliminated", "ale": null, "ale_after": null, "controls": [{"id": "C14", "name": "Separate test from production", "strategy": "Avoid", "owner": "Sabitha S Karanavar", "kpi": "Test/shared accounts in production", "target": "0", "start": 1, "weeks": 1}], "kris": ["K14"], "assets": ["hvmcehrstorage"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "6", "by": "Sabitha S Karanavar", "reason": "HIPAA matrix gap G7 (test account)"}]}, {"id": "R08", "title": "Consent phishing or rogue app via open tenant settings", "asset": "Entra ID tenant", "threat": "External attacker (T1528 Steal Application Access Token)", "vuln": "V08: any user can register apps and create tenants; guest invites allowed from everyone", "owner": "Sabitha S Karanavar", "L": 3, "f": [3, 2, 4, 3], "wi": 2.97, "score": 8.91, "rating": "Medium", "residual": 2.97, "residual_rating": "Low", "strategy": "Mitigate", "why": "Users can no longer register or consent to apps (L 3\u21921)", "ale": null, "ale_after": null, "controls": [{"id": "C08", "name": "Tenant hardening", "strategy": "Mitigate", "owner": "Sabitha S Karanavar", "kpi": "authorizationPolicy settings", "target": "allowedToCreateApps=false; invites=admins", "start": 1, "weeks": 1}], "kris": ["K12", "K13"], "assets": ["Entra ID tenant"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "12", "by": "Anthony Ruiz", "reason": "CIS checklist: open app registration and guest invites"}]}, {"id": "R09", "title": "Remote code execution via OpenSSH 6.6.1p1 (CVE-2023-38408, CVSS 9.8)", "asset": "Legacy public server (scanme.nmap.org lab target)", "threat": "External attacker (T1190 Exploit Public-Facing Application)", "vuln": "V09: decade-old OpenSSH with ssh-agent forwarding flaw", "owner": "Kevin O'Brien", "L": 3, "f": [4, 3, 3, 3], "wi": 3.19, "score": 9.57, "rating": "Medium", "residual": 0.0, "residual_rating": "Eliminated", "strategy": "Avoid", "why": "Server decommissioned \u2014 risk eliminated", "ale": null, "ale_after": null, "controls": [{"id": "C13", "name": "Decommission legacy public server", "strategy": "Avoid", "owner": "Kevin O'Brien", "kpi": "Internet scan of former host", "target": "0 open ports", "start": 2, "weeks": 1}], "kris": [], "assets": ["Legacy public server"], "history": [{"date": "2026-09-08", "event": "Opened", "old": "", "new": "Critical (legacy)", "by": "Sabitha S Karanavar", "reason": "Identified in Apply Vulnerability Assessment Techniques scan; rated with Sept impact-floor method"}, {"date": "2026-10-13", "event": "Re-scored", "old": "Critical (legacy)", "new": "15", "by": "Anthony Ruiz", "reason": "Converted to HVMC 5\u00d75 scale (L3\u00d7I5). Likelihood Medium \u2192 3."}]}, {"id": "R10", "title": "Remote code execution via Apache 2.4.7 mod_lua (CVE-2021-44790, CVSS 9.8)", "asset": "Legacy public server (scanme.nmap.org lab target)", "threat": "External attacker (T1190)", "vuln": "V10: Apache 2.4.7 with public exploits available", "owner": "Kevin O'Brien", "L": 4, "f": [4, 3, 3, 3], "wi": 3.19, "score": 12.76, "rating": "High", "residual": 0.0, "residual_rating": "Eliminated", "strategy": "Avoid", "why": "Server decommissioned \u2014 risk eliminated", "ale": null, "ale_after": null, "controls": [{"id": "C13", "name": "Decommission legacy public server", "strategy": "Avoid", "owner": "Kevin O'Brien", "kpi": "Internet scan of former host", "target": "0 open ports", "start": 2, "weeks": 1}], "kris": [], "assets": ["Legacy public server"], "history": [{"date": "2026-09-08", "event": "Opened", "old": "", "new": "Critical (legacy)", "by": "Sabitha S Karanavar", "reason": "Identified in Apply Vulnerability Assessment Techniques scan; rated with Sept impact-floor method"}, {"date": "2026-10-13", "event": "Re-scored", "old": "Critical (legacy)", "new": "20", "by": "Anthony Ruiz", "reason": "Converted to HVMC 5\u00d75 scale (L4\u00d7I5). Public exploit code raises likelihood to 4."}]}, {"id": "R11", "title": "Malware uploaded to EHR storage is not detected", "asset": "hvmcehrstorage (ePHI)", "threat": "External attacker / infected workstation (T1105 Ingress Tool Transfer)", "vuln": "V11: all Defender for Cloud workload plans on Free tier; 0 security contacts configured", "owner": "Denise Coleman", "L": 3, "f": [3, 4, 3, 3], "wi": 3.36, "score": 10.08, "rating": "Medium", "residual": 5.28, "residual_rating": "Low", "strategy": "Mitigate", "why": "Uploads scanned before use (L 3\u21922, O 4\u21922)", "ale": null, "ale_after": null, "controls": [{"id": "C06", "name": "Malware scanning for EHR uploads", "strategy": "Mitigate", "owner": "Denise Coleman", "kpi": "Scan coverage / alerts reviewed in SLA", "target": "100% / 100%", "start": 4, "weeks": 1}], "kris": ["K10", "K11"], "assets": ["hvmcehrstorage"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "12", "by": "Anthony Ruiz", "reason": "CIS checklist: Defender plans Free, no security contact"}]}, {"id": "R12", "title": "Clinician credentials stolen by MFA-bypass (AiTM) phishing", "asset": "EHR access (Doctors/Nursing groups)", "threat": "Phishing operator (T1566 Phishing, T1557 Adversary-in-the-Middle)", "vuln": "V12: security defaults allow push/OTP MFA; no Conditional Access or phishing-resistant MFA", "owner": "Denise Coleman", "L": 3, "f": [3, 2, 4, 3], "wi": 2.97, "score": 8.91, "rating": "Medium", "residual": 2.97, "residual_rating": "Low", "strategy": "Mitigate", "why": "Phishing-resistant MFA defeats AiTM proxies (L 3\u21921)", "ale": 168180, "ale_after": 38441, "controls": [{"id": "C07", "name": "Conditional Access and phishing-resistant MFA", "strategy": "Mitigate", "owner": "Sabitha S Karanavar", "kpi": "Users covered by CA / phishing-resistant registration", "target": "100% / \u2265 90%", "start": 6, "weeks": 3}], "kris": [], "assets": ["EHR application", "Entra ID tenant", "Laboratory Information System"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "12", "by": "Anthony Ruiz", "reason": "Brainstorming + SWOT: AiTM phishing of clinicians"}]}, {"id": "R13", "title": "Workforce member views patient records without a care need (snooping)", "asset": "EHR (12 clinical users with RW)", "threat": "Curious or malicious insider", "vuln": "V13: no record-level access auditing or monthly access-log review", "owner": "Denise Coleman", "L": 3, "f": [2, 1, 4, 4], "wi": 2.54, "score": 7.62, "rating": "Medium", "residual": 4.84, "residual_rating": "Low", "strategy": "Mitigate", "why": "Auditing deters and detects early (L 3\u21922, R 4\u21923); some snooping remains \u2014 residual accepted by owner", "ale": 74960, "ale_after": 24987, "controls": [{"id": "C09", "name": "EHR access auditing and owner review", "strategy": "Mitigate", "owner": "Denise Coleman", "kpi": "Monthly reviews completed / unexplained accesses", "target": "100% / 0 open > 30 days", "start": 6, "weeks": 3}], "kris": [], "assets": ["EHR application", "Pharmacy Management System", "Laboratory Information System"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "12", "by": "Anthony Ruiz", "reason": "Brainstorming: insider snooping on patient records"}]}, {"id": "R14", "title": "Workforce violations go unpunished; training not tracked", "asset": "Workforce", "threat": "Negligent insider", "vuln": "V14: no sanction policy; HIPAA training completion not recorded", "owner": "Daniel Osei", "L": 2, "f": [2, 1, 3, 2], "wi": 1.97, "score": 3.94, "rating": "Low", "residual": 1.97, "residual_rating": "Low", "strategy": "Mitigate", "why": "Policy and tracked training in place (L 2\u21921)", "ale": null, "ale_after": null, "controls": [{"id": "C10", "name": "Sanction policy and training tracking", "strategy": "Mitigate", "owner": "Daniel Osei", "kpi": "Training completion", "target": "\u2265 95% annually", "start": 3, "weeks": 2}], "kris": [], "assets": ["HR Portal & Payroll"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "8", "by": "Sabitha S Karanavar", "reason": "HIPAA matrix gap G5 (sanction policy)"}]}, {"id": "R15", "title": "Accidental deletion of production network or storage", "asset": "HVMC-CloudSecurity-RG", "threat": "Administrator error", "vuln": "V15: 0 resource locks on the production resource group", "owner": "Kevin O'Brien", "L": 2, "f": [3, 4, 2, 2], "wi": 2.91, "score": 5.82, "rating": "Low", "residual": 5.82, "residual_rating": "Low", "strategy": "Accept", "why": "Accepted \u2014 no change", "ale": null, "ale_after": null, "controls": [{"id": "A01", "name": "Formal acceptance \u2014 accidental deletion", "strategy": "Accept", "owner": "Kevin O'Brien", "kpi": "Number of admins / incidents", "target": "\u2264 4 / 0", "start": 1, "weeks": 1}], "kris": ["K15"], "assets": ["HVMC-Prod-VNet \u2014 Data subnet", "IT Administration Console"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "8", "by": "Anthony Ruiz", "reason": "CIS checklist: no resource locks"}]}, {"id": "R16", "title": "Breach notification deadline missed (no Privacy Officer)", "asset": "Regulatory compliance", "threat": "Process failure", "vuln": "V16: Privacy Officer role vacant", "owner": "Denise Coleman", "L": 2, "f": [3, 1, 5, 4], "wi": 3.06, "score": 6.12, "rating": "Medium", "residual": 2.73, "residual_rating": "Low", "strategy": "Mitigate", "why": "Named Privacy Officer and procedure (L 2\u21921, C 5\u21924)", "ale": null, "ale_after": null, "controls": [{"id": "C11", "name": "Privacy Officer and breach procedure", "strategy": "Mitigate", "owner": "Denise Coleman", "kpi": "Breach assessments completed within 5 days", "target": "100%", "start": 5, "weeks": 3}], "kris": [], "assets": ["Security Monitoring Portal"], "history": [{"date": "2026-10-13", "event": "Opened", "old": "", "new": "8", "by": "Anthony Ruiz", "reason": "Brainstorming + SWOT: Privacy Officer vacancy"}]}], "weights": [0.19, 0.36, 0.33, 0.12], "assets": [{"name": "hvmcehrstorage", "type": "ePHI data store (Azure Storage)", "owner": "Sarah Chen", "tier": 1, "cia": ["High", "High", "Mod"], "risks": ["R02", "R05", "R07", "R11"], "rating": "High", "score": 14.01, "ale": 1657776, "up": "Entra ID (RBAC), HVMC-Prod-VNet, Azure East US + paired region", "down": "EHR, Nurse read-only role", "threats": ["T1530 Data from Cloud Storage", "T1486 / T1485 Ransomware, Data Destruction", "T1078 Valid Accounts (shared test account)", "T1105 Ingress Tool Transfer (malware)"]}, {"name": "EHR application", "type": "Clinical system", "owner": "Sarah Chen", "tier": 1, "cia": ["High", "High", "High"], "risks": ["R03", "R05", "R12", "R13"], "rating": "High", "score": 14.01, "ale": 1300273, "up": "Entra ID, Web/App/Data subnets, hvmcehrstorage", "down": "Clinicians (12), LIS, Pharmacy, Scheduling", "threats": ["T1021 Remote Services (lateral movement)", "T1486 / T1485 Ransomware, Data Destruction", "T1566 / T1557 Phishing, Adversary-in-the-Middle", "Insider misuse (record snooping)"]}, {"name": "HVMC-Prod-VNet \u2014 Data subnet", "type": "Network segment 10.0.3.0/24", "owner": "Fatima Ali", "tier": 1, "cia": ["High", "High", "High"], "risks": ["R03", "R15"], "rating": "High", "score": 13.56, "ale": 0, "up": "HVMC-Data-NSG, HVMC-CloudSecurity-RG", "down": "EHR database (SQL 1433)", "threats": ["T1021 Remote Services (lateral movement)", "Administrator error (deletion)"]}, {"name": "Pharmacy Management System", "type": "Clinical system", "owner": "David Patel", "tier": 1, "cia": ["Mod", "High", "High"], "risks": ["R03", "R13"], "rating": "High", "score": 13.56, "ale": 74960, "up": "Entra ID, network, EHR orders", "down": "Pharmacists (3), nursing medication administration", "threats": ["T1021 Remote Services (lateral movement)", "Insider misuse (record snooping)"]}, {"name": "Entra ID tenant", "type": "Identity platform (SaaS)", "owner": "Sabitha S Karanavar", "tier": 1, "cia": ["High", "High", "High"], "risks": ["R04", "R06", "R08", "R12"], "rating": "Medium", "score": 9.72, "ale": 168180, "up": "Microsoft cloud; one Global Admin account", "down": "All 9 HVMC systems, Azure RBAC, VPN", "threats": ["T1078.004 Valid Cloud Accounts (admin)", "T1078 Valid Accounts (third party)", "T1528 Steal Application Access Token", "T1566 / T1557 Phishing, Adversary-in-the-Middle"]}, {"name": "Laboratory Information System", "type": "Clinical system", "owner": "Elena Petrova", "tier": 1, "cia": ["Mod", "High", "Mod"], "risks": ["R12", "R13"], "rating": "Medium", "score": 8.91, "ale": 243140, "up": "Entra ID, network, EHR order feed", "down": "EHR (results), clinicians", "threats": ["T1566 / T1557 Phishing, Adversary-in-the-Middle", "Insider misuse (record snooping)"]}, {"name": "Security Monitoring Portal", "type": "Security operations", "owner": "Denise Coleman", "tier": 2, "cia": ["Mod", "High", "Mod"], "risks": ["R01", "R16"], "rating": "High", "score": 16.64, "ale": 864926, "up": "Entra ID, Log Analytics (not deployed)", "down": "Incident response, HIPAA audit review", "threats": ["T1562.008 Disable Cloud Logs", "Process failure (late breach notice)"]}, {"name": "IT Administration Console", "type": "Privileged administration", "owner": "Kevin O'Brien", "tier": 2, "cia": ["High", "High", "Mod"], "risks": ["R04", "R15"], "rating": "Medium", "score": 9.72, "ale": 0, "up": "Entra ID, HVMC-Bastion", "down": "All infrastructure changes", "threats": ["T1078.004 Valid Cloud Accounts (admin)", "Administrator error (deletion)"]}, {"name": "Legacy public server", "type": "Internet-facing host (lab scan target)", "owner": "Kevin O'Brien", "tier": 3, "cia": ["Low", "Mod", "Low"], "risks": ["R09", "R10"], "rating": "High", "score": 12.76, "ale": 0, "up": "Internet", "down": "None (isolated)", "threats": ["T1190 Exploit Public-Facing Application"]}, {"name": "VPN Portal", "type": "Remote access", "owner": "Kevin O'Brien", "tier": 3, "cia": ["Mod", "Mod", "Mod"], "risks": ["R06"], "rating": "Low", "score": 4.6, "ale": 0, "up": "Entra ID", "down": "Contractor (Carlos Diaz)", "threats": ["T1078 Valid Accounts (third party)"]}, {"name": "HR Portal & Payroll", "type": "Business systems", "owner": "Daniel Osei / Brian Adeyemi", "tier": 3, "cia": ["Mod", "Mod", "Low"], "risks": ["R14"], "rating": "Low", "score": 3.94, "ale": 0, "up": "Entra ID", "down": "HR (2), Finance (2)", "threats": ["Negligent insider"]}], "kpis": [{"id": "L1", "type": "Leading", "name": "Mitigation controls implemented", "definition": "Treatments from the mitigation plan verified complete", "unit": "%", "dir": "+", "baseline": 0, "targets": [44, 88, 100, 100, 100], "thresholds": "G \u2265 plan \u00b7 A within 10 pts \u00b7 R > 10 pts behind", "owner": "Denise Coleman", "source": "Mitigation workbook", "risks": "All"}, {"id": "L2", "type": "Leading", "name": "KRIs at Green", "definition": "Share of the 15 automated KRIs reporting Green", "unit": "%", "dir": "+", "baseline": 0, "targets": [40, 80, 93, 93, 100], "thresholds": "G \u2265 90% \u00b7 A 60\u201389% \u00b7 R < 60%", "owner": "Anthony Ruiz", "source": "kri_monitor.py (daily)", "risks": "All"}, {"id": "L3", "type": "Leading", "name": "Azure checklist pass rate", "definition": "27-item CIS-aligned configuration checklist", "unit": "%", "dir": "+", "baseline": 48, "targets": [70, 89, 93, 96, 96], "thresholds": "G \u2265 90% \u00b7 A 70\u201389% \u00b7 R < 70%", "owner": "Anthony Ruiz", "source": "Monthly checklist re-run", "risks": "R01\u2013R08, R11, R15"}, {"id": "L4", "type": "Leading", "name": "Phishing-resistant MFA coverage", "definition": "Clinical + admin users with passkey registered", "unit": "%", "dir": "+", "baseline": null, "targets": [0, 60, 90, 95, 95], "thresholds": "G \u2265 90% \u00b7 A 60\u201389% \u00b7 R < 60%", "owner": "Sabitha S Karanavar", "source": "Entra auth-methods report", "risks": "R12, R04"}, {"id": "L5", "type": "Leading", "name": "Access reviews on time", "definition": "Quarterly group and contractor reviews completed by due date", "unit": "%", "dir": "+", "baseline": 0, "targets": [100, 100, 100, 100, 100], "thresholds": "G 100% \u00b7 A \u2265 80% \u00b7 R < 80%", "owner": "Sabitha S Karanavar", "source": "Review log", "risks": "R06, R13"}, {"id": "L6", "type": "Leading", "name": "HIPAA training completion", "definition": "Workforce completing annual training (rolling 12 months)", "unit": "%", "dir": "+", "baseline": null, "targets": [40, 70, 95, 95, 95], "thresholds": "G \u2265 95% \u00b7 A 80\u201394% \u00b7 R < 80%", "owner": "Daniel Osei", "source": "HR training records", "risks": "R14"}, {"id": "G1", "type": "Lagging", "name": "High or Critical risks", "definition": "Risks rated High/Critical on the weighted model", "unit": "count", "dir": "-", "baseline": 5, "targets": [4, 1, 0, 0, 0], "thresholds": "G 0 \u00b7 A 1\u20132 \u00b7 R \u2265 3", "owner": "Denise Coleman", "source": "Risk register", "risks": "All"}, {"id": "G2", "type": "Lagging", "name": "Expected annual loss (top 5)", "definition": "ALE of the five quantified risks", "unit": "$K", "dir": "-", "baseline": 2766, "targets": [2000, 1100, 820, 820, 820], "thresholds": "G \u2264 $1M \u00b7 A $1\u20132M \u00b7 R > $2M", "owner": "Brian Adeyemi", "source": "ALE model", "risks": "R01, R02, R05, R12, R13"}, {"id": "G3", "type": "Lagging", "name": "Open HIPAA gaps", "definition": "Gaps G1\u2013G8 from the HIPAA compliance matrix", "unit": "count", "dir": "-", "baseline": 8, "targets": [4, 1, 0, 0, 0], "thresholds": "G 0 \u00b7 A 1\u20133 \u00b7 R \u2265 4", "owner": "Denise Coleman", "source": "HIPAA matrix", "risks": "G1\u2013G8"}, {"id": "G4", "type": "Lagging", "name": "Mean time to detect (hours)", "definition": "Security events detected from occurrence to alert", "unit": "h", "dir": "-", "baseline": null, "targets": [null, 24, 8, 4, 4], "thresholds": "G \u2264 4 h \u00b7 A \u2264 24 h \u00b7 R > 24 h", "owner": "Anthony Ruiz", "source": "Log Analytics incidents", "risks": "R01"}, {"id": "G5", "type": "Lagging", "name": "EHR restore time in drill (hours)", "definition": "Measured recovery time in quarterly restore test vs RTO 4 h", "unit": "h", "dir": "-", "baseline": null, "targets": [null, 6, null, null, 4], "thresholds": "G \u2264 4 h \u00b7 A \u2264 8 h \u00b7 R > 8 h", "owner": "Fatima Ali", "source": "Restore drill record", "risks": "R05"}, {"id": "G6", "type": "Lagging", "name": "ePHI security incidents", "definition": "Confirmed incidents involving ePHI", "unit": "count", "dir": "-", "baseline": null, "targets": [0, 0, 0, 0, 0], "thresholds": "G 0 \u00b7 A 1 (contained) \u00b7 R \u2265 1 reportable", "owner": "Denise Coleman", "source": "Incident register", "risks": "R02, R05, R13"}], "months": ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar"]};
+const RC = {Critical:'var(--crit)',High:'var(--serious)',Medium:'var(--warn)',Low:'var(--good)',Eliminated:'var(--elim)'};
+const ICON = {Critical:'✕',High:'▲',Medium:'!',Low:'✓',Eliminated:'–',Red:'✕',Amber:'!',Green:'✓'};
+const SCOL = {Red:'var(--crit)',Amber:'var(--warn)',Green:'var(--good)'};
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmtK = (k, v) => k.unit === '%' ? v + '%' : k.unit === '$K' ? '$' + (v / 1000).toFixed(2) + 'M' : k.unit === 'h' ? v + ' h' : String(v);
+const money = v => v == null ? '—' : '$' + Math.round(v).toLocaleString();
+const st = (lvl, col) => `<span class="st"><i style="background:${col || RC[lvl]}">${ICON[lvl]}</i>${lvl}</span>`;
+const byId = Object.fromEntries(D.risks.map(r => [r.id, r]));
+const kriById = Object.fromEntries(D.kris.map(k => [k.id, k]));
+let F = {rating:'', strat:'', owner:'', cell:null};
+let crumbs = [];
+
+$('#asof').textContent = 'KRIs refreshed ' + new Date(D.generated).toLocaleString() + ' (from Azure)';
+const reds = D.kris.filter(k => k.status === 'Red');
+$('#alert').innerHTML = reds.length
+  ? `<b>⚠ ${reds.length} automated alert${reds.length > 1 ? 's' : ''}</b> — Red key risk indicators need triage within 1 business day:<div class="chips">${reds.map(k => `<button class="chip" data-kri="${k.id}">✕ ${esc(k.name)} → ${k.risk}</button>`).join('')}</div>`
+  : '<b style="color:var(--good)">✓ No Red KRIs</b>';
+$('#alert').style.borderLeftColor = reds.length ? 'var(--crit)' : 'var(--good)';
+
+function tiles() {
+  const hi = D.risks.filter(r => r.rating === 'High' || r.rating === 'Critical').length;
+  const ale = D.risks.reduce((a, r) => a + (r.ale || 0), 0), ale2 = D.risks.reduce((a, r) => a + (r.ale_after || 0), 0);
+  const g = D.summary.Green || 0, n = D.kris.length;
+  const t = [
+    [hi, 'High / Critical risks', 'Target 0 by Dec 13'],
+    [money(ale), 'Expected annual loss (top 5)', 'Target ' + money(ale2) + ' after plan'],
+    [`${reds.length} / ${(D.summary.Amber||0)} / ${g}`, 'KRIs Red / Amber / Green', `of ${n} automated checks`],
+    ['0 of 16', 'Mitigation treatments done', 'Plan starts Oct 19 (8 weeks)'],
+    ['8', 'Open HIPAA gaps (G1–G8)', 'Target 0'],
+  ];
+  $('#tiles').innerHTML = t.map(x => `<div class="card tile"><div class="v">${x[0]}</div><div class="l">${x[1]}</div><div class="d">${x[2]}</div></div>`).join('');
+}
+
+function filtered() {
+  return D.risks.filter(r => (!F.rating || r.rating === F.rating) && (!F.strat || r.strategy.includes(F.strat)) && (!F.owner || r.owner === F.owner)
+    && (!F.cell || (r.L === F.cell[0] && Math.round(r.wi) === F.cell[1])));
+}
+
+function heat() {
+  let h = '<div class="heat">';
+  for (let L = 5; L >= 1; L--) {
+    h += `<div class="ax">${L}</div>`;
+    for (let I = 1; I <= 5; I++) {
+      const s = L * I, lvl = s >= 20 ? 'Critical' : s >= 12 ? 'High' : s >= 6 ? 'Medium' : 'Low';
+      const rs = D.risks.filter(r => r.L === L && Math.round(r.wi) === I);
+      const sel = F.cell && F.cell[0] === L && F.cell[1] === I;
+      h += `<div class="c ${sel ? 'sel' : ''}" data-cell="${L},${I}" style="background:color-mix(in srgb,${RC[lvl]} ${rs.length ? 85 : 28}%,var(--surface))"
+        data-tip="L${L} × impact ${I} · ${lvl} band${rs.length ? '<br>' + rs.map(r => r.id + ' ' + esc(r.title)).join('<br>') : '<br>No risks'}">${rs.length || ''}</div>`;
+    }
+  }
+  h += '<div></div>' + [1,2,3,4,5].map(i => `<div class="ax">${i}</div>`).join('') + '</div>';
+  h += '<div class="sub" style="margin-top:4px;text-align:center">Weighted impact (rounded) → · ↑ Likelihood</div>';
+  $('#heat').innerHTML = h;
+}
+
+function bars() {
+  const rs = filtered().sort((a, b) => b.score - a.score);
+  $('#bars').innerHTML = rs.length ? rs.map(r => `<div class="row" data-risk="${r.id}" tabindex="0" data-tip="<b>${r.id}</b> ${esc(r.title)}<br>Current ${r.score.toFixed(2)} (${r.rating}) → target ${r.residual.toFixed(2)} (${r.residual_rating})<br>${esc(r.strategy)} · ${esc(r.owner)}">
+      <div class="t"><b>${r.id}</b> ${esc(r.title)}</div>
+      <div class="bar"><div class="f" style="width:${r.score / 25 * 100}%;background:${RC[r.rating]}"></div><div class="tick" style="left:${r.residual / 25 * 100}%"></div></div>
+      <div class="num">${r.score.toFixed(1)}&nbsp;${st(r.rating)}</div></div>`).join('') : '<p class="muted">No risks match the filters.</p>';
+  $('#table').innerHTML = `<table><thead><tr><th>ID</th><th>Risk</th><th>Owner</th><th>L</th><th>F/O/C/R</th><th class="num">Score</th><th>Rating</th><th>Strategy</th><th class="num">Target</th></tr></thead><tbody>${
+    rs.map(r => `<tr class="click" data-risk="${r.id}"><td>${r.id}</td><td>${esc(r.title)}</td><td>${esc(r.owner)}</td><td>${r.L}</td><td>${r.f.join('/')}</td><td class="num">${r.score.toFixed(2)}</td><td>${st(r.rating)}</td><td>${esc(r.strategy)}</td><td class="num">${r.residual.toFixed(2)}</td></tr>`).join('')}</tbody></table>`;
+}
+
+function kris() {
+  $('#kris').innerHTML = `<table><thead><tr><th>KRI</th><th>Indicator</th><th>Current value</th><th>Target</th><th>Status</th><th>Risk</th><th>Control</th><th>Source</th></tr></thead><tbody>${
+    D.kris.map(k => `<tr class="click" data-kri="${k.id}"><td>${k.id}</td><td>${esc(k.name)}</td><td>${esc(k.value)}</td><td>${esc(k.target)}</td><td>${st(k.status, SCOL[k.status])}</td><td>${k.risk}</td><td>${k.control}</td><td class="muted">${esc(k.source)}</td></tr>`).join('')}</tbody></table>`;
+}
+
+function spark(k) {
+  const W = 220, H = 70, P = 14, vals = [k.baseline, ...k.targets];
+  const nums = vals.filter(v => v != null); const max = Math.max(...nums, 1) * 1.1;
+  const x = i => P + i * (W - 2 * P) / (D.months.length - 1), y = v => H - 14 - (v / max) * (H - 24);
+  let tgt = '', pts = [];
+  k.targets.forEach((v, i) => { if (v != null) pts.push([x(i + 1), y(v)]); });
+  if (k.baseline != null) pts.unshift([x(0), y(k.baseline)]);
+  tgt = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join('');
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${esc(k.name)} trend">`;
+  s += `<line x1="${P}" y1="${H - 14}" x2="${W - P}" y2="${H - 14}" stroke="var(--axis)"/>`;
+  s += `<path d="${tgt}" fill="none" stroke="var(--s2)" stroke-width="2" stroke-dasharray="4 3"/>`;
+  k.targets.forEach((v, i) => { if (v != null) s += `<circle cx="${x(i + 1)}" cy="${y(v)}" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2" data-tip="${D.months[i + 1]} target: ${fmtK(k, v)}"/>`; });
+  if (k.baseline != null) s += `<circle cx="${x(0)}" cy="${y(k.baseline)}" r="5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2" data-tip="Oct actual: ${fmtK(k, k.baseline)}"/>`;
+  D.months.forEach((m, i) => s += `<text x="${x(i)}" y="${H - 2}" font-size="9" text-anchor="middle" fill="var(--muted)">${m}</text>`);
+  return s + '</svg>';
+}
+
+function kpis() {
+  $('#kpis').innerHTML = D.kpis.map(k => `<div class="card kpi" data-kpi="${k.id}" tabindex="0">
+    <div class="tag">${k.id} · ${k.type} indicator</div><div class="n">${esc(k.name)}</div>
+    <div style="font-size:20px;font-weight:650">${k.baseline == null ? '<span class="muted" style="font-size:13px">Not yet measurable</span>' : fmtK(k, k.baseline)}</div>
+    ${spark(k)}</div>`).join('');
+}
+
+function assetsT() {
+  $('#assets').innerHTML = `<table><thead><tr><th>Asset</th><th>Tier</th><th>Exposure</th><th class="num">ALE (linked)</th><th>Linked risks</th><th>Depends on</th></tr></thead><tbody>${
+    D.assets.map((a, i) => `<tr class="click" data-asset="${i}"><td><b>${esc(a.name)}</b><br><span class="muted">${esc(a.type)}</span></td><td>Tier ${a.tier}</td><td>${st(a.rating)}</td><td class="num">${a.ale ? money(a.ale) : '—'}</td><td>${a.risks.join(', ')}</td><td>${esc(a.up)}</td></tr>`).join('')}</tbody></table>`;
+}
+
+function openDrawer(html, crumb) {
+  if (crumb) crumbs.push(crumb);
+  const c = crumbs.map((x, i) => i < crumbs.length - 1 ? `<a data-crumb="${i}">${esc(x.label)}</a>` : esc(x.label)).join(' › ');
+  $('#drawer').innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><div class="crumb"><a data-crumb="-1">Overview</a> › ${c}</div><button class="btn" id="close" aria-label="Close">✕</button></div>${html}`;
+  $('#drawer').classList.add('open');
+}
+function riskView(id) {
+  const r = byId[id];
+  const facs = ['Financial','Operational','Compliance','Reputation'].map((n, i) => `<div class="fac"><span>${n} (${Math.round(D.weights[i]*100)}%)</span><div class="bar"><div class="f" style="width:${r.f[i]*20}%;background:var(--s1)"></div></div><span class="num">${r.f[i]}</span></div>`).join('');
+  return `<h2>${r.id} · ${esc(r.title)}</h2>
+   <div class="kv"><div>Rating</div><div>${st(r.rating)} score ${r.score.toFixed(2)} (L${r.L} × WI ${r.wi})</div>
+   <div>Target after plan</div><div>${st(r.residual_rating)} ${r.residual.toFixed(2)}</div><div>Strategy</div><div>${esc(r.strategy)}</div>
+   <div>Owner</div><div>${esc(r.owner)}</div><div>Threat</div><div>${esc(r.threat)}</div><div>Vulnerability</div><div>${esc(r.vuln)}</div>
+   ${r.ale ? `<div>Expected annual loss</div><div>${money(r.ale)} → ${money(r.ale_after)}</div>` : ''}</div>
+   <h2 style="margin-top:12px">Impact factors</h2>${facs}
+   <h2 style="margin-top:12px">Treatments</h2>${r.controls.map(c => `<div style="margin:6px 0"><b>${c.id}</b> ${esc(c.name)} <span class="muted">· ${c.strategy} · ${esc(c.owner)} · weeks ${c.start}–${c.start + c.weeks - 1}</span><br><span class="muted">KPI: ${esc(c.kpi)} → ${esc(c.target)}</span></div>`).join('')}
+   <div class="muted" style="font-size:12px">${esc(r.why)}</div>
+   <h2 style="margin-top:12px">Automated indicators</h2>${r.kris.length ? r.kris.map(k => `<div class="link" data-kri="${k}">${k} ${esc(kriById[k].name)}: ${esc(kriById[k].value)}</div> ${st(kriById[k].status, SCOL[kriById[k].status])}`).join('<br>') : '<span class="muted">No automated KRI (monitored manually)</span>'}
+   <h2 style="margin-top:12px">Assets affected</h2>${r.assets.length ? r.assets.map(a => `<span class="link" data-assetname="${esc(a)}">${esc(a)}</span>`).join(', ') : '<span class="muted">—</span>'}
+   <h2 style="margin-top:12px">History</h2>${r.history.length ? `<table><tbody>${r.history.map(h => `<tr><td>${h.date}</td><td>${h.event}: ${esc(h.old || '–')} → ${esc(h.new)}<br><span class="muted">${esc(h.reason)}</span></td></tr>`).join('')}</tbody></table>` : '<span class="muted">No changes logged</span>'}`;
+}
+function assetView(i) {
+  const a = D.assets[i];
+  return `<h2>${esc(a.name)}</h2><div class="kv"><div>Type</div><div>${esc(a.type)}</div><div>Owner</div><div>${esc(a.owner)}</div><div>BIA tier</div><div>Tier ${a.tier}</div>
+   <div>C / I / A</div><div>${a.cia.join(' / ')}</div><div>Exposure</div><div>${st(a.rating)} ${a.score.toFixed(2)}</div><div>Depends on</div><div>${esc(a.up)}</div><div>Used by</div><div>${esc(a.down)}</div></div>
+   <h2>Threats</h2><div>${a.threats.map(esc).join('<br>')}</div>
+   <h2 style="margin-top:12px">Linked risks</h2>${a.risks.map(id => `<div class="row" data-risk="${id}"><div class="t"><b>${id}</b> ${esc(byId[id].title)}</div><div class="bar"><div class="f" style="width:${byId[id].score/25*100}%;background:${RC[byId[id].rating]}"></div></div><div class="num">${st(byId[id].rating)}</div></div>`).join('')}`;
+}
+function kpiView(id) {
+  const k = D.kpis.find(x => x.id === id);
+  return `<h2>${k.id} · ${esc(k.name)}</h2><div class="kv"><div>Type</div><div>${k.type} indicator</div><div>Definition</div><div>${esc(k.definition)}</div>
+   <div>Direction</div><div>${k.dir === '+' ? 'Higher is better' : 'Lower is better'}</div><div>Thresholds</div><div>${esc(k.thresholds)}</div><div>Owner</div><div>${esc(k.owner)}</div>
+   <div>Data source</div><div>${esc(k.source)}</div><div>Linked risks</div><div>${esc(k.risks)}</div></div>${spark(k)}
+   <table><thead><tr><th>Month</th><th class="num">Actual</th><th class="num">Target</th></tr></thead><tbody>${D.months.map((m, i) => `<tr><td>${m}</td><td class="num">${i === 0 && k.baseline != null ? k.baseline : '—'}</td><td class="num">${i === 0 ? '—' : (k.targets[i-1] ?? '—')}</td></tr>`).join('')}</tbody></table>`;
+}
+function kriView(id) {
+  const k = kriById[id];
+  return `<h2>${k.id} · ${esc(k.name)}</h2><div class="kv"><div>Status</div><div>${st(k.status, SCOL[k.status])}</div><div>Current value</div><div>${esc(k.value)}</div>
+   <div>Target</div><div>${esc(k.target)}</div><div>Collected by</div><div>${esc(k.source)} (kri_monitor.py)</div><div>Control</div><div>${k.control}</div></div>
+   <p>${k.status === 'Red' ? 'Alert raised: triage within 1 business day; owner reports fix date at the weekly stand-up.' : k.status === 'Amber' ? 'Warning: fix within 30 days as part of the mitigation plan.' : 'Within target.'}</p>
+   <h2>Linked risk</h2><div class="row" data-risk="${k.risk}"><div class="t"><b>${k.risk}</b> ${esc(byId[k.risk].title)}</div><div class="bar"><div class="f" style="width:${byId[k.risk].score/25*100}%;background:${RC[byId[k.risk].rating]}"></div></div><div class="num">${st(byId[k.risk].rating)}</div></div>`;
+}
+const views = {risk: riskView, asset: assetView, kpi: kpiView, kri: kriView};
+function show(type, key, label) { openDrawer(views[type](key), {type, key, label}); }
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-risk],[data-asset],[data-assetname],[data-kpi],[data-kri],[data-cell],[data-crumb],#close,#clear,#tableToggle');
+  if (!t) return;
+  if (t.id === 'close') { $('#drawer').classList.remove('open'); crumbs = []; return; }
+  if (t.id === 'clear') { F = {rating:'', strat:'', owner:'', cell:null}; ['#fRating','#fStrat','#fOwner'].forEach(s => $(s).value = ''); render(); return; }
+  if (t.id === 'tableToggle') { const on = $('#table').hidden; $('#table').hidden = !on; $('#bars').hidden = on; t.textContent = on ? 'Show bars' : 'Show data table'; t.setAttribute('aria-pressed', on); return; }
+  if (t.dataset.crumb) { const i = +t.dataset.crumb; if (i < 0) { $('#drawer').classList.remove('open'); crumbs = []; return; } const c = crumbs[i]; crumbs = crumbs.slice(0, i); show(c.type, c.key, c.label); return; }
+  if (t.dataset.cell) { const [L, I] = t.dataset.cell.split(',').map(Number); F.cell = F.cell && F.cell[0] === L && F.cell[1] === I ? null : [L, I]; render(); return; }
+  if (t.dataset.risk) return show('risk', t.dataset.risk, t.dataset.risk);
+  if (t.dataset.asset) return show('asset', +t.dataset.asset, D.assets[+t.dataset.asset].name);
+  if (t.dataset.assetname) { const i = D.assets.findIndex(a => a.name === t.dataset.assetname); return show('asset', i, t.dataset.assetname); }
+  if (t.dataset.kpi) return show('kpi', t.dataset.kpi, t.dataset.kpi);
+  if (t.dataset.kri) return show('kri', t.dataset.kri, t.dataset.kri);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { $('#drawer').classList.remove('open'); crumbs = []; }
+  if (e.key === 'Enter' && e.target.matches('[tabindex]')) e.target.click();
+});
+const tip = $('#tip');
+document.addEventListener('mousemove', e => {
+  const t = e.target.closest('[data-tip]');
+  if (!t) { tip.style.display = 'none'; return; }
+  tip.innerHTML = t.dataset.tip; tip.style.display = 'block';
+  const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8), y = Math.min(e.clientY + 14, innerHeight - tip.offsetHeight - 8);
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+});
+[...new Set(D.risks.map(r => r.owner))].sort().forEach(o => $('#fOwner').insertAdjacentHTML('beforeend', `<option>${esc(o)}</option>`));
+$('#fRating').onchange = e => { F.rating = e.target.value; render(); };
+$('#fStrat').onchange = e => { F.strat = e.target.value; render(); };
+$('#fOwner').onchange = e => { F.owner = e.target.value; render(); };
+function render() { heat(); bars(); }
+tiles(); render(); kris(); kpis(); assetsT();
+// deep links: #risk=R05, #asset=0, #kpi=G2, #kri=K01
+(() => { const m = location.hash.match(/^#(risk|asset|kpi|kri)=(.+)$/); if (!m) return;
+  const key = m[1] === 'asset' ? +m[2] : decodeURIComponent(m[2]);
+  if (m[1] === 'asset') { show('asset', key, D.assets[key].name); show('risk', D.assets[key].risks[0], D.assets[key].risks[0]); }
+  else show(m[1], key, key); })();
+</script></body></html>

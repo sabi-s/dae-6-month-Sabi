@@ -22,7 +22,7 @@ import unittest
 
 from file_integrity import create_baseline, merkle_proof, verify_baseline, verify_proof
 from hmac_auth import HMAC, AuthError, Receiver, hmac_sha256, sign_message, verify_tag
-from password_hashing import PasswordHasher, check_password_policy, pbkdf2_sha256
+from password_hashing import HAVE_ARGON2, Argon2idHasher, PasswordHasher, check_password_policy, pbkdf2_sha256
 
 try:
     import argon2
@@ -100,6 +100,23 @@ class TestPasswordHasher(unittest.TestCase):
 
     def test_malformed(self):
         self.assertFalse(self.ph.verify("not-a-hash", "x"))
+
+
+@unittest.skipUnless(HAVE_ARGON2, "argon2-cffi not installed")
+class TestArgon2id(unittest.TestCase):
+    def test_round_trip_format_and_pepper(self):
+        ph = Argon2idHasher()
+        h = ph.hash("correct horse battery staple")
+        self.assertTrue(h.startswith("$argon2id$v=19$m=19456,t=2,p=1$"))
+        self.assertTrue(ph.verify(h, "correct horse battery staple"))
+        self.assertFalse(ph.verify(h, "correct horse battery stapler"))
+        self.assertNotEqual(h, ph.hash("correct horse battery staple"))
+        peppered = Argon2idHasher(pepper=os.urandom(32))
+        self.assertFalse(ph.verify(peppered.hash("x"), "x"))
+
+    def test_needs_rehash_on_parameter_change(self):
+        weak = Argon2idHasher(memory_kib=8192, time_cost=1).hash("x")
+        self.assertTrue(Argon2idHasher().needs_rehash(weak))
 
 
 class TestPolicy(unittest.TestCase):
@@ -193,8 +210,16 @@ def demo_storage():
     log(f"same password, different salts -> different stored values: {h1 != h2}")
     log(f"verify correct password: {ph.verify(h1, 'copper kettle meadow sunrise')}; "
         f"verify wrong password: {ph.verify(h1, 'copper kettle meadow sunset')}")
-    log(f"cost of one login check at 600,000 iterations: {ms:.0f} ms (acceptable for a user, expensive at scale)")
+    log(f"cost of one login check at 600,000 iterations: {ms:.0f} ms")
     RESULTS["storage"] = dict(h1=h1, h2=h2, different=h1 != h2, ms=round(ms))
+    if HAVE_ARGON2:
+        a = Argon2idHasher()
+        t = time.perf_counter()
+        a1 = a.hash("copper kettle meadow sunrise")
+        ams = (time.perf_counter() - t) * 1000
+        log("Argon2id stored hash:", a1)
+        log(f"Argon2id verify correct: {a.verify(a1, 'copper kettle meadow sunrise')}; wrong: {a.verify(a1, 'copper kettle meadow sunset')}; {ams:.0f} ms")
+        RESULTS["argon2id"] = dict(h=a1, ms=round(ams))
 
 
 def demo_cost():

@@ -1,7 +1,9 @@
 HVMC Hash Functions and Integrity - test and demo run
-Python 3.9.6 on Darwin arm64, 2026-10-13 16:21; argon2/bcrypt: installed
+Python 3.9.6 on Darwin arm64, 2026-10-14 14:06; argon2/bcrypt: installed
 
 === Unit tests ===
+test_needs_rehash_on_parameter_change (__main__.TestArgon2id) ... ok
+test_round_trip_format_and_pepper (__main__.TestArgon2id) ... ok
 test_rejections (__main__.TestAuthenticatedMessages) ... ok
 test_valid (__main__.TestAuthenticatedMessages) ... ok
 test_clean_and_changes (__main__.TestFileIntegrity) ... ok
@@ -21,24 +23,26 @@ test_accepts_passphrase (__main__.TestPolicy) ... ok
 test_rejects_weak (__main__.TestPolicy) ... ok
 
 ----------------------------------------------------------------------
-Ran 17 tests in 0.103s
+Ran 19 tests in 0.194s
 
 OK
-tests run: 17, failures: 0, errors: 0
+tests run: 19, failures: 0, errors: 0
 
 === Demo 1: secure password storage format ===
-stored hash 1: $pbkdf2-sha256$i=600000$s4vos1AZOkEv4L+RJ6itWg$Eg1/g4o2ZNePjw2zT6C035g8JMK9KLaA+05YnT8pI8o
-stored hash 2: $pbkdf2-sha256$i=600000$zs3sIkm93Nhpy3D3fgcxnQ$KZ6v0CaYmWDN5kJIBNonNwoPPIRuWMt14lJzVpUGIH8
+stored hash 1: $pbkdf2-sha256$i=600000$U138JP0tRjEqUVeO3qFDpQ$tTldKOx/rYcmorAvvI2OJVwx8bLgO6EXaK9JsYvScD4
+stored hash 2: $pbkdf2-sha256$i=600000$buH8CrS0lNbCC2j76NHpTQ$pQB+IVRNRXTgnvX7K83+qwc0vExB8Gg2VUTnrQumwBk
 same password, different salts -> different stored values: True
 verify correct password: True; verify wrong password: False
-cost of one login check at 600,000 iterations: 140 ms (acceptable for a user, expensive at scale)
+cost of one login check at 600,000 iterations: 140 ms
+Argon2id stored hash: $argon2id$v=19$m=19456,t=2,p=1$Kgs8P7X+92D8hhEG0JVKCQ$8MBtzCWoQ6D0Ky9LLwszgLtKPDiYOf7VK2p7oXkigdg
+Argon2id verify correct: True; wrong: False; 15 ms
 
 === Demo 2: cost per password-hash computation (this Mac, one core) ===
 MD5 (unsuitable)                               0.0002 ms per hash
 SHA-256 (unsuitable)                           0.0002 ms per hash
-PBKDF2-HMAC-SHA256, 600,000 iterations       140.6470 ms per hash
-bcrypt, cost 12                              166.7849 ms per hash
-Argon2id, 19 MiB, t=2, p=1                    14.2341 ms per hash
+PBKDF2-HMAC-SHA256, 600,000 iterations       139.4820 ms per hash
+bcrypt, cost 12                              166.9634 ms per hash
+Argon2id, 19 MiB, t=2, p=1                    13.6873 ms per hash
 A purpose-built password hash is deliberately slow (and Argon2id also memory-hard), which is what
 makes large-scale guessing against a stolen database expensive. Fast hashes are for files, not passwords.
 
@@ -59,7 +63,7 @@ after next successful login: i=600000 -> needs_rehash: False
 'my dog Biscuit hates thunderstorms'   ACCEPT
 
 === Demo 5: HMAC-authenticated LIS -> EHR messages ===
-tag: d34b6a953a63df80b6dcd646c12075fbc9d3f9efa3747fba4209bc209cc3021b
+tag: f72a7c4bcb9d49ac4facc2cbeba1b8421c353a3e383f015be283472eb0c84413
 1. genuine message                       ACCEPTED
 2. same message sent again (replay)      REJECTED - replayed message (nonce already used)
 3. value changed 4.1 -> 7.1 in transit   REJECTED - invalid tag - message altered or wrong key
@@ -67,7 +71,7 @@ tag: d34b6a953a63df80b6dcd646c12075fbc9d3f9efa3747fba4209bc209cc3021b
 5. signed with a retired key id          REJECTED - unknown or revoked key id
 
 === Demo 6: file integrity monitoring of an EHR export folder ===
-baseline: 5 files in 0.4 ms; merkle root 413273348085ece2add4d23a…; sealed with HMAC
+baseline: 5 files in 0.5 ms; merkle root 413273348085ece2add4d23a…; sealed with HMAC
 A. no changes
     -> clean=True manifest_ok=True modified=[] deleted=[] added=[]
 B. timestamps changed only (file copied / touched)
@@ -79,4 +83,4 @@ D. audit log deleted and an unexpected file added
 E. manifest edited to match the changed lab file (no HMAC key)
     -> clean=False manifest_ok=False modified=[] deleted=['audit/ehr_access_2026-10-12.log'] added=['ehr_exports/unexpected_file.json']
 F. Merkle proof for lab_results/2026-10-12_hematology.csv: 3 sibling hashes; genuine file verifies: True; altered digest verifies: False
-G. SHA-256 throughput: 3,067 MB/s (100 MB hashed in 33 ms)
+G. SHA-256 throughput: 3,068 MB/s (100 MB hashed in 33 ms)

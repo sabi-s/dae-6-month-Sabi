@@ -1,9 +1,11 @@
 {
   "tests": {
-    "run": 17,
+    "run": 19,
     "failures": 0,
     "errors": 0,
     "names": [
+      "TestArgon2id.test_needs_rehash_on_parameter_change",
+      "TestArgon2id.test_round_trip_format_and_pepper",
       "TestAuthenticatedMessages.test_rejections",
       "TestAuthenticatedMessages.test_valid",
       "TestFileIntegrity.test_clean_and_changes",
@@ -24,31 +26,35 @@
     ]
   },
   "storage": {
-    "h1": "$pbkdf2-sha256$i=600000$s4vos1AZOkEv4L+RJ6itWg$Eg1/g4o2ZNePjw2zT6C035g8JMK9KLaA+05YnT8pI8o",
-    "h2": "$pbkdf2-sha256$i=600000$zs3sIkm93Nhpy3D3fgcxnQ$KZ6v0CaYmWDN5kJIBNonNwoPPIRuWMt14lJzVpUGIH8",
+    "h1": "$pbkdf2-sha256$i=600000$U138JP0tRjEqUVeO3qFDpQ$tTldKOx/rYcmorAvvI2OJVwx8bLgO6EXaK9JsYvScD4",
+    "h2": "$pbkdf2-sha256$i=600000$buH8CrS0lNbCC2j76NHpTQ$pQB+IVRNRXTgnvX7K83+qwc0vExB8Gg2VUTnrQumwBk",
     "different": true,
     "ms": 140
+  },
+  "argon2id": {
+    "h": "$argon2id$v=19$m=19456,t=2,p=1$Kgs8P7X+92D8hhEG0JVKCQ$8MBtzCWoQ6D0Ky9LLwszgLtKPDiYOf7VK2p7oXkigdg",
+    "ms": 15
   },
   "cost": [
     {
       "name": "MD5 (unsuitable)",
-      "ms": 0.00024154082999999993
+      "ms": 0.0002408537500000008
     },
     {
       "name": "SHA-256 (unsuitable)",
-      "ms": 0.00022480415999999947
+      "ms": 0.00021495166999999983
     },
     {
       "name": "PBKDF2-HMAC-SHA256, 600,000 iterations",
-      "ms": 140.6470276666667
+      "ms": 139.48201399999996
     },
     {
       "name": "bcrypt, cost 12",
-      "ms": 166.78487499999997
+      "ms": 166.9634303333333
     },
     {
       "name": "Argon2id, 19 MiB, t=2, p=1",
-      "ms": 14.234075000000024
+      "ms": 13.687341799999997
     }
   ],
   "extra": true,
@@ -125,7 +131,7 @@
     }
   ],
   "hmac": {
-    "tag": "d34b6a953a63df80b6dcd646c12075fbc9d3f9efa3747fba4209bc209cc3021b",
+    "tag": "f72a7c4bcb9d49ac4facc2cbeba1b8421c353a3e383f015be283472eb0c84413",
     "rows": [
       [
         "1. genuine message",
@@ -210,5 +216,5 @@
     "proof_bad": false,
     "root": "413273348085ece2add4d23af0510e3b145ea5edd9e7c99030b7040661942a04"
   },
-  "throughput": 3067
+  "throughput": 3068
 }

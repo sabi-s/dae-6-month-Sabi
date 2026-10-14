@@ -8,6 +8,8 @@ Author: Sabitha S Karanavar
     verified against hashlib.pbkdf2_hmac
   * PasswordHasher: random per-user salt, 600,000 iterations (OWASP), optional pepper,
     self-describing hash strings, constant-time verify, automatic upgrade (needs_rehash)
+  * Argon2idHasher: the same interface using Argon2id (RFC 9106), the memory-hard
+    algorithm OWASP lists first; used when the optional argon2-cffi package is installed
   * Password policy based on NIST SP 800-63B: length, blocklist, context words,
     no forced composition rules
 
@@ -21,6 +23,12 @@ import secrets
 import struct
 
 from hmac_auth import HMAC
+
+try:
+    import argon2
+    HAVE_ARGON2 = True
+except ImportError:
+    HAVE_ARGON2 = False
 
 DEFAULT_ITERATIONS = 600_000        # OWASP Password Storage Cheat Sheet, PBKDF2-HMAC-SHA256
 
@@ -87,6 +95,40 @@ class PasswordHasher:
             return int(stored.split("$")[2].split("=")[1]) < self.iterations
         except (ValueError, IndexError):
             return True
+
+
+class Argon2idHasher:
+    """Argon2id with OWASP minimum parameters: 19 MiB memory, 2 iterations, 1 lane.
+    Output is the standard PHC string $argon2id$v=19$m=19456,t=2,p=1$<salt>$<hash>."""
+
+    def __init__(self, memory_kib=19456, time_cost=2, parallelism=1, pepper=None):
+        if not HAVE_ARGON2:
+            raise RuntimeError("install argon2-cffi to use Argon2id (PBKDF2 PasswordHasher works without it)")
+        self._ph = argon2.PasswordHasher(time_cost=time_cost, memory_cost=memory_kib, parallelism=parallelism)
+        self.pepper = pepper
+
+    def _prepare(self, password):
+        pw = password.encode("utf-8")
+        return std_hmac.new(self.pepper, pw, hashlib.sha256).digest() if self.pepper else pw
+
+    def hash(self, password):
+        return self._ph.hash(self._prepare(password))
+
+    def verify(self, stored, password):
+        try:
+            return self._ph.verify(stored, self._prepare(password))
+        except argon2.exceptions.VerificationError:
+            return False
+        except argon2.exceptions.InvalidHashError:
+            return False
+
+    def needs_rehash(self, stored):
+        return self._ph.check_needs_rehash(stored)
+
+
+def make_hasher(pepper=None):
+    """Prefer Argon2id when available, otherwise PBKDF2-HMAC-SHA256."""
+    return Argon2idHasher(pepper=pepper) if HAVE_ARGON2 else PasswordHasher(pepper=pepper)
 
 
 # ------------------------------------------------------------ policy (NIST SP 800-63B)

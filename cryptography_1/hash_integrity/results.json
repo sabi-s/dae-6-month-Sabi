@@ -1,0 +1,214 @@
+{
+  "tests": {
+    "run": 17,
+    "failures": 0,
+    "errors": 0,
+    "names": [
+      "TestAuthenticatedMessages.test_rejections",
+      "TestAuthenticatedMessages.test_valid",
+      "TestFileIntegrity.test_clean_and_changes",
+      "TestFileIntegrity.test_manifest_tamper_detected",
+      "TestFileIntegrity.test_merkle_proof",
+      "TestHMAC.test_matches_stdlib",
+      "TestHMAC.test_rfc4231_vectors",
+      "TestHMAC.test_verify_tag",
+      "TestPBKDF2.test_matches_hashlib",
+      "TestPBKDF2.test_rfc7914_vectors",
+      "TestPasswordHasher.test_malformed",
+      "TestPasswordHasher.test_needs_rehash",
+      "TestPasswordHasher.test_pepper",
+      "TestPasswordHasher.test_round_trip_and_wrong_password",
+      "TestPasswordHasher.test_unique_salts",
+      "TestPolicy.test_accepts_passphrase",
+      "TestPolicy.test_rejects_weak"
+    ]
+  },
+  "storage": {
+    "h1": "$pbkdf2-sha256$i=600000$s4vos1AZOkEv4L+RJ6itWg$Eg1/g4o2ZNePjw2zT6C035g8JMK9KLaA+05YnT8pI8o",
+    "h2": "$pbkdf2-sha256$i=600000$zs3sIkm93Nhpy3D3fgcxnQ$KZ6v0CaYmWDN5kJIBNonNwoPPIRuWMt14lJzVpUGIH8",
+    "different": true,
+    "ms": 140
+  },
+  "cost": [
+    {
+      "name": "MD5 (unsuitable)",
+      "ms": 0.00024154082999999993
+    },
+    {
+      "name": "SHA-256 (unsuitable)",
+      "ms": 0.00022480415999999947
+    },
+    {
+      "name": "PBKDF2-HMAC-SHA256, 600,000 iterations",
+      "ms": 140.6470276666667
+    },
+    {
+      "name": "bcrypt, cost 12",
+      "ms": 166.78487499999997
+    },
+    {
+      "name": "Argon2id, 19 MiB, t=2, p=1",
+      "ms": 14.234075000000024
+    }
+  ],
+  "extra": true,
+  "pepper": {
+    "with_pepper": true,
+    "without": false,
+    "old": "i=100000",
+    "new": "i=600000"
+  },
+  "policy": [
+    {
+      "pw": "Password1",
+      "user": "",
+      "ok": false,
+      "problems": [
+        "shorter than 15 characters",
+        "on the common/breached-password blocklist"
+      ]
+    },
+    {
+      "pw": "Winter2026!",
+      "user": "",
+      "ok": false,
+      "problems": [
+        "shorter than 15 characters",
+        "on the common/breached-password blocklist"
+      ]
+    },
+    {
+      "pw": "Hvmc2026!",
+      "user": "",
+      "ok": false,
+      "problems": [
+        "shorter than 15 characters",
+        "on the common/breached-password blocklist",
+        "contains HVMC context words"
+      ]
+    },
+    {
+      "pw": "Tr0ub4dor&3",
+      "user": "",
+      "ok": false,
+      "problems": [
+        "shorter than 15 characters"
+      ]
+    },
+    {
+      "pw": "lisatran-portal-login",
+      "user": "lisa.tran",
+      "ok": false,
+      "problems": [
+        "contains the username"
+      ]
+    },
+    {
+      "pw": "aaaaaaaaaaaaaaaaaaaa",
+      "user": "",
+      "ok": false,
+      "problems": [
+        "repetitive characters"
+      ]
+    },
+    {
+      "pw": "copper kettle meadow sunrise",
+      "user": "",
+      "ok": true,
+      "problems": []
+    },
+    {
+      "pw": "my dog Biscuit hates thunderstorms",
+      "user": "",
+      "ok": true,
+      "problems": []
+    }
+  ],
+  "hmac": {
+    "tag": "d34b6a953a63df80b6dcd646c12075fbc9d3f9efa3747fba4209bc209cc3021b",
+    "rows": [
+      [
+        "1. genuine message",
+        "ACCEPTED"
+      ],
+      [
+        "2. same message sent again (replay)",
+        "REJECTED - replayed message (nonce already used)"
+      ],
+      [
+        "3. value changed 4.1 -> 7.1 in transit",
+        "REJECTED - invalid tag - message altered or wrong key"
+      ],
+      [
+        "4. delivered 1 hour late",
+        "REJECTED - message too old (outside 5-minute window)"
+      ],
+      [
+        "5. signed with a retired key id",
+        "REJECTED - unknown or revoked key id"
+      ]
+    ]
+  },
+  "fim": {
+    "files": 5,
+    "steps": [
+      {
+        "label": "A. no changes",
+        "clean": true,
+        "manifest_ok": true,
+        "modified": [],
+        "deleted": [],
+        "added": []
+      },
+      {
+        "label": "B. timestamps changed only (file copied / touched)",
+        "clean": true,
+        "manifest_ok": true,
+        "modified": [],
+        "deleted": [],
+        "added": []
+      },
+      {
+        "label": "C. one lab value edited (4.1 -> 7.1)",
+        "clean": false,
+        "manifest_ok": true,
+        "modified": [
+          "lab_results/2026-10-12_chemistry.csv"
+        ],
+        "deleted": [],
+        "added": []
+      },
+      {
+        "label": "D. audit log deleted and an unexpected file added",
+        "clean": false,
+        "manifest_ok": true,
+        "modified": [
+          "lab_results/2026-10-12_chemistry.csv"
+        ],
+        "deleted": [
+          "audit/ehr_access_2026-10-12.log"
+        ],
+        "added": [
+          "ehr_exports/unexpected_file.json"
+        ]
+      },
+      {
+        "label": "E. manifest edited to match the changed lab file (no HMAC key)",
+        "clean": false,
+        "manifest_ok": false,
+        "modified": [],
+        "deleted": [
+          "audit/ehr_access_2026-10-12.log"
+        ],
+        "added": [
+          "ehr_exports/unexpected_file.json"
+        ]
+      }
+    ],
+    "proof_len": 3,
+    "proof_ok": true,
+    "proof_bad": false,
+    "root": "413273348085ece2add4d23af0510e3b145ea5edd9e7c99030b7040661942a04"
+  },
+  "throughput": 3067
+}

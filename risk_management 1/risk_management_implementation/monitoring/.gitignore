@@ -1,0 +1,3 @@
+# Raw tenant snapshots (user names, roles, NSG rules) are kept local only
+snapshots/
+__pycache__/

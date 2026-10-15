@@ -1,0 +1,31 @@
+{
+  "run": "2026-10-14T18-46-10Z",
+  "baseline": "2026-10-14T18-45-21Z.json",
+  "first_run": false,
+  "changes": [],
+  "counts": {
+    "Info": 0,
+    "Low": 0,
+    "Medium": 0,
+    "High": 0,
+    "Critical": 0
+  },
+  "inventory": {
+    "resources": 12,
+    "nsg_rules": 3,
+    "role_assignments": 2,
+    "directory_roles": 1,
+    "users": 32,
+    "group_members": 10,
+    "storage_security": 6,
+    "public_ips": 3,
+    "tenant_policy": 6
+  },
+  "threat_feed": {
+    "ok": true,
+    "catalog_version": "2026.10.13",
+    "total": 1741,
+    "window_days": 30,
+    "hits": []
+  }
+}

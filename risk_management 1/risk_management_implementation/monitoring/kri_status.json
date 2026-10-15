@@ -1,0 +1,162 @@
+{
+  "generated": "2026-10-14T18:46:00Z",
+  "subscription": "Azure subscription 1",
+  "error": null,
+  "kris": [
+    {
+      "id": "K01",
+      "name": "EHR storage public network access",
+      "risk": "R02",
+      "control": "C02",
+      "value": "Enabled",
+      "status": "Red",
+      "target": "Disabled",
+      "source": "az storage account show"
+    },
+    {
+      "id": "K02",
+      "name": "EHR storage shared-key access",
+      "risk": "R02",
+      "control": "C02",
+      "value": true,
+      "status": "Amber",
+      "target": "false",
+      "source": "az storage account show"
+    },
+    {
+      "id": "K03",
+      "name": "EHR blob versioning",
+      "risk": "R05",
+      "control": "C05",
+      "value": "Disabled",
+      "status": "Red",
+      "target": "Enabled",
+      "source": "blob-service-properties"
+    },
+    {
+      "id": "K04",
+      "name": "Blob soft-delete retention (days)",
+      "risk": "R05",
+      "control": "C05",
+      "value": 7,
+      "status": "Amber",
+      "target": "\u2265 30",
+      "source": "blob-service-properties"
+    },
+    {
+      "id": "K05",
+      "name": "Data-tier explicit deny rule",
+      "risk": "R03",
+      "control": "C03",
+      "value": "Missing",
+      "status": "Red",
+      "target": "Present",
+      "source": "az network nsg rule list"
+    },
+    {
+      "id": "K06",
+      "name": "Global Administrators",
+      "risk": "R04",
+      "control": "C04",
+      "value": 1,
+      "status": "Red",
+      "target": "2\u20134 incl. break-glass",
+      "source": "Graph directoryRoles"
+    },
+    {
+      "id": "K07",
+      "name": "Activity log exported to Log Analytics",
+      "risk": "R01",
+      "control": "C01",
+      "value": 0,
+      "status": "Red",
+      "target": "\u2265 1",
+      "source": "az monitor diagnostic-settings subscription list"
+    },
+    {
+      "id": "K08",
+      "name": "Activity-log alert rules",
+      "risk": "R01",
+      "control": "C01",
+      "value": 0,
+      "status": "Red",
+      "target": "\u2265 3",
+      "source": "az monitor activity-log alert list"
+    },
+    {
+      "id": "K09",
+      "name": "Network flow logs",
+      "risk": "R01",
+      "control": "C01",
+      "value": 0,
+      "status": "Amber",
+      "target": "\u2265 1",
+      "source": "az network watcher flow-log list"
+    },
+    {
+      "id": "K10",
+      "name": "Defender for Storage",
+      "risk": "R11",
+      "control": "C06",
+      "value": "Free",
+      "status": "Amber",
+      "target": "Standard",
+      "source": "az security pricing show"
+    },
+    {
+      "id": "K11",
+      "name": "Security alert contacts",
+      "risk": "R11",
+      "control": "C06",
+      "value": 0,
+      "status": "Amber",
+      "target": "\u2265 1",
+      "source": "az security contact list"
+    },
+    {
+      "id": "K12",
+      "name": "Users can register applications",
+      "risk": "R08",
+      "control": "C08",
+      "value": true,
+      "status": "Amber",
+      "target": "false",
+      "source": "Graph authorizationPolicy"
+    },
+    {
+      "id": "K13",
+      "name": "Guest invitations allowed from",
+      "risk": "R08",
+      "control": "C08",
+      "value": "everyone",
+      "status": "Amber",
+      "target": "adminsAndGuestInviters",
+      "source": "Graph authorizationPolicy"
+    },
+    {
+      "id": "K14",
+      "name": "Test/shared accounts in production",
+      "risk": "R07",
+      "control": "C14",
+      "value": 1,
+      "status": "Amber",
+      "target": "0",
+      "source": "az ad user list"
+    },
+    {
+      "id": "K15",
+      "name": "Resource locks on production RG",
+      "risk": "R15",
+      "control": "A01",
+      "value": 0,
+      "status": "Amber",
+      "target": "\u2265 1 (accepted risk)",
+      "source": "az lock list"
+    }
+  ],
+  "summary": {
+    "Red": 6,
+    "Amber": 9,
+    "Green": 0
+  }
+}

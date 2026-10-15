@@ -1,0 +1,70 @@
+{
+ "kind": "Scheduled",
+ "properties": {
+  "displayName": "HVMC - NSG inbound rule opened to the Internet",
+  "description": "An NSG security rule was created or changed. High when the logged request body shows an inbound ALLOW from any source / Internet; Medium 'verify' when Azure did not log the body (tuned 15 Oct 2026 after IR test PB-01 false positive). Risk R03, R10. Playbook PB-01.",
+  "severity": "High",
+  "enabled": true,
+  "query": "AzureActivity\n| where OperationNameValue =~ 'MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SECURITYRULES/WRITE' and ActivityStatusValue =~ 'Success'\n| extend Body = tostring(parse_json(Properties).requestbody)\n| extend InternetAllow = Body has '\"access\":\"Allow\"' and Body has '\"direction\":\"Inbound\"' and (Body has '\"sourceAddressPrefix\":\"*\"' or Body has 'Internet' or Body has '0.0.0.0/0')\n| where isempty(Body) or InternetAllow\n| extend Severity = iff(InternetAllow, 'High', 'Medium'), Verdict = iff(InternetAllow, 'Inbound ALLOW from the Internet', 'rule body not logged - verify access and direction')\n| extend Rule = tostring(split(_ResourceId, '/')[-1]), Nsg = tostring(split(_ResourceId, '/')[-3])\n| project TimeGenerated, Caller, CallerIpAddress, Nsg, Rule, Verdict, Severity, _ResourceId, CorrelationId",
+  "queryFrequency": "PT5M",
+  "queryPeriod": "PT15M",
+  "triggerOperator": "GreaterThan",
+  "triggerThreshold": 0,
+  "suppressionDuration": "PT1H",
+  "suppressionEnabled": false,
+  "tactics": [
+   "InitialAccess",
+   "DefenseEvasion"
+  ],
+  "techniques": [
+   "T1190",
+   "T1562"
+  ],
+  "incidentConfiguration": {
+   "createIncident": true,
+   "groupingConfiguration": {
+    "enabled": true,
+    "reopenClosedIncident": false,
+    "lookbackDuration": "PT5H",
+    "matchingMethod": "AllEntities",
+    "groupByEntities": [],
+    "groupByAlertDetails": [],
+    "groupByCustomDetails": []
+   }
+  },
+  "entityMappings": [
+   {
+    "entityType": "Account",
+    "fieldMappings": [
+     {
+      "identifier": "FullName",
+      "columnName": "Caller"
+     }
+    ]
+   },
+   {
+    "entityType": "IP",
+    "fieldMappings": [
+     {
+      "identifier": "Address",
+      "columnName": "CallerIpAddress"
+     }
+    ]
+   },
+   {
+    "entityType": "AzureResource",
+    "fieldMappings": [
+     {
+      "identifier": "ResourceId",
+      "columnName": "_ResourceId"
+     }
+    ]
+   }
+  ],
+  "alertDetailsOverride": {
+   "alertDisplayNameFormat": "HVMC - NSG rule change on {{Nsg}}: {{Verdict}}",
+   "alertDescriptionFormat": "Rule {{Rule}} written by {{Caller}} from {{CallerIpAddress}}. Playbook PB-01.",
+   "alertSeverityColumnName": "Severity"
+  }
+ }
+}

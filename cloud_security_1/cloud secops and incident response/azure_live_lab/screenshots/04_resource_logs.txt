@@ -1,0 +1,9 @@
+$ Q="[].[name,join(',',logs[?enabled].category)]"
+for n in HVMC-Web-NSG HVMC-App-NSG HVMC-Data-NSG; do printf '%-22s' $n; az monitor diagnostic-settings list --resource $(az network nsg show -g HVMC-CloudSecurity-RG -n $n --query id -o tsv) --query "$Q" -o tsv; done
+printf '%-22s' HVMC-Bastion; az monitor diagnostic-settings list --resource $(az network bastion show -g HVMC-CloudSecurity-RG -n HVMC-Bastion --query id -o tsv) --query "$Q" -o tsv
+printf '%-22s' hvmcehrstorage/blob; az monitor diagnostic-settings list --resource $(az storage account show -g HVMC-CloudSecurity-RG -n hvmcehrstorage --query id -o tsv)/blobServices/default --query "$Q" -o tsv
+HVMC-Web-NSG          HVMC-to-LAW	NetworkSecurityGroupEvent,NetworkSecurityGroupRuleCounter
+HVMC-App-NSG          HVMC-to-LAW	NetworkSecurityGroupEvent,NetworkSecurityGroupRuleCounter
+HVMC-Data-NSG         HVMC-to-LAW	NetworkSecurityGroupEvent,NetworkSecurityGroupRuleCounter
+HVMC-Bastion          HVMC-to-LAW	BastionAuditLogs
+hvmcehrstorage/blob   HVMC-ePHI-access-to-LAW	StorageRead,StorageWrite,StorageDelete

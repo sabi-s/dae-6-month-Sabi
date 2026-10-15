@@ -1,0 +1,38 @@
+[
+ {
+  "rule": "HVMC-Storage-Config-Changed",
+  "from": "2026-10-15T16:25:00Z",
+  "to": "2026-10-15T16:40:00Z",
+  "disposition": "Benign - authorised change",
+  "note": "Caller sabithaskaranavar@gmail.com (Azure CLI) created log storage account hvmcseclogsc36407 during Step 1 setup (change HVMC-CHG-01). Verified in AzureActivity; no ePHI account touched.",
+  "triaged_by": "Sabitha S Karanavar",
+  "triaged_at": "2026-10-15T17:20:00Z"
+ },
+ {
+  "rule": "HVMC-Role-Assignment-Added",
+  "from": "2026-10-15T17:00:00Z",
+  "to": "2026-10-15T17:20:00Z",
+  "disposition": "Benign - platform-managed identity",
+  "note": "Enabling Defender for Storage and Sentinel (Step 2, change HVMC-CHG-02) granted roles to Microsoft service principals: Defender for Storage Scanner Operator + EventGrid Contributor (subscription) and User Access Administrator scoped to HVMC-SecOps-LAW for Sentinel. Caller verified; scopes verified; accepted and documented.",
+  "triaged_by": "Sabitha S Karanavar",
+  "triaged_at": "2026-10-15T17:20:00Z"
+ },
+ {
+  "rule": "HVMC-NSG-Rule-Changed",
+  "from": "2026-10-15T18:00:00Z",
+  "to": "2026-10-15T18:30:00Z",
+  "disposition": "Benign - IR exercise PB-01",
+  "note": "Explicit Deny-Internet-inbound rule added to HVMC-Data-NSG (approved hardening change HVMC-CHG-04, exercise HVMC-IRX-2026-10). Verified Inbound DENY.",
+  "triaged_by": "Sabitha S Karanavar",
+  "triaged_at": "2026-10-15T18:07:41Z"
+ },
+ {
+  "rule": "HVMC-Defender-Security-Alert",
+  "from": "2026-10-15T18:00:00Z",
+  "to": "2026-10-15T18:30:00Z",
+  "disposition": "Benign - IR exercise PB-03",
+  "note": "26 Microsoft Defender for Storage SAMPLE alerts generated for exercise HVMC-IRX-2026-10; acknowledged, contained (key2 rotated), investigated and resolved.",
+  "triaged_by": "Sabitha S Karanavar",
+  "triaged_at": "2026-10-15T18:07:48Z"
+ }
+]

@@ -1,0 +1,55 @@
+{
+ "kind": "Scheduled",
+ "properties": {
+  "displayName": "HVMC - Privileged Azure role assigned (Owner / Contributor / User Access Administrator)",
+  "description": "A high-privilege RBAC role was granted. Risk R04, R07. Playbook PB-02.",
+  "severity": "High",
+  "enabled": true,
+  "query": "let Privileged = dynamic(['8e3af657-a8ff-443c-a75c-2fe8c4bcb635','b24988ac-6180-42a0-ab88-20f7382dd24c','18d7d88d-d35e-4fb5-a5c3-7773c20a72d9']);\nAzureActivity\n| where OperationNameValue =~ 'MICROSOFT.AUTHORIZATION/ROLEASSIGNMENTS/WRITE' and ActivityStatusValue =~ 'Success'\n| extend Body = tostring(parse_json(Properties).requestbody)\n| extend RoleId = tostring(split(extract('roleDefinitions/([0-9a-fA-F-]+)', 1, Body), '/')[0]), Principal = extract('\"principalId\":\"([0-9a-fA-F-]+)\"', 1, Body)\n| where RoleId in~ (Privileged) or isempty(Body)\n| extend Role = case(RoleId =~ '8e3af657-a8ff-443c-a75c-2fe8c4bcb635','Owner', RoleId =~ 'b24988ac-6180-42a0-ab88-20f7382dd24c','Contributor', RoleId =~ '18d7d88d-d35e-4fb5-a5c3-7773c20a72d9','User Access Administrator','unknown')\n| project TimeGenerated, Caller, CallerIpAddress, Role, Principal, Scope = _ResourceId, CorrelationId",
+  "queryFrequency": "PT5M",
+  "queryPeriod": "PT15M",
+  "triggerOperator": "GreaterThan",
+  "triggerThreshold": 0,
+  "suppressionDuration": "PT1H",
+  "suppressionEnabled": false,
+  "tactics": [
+   "PrivilegeEscalation",
+   "Persistence"
+  ],
+  "techniques": [
+   "T1098"
+  ],
+  "incidentConfiguration": {
+   "createIncident": true,
+   "groupingConfiguration": {
+    "enabled": true,
+    "reopenClosedIncident": false,
+    "lookbackDuration": "PT5H",
+    "matchingMethod": "AllEntities",
+    "groupByEntities": [],
+    "groupByAlertDetails": [],
+    "groupByCustomDetails": []
+   }
+  },
+  "entityMappings": [
+   {
+    "entityType": "Account",
+    "fieldMappings": [
+     {
+      "identifier": "FullName",
+      "columnName": "Caller"
+     }
+    ]
+   },
+   {
+    "entityType": "IP",
+    "fieldMappings": [
+     {
+      "identifier": "Address",
+      "columnName": "CallerIpAddress"
+     }
+    ]
+   }
+  ]
+ }
+}

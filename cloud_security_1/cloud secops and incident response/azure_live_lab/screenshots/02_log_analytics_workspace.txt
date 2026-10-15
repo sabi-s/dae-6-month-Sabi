@@ -1,0 +1,10 @@
+$ az monitor log-analytics workspace show -g HVMC-CloudSecurity-RG -n HVMC-SecOps-LAW \
+  --query "{name:name,location:location,sku:sku.name,retentionDays:retentionInDays,dailyCapGB:workspaceCapping.dailyQuotaGb,state:provisioningState}" -o json
+{
+  "dailyCapGB": 0.5,
+  "location": "eastus",
+  "name": "HVMC-SecOps-LAW",
+  "retentionDays": 30,
+  "sku": "PerGB2018",
+  "state": "Succeeded"
+}

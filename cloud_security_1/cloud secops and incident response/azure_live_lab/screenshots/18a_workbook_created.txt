@@ -1,0 +1,12 @@
+$ az rest --method get --url "https://management.azure.com/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Insights/workbooks?api-version=2022-04-01&category=workbook" \
+  --query "value[].{name:properties.displayName,category:properties.category,kind:kind,location:location,updated:properties.timeModified,source:properties.sourceId}" -o json
+[
+  {
+    "category": "workbook",
+    "kind": "shared",
+    "location": "eastus",
+    "name": "HVMC Security Operations",
+    "source": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourcegroups/hvmc-cloudsecurity-rg/providers/microsoft.operationalinsights/workspaces/hvmc-secops-law",
+    "updated": "2026-10-15T18:34:28.0877137Z"
+  }
+]

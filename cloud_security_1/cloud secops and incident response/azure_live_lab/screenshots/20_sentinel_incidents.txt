@@ -1,0 +1,12 @@
+$ az rest --method get --url "https://management.azure.com/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/incidents?api-version=2024-03-01" \
+  --query "value[].{No:properties.incidentNumber,Title:properties.title,Severity:properties.severity,Status:properties.status,Classification:properties.classification,Reason:properties.classificationReason}" -o table
+No    Title                                                                                        Severity    Status    Classification    Reason
+----  -------------------------------------------------------------------------------------------  ----------  --------  ----------------  ---------------------
+8     HVMC - ePHI storage keys retrieved or storage exposure changed                               Medium      Closed    BenignPositive    SuspiciousButExpected
+7     HVMC - ePHI storage keys retrieved or storage exposure changed                               Medium      Closed    BenignPositive    SuspiciousButExpected
+6     HVMC - NSG rule change on hvmc-data-nsg: rule body not logged - verify access and direction  Medium      Closed    BenignPositive    SuspiciousButExpected
+5     HVMC - ePHI storage keys retrieved or storage exposure changed                               Medium      Closed    BenignPositive    SuspiciousButExpected
+4     HVMC - NSG rule change on hvmc-data-nsg: rule body not logged - verify access and direction  Medium      Closed    BenignPositive    SuspiciousButExpected
+3     HVMC - NSG inbound rule opened to the Internet                                               High        Closed    FalsePositive     IncorrectAlertLogic
+2     HVMC - Privileged Azure role assigned (Owner / Contributor / User Access Administrator)      High        Closed    BenignPositive    SuspiciousButExpected
+1     HVMC - Privileged Azure role assigned (Owner / Contributor / User Access Administrator)      High        Closed    BenignPositive    SuspiciousButExpected

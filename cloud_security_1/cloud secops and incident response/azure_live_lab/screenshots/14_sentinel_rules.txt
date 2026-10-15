@@ -1,0 +1,10 @@
+$ az rest --method get --url "https://management.azure.com/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules?api-version=2024-03-01" \
+  --query "value[].{Rule:properties.displayName,Kind:kind,Severity:properties.severity,Enabled:properties.enabled,Every:properties.queryFrequency}" -o table
+Rule                                                                                     Kind                               Severity    Enabled    Every
+---------------------------------------------------------------------------------------  ---------------------------------  ----------  ---------  -------
+Advanced Multistage Attack Detection                                                     Fusion                             High        True
+HVMC - NSG inbound rule opened to the Internet                                           Scheduled                          High        True       PT5M
+HVMC - Privileged Azure role assigned (Owner / Contributor / User Access Administrator)  Scheduled                          High        True       PT5M
+HVMC - Security logging disabled or deleted                                              Scheduled                          High        True       PT5M
+HVMC - ePHI storage keys retrieved or storage exposure changed                           Scheduled                          Medium      True       PT5M
+HVMC - Create incidents from Microsoft Defender for Cloud alerts                         MicrosoftSecurityIncidentCreation              True

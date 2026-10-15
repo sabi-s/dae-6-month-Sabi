@@ -1,0 +1,8 @@
+$ az rest --method get --url "https://management.azure.com/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/onboardingStates?api-version=2024-03-01" --query "value[].{SentinelOnboarding:name}" -o table
+az rest --method get --url "https://management.azure.com/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/dataConnectors?api-version=2024-03-01" --query "value[].{Connector:kind,Alerts:properties.dataTypes.alerts.state,Subscription:properties.subscriptionId}" -o table
+SentinelOnboarding
+--------------------
+default
+Connector            Alerts    Subscription
+-------------------  --------  ------------------------------------
+AzureSecurityCenter  enabled   c3640794-6748-46f5-9157-f669082bda6a

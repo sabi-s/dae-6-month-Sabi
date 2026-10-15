@@ -1,0 +1,29 @@
+$ az rest --method get --url "https://management.azure.com/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/providers/Microsoft.Security/pricings/StorageAccounts?api-version=2024-01-01" \
+  --query "{plan:name,tier:properties.pricingTier,subPlan:properties.subPlan,trialLeft:properties.freeTrialRemainingTime,extensions:properties.extensions[].{name:name,enabled:isEnabled,settings:additionalExtensionProperties}}" -o json
+az storage account list -g HVMC-CloudSecurity-RG --query "[].{ProtectedStorageAccount:name}" -o table
+{
+  "extensions": [
+    {
+      "enabled": "True",
+      "name": "OnUploadMalwareScanning",
+      "settings": {
+        "AutomatedResponse": "None",
+        "BlobScanResultsOptions": "BlobIndexTags",
+        "CapGBPerMonthPerStorageAccount": "1"
+      }
+    },
+    {
+      "enabled": "False",
+      "name": "SensitiveDataDiscovery",
+      "settings": null
+    }
+  ],
+  "plan": "StorageAccounts",
+  "subPlan": "DefenderForStorageV2",
+  "tier": "Standard",
+  "trialLeft": "P29DT23H58M"
+}
+ProtectedStorageAccount
+-------------------------
+hvmcehrstorage
+hvmcseclogsc36407

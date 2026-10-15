@@ -1,0 +1,4 @@
+# Keep build context minimal - nothing secret or unnecessary is sent to the builder
+**
+!app/app.py
+!app/requirements.txt

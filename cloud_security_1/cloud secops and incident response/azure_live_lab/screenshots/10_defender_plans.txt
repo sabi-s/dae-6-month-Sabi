@@ -1,0 +1,8 @@
+$ az security pricing list \
+  --query "value[?contains(['StorageAccounts','Arm','CloudPosture','FoundationalCspm'],name)].{Plan:name,Tier:pricingTier,SubPlan:subPlan,FreeTrialLeft:freeTrialRemainingTime}" -o table
+Plan              Tier      SubPlan               FreeTrialLeft
+----------------  --------  --------------------  -----------------
+StorageAccounts   Standard  DefenderForStorageV2  29 days, 23:58:00
+Arm               Standard  PerSubscription       29 days, 23:58:00
+CloudPosture      Free                            30 days, 0:00:00
+FoundationalCspm  Standard                        0:00:00

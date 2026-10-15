@@ -1,0 +1,26 @@
+$ bash ~/Downloads/HVMC_Cloud_SecOps_IR/scripts/02_setup_threat_detection.sh
+
+=== 1/6 register providers (free)
+  Microsoft.SecurityInsights registered
+  Microsoft.EventGrid registered
+
+=== 2/6 Defender for Storage (activity monitoring + malware scanning, 1 GB/month cap)
+  StorageAccounts plan -> Standard (covers hvmcehrstorage and the log account)
+
+=== 3/6 Defender for Resource Manager (suspicious control-plane operations)
+  Arm plan -> Standard
+
+=== 4/6 Defender security contact (e-mail on alerts of Medium severity and above)
+  security contact -> sabithaskaranavar@gmail.com
+
+=== 5/6 Microsoft Sentinel on HVMC-SecOps-LAW + Defender for Cloud connector
+  Sentinel enabled (31-day free trial)
+  Defender for Cloud alerts connector -> Sentinel
+
+=== 6/6 Sentinel analytics rules (KQL detections -> incidents)
+  created  01_nsg_opened_to_internet
+  created  02_privileged_role_assigned
+  created  03_security_logging_tampered
+  created  04_storage_keys_or_public_access
+  created  05_defender_alerts_to_incidents
+

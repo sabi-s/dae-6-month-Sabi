@@ -1,0 +1,5 @@
+# Raw evidence and live metrics hold caller IP addresses, account names and tenant IDs - keep local only.
+evidence/
+dashboard/metrics.json
+dashboard/cost_cache.json
+__pycache__/

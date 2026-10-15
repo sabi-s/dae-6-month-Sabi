@@ -1,0 +1,5 @@
+$ az monitor log-analytics query -w $WS --analytics-query "$(jq -r .properties.query sentinel_rules/01_nsg_opened_to_internet.json)" -t PT6H \
+  --query "[].{Time:TimeGenerated,Caller:Caller,Nsg:Nsg,Rule:Rule,Severity:Severity,Verdict:Verdict}" -o table
+Time                          Caller                       Nsg            Rule                        Severity    Verdict
+----------------------------  ---------------------------  -------------  --------------------------  ----------  --------------------------------------------------
+2026-10-15T18:00:50.8582548Z  sabithaskaranavar@gmail.com  hvmc-data-nsg  deny-internet-inbound-data  Medium      rule body not logged - verify access and direction

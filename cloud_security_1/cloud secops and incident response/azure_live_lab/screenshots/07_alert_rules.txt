@@ -1,0 +1,13 @@
+$ az monitor activity-log alert list -g HVMC-CloudSecurity-RG \
+  --query "[].{Rule:name,Enabled:enabled,Condition:join(' & ',condition.allOf[].join('=',[field,equals]))}" -o table
+Rule                             Enabled    Condition
+-------------------------------  ---------  ----------------------------------------------------------------------------------------------------
+HVMC-NSG-Rule-Changed            True       category=Administrative & operationName=Microsoft.Network/networkSecurityGroups/securityRules/write
+HVMC-NSG-Rule-Deleted            True       category=Administrative & operationName=Microsoft.Network/networkSecurityGroups/securityRules/delete
+HVMC-Role-Assignment-Added       True       category=Administrative & operationName=Microsoft.Authorization/roleAssignments/write
+HVMC-Role-Assignment-Removed     True       category=Administrative & operationName=Microsoft.Authorization/roleAssignments/delete
+HVMC-Storage-Config-Changed      True       category=Administrative & operationName=Microsoft.Storage/storageAccounts/write
+HVMC-Storage-Keys-Listed         True       category=Administrative & operationName=Microsoft.Storage/storageAccounts/listKeys/action
+HVMC-Public-IP-Created           True       category=Administrative & operationName=Microsoft.Network/publicIPAddresses/write
+HVMC-Diagnostic-Setting-Deleted  True       category=Administrative & operationName=Microsoft.Insights/diagnosticSettings/delete
+HVMC-Defender-Security-Alert     True       category=Security

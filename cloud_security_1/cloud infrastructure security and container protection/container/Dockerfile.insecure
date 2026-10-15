@@ -1,0 +1,8 @@
+# ANTI-EXAMPLE - kept only to compare Trivy results. Do not use.
+FROM python:latest
+ADD . /app
+WORKDIR /app
+ENV DB_PASSWORD=ChangeMe123
+RUN apt-get update && apt-get install -y curl vim
+EXPOSE 8080 22
+CMD python app/app.py

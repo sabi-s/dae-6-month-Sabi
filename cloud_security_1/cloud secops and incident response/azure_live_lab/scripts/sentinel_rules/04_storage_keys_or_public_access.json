@@ -1,0 +1,65 @@
+{
+ "kind": "Scheduled",
+ "properties": {
+  "displayName": "HVMC - ePHI storage keys retrieved or storage exposure changed",
+  "description": "Storage account keys were listed/regenerated, or a storage account configuration was changed. Risk R02, R05. Playbook PB-03.",
+  "severity": "Medium",
+  "enabled": true,
+  "query": "AzureActivity\n| where ActivityStatusValue =~ 'Success'\n| where OperationNameValue in~ ('MICROSOFT.STORAGE/STORAGEACCOUNTS/LISTKEYS/ACTION','MICROSOFT.STORAGE/STORAGEACCOUNTS/REGENERATEKEY/ACTION','MICROSOFT.STORAGE/STORAGEACCOUNTS/WRITE')\n| extend Account = tostring(split(_ResourceId, '/')[-1])\n| summarize Operations = make_set(OperationNameValue), Count = count(), FirstSeen = min(TimeGenerated) by Caller, CallerIpAddress, Account, _ResourceId",
+  "queryFrequency": "PT5M",
+  "queryPeriod": "PT15M",
+  "triggerOperator": "GreaterThan",
+  "triggerThreshold": 0,
+  "suppressionDuration": "PT1H",
+  "suppressionEnabled": false,
+  "tactics": [
+   "CredentialAccess",
+   "Collection"
+  ],
+  "techniques": [
+   "T1552",
+   "T1530"
+  ],
+  "incidentConfiguration": {
+   "createIncident": true,
+   "groupingConfiguration": {
+    "enabled": true,
+    "reopenClosedIncident": false,
+    "lookbackDuration": "PT5H",
+    "matchingMethod": "AllEntities",
+    "groupByEntities": [],
+    "groupByAlertDetails": [],
+    "groupByCustomDetails": []
+   }
+  },
+  "entityMappings": [
+   {
+    "entityType": "Account",
+    "fieldMappings": [
+     {
+      "identifier": "FullName",
+      "columnName": "Caller"
+     }
+    ]
+   },
+   {
+    "entityType": "IP",
+    "fieldMappings": [
+     {
+      "identifier": "Address",
+      "columnName": "CallerIpAddress"
+     }
+    ]
+   },
+   {
+    "entityType": "AzureResource",
+    "fieldMappings": [
+     {
+      "identifier": "ResourceId",
+      "columnName": "_ResourceId"
+     }
+    ]
+   }
+  ]
+ }
+}

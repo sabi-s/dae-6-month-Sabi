@@ -1,0 +1,246 @@
+{
+ "version": "Notebook/1.0",
+ "items": [
+  {
+   "type": 1,
+   "name": "title",
+   "content": {
+    "json": "## HVMC Security Operations\nHorizon Valley Medical Center \u00b7 centralised logging (Activity Log, NSG, Bastion, ePHI storage, VNet flow logs), Defender for Cloud and Microsoft Sentinel in **HVMC-SecOps-LAW**. Author: Sabitha S Karanavar."
+   }
+  },
+  {
+   "type": 9,
+   "name": "parameters",
+   "content": {
+    "version": "KqlParameterItem/1.0",
+    "style": "pills",
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "parameters": [
+     {
+      "id": "8f1c3a52-0d7e-4b8e-9b51-6c2d1f0a7e11",
+      "version": "KqlParameterItem/1.0",
+      "name": "TimeRange",
+      "label": "Time range",
+      "type": 4,
+      "isRequired": true,
+      "value": {
+       "durationMs": 604800000
+      },
+      "typeSettings": {
+       "selectableValues": [
+        {
+         "durationMs": 3600000
+        },
+        {
+         "durationMs": 86400000
+        },
+        {
+         "durationMs": 604800000
+        },
+        {
+         "durationMs": 2592000000
+        }
+       ],
+       "allowCustom": true
+      }
+     }
+    ]
+   }
+  },
+  {
+   "type": 3,
+   "name": "tile1",
+   "customWidth": "50",
+   "content": {
+    "version": "KqlItem/1.0",
+    "query": "union withsource=LogTable * | where TimeGenerated {TimeRange} | summarize Events = count(), LastEvent = max(TimeGenerated) by LogTable | order by Events desc",
+    "size": 1,
+    "title": "Log sources reporting (events per table)",
+    "timeContextFromParameter": "TimeRange",
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "crossComponentResources": [
+     "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW"
+    ],
+    "visualization": "table",
+    "noDataMessage": "No events in this time range"
+   }
+  },
+  {
+   "type": 3,
+   "name": "tile2",
+   "customWidth": "50",
+   "content": {
+    "version": "KqlItem/1.0",
+    "query": "AzureActivity | where TimeGenerated {TimeRange} | where OperationNameValue has 'ActivityLogAlerts/Activated'\n| extend Rule = tostring(split(_ResourceId, '/')[-1]) | summarize Fired = count() by Rule | order by Fired desc",
+    "size": 1,
+    "title": "Security alerts fired (Azure Monitor activity-log alerts)",
+    "timeContextFromParameter": "TimeRange",
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "crossComponentResources": [
+     "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW"
+    ],
+    "visualization": "barchart",
+    "noDataMessage": "No events in this time range"
+   }
+  },
+  {
+   "type": 3,
+   "name": "tile3",
+   "customWidth": "50",
+   "content": {
+    "version": "KqlItem/1.0",
+    "query": "AzureActivity | where TimeGenerated {TimeRange} | summarize Events = count() by bin(TimeGenerated, 1h), CategoryValue",
+    "size": 1,
+    "title": "Control-plane activity per hour by category",
+    "timeContextFromParameter": "TimeRange",
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "crossComponentResources": [
+     "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW"
+    ],
+    "visualization": "timechart",
+    "noDataMessage": "No events in this time range"
+   }
+  },
+  {
+   "type": 3,
+   "name": "tile4",
+   "customWidth": "50",
+   "content": {
+    "version": "KqlItem/1.0",
+    "query": "AzureActivity | where TimeGenerated {TimeRange} | where ActivityStatusValue in~ ('Success','Succeeded')\n| extend Kind = case(\n    OperationNameValue has 'securityRules', 'Firewall (NSG) rule change',\n    OperationNameValue has 'roleAssignments', 'Role assignment change',\n    OperationNameValue has 'listKeys' or OperationNameValue has 'regenerateKey', 'Storage key access',\n    OperationNameValue =~ 'MICROSOFT.STORAGE/STORAGEACCOUNTS/WRITE', 'Storage configuration change',\n    OperationNameValue has 'publicIPAddresses/write', 'Public IP created',\n    OperationNameValue has 'diagnosticSettings/delete' or OperationNameValue has 'flowLogs/delete', 'Logging disabled',\n    OperationNameValue has 'Microsoft.Security/pricings', 'Defender plan change', '')\n| where isnotempty(Kind) | summarize Count = count(), Last = max(TimeGenerated) by Kind | order by Count desc",
+    "size": 1,
+    "title": "Security-relevant changes",
+    "timeContextFromParameter": "TimeRange",
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "crossComponentResources": [
+     "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW"
+    ],
+    "visualization": "table",
+    "noDataMessage": "No events in this time range"
+   }
+  },
+  {
+   "type": 3,
+   "name": "tile5",
+   "customWidth": "50",
+   "content": {
+    "version": "KqlItem/1.0",
+    "query": "AzureActivity | where TimeGenerated {TimeRange} | where isnotempty(Caller)\n| summarize Operations = count(), Failed = countif(ActivityStatusValue in~ ('Failure','Failed')) by Caller | top 10 by Operations",
+    "size": 1,
+    "title": "Who is making changes",
+    "timeContextFromParameter": "TimeRange",
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "crossComponentResources": [
+     "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW"
+    ],
+    "visualization": "table",
+    "noDataMessage": "No events in this time range"
+   }
+  },
+  {
+   "type": 3,
+   "name": "tile6",
+   "customWidth": "50",
+   "content": {
+    "version": "KqlItem/1.0",
+    "query": "union isfuzzy=true SecurityIncident, (datatable(IncidentNumber:int, Severity:string, Status:string, TimeGenerated:datetime)[])\n| where TimeGenerated {TimeRange} | summarize arg_max(TimeGenerated, *) by IncidentNumber | where isnotempty(Severity)\n| summarize Incidents = count() by Severity, Status",
+    "size": 1,
+    "title": "Sentinel incidents by severity and status",
+    "timeContextFromParameter": "TimeRange",
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "crossComponentResources": [
+     "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW"
+    ],
+    "visualization": "table",
+    "noDataMessage": "No events in this time range"
+   }
+  },
+  {
+   "type": 3,
+   "name": "tile7",
+   "customWidth": "50",
+   "content": {
+    "version": "KqlItem/1.0",
+    "query": "union isfuzzy=true SecurityAlert, (datatable(AlertName:string, AlertSeverity:string, ProductName:string, TimeGenerated:datetime)[])\n| where TimeGenerated {TimeRange} | where isnotempty(AlertName) | summarize Alerts = count() by AlertName, AlertSeverity, ProductName",
+    "size": 1,
+    "title": "Defender for Cloud alerts",
+    "timeContextFromParameter": "TimeRange",
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "crossComponentResources": [
+     "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW"
+    ],
+    "visualization": "table",
+    "noDataMessage": "No events in this time range"
+   }
+  },
+  {
+   "type": 3,
+   "name": "tile8",
+   "customWidth": "50",
+   "content": {
+    "version": "KqlItem/1.0",
+    "query": "union isfuzzy=true StorageBlobLogs, (datatable(OperationName:string, CallerIpAddress:string, StatusText:string, TimeGenerated:datetime)[])\n| where TimeGenerated {TimeRange} | where isnotempty(OperationName)\n| summarize Requests = count(), DistinctCallers = dcount(CallerIpAddress), Failures = countif(StatusText != 'Success') by OperationName",
+    "size": 1,
+    "title": "ePHI storage access (hvmcehrstorage blob operations)",
+    "timeContextFromParameter": "TimeRange",
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "crossComponentResources": [
+     "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW"
+    ],
+    "visualization": "table",
+    "noDataMessage": "No events in this time range"
+   }
+  },
+  {
+   "type": 3,
+   "name": "tile9",
+   "customWidth": "50",
+   "content": {
+    "version": "KqlItem/1.0",
+    "query": "union isfuzzy=true NTANetAnalytics, (datatable(FlowStatus:string, FlowDirection:string, TimeGenerated:datetime)[])\n| where TimeGenerated {TimeRange} | where isnotempty(FlowStatus) | summarize Flows = count() by FlowStatus, FlowDirection",
+    "size": 1,
+    "title": "Network flows (VNet flow logs / Traffic Analytics)",
+    "timeContextFromParameter": "TimeRange",
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "crossComponentResources": [
+     "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW"
+    ],
+    "visualization": "table",
+    "noDataMessage": "No events in this time range"
+   }
+  },
+  {
+   "type": 3,
+   "name": "tile10",
+   "customWidth": "50",
+   "content": {
+    "version": "KqlItem/1.0",
+    "query": "Usage | where TimeGenerated {TimeRange} | summarize MB = sum(Quantity) by bin(TimeGenerated, 1d), DataType",
+    "size": 1,
+    "title": "Log ingestion vs 0.5 GB/day cap (MB per day)",
+    "timeContextFromParameter": "TimeRange",
+    "queryType": 0,
+    "resourceType": "microsoft.operationalinsights/workspaces",
+    "crossComponentResources": [
+     "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW"
+    ],
+    "visualization": "barchart",
+    "noDataMessage": "No events in this time range"
+   }
+  }
+ ],
+ "fallbackResourceIds": [
+  "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW"
+ ],
+ "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}

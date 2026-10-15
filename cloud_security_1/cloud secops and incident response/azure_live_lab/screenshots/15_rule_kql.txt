@@ -1,0 +1,8 @@
+$ az rest --method get --url "https://management.azure.com/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules?api-version=2024-03-01" \
+  --query "value[?properties.displayName=='HVMC - NSG inbound rule opened to the Internet'].properties.query | [0]" -o tsv
+AzureActivity
+| where OperationNameValue =~ 'MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SECURITYRULES/WRITE' and ActivityStatusValue =~ 'Success'
+| extend Body = tostring(parse_json(Properties).requestbody)
+| where isempty(Body) or (Body has '"access":"Allow"' and Body has '"direction":"Inbound"' and (Body has '"sourceAddressPrefix":"*"' or Body has 'Internet' or Body has '0.0.0.0/0'))
+| extend Rule = tostring(split(_ResourceId, '/')[-1]), Nsg = tostring(split(_ResourceId, '/')[-3])
+| project TimeGenerated, Caller, CallerIpAddress, Nsg, Rule, _ResourceId, CorrelationId

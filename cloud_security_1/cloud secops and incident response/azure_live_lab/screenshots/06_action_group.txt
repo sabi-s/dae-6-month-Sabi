@@ -1,0 +1,14 @@
+$ az monitor action-group show -g HVMC-CloudSecurity-RG -n HVMC-SecOps-AG \
+  --query "{name:name,enabled:enabled,shortName:groupShortName,email:emailReceivers[].{name:name,status:status,commonSchema:useCommonAlertSchema}}" -o json
+{
+  "email": [
+    {
+      "commonSchema": true,
+      "name": "SecurityLead",
+      "status": "Enabled"
+    }
+  ],
+  "enabled": true,
+  "name": "HVMC-SecOps-AG",
+  "shortName": "HVMCSecOps"
+}

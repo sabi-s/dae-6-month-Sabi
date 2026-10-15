@@ -1,0 +1,10 @@
+$ az rest --method get --url "https://management.azure.com/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/providers/Microsoft.Security/securityContacts/default?api-version=2023-12-01-preview" \
+  --query "{emails:properties.emails,enabled:properties.isEnabled,notifyRoles:properties.notificationsByRole.roles,alertMinSeverity:properties.notificationsSources[0].minimalSeverity}" -o json
+{
+  "alertMinSeverity": "Medium",
+  "emails": "sabithaskaranavar@gmail.com",
+  "enabled": true,
+  "notifyRoles": [
+    "Owner"
+  ]
+}

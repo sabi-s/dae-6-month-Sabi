@@ -1,0 +1,40 @@
+$ bash ~/Downloads/HVMC_Cloud_SecOps_IR/scripts/01_setup_logging_alerting.sh
+
+=== 1/8 register resource providers (free)
+  Microsoft.Insights registered
+  Microsoft.OperationalInsights registered
+  Microsoft.OperationsManagement registered
+  Microsoft.AlertsManagement registered
+
+=== 2/8 Log Analytics workspace HVMC-SecOps-LAW (30-day retention, 0.5 GB/day cap)
+  /subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW
+
+=== 3/8 Activity Log (subscription control plane = CloudTrail equivalent) -> workspace
+  8 activity-log categories streaming
+
+=== 4/8 resource logs -> workspace (Bastion sessions, NSG events, ePHI blob access)
+  Bastion audit logs
+  HVMC-Web-NSG events
+  HVMC-App-NSG events
+  HVMC-Data-NSG events
+  hvmcehrstorage blob read/write/delete (HIPAA 164.312(b) audit controls)
+
+=== 5/8 VNet flow logs (VPC Flow Logs equivalent) + Traffic Analytics
+  flow log -> hvmcseclogsc36407 (30-day retention), Traffic Analytics every 10 min -> HVMC-SecOps-LAW
+
+=== 6/8 action group HVMC-SecOps-AG (e-mail sabithaskaranavar@gmail.com)
+
+=== 7/8 security alert rules (activity-log alerts, free)
+  HVMC-NSG-Rule-Changed
+  HVMC-NSG-Rule-Deleted
+  HVMC-Role-Assignment-Added
+  HVMC-Role-Assignment-Removed
+  HVMC-Storage-Config-Changed
+  HVMC-Storage-Keys-Listed
+  HVMC-Public-IP-Created
+  HVMC-Diagnostic-Setting-Deleted
+  HVMC-Defender-Security-Alert
+
+=== 8/8 cost guard: $10 budget, e-mail at 50 / 80 / 100 %
+  HVMC-Lab-Budget created
+

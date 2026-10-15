@@ -1,0 +1,13 @@
+$ az consumption budget show --budget-name HVMC-Lab-Budget \
+  --query "{name:name,amount:amount,timeGrain:timeGrain,spent:currentSpend.amount,notifications:notifications.*.threshold}" -o json
+{
+  "amount": "10.0",
+  "name": "HVMC-Lab-Budget",
+  "notifications": [
+    "50.0",
+    "80.0",
+    "100.0"
+  ],
+  "spent": "0.0",
+  "timeGrain": "Monthly"
+}

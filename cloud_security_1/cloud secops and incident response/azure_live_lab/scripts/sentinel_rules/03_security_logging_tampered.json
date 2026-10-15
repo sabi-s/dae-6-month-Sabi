@@ -1,0 +1,54 @@
+{
+ "kind": "Scheduled",
+ "properties": {
+  "displayName": "HVMC - Security logging disabled or deleted",
+  "description": "A diagnostic setting, flow log, alert rule or the Log Analytics workspace was deleted, or a Defender plan was downgraded to Free - possible defence evasion. Risk R01. Playbook PB-04.",
+  "severity": "High",
+  "enabled": true,
+  "query": "AzureActivity\n| where ActivityStatusValue =~ 'Success'\n| extend Body = tostring(parse_json(Properties).requestbody)\n| where OperationNameValue in~ ('MICROSOFT.INSIGHTS/DIAGNOSTICSETTINGS/DELETE','MICROSOFT.NETWORK/NETWORKWATCHERS/FLOWLOGS/DELETE','MICROSOFT.INSIGHTS/ACTIVITYLOGALERTS/DELETE','MICROSOFT.OPERATIONALINSIGHTS/WORKSPACES/DELETE')\n    or (OperationNameValue =~ 'MICROSOFT.SECURITY/PRICINGS/WRITE' and Body has '\"pricingTier\":\"Free\"')\n| project TimeGenerated, Caller, CallerIpAddress, OperationNameValue, _ResourceId, CorrelationId",
+  "queryFrequency": "PT5M",
+  "queryPeriod": "PT15M",
+  "triggerOperator": "GreaterThan",
+  "triggerThreshold": 0,
+  "suppressionDuration": "PT1H",
+  "suppressionEnabled": false,
+  "tactics": [
+   "DefenseEvasion"
+  ],
+  "techniques": [
+   "T1562"
+  ],
+  "incidentConfiguration": {
+   "createIncident": true,
+   "groupingConfiguration": {
+    "enabled": true,
+    "reopenClosedIncident": false,
+    "lookbackDuration": "PT5H",
+    "matchingMethod": "AllEntities",
+    "groupByEntities": [],
+    "groupByAlertDetails": [],
+    "groupByCustomDetails": []
+   }
+  },
+  "entityMappings": [
+   {
+    "entityType": "Account",
+    "fieldMappings": [
+     {
+      "identifier": "FullName",
+      "columnName": "Caller"
+     }
+    ]
+   },
+   {
+    "entityType": "IP",
+    "fieldMappings": [
+     {
+      "identifier": "Address",
+      "columnName": "CallerIpAddress"
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,28 @@
+$ bash scripts/04_run_ir_tests.sh PB-03     # and, in parallel, PB-01
+[2026-10-15T18:03:31Z] HVMC IR exercise HVMC-IRX-2026-10 started 2026-10-15T18:03:31Z: PB-03
+[2026-10-15T18:03:31Z] PB-03 start: generating Defender for Cloud sample alerts for Storage
+[2026-10-15T18:03:32Z]   sample alerts requested at 2026-10-15T18:03:31Z
+[2026-10-15T18:07:24Z]   1 Identification: OK - 26 Defender alerts: [SAMPLE ALERT] Access from a Tor exit node to a storage blob container; [SAMPLE ALERT] Access from a T
+[2026-10-15T18:07:48Z]   1b Triage / acknowledge: OK - 26 alerts set to In progress (acknowledged)
+[2026-10-15T18:07:50Z]   2 Containment: OK - secondary access key of hvmcehrstorage regenerated (key2 not used by any application); network posture recorded: {'defaultAct
+[2026-10-15T18:07:52Z]   3 Investigation: OK - alert entities reviewed; ePHI blob data-plane operations in 24 h: 0; control-plane events on the account in 24 h: 0 (all by
+[2026-10-15T18:07:52Z]   4 Eradication: OK - Defender for Storage Standard and malware scanning True confirmed; sample alerts carry no payload, so no blob needed removal
+[2026-10-15T18:08:15Z]   5 Recovery: OK - 26 Defender alerts resolved; protection verified still enabled
+[2026-10-15T18:08:15Z] Waiting for Microsoft Sentinel incidents (analytics rules run every 5 min; ingestion adds 5-10 min)
+[2026-10-15T18:12:54Z] SUMMARY
+[2026-10-15T18:12:54Z]   PB-03: detect 0.0 min, contain 4.3 min, recover 4.7 min, phases ok 6/6
+[2026-10-15T18:12:54Z]   Sentinel incidents closed: 0
+[2026-10-15T18:12:54Z] results: /Users/Adult/Downloads/HVMC_Cloud_SecOps_IR/evidence/ir_tests/results_PB-03.json
+
+[2026-10-15T18:00:47Z] HVMC IR exercise HVMC-IRX-2026-10 started 2026-10-15T18:00:47Z
+[2026-10-15T18:00:48Z] PB-01 start: adding an explicit Deny-Internet-inbound rule to the Data NSG (tightens R03)
+[2026-10-15T18:00:52Z]   rule Deny-Internet-Inbound-Data created at 2026-10-15T18:00:49Z
+[2026-10-15T18:07:39Z]   1 Identification: OK - Azure Monitor alert HVMC-NSG-Rule-Changed fired at 2026-10-15T18:07:26Z; e-mail sent to the Security Lead
+[2026-10-15T18:07:41Z]   2-3 Triage, containment decision and investigation: OK - who: sabithaskaranavar@gmail.com; what: Inbound Deny from Internet to port *; matches ap
+[2026-10-15T18:07:44Z]   4 Eradication (exposure sweep): OK - sweep of all NSGs: no Internet-facing allow rule except the approved Web HTTPS 443 rule
+[2026-10-15T18:07:45Z]   5 Recovery (baseline updated): OK - baseline updated with the approved change; difference from previous baseline: ['Deny-Internet-Inbound-Data p4
+[2026-10-15T18:07:45Z] Waiting for Microsoft Sentinel incidents (analytics rules run every 5 min; ingestion adds 5-10 min)
+[2026-10-15T18:12:55Z] SUMMARY
+[2026-10-15T18:12:55Z]   PB-01: detect 6.6 min, contain 0.2 min, recover 0.3 min, phases ok 4/4
+[2026-10-15T18:12:55Z]   Sentinel incidents closed: 0
+[2026-10-15T18:12:55Z] results: /Users/Adult/Downloads/HVMC_Cloud_SecOps_IR/evidence/ir_tests/results.json

@@ -1,0 +1,11 @@
+$ az network watcher flow-log show --location eastus -n HVMC-Prod-VNet-FlowLog \
+  --query "{name:name,target:targetResourceId,enabled:enabled,storage:storageId,retentionDays:retentionPolicy.days,trafficAnalytics:flowAnalyticsConfiguration.networkWatcherFlowAnalyticsConfiguration.enabled,intervalMin:flowAnalyticsConfiguration.networkWatcherFlowAnalyticsConfiguration.trafficAnalyticsInterval}" -o json
+{
+  "enabled": true,
+  "intervalMin": 10,
+  "name": "HVMC-Prod-VNet-FlowLog",
+  "retentionDays": 30,
+  "storage": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Storage/storageAccounts/hvmcseclogsc36407",
+  "target": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Network/virtualNetworks/HVMC-Prod-VNet",
+  "trafficAnalytics": true
+}

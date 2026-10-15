@@ -1,0 +1,17 @@
+$ az security alert list --query "[].{Alert:alertDisplayName,Severity:severity,Status:status,Raised:timeGeneratedUtc}" -o table | head -14
+az security alert list --query "length([?status=='Resolved'])"
+Alert                                                                                                               Severity    Status    Raised
+------------------------------------------------------------------------------------------------------------------  ----------  --------  --------------------------------
+[SAMPLE ALERT] Access from a Tor exit node to a storage file share                                                  High        Resolved  2026-10-15T18:03:33.558000+00:00
+[SAMPLE ALERT] Access from a suspicious IP to a storage file share                                                  High        Resolved  2026-10-15T18:03:33.505000+00:00
+[SAMPLE ALERT] Potential malware uploaded to a storage file share                                                   High        Resolved  2026-10-15T18:03:33.451000+00:00
+[SAMPLE ALERT] Access from an unusual location to a storage file share                                              Medium      Resolved  2026-10-15T18:03:33.402000+00:00
+[SAMPLE ALERT] Unusual deletion in a storage file share                                                             Medium      Resolved  2026-10-15T18:03:33.355000+00:00
+[SAMPLE ALERT] Unusual data exploration in a storage file share                                                     Medium      Resolved  2026-10-15T18:03:33.317000+00:00
+[SAMPLE ALERT] Unusual number of files extracted from a storage file share                                          High        Resolved  2026-10-15T18:03:33.270000+00:00
+[SAMPLE ALERT] Unusual amount of data extracted from a storage file share                                           High        Resolved  2026-10-15T18:03:33.163000+00:00
+[SAMPLE ALERT] Unusual application accessed a storage file share                                                    Medium      Resolved  2026-10-15T18:03:33.116000+00:00
+[SAMPLE ALERT] Unusual access inspection in a storage file share                                                    Medium      Resolved  2026-10-15T18:03:33.061000+00:00
+[SAMPLE ALERT] Access from a Tor exit node to a storage blob container                                              Medium      Resolved  2026-10-15T18:03:32.998000+00:00
+[SAMPLE ALERT] Access from a suspicious IP to a storage blob container                                              Low         Resolved  2026-10-15T18:03:32.951000+00:00
+26

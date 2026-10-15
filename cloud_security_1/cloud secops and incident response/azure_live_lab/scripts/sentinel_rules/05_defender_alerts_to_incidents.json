@@ -1,0 +1,4 @@
+{"kind":"MicrosoftSecurityIncidentCreation","properties":{
+ "displayName":"HVMC - Create incidents from Microsoft Defender for Cloud alerts",
+ "description":"Every Defender for Cloud alert (Storage malware, suspicious Resource Manager operations) becomes a Sentinel incident.",
+ "enabled":true,"productFilter":"Azure Security Center"}}

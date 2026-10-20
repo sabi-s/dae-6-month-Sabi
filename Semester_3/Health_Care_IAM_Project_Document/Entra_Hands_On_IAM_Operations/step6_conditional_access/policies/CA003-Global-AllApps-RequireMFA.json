@@ -1,0 +1,30 @@
+{
+ "displayName": "CA003-Global-AllApps-RequireMFA",
+ "state": "enabledForReportingButNotEnforced",
+ "conditions": {
+  "users": {
+   "includeUsers": [
+    "All"
+   ],
+   "includeGroups": [],
+   "excludeGroups": [
+    "{{SG-CA-Exclude-BreakGlass}}"
+   ]
+  },
+  "applications": {
+   "includeApplications": [
+    "All"
+   ],
+   "excludeApplications": []
+  },
+  "clientAppTypes": [
+   "all"
+  ]
+ },
+ "grantControls": {
+  "operator": "OR",
+  "builtInControls": [
+   "mfa"
+  ]
+ }
+}

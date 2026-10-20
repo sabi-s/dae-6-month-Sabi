@@ -1,0 +1,40 @@
+{
+ "displayName": "CA013-Global-AllApps-MediumHighSignInRisk-RequireMFA",
+ "state": "enabledForReportingButNotEnforced",
+ "conditions": {
+  "users": {
+   "includeUsers": [
+    "All"
+   ],
+   "includeGroups": [],
+   "excludeGroups": [
+    "{{SG-CA-Exclude-BreakGlass}}"
+   ]
+  },
+  "applications": {
+   "includeApplications": [
+    "All"
+   ],
+   "excludeApplications": []
+  },
+  "clientAppTypes": [
+   "all"
+  ],
+  "signInRiskLevels": [
+   "high",
+   "medium"
+  ]
+ },
+ "grantControls": {
+  "operator": "OR",
+  "builtInControls": [
+   "mfa"
+  ]
+ },
+ "sessionControls": {
+  "signInFrequency": {
+   "isEnabled": true,
+   "frequencyInterval": "everyTime"
+  }
+ }
+}

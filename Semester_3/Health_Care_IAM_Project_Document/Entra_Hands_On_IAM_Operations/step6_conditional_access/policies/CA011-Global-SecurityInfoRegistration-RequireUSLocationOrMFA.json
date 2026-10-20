@@ -1,0 +1,39 @@
+{
+ "displayName": "CA011-Global-SecurityInfoRegistration-RequireUSLocationOrMFA",
+ "state": "enabledForReportingButNotEnforced",
+ "conditions": {
+  "users": {
+   "includeUsers": [
+    "All"
+   ],
+   "includeGroups": [],
+   "excludeGroups": [
+    "{{SG-CA-Exclude-BreakGlass}}"
+   ]
+  },
+  "applications": {
+   "includeUserActions": [
+    "urn:user:registersecurityinfo"
+   ],
+   "includeApplications": [],
+   "excludeApplications": []
+  },
+  "clientAppTypes": [
+   "all"
+  ],
+  "locations": {
+   "includeLocations": [
+    "All"
+   ],
+   "excludeLocations": [
+    "{{NL-Allowed-Countries-US}}"
+   ]
+  }
+ },
+ "grantControls": {
+  "operator": "OR",
+  "builtInControls": [
+   "mfa"
+  ]
+ }
+}

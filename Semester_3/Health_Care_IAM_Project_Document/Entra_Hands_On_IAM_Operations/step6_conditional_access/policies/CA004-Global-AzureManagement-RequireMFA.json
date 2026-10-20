@@ -1,0 +1,30 @@
+{
+ "displayName": "CA004-Global-AzureManagement-RequireMFA",
+ "state": "enabledForReportingButNotEnforced",
+ "conditions": {
+  "users": {
+   "includeUsers": [
+    "All"
+   ],
+   "includeGroups": [],
+   "excludeGroups": [
+    "{{SG-CA-Exclude-BreakGlass}}"
+   ]
+  },
+  "applications": {
+   "includeApplications": [
+    "797f4846-ba00-4fd7-ba43-dac1f8f63013"
+   ],
+   "excludeApplications": []
+  },
+  "clientAppTypes": [
+   "all"
+  ]
+ },
+ "grantControls": {
+  "operator": "OR",
+  "builtInControls": [
+   "mfa"
+  ]
+ }
+}

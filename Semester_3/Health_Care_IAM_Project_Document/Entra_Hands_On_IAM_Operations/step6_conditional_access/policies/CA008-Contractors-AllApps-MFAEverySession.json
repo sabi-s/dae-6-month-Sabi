@@ -1,0 +1,40 @@
+{
+ "displayName": "CA008-Contractors-AllApps-MFAEverySession",
+ "state": "enabledForReportingButNotEnforced",
+ "conditions": {
+  "users": {
+   "includeGroups": [
+    "f92a1335-7c94-4979-aad5-784c963a3bf6",
+    "7d8fa371-cc8d-48d8-a825-d5db71a6a255"
+   ],
+   "excludeGroups": [
+    "{{SG-CA-Exclude-BreakGlass}}"
+   ]
+  },
+  "applications": {
+   "includeApplications": [
+    "All"
+   ],
+   "excludeApplications": []
+  },
+  "clientAppTypes": [
+   "all"
+  ]
+ },
+ "grantControls": {
+  "operator": "OR",
+  "builtInControls": [
+   "mfa"
+  ]
+ },
+ "sessionControls": {
+  "signInFrequency": {
+   "isEnabled": true,
+   "frequencyInterval": "everyTime"
+  },
+  "persistentBrowser": {
+   "isEnabled": true,
+   "mode": "never"
+  }
+ }
+}

@@ -1,0 +1,38 @@
+{
+ "displayName": "CA009-Global-AllApps-BlockOutsideAllowedCountries",
+ "state": "enabledForReportingButNotEnforced",
+ "conditions": {
+  "users": {
+   "includeUsers": [
+    "All"
+   ],
+   "includeGroups": [],
+   "excludeGroups": [
+    "{{SG-CA-Exclude-BreakGlass}}"
+   ]
+  },
+  "applications": {
+   "includeApplications": [
+    "All"
+   ],
+   "excludeApplications": []
+  },
+  "clientAppTypes": [
+   "all"
+  ],
+  "locations": {
+   "includeLocations": [
+    "All"
+   ],
+   "excludeLocations": [
+    "{{NL-Allowed-Countries-US}}"
+   ]
+  }
+ },
+ "grantControls": {
+  "operator": "OR",
+  "builtInControls": [
+   "block"
+  ]
+ }
+}

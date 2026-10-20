@@ -1,0 +1,31 @@
+{
+ "displayName": "CA001-Global-AllApps-BlockLegacyAuthentication",
+ "state": "enabledForReportingButNotEnforced",
+ "conditions": {
+  "users": {
+   "includeUsers": [
+    "All"
+   ],
+   "includeGroups": [],
+   "excludeGroups": [
+    "{{SG-CA-Exclude-BreakGlass}}"
+   ]
+  },
+  "applications": {
+   "includeApplications": [
+    "All"
+   ],
+   "excludeApplications": []
+  },
+  "clientAppTypes": [
+   "exchangeActiveSync",
+   "other"
+  ]
+ },
+ "grantControls": {
+  "operator": "OR",
+  "builtInControls": [
+   "block"
+  ]
+ }
+}

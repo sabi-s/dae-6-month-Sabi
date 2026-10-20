@@ -1,0 +1,6 @@
+# Raw tenant snapshots (object IDs, UPNs, subscription and role data) stay local; the PDFs and decided review pack summarise them.
+**/evidence/
+step5_access_review/review_data.json
+step5_access_review/review_items.json
+step6_conditional_access/tenant_ids.json
+__pycache__/

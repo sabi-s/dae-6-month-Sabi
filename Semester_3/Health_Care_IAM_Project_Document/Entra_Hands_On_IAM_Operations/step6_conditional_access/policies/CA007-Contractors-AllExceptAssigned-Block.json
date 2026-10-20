@@ -1,0 +1,33 @@
+{
+ "displayName": "CA007-Contractors-AllExceptAssigned-Block",
+ "state": "enabledForReportingButNotEnforced",
+ "conditions": {
+  "users": {
+   "includeGroups": [
+    "f92a1335-7c94-4979-aad5-784c963a3bf6",
+    "7d8fa371-cc8d-48d8-a825-d5db71a6a255"
+   ],
+   "excludeGroups": [
+    "{{SG-CA-Exclude-BreakGlass}}"
+   ]
+  },
+  "applications": {
+   "includeApplications": [
+    "All"
+   ],
+   "excludeApplications": [
+    "305e9b13-fa49-4336-93e7-c18fb4173733",
+    "e6bbe8bb-b794-4463-8171-fc8f7e542cc2"
+   ]
+  },
+  "clientAppTypes": [
+   "all"
+  ]
+ },
+ "grantControls": {
+  "operator": "OR",
+  "builtInControls": [
+   "block"
+  ]
+ }
+}

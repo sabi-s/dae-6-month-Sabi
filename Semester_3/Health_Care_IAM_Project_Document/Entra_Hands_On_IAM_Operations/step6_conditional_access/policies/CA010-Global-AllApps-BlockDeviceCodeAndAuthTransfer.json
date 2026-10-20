@@ -1,0 +1,33 @@
+{
+ "displayName": "CA010-Global-AllApps-BlockDeviceCodeAndAuthTransfer",
+ "state": "enabledForReportingButNotEnforced",
+ "conditions": {
+  "users": {
+   "includeUsers": [
+    "All"
+   ],
+   "includeGroups": [],
+   "excludeGroups": [
+    "{{SG-CA-Exclude-BreakGlass}}"
+   ]
+  },
+  "applications": {
+   "includeApplications": [
+    "All"
+   ],
+   "excludeApplications": []
+  },
+  "clientAppTypes": [
+   "all"
+  ],
+  "authenticationFlows": {
+   "transferMethods": "deviceCodeFlow,authenticationTransfer"
+  }
+ },
+ "grantControls": {
+  "operator": "OR",
+  "builtInControls": [
+   "block"
+  ]
+ }
+}

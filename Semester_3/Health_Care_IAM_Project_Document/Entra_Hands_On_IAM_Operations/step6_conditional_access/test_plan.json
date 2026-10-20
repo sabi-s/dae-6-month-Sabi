@@ -1,0 +1,106 @@
+[
+ {
+  "id": "T01",
+  "persona": "Sarah Chen (Physician)",
+  "app": "HVMC Electronic Health Record",
+  "scenario": "Hospital-managed laptop, US, Authenticator MFA",
+  "policies": "CA003, CA005",
+  "expected": "Allow after MFA; session 8 h"
+ },
+ {
+  "id": "T02",
+  "persona": "Sarah Chen (Physician)",
+  "app": "HVMC Electronic Health Record",
+  "scenario": "Personal laptop at home, US",
+  "policies": "CA005, CA006",
+  "expected": "Blocked (device not compliant) - CA006 limits session if CA005 still report-only"
+ },
+ {
+  "id": "T03",
+  "persona": "Grace Nguyen (Reception)",
+  "app": "HVMC Appointment Scheduling",
+  "scenario": "Front-desk PC, US, MFA",
+  "policies": "CA003",
+  "expected": "Allow after MFA"
+ },
+ {
+  "id": "T04",
+  "persona": "Any user",
+  "app": "Exchange Online via IMAP client",
+  "scenario": "Legacy authentication",
+  "policies": "CA001",
+  "expected": "Blocked"
+ },
+ {
+  "id": "T05",
+  "persona": "Sabitha S Karanavar (Global Admin)",
+  "app": "Azure portal",
+  "scenario": "Password + SMS code",
+  "policies": "CA002, CA004",
+  "expected": "Blocked until a phishing-resistant method (FIDO2/passkey) is used"
+ },
+ {
+  "id": "T06",
+  "persona": "Contractor (SG-Contractors-*)",
+  "app": "HVMC VPN Portal",
+  "scenario": "MFA, US",
+  "policies": "CA007, CA008",
+  "expected": "Allow; MFA every sign-in; no persistent session"
+ },
+ {
+  "id": "T07",
+  "persona": "Contractor (SG-Contractors-*)",
+  "app": "HVMC Electronic Health Record",
+  "scenario": "Any",
+  "policies": "CA007",
+  "expected": "Blocked (app not in contract)"
+ },
+ {
+  "id": "T08",
+  "persona": "Any user",
+  "app": "Any app",
+  "scenario": "Sign-in from outside the US",
+  "policies": "CA009",
+  "expected": "Blocked"
+ },
+ {
+  "id": "T09",
+  "persona": "Any user",
+  "app": "Any app",
+  "scenario": "Device-code flow on a second device",
+  "policies": "CA010",
+  "expected": "Blocked"
+ },
+ {
+  "id": "T10",
+  "persona": "Any user",
+  "app": "Register security info",
+  "scenario": "From outside the US without MFA",
+  "policies": "CA011",
+  "expected": "MFA required (blocked without it)"
+ },
+ {
+  "id": "T11",
+  "persona": "Any user",
+  "app": "Any app",
+  "scenario": "Leaked credentials (user risk high)",
+  "policies": "CA012",
+  "expected": "MFA + secure password change"
+ },
+ {
+  "id": "T12",
+  "persona": "Break-glass account",
+  "app": "Azure portal",
+  "scenario": "FIDO2 key, emergency",
+  "policies": "Excluded from all",
+  "expected": "Allow; Sentinel alert fires on every use"
+ },
+ {
+  "id": "T13",
+  "persona": "Carlos Diaz (terminated contractor)",
+  "app": "Any app",
+  "scenario": "Account disabled (JML-203)",
+  "policies": "n/a",
+  "expected": "Blocked before CA: account disabled, sessions revoked"
+ }
+]

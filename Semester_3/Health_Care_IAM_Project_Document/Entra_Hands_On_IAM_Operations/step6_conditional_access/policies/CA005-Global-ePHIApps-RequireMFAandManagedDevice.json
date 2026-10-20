@@ -1,0 +1,42 @@
+{
+ "displayName": "CA005-Global-ePHIApps-RequireMFAandManagedDevice",
+ "state": "enabledForReportingButNotEnforced",
+ "conditions": {
+  "users": {
+   "includeUsers": [
+    "All"
+   ],
+   "includeGroups": [],
+   "excludeGroups": [
+    "{{SG-CA-Exclude-BreakGlass}}"
+   ]
+  },
+  "applications": {
+   "includeApplications": [
+    "bdb1e4fa-d56b-4e49-9c0a-f67d3a33edc2",
+    "97cd3328-7112-4ade-baad-c77bded4f40a",
+    "30839871-888a-48a2-8992-69a525a0a240",
+    "46518940-c6e6-49ee-8f84-af843714e942"
+   ],
+   "excludeApplications": []
+  },
+  "clientAppTypes": [
+   "all"
+  ]
+ },
+ "grantControls": {
+  "operator": "AND",
+  "builtInControls": [
+   "mfa",
+   "compliantDevice"
+  ]
+ },
+ "sessionControls": {
+  "signInFrequency": {
+   "isEnabled": true,
+   "type": "hours",
+   "value": 8,
+   "frequencyInterval": "timeBased"
+  }
+ }
+}

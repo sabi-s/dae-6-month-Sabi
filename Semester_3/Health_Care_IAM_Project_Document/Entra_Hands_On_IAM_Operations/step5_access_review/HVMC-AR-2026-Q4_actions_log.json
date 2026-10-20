@@ -1,0 +1,22 @@
+{
+ "campaign": "HVMC-AR-2026-Q4",
+ "decided": "2026-10-20",
+ "lines": 94,
+ "keep": 93,
+ "removals": [
+  {
+   "time": "2026-10-20T18:24:02+00:00",
+   "user": "Test Nurse - EHR",
+   "access": "HVMC-Nurse-EHR-ReadOnly on hvmcehrstorage",
+   "action": "delete Azure role assignment",
+   "reviewer": "Denise Coleman",
+   "result": "ok",
+   "error": ""
+  },
+  {
+   "time": "2026-10-20T18:24:27+00:00",
+   "action": "group-driven app sync (incl. EHR-Simulated)",
+   "result": "1/1 changes applied."
+  }
+ ]
+}

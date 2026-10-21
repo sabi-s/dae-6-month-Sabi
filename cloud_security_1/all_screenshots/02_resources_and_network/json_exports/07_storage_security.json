@@ -1,0 +1,217 @@
+[
+  {
+    "accessTier": "Hot",
+    "accountMigrationInProgress": null,
+    "allowBlobPublicAccess": false,
+    "allowCrossTenantReplication": false,
+    "allowSharedKeyAccess": true,
+    "allowedCopyScope": null,
+    "azureFilesIdentityBasedAuthentication": null,
+    "blobRestoreStatus": null,
+    "creationTime": "2026-09-22T19:18:47.076347+00:00",
+    "customDomain": null,
+    "defaultToOAuthAuthentication": false,
+    "dnsEndpointType": "Standard",
+    "dualStackEndpointPreference": {
+      "defaultDualStackEndpoints": false,
+      "publishIpv4Endpoint": false,
+      "publishIpv6Endpoint": false
+    },
+    "enableExtendedGroups": null,
+    "enableHttpsTrafficOnly": true,
+    "enableNfsV3": null,
+    "encryption": {
+      "encryptionIdentity": null,
+      "keySource": "Microsoft.Storage",
+      "keyVaultProperties": null,
+      "requireInfrastructureEncryption": false,
+      "services": {
+        "blob": {
+          "enabled": true,
+          "keyType": "Account",
+          "lastEnabledTime": "2026-09-22T19:18:47.493154+00:00"
+        },
+        "file": {
+          "enabled": true,
+          "keyType": "Account",
+          "lastEnabledTime": "2026-09-22T19:18:47.493154+00:00"
+        },
+        "queue": null,
+        "table": null
+      }
+    },
+    "extendedLocation": null,
+    "failoverInProgress": null,
+    "geoPriorityReplicationStatus": null,
+    "geoReplicationStats": null,
+    "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Storage/storageAccounts/hvmcehrstorage",
+    "identity": null,
+    "immutableStorageWithVersioning": null,
+    "isHnsEnabled": null,
+    "isLocalUserEnabled": null,
+    "isSftpEnabled": null,
+    "isSkuConversionBlocked": null,
+    "keyCreationTime": {
+      "key1": "2026-09-22T19:18:47.483014+00:00",
+      "key2": "2026-10-15T18:07:48.955368+00:00"
+    },
+    "keyPolicy": null,
+    "kind": "StorageV2",
+    "largeFileSharesState": null,
+    "lastGeoFailoverTime": null,
+    "location": "eastus",
+    "minimumTlsVersion": "TLS1_2",
+    "name": "hvmcehrstorage",
+    "networkRuleSet": {
+      "bypass": "AzureServices",
+      "defaultAction": "Allow",
+      "ipRules": [],
+      "ipv6Rules": [],
+      "resourceAccessRules": null,
+      "virtualNetworkRules": []
+    },
+    "placement": null,
+    "primaryEndpoints": {
+      "blob": "https://hvmcehrstorage.blob.core.windows.net/",
+      "dfs": "https://hvmcehrstorage.dfs.core.windows.net/",
+      "file": "https://hvmcehrstorage.file.core.windows.net/",
+      "internetEndpoints": null,
+      "ipv6Endpoints": null,
+      "microsoftEndpoints": null,
+      "queue": "https://hvmcehrstorage.queue.core.windows.net/",
+      "table": "https://hvmcehrstorage.table.core.windows.net/",
+      "web": "https://hvmcehrstorage.z13.web.core.windows.net/"
+    },
+    "primaryLocation": "eastus",
+    "privateEndpointConnections": [],
+    "provisioningState": "Succeeded",
+    "publicNetworkAccess": "Enabled",
+    "resourceGroup": "HVMC-CloudSecurity-RG",
+    "routingPreference": null,
+    "sasPolicy": null,
+    "secondaryEndpoints": {
+      "blob": "https://hvmcehrstorage-secondary.blob.core.windows.net/",
+      "dfs": "https://hvmcehrstorage-secondary.dfs.core.windows.net/",
+      "file": null,
+      "internetEndpoints": null,
+      "ipv6Endpoints": null,
+      "microsoftEndpoints": null,
+      "queue": "https://hvmcehrstorage-secondary.queue.core.windows.net/",
+      "table": "https://hvmcehrstorage-secondary.table.core.windows.net/",
+      "web": "https://hvmcehrstorage-secondary.z13.web.core.windows.net/"
+    },
+    "secondaryLocation": "westus",
+    "sku": {
+      "name": "Standard_RAGRS",
+      "tier": "Standard"
+    },
+    "statusOfPrimary": "available",
+    "statusOfSecondary": "available",
+    "storageAccountSkuConversionStatus": null,
+    "tags": {},
+    "type": "Microsoft.Storage/storageAccounts",
+    "zones": null
+  },
+  {
+    "accessTier": "Hot",
+    "accountMigrationInProgress": null,
+    "allowBlobPublicAccess": false,
+    "allowCrossTenantReplication": false,
+    "allowSharedKeyAccess": null,
+    "allowedCopyScope": null,
+    "azureFilesIdentityBasedAuthentication": null,
+    "blobRestoreStatus": null,
+    "creationTime": "2026-10-15T16:24:44.465633+00:00",
+    "customDomain": null,
+    "defaultToOAuthAuthentication": null,
+    "dnsEndpointType": null,
+    "dualStackEndpointPreference": null,
+    "enableExtendedGroups": null,
+    "enableHttpsTrafficOnly": true,
+    "enableNfsV3": null,
+    "encryption": {
+      "encryptionIdentity": null,
+      "keySource": "Microsoft.Storage",
+      "keyVaultProperties": null,
+      "requireInfrastructureEncryption": null,
+      "services": {
+        "blob": {
+          "enabled": true,
+          "keyType": "Account",
+          "lastEnabledTime": "2026-10-15T16:24:44.872700+00:00"
+        },
+        "file": {
+          "enabled": true,
+          "keyType": "Account",
+          "lastEnabledTime": "2026-10-15T16:24:44.872700+00:00"
+        },
+        "queue": null,
+        "table": null
+      }
+    },
+    "extendedLocation": null,
+    "failoverInProgress": null,
+    "geoPriorityReplicationStatus": null,
+    "geoReplicationStats": null,
+    "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Storage/storageAccounts/hvmcseclogsc36407",
+    "identity": null,
+    "immutableStorageWithVersioning": null,
+    "isHnsEnabled": null,
+    "isLocalUserEnabled": null,
+    "isSftpEnabled": null,
+    "isSkuConversionBlocked": null,
+    "keyCreationTime": {
+      "key1": "2026-10-15T16:24:44.862563+00:00",
+      "key2": "2026-10-15T16:24:44.862563+00:00"
+    },
+    "keyPolicy": null,
+    "kind": "StorageV2",
+    "largeFileSharesState": null,
+    "lastGeoFailoverTime": null,
+    "location": "eastus",
+    "minimumTlsVersion": "TLS1_2",
+    "name": "hvmcseclogsc36407",
+    "networkRuleSet": {
+      "bypass": "None",
+      "defaultAction": "Allow",
+      "ipRules": [],
+      "ipv6Rules": [],
+      "resourceAccessRules": null,
+      "virtualNetworkRules": []
+    },
+    "placement": null,
+    "primaryEndpoints": {
+      "blob": "https://hvmcseclogsc36407.blob.core.windows.net/",
+      "dfs": "https://hvmcseclogsc36407.dfs.core.windows.net/",
+      "file": "https://hvmcseclogsc36407.file.core.windows.net/",
+      "internetEndpoints": null,
+      "ipv6Endpoints": null,
+      "microsoftEndpoints": null,
+      "queue": "https://hvmcseclogsc36407.queue.core.windows.net/",
+      "table": "https://hvmcseclogsc36407.table.core.windows.net/",
+      "web": "https://hvmcseclogsc36407.z13.web.core.windows.net/"
+    },
+    "primaryLocation": "eastus",
+    "privateEndpointConnections": [],
+    "provisioningState": "Succeeded",
+    "publicNetworkAccess": null,
+    "resourceGroup": "HVMC-CloudSecurity-RG",
+    "routingPreference": null,
+    "sasPolicy": null,
+    "secondaryEndpoints": null,
+    "secondaryLocation": null,
+    "sku": {
+      "name": "Standard_LRS",
+      "tier": "Standard"
+    },
+    "statusOfPrimary": "available",
+    "statusOfSecondary": null,
+    "storageAccountSkuConversionStatus": null,
+    "tags": {
+      "Project": "HVMC",
+      "Purpose": "SecurityLogs"
+    },
+    "type": "Microsoft.Storage/storageAccounts",
+    "zones": null
+  }
+]

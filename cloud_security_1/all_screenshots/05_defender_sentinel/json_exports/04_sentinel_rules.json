@@ -1,0 +1,320 @@
+{
+  "value": [
+    {
+      "etag": "\"46004e41-0000-0100-0000-6ad108330000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/BuiltInFusion",
+      "kind": "Fusion",
+      "name": "BuiltInFusion",
+      "properties": {
+        "alertRuleTemplateName": "f71aba3d-28fb-450b-b192-4e76a83015c8",
+        "description": "Microsoft Sentinel uses Fusion, a correlation engine based on scalable machine learning algorithms, to automatically detect multistage attacks by identifying combinations of anomalous behaviors and suspicious activities that are observed at various stages of the kill chain. On the basis of these discoveries, Azure Sentinel generates incidents that would otherwise be very difficult to catch. By design, these incidents are low-volume, high-fidelity, and high-severity, which is why this detection is turned ON by default.\n\nSince Fusion correlates multiple signals from various products to detect advanced multistage attacks, successful Fusion detections are presented as Fusion incidents on the Microsoft Sentinel Incidents page. This rule covers the following detections:\n- Fusion for emerging threats\n- Fusion for ransomware\n- Scenario-based Fusion detections (122 scenarios)\n\nTo enable these detections, we recommend you configure the following data connectors for best results:\n- Out-of-the-box anomaly detections\n- Microsoft Entra ID Protection\n- Azure Defender\n- Azure Defender for IoT\n- Microsoft 365 Defender\n- Microsoft Cloud App Security    \n- Microsoft Defender for Endpoint\n- Microsoft Defender for Identity\n- Microsoft Defender for Office 365\n- Scheduled analytics rules, both built-in and those created by your security analysts. Analytics rules must contain kill-chain (tactics) and entity mapping information in order to be used by Fusion.\n\nFor the full description of each detection that is supported by Fusion, go to https://aka.ms/SentinelFusion.",
+        "displayName": "Advanced Multistage Attack Detection",
+        "enabled": true,
+        "lastModifiedUtc": "2026-10-15T17:06:59.2141228Z",
+        "severity": "High",
+        "tactics": [
+          "Collection",
+          "CommandAndControl",
+          "CredentialAccess",
+          "DefenseEvasion",
+          "Discovery",
+          "Execution",
+          "Exfiltration",
+          "Impact",
+          "InitialAccess",
+          "LateralMovement",
+          "Persistence",
+          "PrivilegeEscalation"
+        ],
+        "techniques": []
+      },
+      "type": "Microsoft.SecurityInsights/alertRules"
+    },
+    {
+      "etag": "\"4f004e80-0000-0100-0000-6ad11ee50000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/aa267b7f-a10d-523d-a853-1b72589b1a46",
+      "kind": "Scheduled",
+      "name": "aa267b7f-a10d-523d-a853-1b72589b1a46",
+      "properties": {
+        "alertDetailsOverride": {
+          "alertDescriptionFormat": "Rule {{Rule}} written by {{Caller}} from {{CallerIpAddress}}. Playbook PB-01.",
+          "alertDisplayNameFormat": "HVMC - NSG rule change on {{Nsg}}: {{Verdict}}",
+          "alertSeverityColumnName": "Severity"
+        },
+        "alertRuleTemplateName": null,
+        "description": "An NSG security rule was created or changed. High when the logged request body shows an inbound ALLOW from any source / Internet; Medium 'verify' when Azure did not log the body (tuned 15 Oct 2026 after IR test PB-01 false positive). Risk R03, R10. Playbook PB-01.",
+        "displayName": "HVMC - NSG inbound rule opened to the Internet",
+        "enabled": true,
+        "entityMappings": [
+          {
+            "entityType": "Account",
+            "fieldMappings": [
+              {
+                "columnName": "Caller",
+                "identifier": "FullName"
+              }
+            ]
+          },
+          {
+            "entityType": "IP",
+            "fieldMappings": [
+              {
+                "columnName": "CallerIpAddress",
+                "identifier": "Address"
+              }
+            ]
+          },
+          {
+            "entityType": "AzureResource",
+            "fieldMappings": [
+              {
+                "columnName": "_ResourceId",
+                "identifier": "ResourceId"
+              }
+            ]
+          }
+        ],
+        "incidentConfiguration": {
+          "createIncident": true,
+          "groupingConfiguration": {
+            "enabled": true,
+            "groupByAlertDetails": [],
+            "groupByCustomDetails": [],
+            "groupByEntities": [],
+            "lookbackDuration": "PT5H",
+            "matchingMethod": "AllEntities",
+            "reopenClosedIncident": false
+          }
+        },
+        "lastModifiedUtc": "2026-10-15T18:43:44.1284463Z",
+        "query": "AzureActivity\n| where OperationNameValue =~ 'MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/SECURITYRULES/WRITE' and ActivityStatusValue =~ 'Success'\n| extend Body = tostring(parse_json(Properties).requestbody)\n| extend InternetAllow = Body has '\"access\":\"Allow\"' and Body has '\"direction\":\"Inbound\"' and (Body has '\"sourceAddressPrefix\":\"*\"' or Body has 'Internet' or Body has '0.0.0.0/0')\n| where isempty(Body) or InternetAllow\n| extend Severity = iff(InternetAllow, 'High', 'Medium'), Verdict = iff(InternetAllow, 'Inbound ALLOW from the Internet', 'rule body not logged - verify access and direction')\n| extend Rule = tostring(split(_ResourceId, '/')[-1]), Nsg = tostring(split(_ResourceId, '/')[-3])\n| project TimeGenerated, Caller, CallerIpAddress, Nsg, Rule, Verdict, Severity, _ResourceId, CorrelationId",
+        "queryFrequency": "PT5M",
+        "queryPeriod": "PT15M",
+        "severity": "High",
+        "suppressionDuration": "PT1H",
+        "suppressionEnabled": false,
+        "tactics": [
+          "InitialAccess",
+          "DefenseEvasion"
+        ],
+        "techniques": [
+          "T1190",
+          "T1562"
+        ],
+        "triggerOperator": "GreaterThan",
+        "triggerThreshold": 0
+      },
+      "type": "Microsoft.SecurityInsights/alertRules"
+    },
+    {
+      "etag": "\"4f00b280-0000-0100-0000-6ad11ee60000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/bac01af8-6837-5b35-9105-9441f0ef17c2",
+      "kind": "Scheduled",
+      "name": "bac01af8-6837-5b35-9105-9441f0ef17c2",
+      "properties": {
+        "alertRuleTemplateName": null,
+        "description": "A high-privilege RBAC role was granted. Risk R04, R07. Playbook PB-02.",
+        "displayName": "HVMC - Privileged Azure role assigned (Owner / Contributor / User Access Administrator)",
+        "enabled": true,
+        "entityMappings": [
+          {
+            "entityType": "Account",
+            "fieldMappings": [
+              {
+                "columnName": "Caller",
+                "identifier": "FullName"
+              }
+            ]
+          },
+          {
+            "entityType": "IP",
+            "fieldMappings": [
+              {
+                "columnName": "CallerIpAddress",
+                "identifier": "Address"
+              }
+            ]
+          }
+        ],
+        "incidentConfiguration": {
+          "createIncident": true,
+          "groupingConfiguration": {
+            "enabled": true,
+            "groupByAlertDetails": [],
+            "groupByCustomDetails": [],
+            "groupByEntities": [],
+            "lookbackDuration": "PT5H",
+            "matchingMethod": "AllEntities",
+            "reopenClosedIncident": false
+          }
+        },
+        "lastModifiedUtc": "2026-10-15T18:43:50.1885832Z",
+        "query": "let Privileged = dynamic(['8e3af657-a8ff-443c-a75c-2fe8c4bcb635','b24988ac-6180-42a0-ab88-20f7382dd24c','18d7d88d-d35e-4fb5-a5c3-7773c20a72d9']);\nAzureActivity\n| where OperationNameValue =~ 'MICROSOFT.AUTHORIZATION/ROLEASSIGNMENTS/WRITE' and ActivityStatusValue =~ 'Success'\n| extend Body = tostring(parse_json(Properties).requestbody)\n| extend RoleId = tostring(split(extract('roleDefinitions/([0-9a-fA-F-]+)', 1, Body), '/')[0]), Principal = extract('\"principalId\":\"([0-9a-fA-F-]+)\"', 1, Body)\n| where RoleId in~ (Privileged) or isempty(Body)\n| extend Role = case(RoleId =~ '8e3af657-a8ff-443c-a75c-2fe8c4bcb635','Owner', RoleId =~ 'b24988ac-6180-42a0-ab88-20f7382dd24c','Contributor', RoleId =~ '18d7d88d-d35e-4fb5-a5c3-7773c20a72d9','User Access Administrator','unknown')\n| project TimeGenerated, Caller, CallerIpAddress, Role, Principal, Scope = _ResourceId, CorrelationId",
+        "queryFrequency": "PT5M",
+        "queryPeriod": "PT15M",
+        "severity": "High",
+        "suppressionDuration": "PT1H",
+        "suppressionEnabled": false,
+        "tactics": [
+          "PrivilegeEscalation",
+          "Persistence"
+        ],
+        "techniques": [
+          "T1098"
+        ],
+        "triggerOperator": "GreaterThan",
+        "triggerThreshold": 0
+      },
+      "type": "Microsoft.SecurityInsights/alertRules"
+    },
+    {
+      "etag": "\"4f001781-0000-0100-0000-6ad11ee70000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/215475c9-01e2-5fd3-b4d0-59f2127fd197",
+      "kind": "Scheduled",
+      "name": "215475c9-01e2-5fd3-b4d0-59f2127fd197",
+      "properties": {
+        "alertRuleTemplateName": null,
+        "description": "A diagnostic setting, flow log, alert rule or the Log Analytics workspace was deleted, or a Defender plan was downgraded to Free - possible defence evasion. Risk R01. Playbook PB-04.",
+        "displayName": "HVMC - Security logging disabled or deleted",
+        "enabled": true,
+        "entityMappings": [
+          {
+            "entityType": "Account",
+            "fieldMappings": [
+              {
+                "columnName": "Caller",
+                "identifier": "FullName"
+              }
+            ]
+          },
+          {
+            "entityType": "IP",
+            "fieldMappings": [
+              {
+                "columnName": "CallerIpAddress",
+                "identifier": "Address"
+              }
+            ]
+          }
+        ],
+        "incidentConfiguration": {
+          "createIncident": true,
+          "groupingConfiguration": {
+            "enabled": true,
+            "groupByAlertDetails": [],
+            "groupByCustomDetails": [],
+            "groupByEntities": [],
+            "lookbackDuration": "PT5H",
+            "matchingMethod": "AllEntities",
+            "reopenClosedIncident": false
+          }
+        },
+        "lastModifiedUtc": "2026-10-15T18:43:51.2716598Z",
+        "query": "AzureActivity\n| where ActivityStatusValue =~ 'Success'\n| extend Body = tostring(parse_json(Properties).requestbody)\n| where OperationNameValue in~ ('MICROSOFT.INSIGHTS/DIAGNOSTICSETTINGS/DELETE','MICROSOFT.NETWORK/NETWORKWATCHERS/FLOWLOGS/DELETE','MICROSOFT.INSIGHTS/ACTIVITYLOGALERTS/DELETE','MICROSOFT.OPERATIONALINSIGHTS/WORKSPACES/DELETE')\n    or (OperationNameValue =~ 'MICROSOFT.SECURITY/PRICINGS/WRITE' and Body has '\"pricingTier\":\"Free\"')\n| project TimeGenerated, Caller, CallerIpAddress, OperationNameValue, _ResourceId, CorrelationId",
+        "queryFrequency": "PT5M",
+        "queryPeriod": "PT15M",
+        "severity": "High",
+        "suppressionDuration": "PT1H",
+        "suppressionEnabled": false,
+        "tactics": [
+          "DefenseEvasion"
+        ],
+        "techniques": [
+          "T1562"
+        ],
+        "triggerOperator": "GreaterThan",
+        "triggerThreshold": 0
+      },
+      "type": "Microsoft.SecurityInsights/alertRules"
+    },
+    {
+      "etag": "\"4f009781-0000-0100-0000-6ad11ee90000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/223d05af-fe55-5089-a7d0-48033ccd38f0",
+      "kind": "Scheduled",
+      "name": "223d05af-fe55-5089-a7d0-48033ccd38f0",
+      "properties": {
+        "alertRuleTemplateName": null,
+        "description": "Storage account keys were listed/regenerated, or a storage account configuration was changed. Risk R02, R05. Playbook PB-03.",
+        "displayName": "HVMC - ePHI storage keys retrieved or storage exposure changed",
+        "enabled": true,
+        "entityMappings": [
+          {
+            "entityType": "Account",
+            "fieldMappings": [
+              {
+                "columnName": "Caller",
+                "identifier": "FullName"
+              }
+            ]
+          },
+          {
+            "entityType": "IP",
+            "fieldMappings": [
+              {
+                "columnName": "CallerIpAddress",
+                "identifier": "Address"
+              }
+            ]
+          },
+          {
+            "entityType": "AzureResource",
+            "fieldMappings": [
+              {
+                "columnName": "_ResourceId",
+                "identifier": "ResourceId"
+              }
+            ]
+          }
+        ],
+        "incidentConfiguration": {
+          "createIncident": true,
+          "groupingConfiguration": {
+            "enabled": true,
+            "groupByAlertDetails": [],
+            "groupByCustomDetails": [],
+            "groupByEntities": [],
+            "lookbackDuration": "PT5H",
+            "matchingMethod": "AllEntities",
+            "reopenClosedIncident": false
+          }
+        },
+        "lastModifiedUtc": "2026-10-15T18:43:52.4830527Z",
+        "query": "AzureActivity\n| where ActivityStatusValue =~ 'Success'\n| where OperationNameValue in~ ('MICROSOFT.STORAGE/STORAGEACCOUNTS/LISTKEYS/ACTION','MICROSOFT.STORAGE/STORAGEACCOUNTS/REGENERATEKEY/ACTION','MICROSOFT.STORAGE/STORAGEACCOUNTS/WRITE')\n| extend Account = tostring(split(_ResourceId, '/')[-1])\n| summarize Operations = make_set(OperationNameValue), Count = count(), FirstSeen = min(TimeGenerated) by Caller, CallerIpAddress, Account, _ResourceId",
+        "queryFrequency": "PT5M",
+        "queryPeriod": "PT15M",
+        "severity": "Medium",
+        "suppressionDuration": "PT1H",
+        "suppressionEnabled": false,
+        "tactics": [
+          "CredentialAccess",
+          "Collection"
+        ],
+        "techniques": [
+          "T1552",
+          "T1530"
+        ],
+        "triggerOperator": "GreaterThan",
+        "triggerThreshold": 0
+      },
+      "type": "Microsoft.SecurityInsights/alertRules"
+    },
+    {
+      "etag": "\"46008644-0000-0100-0000-6ad1083c0000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/84304499-617a-5e43-8a4f-4f211a42f9fe",
+      "kind": "MicrosoftSecurityIncidentCreation",
+      "name": "84304499-617a-5e43-8a4f-4f211a42f9fe",
+      "properties": {
+        "alertRuleTemplateName": null,
+        "description": "Every Defender for Cloud alert (Storage malware, suspicious Resource Manager operations) becomes a Sentinel incident.",
+        "displayName": "HVMC - Create incidents from Microsoft Defender for Cloud alerts",
+        "displayNamesExcludeFilter": null,
+        "displayNamesFilter": null,
+        "enabled": true,
+        "lastModifiedUtc": "2026-10-15T17:07:08.6741024Z",
+        "productFilter": "Azure Security Center",
+        "severitiesFilter": null
+      },
+      "type": "Microsoft.SecurityInsights/alertRules"
+    }
+  ]
+}

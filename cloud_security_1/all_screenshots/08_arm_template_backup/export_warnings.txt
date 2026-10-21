@@ -1,0 +1,2 @@
+WARNING: Export template operation completed with errors. Some resources were not exported. Please see details for more information.
+ERROR: Could not get resources of the type 'Microsoft.OperationalInsights/workspaces/dataSources'. Resources of this type will not be exported.

@@ -1,0 +1,286 @@
+[
+  {
+    "actions": {
+      "actionGroups": [
+        {
+          "actionGroupId": "/subscriptions/C3640794-6748-46F5-9157-F669082BDA6A/resourceGroups/HVMC-CloudSecurity-RG/providers/microsoft.insights/actionGroups/HVMC-SecOps-AG",
+          "webhookProperties": {}
+        }
+      ]
+    },
+    "condition": {
+      "allOf": [
+        {
+          "equals": "Administrative",
+          "field": "category"
+        },
+        {
+          "equals": "Microsoft.Network/networkSecurityGroups/securityRules/write",
+          "field": "operationName"
+        }
+      ]
+    },
+    "description": "Firewall rule created or modified (risk R03) - check for Internet-facing allow rules. IR playbook PB-01.",
+    "enabled": true,
+    "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Insights/activityLogAlerts/HVMC-NSG-Rule-Changed",
+    "location": "Global",
+    "name": "HVMC-NSG-Rule-Changed",
+    "resourceGroup": "HVMC-CloudSecurity-RG",
+    "scopes": [
+      "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a"
+    ],
+    "type": "Microsoft.Insights/ActivityLogAlerts"
+  },
+  {
+    "actions": {
+      "actionGroups": [
+        {
+          "actionGroupId": "/subscriptions/C3640794-6748-46F5-9157-F669082BDA6A/resourceGroups/HVMC-CloudSecurity-RG/providers/microsoft.insights/actionGroups/HVMC-SecOps-AG",
+          "webhookProperties": {}
+        }
+      ]
+    },
+    "condition": {
+      "allOf": [
+        {
+          "equals": "Administrative",
+          "field": "category"
+        },
+        {
+          "equals": "Microsoft.Network/networkSecurityGroups/securityRules/delete",
+          "field": "operationName"
+        }
+      ]
+    },
+    "description": "Firewall rule deleted (risk R03). IR playbook PB-01.",
+    "enabled": true,
+    "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Insights/activityLogAlerts/HVMC-NSG-Rule-Deleted",
+    "location": "Global",
+    "name": "HVMC-NSG-Rule-Deleted",
+    "resourceGroup": "HVMC-CloudSecurity-RG",
+    "scopes": [
+      "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a"
+    ],
+    "type": "Microsoft.Insights/ActivityLogAlerts"
+  },
+  {
+    "actions": {
+      "actionGroups": [
+        {
+          "actionGroupId": "/subscriptions/C3640794-6748-46F5-9157-F669082BDA6A/resourceGroups/HVMC-CloudSecurity-RG/providers/microsoft.insights/actionGroups/HVMC-SecOps-AG",
+          "webhookProperties": {}
+        }
+      ]
+    },
+    "condition": {
+      "allOf": [
+        {
+          "equals": "Administrative",
+          "field": "category"
+        },
+        {
+          "equals": "Microsoft.Authorization/roleAssignments/write",
+          "field": "operationName"
+        }
+      ]
+    },
+    "description": "New Azure RBAC role assignment - possible privilege escalation (risk R04). IR playbook PB-02.",
+    "enabled": true,
+    "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Insights/activityLogAlerts/HVMC-Role-Assignment-Added",
+    "location": "Global",
+    "name": "HVMC-Role-Assignment-Added",
+    "resourceGroup": "HVMC-CloudSecurity-RG",
+    "scopes": [
+      "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a"
+    ],
+    "type": "Microsoft.Insights/ActivityLogAlerts"
+  },
+  {
+    "actions": {
+      "actionGroups": [
+        {
+          "actionGroupId": "/subscriptions/C3640794-6748-46F5-9157-F669082BDA6A/resourceGroups/HVMC-CloudSecurity-RG/providers/microsoft.insights/actionGroups/HVMC-SecOps-AG",
+          "webhookProperties": {}
+        }
+      ]
+    },
+    "condition": {
+      "allOf": [
+        {
+          "equals": "Administrative",
+          "field": "category"
+        },
+        {
+          "equals": "Microsoft.Authorization/roleAssignments/delete",
+          "field": "operationName"
+        }
+      ]
+    },
+    "description": "RBAC role assignment removed (risk R04). IR playbook PB-02.",
+    "enabled": true,
+    "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Insights/activityLogAlerts/HVMC-Role-Assignment-Removed",
+    "location": "Global",
+    "name": "HVMC-Role-Assignment-Removed",
+    "resourceGroup": "HVMC-CloudSecurity-RG",
+    "scopes": [
+      "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a"
+    ],
+    "type": "Microsoft.Insights/ActivityLogAlerts"
+  },
+  {
+    "actions": {
+      "actionGroups": [
+        {
+          "actionGroupId": "/subscriptions/C3640794-6748-46F5-9157-F669082BDA6A/resourceGroups/HVMC-CloudSecurity-RG/providers/microsoft.insights/actionGroups/HVMC-SecOps-AG",
+          "webhookProperties": {}
+        }
+      ]
+    },
+    "condition": {
+      "allOf": [
+        {
+          "equals": "Administrative",
+          "field": "category"
+        },
+        {
+          "equals": "Microsoft.Storage/storageAccounts/write",
+          "field": "operationName"
+        }
+      ]
+    },
+    "description": "Storage account configuration changed - ePHI exposure check (risk R02). IR playbook PB-03.",
+    "enabled": true,
+    "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Insights/activityLogAlerts/HVMC-Storage-Config-Changed",
+    "location": "Global",
+    "name": "HVMC-Storage-Config-Changed",
+    "resourceGroup": "HVMC-CloudSecurity-RG",
+    "scopes": [
+      "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a"
+    ],
+    "type": "Microsoft.Insights/ActivityLogAlerts"
+  },
+  {
+    "actions": {
+      "actionGroups": [
+        {
+          "actionGroupId": "/subscriptions/C3640794-6748-46F5-9157-F669082BDA6A/resourceGroups/HVMC-CloudSecurity-RG/providers/microsoft.insights/actionGroups/HVMC-SecOps-AG",
+          "webhookProperties": {}
+        }
+      ]
+    },
+    "condition": {
+      "allOf": [
+        {
+          "equals": "Administrative",
+          "field": "category"
+        },
+        {
+          "equals": "Microsoft.Storage/storageAccounts/listKeys/action",
+          "field": "operationName"
+        }
+      ]
+    },
+    "description": "Storage account keys retrieved - possible credential access to ePHI (risk R02, R05). IR playbook PB-03.",
+    "enabled": true,
+    "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Insights/activityLogAlerts/HVMC-Storage-Keys-Listed",
+    "location": "Global",
+    "name": "HVMC-Storage-Keys-Listed",
+    "resourceGroup": "HVMC-CloudSecurity-RG",
+    "scopes": [
+      "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a"
+    ],
+    "type": "Microsoft.Insights/ActivityLogAlerts"
+  },
+  {
+    "actions": {
+      "actionGroups": [
+        {
+          "actionGroupId": "/subscriptions/C3640794-6748-46F5-9157-F669082BDA6A/resourceGroups/HVMC-CloudSecurity-RG/providers/microsoft.insights/actionGroups/HVMC-SecOps-AG",
+          "webhookProperties": {}
+        }
+      ]
+    },
+    "condition": {
+      "allOf": [
+        {
+          "equals": "Administrative",
+          "field": "category"
+        },
+        {
+          "equals": "Microsoft.Network/publicIPAddresses/write",
+          "field": "operationName"
+        }
+      ]
+    },
+    "description": "New public IP - new Internet exposure (risk R03, R10). IR playbook PB-01.",
+    "enabled": true,
+    "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Insights/activityLogAlerts/HVMC-Public-IP-Created",
+    "location": "Global",
+    "name": "HVMC-Public-IP-Created",
+    "resourceGroup": "HVMC-CloudSecurity-RG",
+    "scopes": [
+      "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a"
+    ],
+    "type": "Microsoft.Insights/ActivityLogAlerts"
+  },
+  {
+    "actions": {
+      "actionGroups": [
+        {
+          "actionGroupId": "/subscriptions/C3640794-6748-46F5-9157-F669082BDA6A/resourceGroups/HVMC-CloudSecurity-RG/providers/microsoft.insights/actionGroups/HVMC-SecOps-AG",
+          "webhookProperties": {}
+        }
+      ]
+    },
+    "condition": {
+      "allOf": [
+        {
+          "equals": "Administrative",
+          "field": "category"
+        },
+        {
+          "equals": "Microsoft.Insights/diagnosticSettings/delete",
+          "field": "operationName"
+        }
+      ]
+    },
+    "description": "Security logging disabled - possible defence evasion (MITRE T1562.008). IR playbook PB-04.",
+    "enabled": true,
+    "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Insights/activityLogAlerts/HVMC-Diagnostic-Setting-Deleted",
+    "location": "Global",
+    "name": "HVMC-Diagnostic-Setting-Deleted",
+    "resourceGroup": "HVMC-CloudSecurity-RG",
+    "scopes": [
+      "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a"
+    ],
+    "type": "Microsoft.Insights/ActivityLogAlerts"
+  },
+  {
+    "actions": {
+      "actionGroups": [
+        {
+          "actionGroupId": "/subscriptions/C3640794-6748-46F5-9157-F669082BDA6A/resourceGroups/HVMC-CloudSecurity-RG/providers/microsoft.insights/actionGroups/HVMC-SecOps-AG",
+          "webhookProperties": {}
+        }
+      ]
+    },
+    "condition": {
+      "allOf": [
+        {
+          "equals": "Security",
+          "field": "category"
+        }
+      ]
+    },
+    "description": "Microsoft Defender for Cloud raised a security alert. IR playbook per alert type.",
+    "enabled": true,
+    "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Insights/activityLogAlerts/HVMC-Defender-Security-Alert",
+    "location": "Global",
+    "name": "HVMC-Defender-Security-Alert",
+    "resourceGroup": "HVMC-CloudSecurity-RG",
+    "scopes": [
+      "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a"
+    ],
+    "type": "Microsoft.Insights/ActivityLogAlerts"
+  }
+]

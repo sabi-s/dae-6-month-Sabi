@@ -1,0 +1,394 @@
+{
+  "value": [
+    {
+      "etag": "\"a903334f-0000-0100-0000-6ad11ef60000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/89add30d-8ca4-45bc-a7e9-de3e023b12ee",
+      "name": "89add30d-8ca4-45bc-a7e9-de3e023b12ee",
+      "properties": {
+        "additionalData": {
+          "alertProductNames": [
+            "Azure Sentinel"
+          ],
+          "alertsCount": 1,
+          "bookmarksCount": 0,
+          "commentsCount": 1,
+          "providerIncidentUrl": "https://security.microsoft.com/incident2/8/overview?tid=174049fa-a7e2-4e72-9533-08f7675631a6",
+          "tactics": [
+            "CredentialAccess",
+            "Collection"
+          ],
+          "techniques": [
+            "T1552",
+            "T1530"
+          ]
+        },
+        "classification": "BenignPositive",
+        "classificationComment": "Triage (PB-03): single event REGENERATEKEY on hvmcehrstorage at 18:07:49 UTC by the Global Admin via Azure CLI (correlation 86be22da) - this was the PB-03 containment step (secondary key rotated). Duplicate incidents #5/#7/#8 came from a 15-min look-back on a 5-min schedule; incident grouping (all entities, 5 h) enabled on all rules at 18:4x UTC.",
+        "classificationReason": "SuspiciousButExpected",
+        "createdTimeUtc": "2026-10-15T18:27:35.25Z",
+        "description": "Storage account keys were listed/regenerated, or a storage account configuration was changed. Risk R02, R05. Playbook PB-03.",
+        "incidentNumber": 8,
+        "incidentUrl": "https://portal.azure.com/#asset/Microsoft_Azure_Security_Insights/Incident/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/89add30d-8ca4-45bc-a7e9-de3e023b12ee",
+        "labels": [],
+        "lastModifiedTimeUtc": "2026-10-15T18:44:06.4605701Z",
+        "owner": {
+          "assignedTo": null,
+          "email": null,
+          "objectId": null,
+          "ownerType": null,
+          "userPrincipalName": null
+        },
+        "providerIncidentId": "8",
+        "providerName": "Microsoft XDR",
+        "relatedAnalyticRuleIds": [
+          "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/223d05af-fe55-5089-a7d0-48033ccd38f0"
+        ],
+        "severity": "Medium",
+        "status": "Closed",
+        "title": "HVMC - ePHI storage keys retrieved or storage exposure changed"
+      },
+      "type": "Microsoft.SecurityInsights/Incidents"
+    },
+    {
+      "etag": "\"a903574f-0000-0100-0000-6ad11ef90000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/5b0bcb26-c1b6-4827-9b8d-7ebceb6f4b1f",
+      "name": "5b0bcb26-c1b6-4827-9b8d-7ebceb6f4b1f",
+      "properties": {
+        "additionalData": {
+          "alertProductNames": [
+            "Azure Sentinel"
+          ],
+          "alertsCount": 1,
+          "bookmarksCount": 0,
+          "commentsCount": 1,
+          "providerIncidentUrl": "https://security.microsoft.com/incident2/7/overview?tid=174049fa-a7e2-4e72-9533-08f7675631a6",
+          "tactics": [
+            "CredentialAccess",
+            "Collection"
+          ],
+          "techniques": [
+            "T1552",
+            "T1530"
+          ]
+        },
+        "classification": "BenignPositive",
+        "classificationComment": "Triage (PB-03): single event REGENERATEKEY on hvmcehrstorage at 18:07:49 UTC by the Global Admin via Azure CLI (correlation 86be22da) - this was the PB-03 containment step (secondary key rotated). Duplicate incidents #5/#7/#8 came from a 15-min look-back on a 5-min schedule; incident grouping (all entities, 5 h) enabled on all rules at 18:4x UTC.",
+        "classificationReason": "SuspiciousButExpected",
+        "createdTimeUtc": "2026-10-15T18:22:36.6766667Z",
+        "description": "Storage account keys were listed/regenerated, or a storage account configuration was changed. Risk R02, R05. Playbook PB-03.",
+        "incidentNumber": 7,
+        "incidentUrl": "https://portal.azure.com/#asset/Microsoft_Azure_Security_Insights/Incident/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/5b0bcb26-c1b6-4827-9b8d-7ebceb6f4b1f",
+        "labels": [],
+        "lastModifiedTimeUtc": "2026-10-15T18:44:09.6983227Z",
+        "owner": {
+          "assignedTo": null,
+          "email": null,
+          "objectId": null,
+          "ownerType": null,
+          "userPrincipalName": null
+        },
+        "providerIncidentId": "7",
+        "providerName": "Microsoft XDR",
+        "relatedAnalyticRuleIds": [
+          "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/223d05af-fe55-5089-a7d0-48033ccd38f0"
+        ],
+        "severity": "Medium",
+        "status": "Closed",
+        "title": "HVMC - ePHI storage keys retrieved or storage exposure changed"
+      },
+      "type": "Microsoft.SecurityInsights/Incidents"
+    },
+    {
+      "etag": "\"a903774f-0000-0100-0000-6ad11efd0000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/ac39149d-b280-4367-8e6a-08db5f872d0b",
+      "name": "ac39149d-b280-4367-8e6a-08db5f872d0b",
+      "properties": {
+        "additionalData": {
+          "alertProductNames": [
+            "Azure Sentinel"
+          ],
+          "alertsCount": 1,
+          "bookmarksCount": 0,
+          "commentsCount": 1,
+          "providerIncidentUrl": "https://security.microsoft.com/incident2/6/overview?tid=174049fa-a7e2-4e72-9533-08f7675631a6",
+          "tactics": [
+            "InitialAccess",
+            "DefenseEvasion"
+          ],
+          "techniques": [
+            "T1190",
+            "T1562"
+          ]
+        },
+        "classification": "BenignPositive",
+        "classificationComment": "Triage (PB-01, tuned rule): verified with az network nsg rule show - Deny-Internet-Inbound-Data is Inbound DENY from Internet, approved change HVMC-CHG-04. The tuned detection correctly rated the event Medium 'verify' instead of High. Closed. Duplicate of the same event (one NSG write at 18:00:50 UTC, correlation d1943137); incident grouping now enabled.",
+        "classificationReason": "SuspiciousButExpected",
+        "createdTimeUtc": "2026-10-15T18:20:07.8733333Z",
+        "description": "Rule deny-internet-inbound-data written by sabithaskaranavar@gmail.com from x.x.x.x (masked). Playbook PB-01.",
+        "incidentNumber": 6,
+        "incidentUrl": "https://portal.azure.com/#asset/Microsoft_Azure_Security_Insights/Incident/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/ac39149d-b280-4367-8e6a-08db5f872d0b",
+        "labels": [],
+        "lastModifiedTimeUtc": "2026-10-15T18:44:13.0918569Z",
+        "owner": {
+          "assignedTo": null,
+          "email": null,
+          "objectId": null,
+          "ownerType": null,
+          "userPrincipalName": null
+        },
+        "providerIncidentId": "6",
+        "providerName": "Microsoft XDR",
+        "relatedAnalyticRuleIds": [
+          "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/aa267b7f-a10d-523d-a853-1b72589b1a46"
+        ],
+        "severity": "Medium",
+        "status": "Closed",
+        "title": "HVMC - NSG rule change on hvmc-data-nsg: rule body not logged - verify access and direction"
+      },
+      "type": "Microsoft.SecurityInsights/Incidents"
+    },
+    {
+      "etag": "\"a9039e4f-0000-0100-0000-6ad11eff0000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/2a377b72-18aa-4fcb-a80e-57abedeb041d",
+      "name": "2a377b72-18aa-4fcb-a80e-57abedeb041d",
+      "properties": {
+        "additionalData": {
+          "alertProductNames": [
+            "Azure Sentinel"
+          ],
+          "alertsCount": 1,
+          "bookmarksCount": 0,
+          "commentsCount": 1,
+          "providerIncidentUrl": "https://security.microsoft.com/incident2/5/overview?tid=174049fa-a7e2-4e72-9533-08f7675631a6",
+          "tactics": [
+            "CredentialAccess",
+            "Collection"
+          ],
+          "techniques": [
+            "T1552",
+            "T1530"
+          ]
+        },
+        "classification": "BenignPositive",
+        "classificationComment": "Triage (PB-03): single event REGENERATEKEY on hvmcehrstorage at 18:07:49 UTC by the Global Admin via Azure CLI (correlation 86be22da) - this was the PB-03 containment step (secondary key rotated). Duplicate incidents #5/#7/#8 came from a 15-min look-back on a 5-min schedule; incident grouping (all entities, 5 h) enabled on all rules at 18:4x UTC.",
+        "classificationReason": "SuspiciousButExpected",
+        "createdTimeUtc": "2026-10-15T18:17:30Z",
+        "description": "Storage account keys were listed/regenerated, or a storage account configuration was changed. Risk R02, R05. Playbook PB-03.",
+        "incidentNumber": 5,
+        "incidentUrl": "https://portal.azure.com/#asset/Microsoft_Azure_Security_Insights/Incident/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/2a377b72-18aa-4fcb-a80e-57abedeb041d",
+        "labels": [],
+        "lastModifiedTimeUtc": "2026-10-15T18:44:15.9545735Z",
+        "owner": {
+          "assignedTo": null,
+          "email": null,
+          "objectId": null,
+          "ownerType": null,
+          "userPrincipalName": null
+        },
+        "providerIncidentId": "5",
+        "providerName": "Microsoft XDR",
+        "relatedAnalyticRuleIds": [
+          "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/223d05af-fe55-5089-a7d0-48033ccd38f0"
+        ],
+        "severity": "Medium",
+        "status": "Closed",
+        "title": "HVMC - ePHI storage keys retrieved or storage exposure changed"
+      },
+      "type": "Microsoft.SecurityInsights/Incidents"
+    },
+    {
+      "etag": "\"a9035f0e-0000-0100-0000-6ad1184b0000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/9ad3534c-1290-4c65-b9e4-4964fe320daa",
+      "name": "9ad3534c-1290-4c65-b9e4-4964fe320daa",
+      "properties": {
+        "additionalData": {
+          "alertProductNames": [
+            "Azure Sentinel"
+          ],
+          "alertsCount": 1,
+          "bookmarksCount": 0,
+          "commentsCount": 1,
+          "providerIncidentUrl": "https://security.microsoft.com/incident2/4/overview?tid=174049fa-a7e2-4e72-9533-08f7675631a6",
+          "tactics": [
+            "InitialAccess",
+            "DefenseEvasion"
+          ],
+          "techniques": [
+            "T1190",
+            "T1562"
+          ]
+        },
+        "classification": "BenignPositive",
+        "classificationComment": "Triage (PB-01, tuned rule): verified with az network nsg rule show - Deny-Internet-Inbound-Data is Inbound DENY from Internet, approved change HVMC-CHG-04. The tuned detection correctly rated the event Medium 'verify' instead of High. Closed.",
+        "classificationReason": "SuspiciousButExpected",
+        "createdTimeUtc": "2026-10-15T18:15:05.76Z",
+        "description": "Rule deny-internet-inbound-data written by sabithaskaranavar@gmail.com from x.x.x.x (masked). Playbook PB-01.",
+        "incidentNumber": 4,
+        "incidentUrl": "https://portal.azure.com/#asset/Microsoft_Azure_Security_Insights/Incident/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/9ad3534c-1290-4c65-b9e4-4964fe320daa",
+        "labels": [],
+        "lastModifiedTimeUtc": "2026-10-15T18:15:39.2669281Z",
+        "owner": {
+          "assignedTo": null,
+          "email": null,
+          "objectId": null,
+          "ownerType": null,
+          "userPrincipalName": null
+        },
+        "providerIncidentId": "4",
+        "providerName": "Microsoft XDR",
+        "relatedAnalyticRuleIds": [
+          "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/aa267b7f-a10d-523d-a853-1b72589b1a46"
+        ],
+        "severity": "Medium",
+        "status": "Closed",
+        "title": "HVMC - NSG rule change on hvmc-data-nsg: rule body not logged - verify access and direction"
+      },
+      "type": "Microsoft.SecurityInsights/Incidents"
+    },
+    {
+      "etag": "\"a903680a-0000-0100-0000-6ad117f70000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/66c559fa-4199-4169-8a4f-c4e72cdac81b",
+      "name": "66c559fa-4199-4169-8a4f-c4e72cdac81b",
+      "properties": {
+        "additionalData": {
+          "alertProductNames": [
+            "Azure Sentinel"
+          ],
+          "alertsCount": 1,
+          "bookmarksCount": 0,
+          "commentsCount": 5,
+          "providerIncidentUrl": "https://security.microsoft.com/incident2/3/overview?tid=174049fa-a7e2-4e72-9533-08f7675631a6",
+          "tactics": [
+            "InitialAccess",
+            "DefenseEvasion"
+          ],
+          "techniques": [
+            "T1190",
+            "T1562"
+          ]
+        },
+        "classification": "FalsePositive",
+        "classificationComment": "Triage (PB-01): the rule written at 18:00:49 UTC was Deny-Internet-Inbound-Data (Inbound DENY from Internet), approved change HVMC-CHG-04 / IR test. The Activity Log event carried no request body, and the rule treats a missing body as suspicious, so a hardening change raised a High incident. Detection tuned: severity is now computed per event (High only when the body shows an Internet allow rule; Medium 'verify' when the body is missing).",
+        "classificationReason": "IncorrectAlertLogic",
+        "createdTimeUtc": "2026-10-15T18:12:22.3866667Z",
+        "description": "An NSG security rule was created or changed to ALLOW inbound traffic from any source / Internet. Risk R03, R10. Playbook PB-01.",
+        "incidentNumber": 3,
+        "incidentUrl": "https://portal.azure.com/#asset/Microsoft_Azure_Security_Insights/Incident/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/66c559fa-4199-4169-8a4f-c4e72cdac81b",
+        "labels": [],
+        "lastModifiedTimeUtc": "2026-10-15T18:14:15.0769812Z",
+        "owner": {
+          "assignedTo": null,
+          "email": null,
+          "objectId": null,
+          "ownerType": null,
+          "userPrincipalName": null
+        },
+        "providerIncidentId": "3",
+        "providerName": "Microsoft XDR",
+        "relatedAnalyticRuleIds": [
+          "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/aa267b7f-a10d-523d-a853-1b72589b1a46"
+        ],
+        "severity": "High",
+        "status": "Closed",
+        "title": "HVMC - NSG inbound rule opened to the Internet"
+      },
+      "type": "Microsoft.SecurityInsights/Incidents"
+    },
+    {
+      "etag": "\"a903b00a-0000-0100-0000-6ad117fa0000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/8ef6bbdf-e591-4984-a914-28eec768109d",
+      "name": "8ef6bbdf-e591-4984-a914-28eec768109d",
+      "properties": {
+        "additionalData": {
+          "alertProductNames": [
+            "Azure Sentinel"
+          ],
+          "alertsCount": 1,
+          "bookmarksCount": 0,
+          "commentsCount": 1,
+          "providerIncidentUrl": "https://security.microsoft.com/incident2/2/overview?tid=174049fa-a7e2-4e72-9533-08f7675631a6",
+          "tactics": [
+            "Persistence",
+            "PrivilegeEscalation"
+          ],
+          "techniques": [
+            "T1098"
+          ]
+        },
+        "classification": "BenignPositive",
+        "classificationComment": "Triage (PB-02): User Access Administrator was granted at 17:06 UTC to the Microsoft Sentinel service principal, scoped to HVMC-SecOps-LAW / SecurityInsights solution only, as a side effect of onboarding Sentinel (change HVMC-CHG-02). Caller verified (Global Admin via Azure CLI); no human principal received privileged rights. Expected platform behaviour - closed.",
+        "classificationReason": "SuspiciousButExpected",
+        "createdTimeUtc": "2026-10-15T17:22:19.7333333Z",
+        "description": "A high-privilege RBAC role was granted. Risk R04, R07. Playbook PB-02.",
+        "incidentNumber": 2,
+        "incidentUrl": "https://portal.azure.com/#asset/Microsoft_Azure_Security_Insights/Incident/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/8ef6bbdf-e591-4984-a914-28eec768109d",
+        "labels": [],
+        "lastModifiedTimeUtc": "2026-10-15T18:14:18.0535748Z",
+        "owner": {
+          "assignedTo": null,
+          "email": null,
+          "objectId": null,
+          "ownerType": null,
+          "userPrincipalName": null
+        },
+        "providerIncidentId": "2",
+        "providerName": "Microsoft XDR",
+        "relatedAnalyticRuleIds": [
+          "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/bac01af8-6837-5b35-9105-9441f0ef17c2"
+        ],
+        "severity": "High",
+        "status": "Closed",
+        "title": "HVMC - Privileged Azure role assigned (Owner / Contributor / User Access Administrator)"
+      },
+      "type": "Microsoft.SecurityInsights/Incidents"
+    },
+    {
+      "etag": "\"a9032c0b-0000-0100-0000-6ad117fd0000\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/14d9ee6c-0d90-4200-a313-05013dadcd9e",
+      "name": "14d9ee6c-0d90-4200-a313-05013dadcd9e",
+      "properties": {
+        "additionalData": {
+          "alertProductNames": [
+            "Azure Sentinel"
+          ],
+          "alertsCount": 1,
+          "bookmarksCount": 0,
+          "commentsCount": 1,
+          "providerIncidentUrl": "https://security.microsoft.com/incident2/1/overview?tid=174049fa-a7e2-4e72-9533-08f7675631a6",
+          "tactics": [
+            "Persistence",
+            "PrivilegeEscalation"
+          ],
+          "techniques": [
+            "T1098"
+          ]
+        },
+        "classification": "BenignPositive",
+        "classificationComment": "Triage (PB-02): User Access Administrator was granted at 17:06 UTC to the Microsoft Sentinel service principal, scoped to HVMC-SecOps-LAW / SecurityInsights solution only, as a side effect of onboarding Sentinel (change HVMC-CHG-02). Caller verified (Global Admin via Azure CLI); no human principal received privileged rights. Expected platform behaviour - closed.",
+        "classificationReason": "SuspiciousButExpected",
+        "createdTimeUtc": "2026-10-15T17:17:18.3933333Z",
+        "description": "A high-privilege RBAC role was granted. Risk R04, R07. Playbook PB-02.",
+        "incidentNumber": 1,
+        "incidentUrl": "https://portal.azure.com/#asset/Microsoft_Azure_Security_Insights/Incident/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/Incidents/14d9ee6c-0d90-4200-a313-05013dadcd9e",
+        "labels": [],
+        "lastModifiedTimeUtc": "2026-10-15T18:14:21.0539392Z",
+        "owner": {
+          "assignedTo": null,
+          "email": null,
+          "objectId": null,
+          "ownerType": null,
+          "userPrincipalName": null
+        },
+        "providerIncidentId": "1",
+        "providerName": "Microsoft XDR",
+        "relatedAnalyticRuleIds": [
+          "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.OperationalInsights/workspaces/HVMC-SecOps-LAW/providers/Microsoft.SecurityInsights/alertRules/bac01af8-6837-5b35-9105-9441f0ef17c2"
+        ],
+        "severity": "High",
+        "status": "Closed",
+        "title": "HVMC - Privileged Azure role assigned (Owner / Contributor / User Access Administrator)"
+      },
+      "type": "Microsoft.SecurityInsights/Incidents"
+    }
+  ]
+}

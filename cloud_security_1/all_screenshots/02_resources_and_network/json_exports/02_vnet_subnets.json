@@ -1,0 +1,124 @@
+{
+  "addressSpace": {
+    "addressPrefixes": [
+      "10.0.0.0/16"
+    ]
+  },
+  "enableDdosProtection": false,
+  "encryption": {
+    "enabled": false,
+    "enforcement": "AllowUnencrypted"
+  },
+  "etag": "W/\"2164fd61-b4f8-4d3a-8a2d-29368078ce07\"",
+  "flowLogs": [
+    {
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/NetworkWatcherRG/providers/Microsoft.Network/networkWatchers/NetworkWatcher_eastus/flowLogs/HVMC-Prod-VNet-FlowLog",
+      "resourceGroup": "NetworkWatcherRG"
+    }
+  ],
+  "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Network/virtualNetworks/HVMC-Prod-VNet",
+  "location": "eastus",
+  "name": "HVMC-Prod-VNet",
+  "privateEndpointVNetPolicies": "Disabled",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "HVMC-CloudSecurity-RG",
+  "resourceGuid": "d1690043-d671-44c3-bec7-ad93fdc83fba",
+  "subnets": [
+    {
+      "addressPrefixes": [
+        "10.0.1.0/24"
+      ],
+      "defaultOutboundAccess": false,
+      "delegations": [],
+      "etag": "W/\"2164fd61-b4f8-4d3a-8a2d-29368078ce07\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Network/virtualNetworks/HVMC-Prod-VNet/subnets/HVMC-Web-Subnet",
+      "name": "HVMC-Web-Subnet",
+      "networkSecurityGroup": {
+        "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Network/networkSecurityGroups/HVMC-Web-NSG",
+        "resourceGroup": "HVMC-CloudSecurity-RG"
+      },
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "HVMC-CloudSecurity-RG",
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "addressPrefixes": [
+        "10.0.2.0/24"
+      ],
+      "defaultOutboundAccess": false,
+      "delegations": [],
+      "etag": "W/\"2164fd61-b4f8-4d3a-8a2d-29368078ce07\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Network/virtualNetworks/HVMC-Prod-VNet/subnets/HVMC-App-Subnet",
+      "name": "HVMC-App-Subnet",
+      "natGateway": {
+        "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Network/natGateways/HVMC-Prod-NatGW",
+        "resourceGroup": "HVMC-CloudSecurity-RG"
+      },
+      "networkSecurityGroup": {
+        "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Network/networkSecurityGroups/HVMC-App-NSG",
+        "resourceGroup": "HVMC-CloudSecurity-RG"
+      },
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "HVMC-CloudSecurity-RG",
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "addressPrefixes": [
+        "10.0.3.0/24"
+      ],
+      "defaultOutboundAccess": false,
+      "delegations": [],
+      "etag": "W/\"2164fd61-b4f8-4d3a-8a2d-29368078ce07\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Network/virtualNetworks/HVMC-Prod-VNet/subnets/HVMC-Data-Subnet",
+      "name": "HVMC-Data-Subnet",
+      "natGateway": {
+        "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Network/natGateways/HVMC-Prod-NatGW",
+        "resourceGroup": "HVMC-CloudSecurity-RG"
+      },
+      "networkSecurityGroup": {
+        "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Network/networkSecurityGroups/HVMC-Data-NSG",
+        "resourceGroup": "HVMC-CloudSecurity-RG"
+      },
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "HVMC-CloudSecurity-RG",
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "addressPrefixes": [
+        "10.0.4.0/26"
+      ],
+      "delegations": [],
+      "etag": "W/\"2164fd61-b4f8-4d3a-8a2d-29368078ce07\"",
+      "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Network/virtualNetworks/HVMC-Prod-VNet/subnets/AzureBastionSubnet",
+      "ipConfigurations": [
+        {
+          "id": "/subscriptions/6cfd9f07-fd53-485f-9e7c-155a44e01562/resourceGroups/ARMRG-FDF2B37B-C183-4CA2-9575-4E413142E9A7/PROVIDERS/MICROSOFT.COMPUTE/VIRTUALMACHINESCALESETS/BASTIONVMSS/VIRTUALMACHINES/0/NETWORKINTERFACES/CUSTNIC/ipConfigurations/IPCONFIG",
+          "resourceGroup": "ARMRG-FDF2B37B-C183-4CA2-9575-4E413142E9A7"
+        },
+        {
+          "id": "/subscriptions/6cfd9f07-fd53-485f-9e7c-155a44e01562/resourceGroups/ARMRG-FDF2B37B-C183-4CA2-9575-4E413142E9A7/PROVIDERS/MICROSOFT.COMPUTE/VIRTUALMACHINESCALESETS/BASTIONVMSS/VIRTUALMACHINES/1/NETWORKINTERFACES/CUSTNIC/ipConfigurations/IPCONFIG",
+          "resourceGroup": "ARMRG-FDF2B37B-C183-4CA2-9575-4E413142E9A7"
+        },
+        {
+          "id": "/subscriptions/c3640794-6748-46f5-9157-f669082bda6a/resourceGroups/HVMC-CLOUDSECURITY-RG/providers/Microsoft.Network/bastionHosts/HVMC-BASTION/bastionHostIpConfigurations/IPCONF",
+          "resourceGroup": "HVMC-CLOUDSECURITY-RG"
+        }
+      ],
+      "name": "AzureBastionSubnet",
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "HVMC-CloudSecurity-RG",
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    }
+  ],
+  "tags": {},
+  "type": "Microsoft.Network/virtualNetworks",
+  "virtualNetworkPeerings": []
+}

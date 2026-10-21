@@ -1,0 +1,258 @@
+[
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Aisha Rahman",
+    "id": "348da485-4c33-4ea5-9b47-0f8228aec50c",
+    "jobTitle": "Physician",
+    "userPrincipalName": "aisha.rahman@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Angela Brooks",
+    "id": "4734751d-f579-4215-92ce-977816636888",
+    "jobTitle": "Registered Nurse",
+    "userPrincipalName": "angela.brooks@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Anthony Ruiz",
+    "id": "b55115cf-d91d-4811-8458-efe32062c458",
+    "jobTitle": "Security Officer",
+    "userPrincipalName": "anthony.ruiz@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Brian Adeyemi",
+    "id": "e1a32a25-17c6-4a4e-b531-68b7e0511723",
+    "jobTitle": "Finance Manager",
+    "userPrincipalName": "brian.adeyemi@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Carlos Diaz",
+    "id": "10e7489e-23b2-46b8-b352-f5120e37d9b4",
+    "jobTitle": "IT Contractor",
+    "userPrincipalName": "carlos.diaz@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Daniel Osei",
+    "id": "69fe8de9-dceb-42eb-964f-3176f8e6f356",
+    "jobTitle": "HR Manager",
+    "userPrincipalName": "daniel.osei@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "David Patel",
+    "id": "f96031e1-c87a-4e45-bfa6-a2afab8ad55b",
+    "jobTitle": "Pharmacist",
+    "userPrincipalName": "david.patel@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Denise Coleman",
+    "id": "74364a6c-6643-49a8-9410-c4b85f04c0f2",
+    "jobTitle": "Security Supervisor",
+    "userPrincipalName": "denise.coleman@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Elena Petrova",
+    "id": "d58dd4b5-7db4-4ae0-b068-82fbc89d374e",
+    "jobTitle": "Lab Manager",
+    "userPrincipalName": "elena.petrova@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Emily Carter",
+    "id": "a1230b96-a008-439a-8203-b0155d355e40",
+    "jobTitle": "Registered Nurse",
+    "userPrincipalName": "emily.carter@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Fatima Ali",
+    "id": "456fd4fe-7ff6-455a-bdfd-b678bea3233f",
+    "jobTitle": "Systems Administrator",
+    "userPrincipalName": "fatima.ali@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Grace Nguyen",
+    "id": "6bb1bf43-19f9-41fe-87a1-2f79354d8cb8",
+    "jobTitle": "Front Desk Receptionist",
+    "userPrincipalName": "grace.nguyen@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "James Okafor",
+    "id": "a165bea1-a2e8-48ed-b093-0224d71b5227",
+    "jobTitle": "Physician",
+    "userPrincipalName": "james.okafor@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Jason Park",
+    "id": "ac5c7e7f-f21d-4a0d-927a-3e44dfd4dc13",
+    "jobTitle": "IT Support Specialist",
+    "userPrincipalName": "jason.park@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Karen Smith",
+    "id": "81afefc6-a5cc-44aa-9e39-e80ce6711b20",
+    "jobTitle": "HR Generalist",
+    "userPrincipalName": "karen.smith@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Kevin O'Brien",
+    "id": "3c31e917-9ca2-4c57-bf94-77ea851f1349",
+    "jobTitle": "IT Manager",
+    "userPrincipalName": "kevin.obrien@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Lisa Tran",
+    "id": "8a942d54-33fb-4e5d-bba3-4aa8d0a9de8e",
+    "jobTitle": "Registered Nurse",
+    "userPrincipalName": "lisa.tran@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Marcus Webb",
+    "id": "d28d460b-ae97-4c7a-a81e-645eab584bde",
+    "jobTitle": "Pharmacist",
+    "userPrincipalName": "marcus.webb@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Maria Gonzalez",
+    "id": "a949ff3e-380b-4b79-8f5b-4171d8a4f995",
+    "jobTitle": "Physician",
+    "userPrincipalName": "maria.gonzalez@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Michael Torres",
+    "id": "cc0a8fed-0719-4df1-b091-b2e276743647",
+    "jobTitle": "Financial Analyst",
+    "userPrincipalName": "michael.torres@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Monica Alvarez",
+    "id": "3c57f132-fb26-48ff-aae2-c1b6a239ccd3",
+    "jobTitle": "Registered Nurse",
+    "userPrincipalName": "monica.alvarez@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Nicole Reyes",
+    "id": "98e0d657-f7ae-476c-bbcb-bb52ebc266d5",
+    "jobTitle": "Pharmacy Technician",
+    "userPrincipalName": "nicole.reyes@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Noah Fischer",
+    "id": "a542e03e-4ed0-4663-b040-ca168ba900d8",
+    "jobTitle": "Registered Nurse",
+    "userPrincipalName": "noah.fischer@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Peter Novak",
+    "id": "98dd4c0e-5ae1-4bcd-9ea1-85090f48fafb",
+    "jobTitle": "Physician",
+    "userPrincipalName": "peter.novak@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Priya Nair",
+    "id": "94c29652-c9b7-4a39-9cc1-f15f31f9836f",
+    "jobTitle": "Lab Technician",
+    "userPrincipalName": "priya.nair@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Robert Kim",
+    "id": "28c9ca10-d5a5-4988-8c62-3cd22a924aa1",
+    "jobTitle": "Registered Nurse",
+    "userPrincipalName": "robert.kim@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Sabitha S Karanavar",
+    "id": "da18a0fd-30f0-419d-9f93-fb8fd302ba52",
+    "jobTitle": "IAM Lab Administrator",
+    "userPrincipalName": "sabithaskaranavar_gmail.com#EXT#@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Sarah Chen",
+    "id": "35822b51-623d-4e6d-8d24-660d7129ff44",
+    "jobTitle": "Physician",
+    "userPrincipalName": "sarah.chen@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Test Nurse - EHR",
+    "id": "def0ae6f-5266-45a5-9144-0fd0cf076be8",
+    "jobTitle": "Test Account (Nurse)",
+    "userPrincipalName": "test-nurse-ehr@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Thomas Wright",
+    "id": "691f64e2-c5bf-4a98-9c4b-59fe85332843",
+    "jobTitle": "Lab Technician",
+    "userPrincipalName": "thomas.wright@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Tyrone Jackson",
+    "id": "3f1cf20c-22cd-47c0-9a63-8659899f9220",
+    "jobTitle": "Registered Nurse",
+    "userPrincipalName": "tyrone.jackson@sabithaskaranavargmail.onmicrosoft.com"
+  },
+  {
+    "accountEnabled": null,
+    "department": null,
+    "displayName": "Victor Mensah",
+    "id": "a1f0246a-4fb2-4444-abc1-b1a732f7e384",
+    "jobTitle": "Receptionist",
+    "userPrincipalName": "victor.mensah@sabithaskaranavargmail.onmicrosoft.com"
+  }
+]

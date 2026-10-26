@@ -1,0 +1,301 @@
+{
+  "tests": {
+    "run": 19,
+    "failures": 0,
+    "errors": 0,
+    "passed": 19
+  },
+  "demos": {
+    "keygen_seconds": {
+      "2048": 0.36,
+      "3072": 1.08,
+      "4096": 3.16
+    },
+    "inventory": [
+      {
+        "key_id": "hvmc-root-ca-r1",
+        "purpose": "root-ca",
+        "owner": "Information Security (offline)",
+        "algorithm": "RSA-4096",
+        "public_exponent": 65537,
+        "fingerprint_sha256": "1893a7eca7cdffe4e84352ed8e939985cd0d5c71f9b947613781aa7a68634a48",
+        "created": "2026-10-26T17:37:03+00:00",
+        "expires": "2036-10-23T17:37:03+00:00",
+        "status": "active",
+        "storage": "offline, encrypted (HSM in production)",
+        "private_key_file": "private/hvmc-root-ca-r1.key.pem",
+        "public_key_file": "public/hvmc-root-ca-r1.pub.pem",
+        "history": [
+          "2026-10-26 generated"
+        ]
+      },
+      {
+        "key_id": "hvmc-issuing-ca-1",
+        "purpose": "issuing-ca",
+        "owner": "Information Security",
+        "algorithm": "RSA-3072",
+        "public_exponent": 65537,
+        "fingerprint_sha256": "8a838eb2dc8b84c4a22bcb6eacff30a8587fbdbc8c579492b9e91c234ac29e88",
+        "created": "2026-10-26T17:37:03+00:00",
+        "expires": "2031-10-25T17:37:03+00:00",
+        "status": "active",
+        "storage": "encrypted, CA host only",
+        "private_key_file": "private/hvmc-issuing-ca-1.key.pem",
+        "public_key_file": "public/hvmc-issuing-ca-1.pub.pem",
+        "history": [
+          "2026-10-26 generated"
+        ]
+      },
+      {
+        "key_id": "portal-tls-2026",
+        "purpose": "tls-server",
+        "owner": "IT Infrastructure (Kevin O'Brien)",
+        "algorithm": "RSA-2048",
+        "public_exponent": 65537,
+        "fingerprint_sha256": "b843035b68f540dfa220783525ec5934b5c006f6c4b257d1cd28a5876dbb6eec",
+        "created": "2026-10-26T17:37:03+00:00",
+        "expires": "2027-11-27T17:37:03+00:00",
+        "status": "active",
+        "storage": "encrypted, web server only",
+        "private_key_file": "private/portal-tls-2026.key.pem",
+        "public_key_file": "public/portal-tls-2026.pub.pem",
+        "history": [
+          "2026-10-26 generated"
+        ]
+      },
+      {
+        "key_id": "sarah-chen-client-2026",
+        "purpose": "client-auth",
+        "owner": "Sarah Chen (Doctors)",
+        "algorithm": "RSA-2048",
+        "public_exponent": 65537,
+        "fingerprint_sha256": "0ffab9ec1a3f1bcd62991b535cf01808cbc60286fb94668fc6bad5a2d5fe1105",
+        "created": "2026-10-26T17:37:03+00:00",
+        "expires": "2027-10-26T17:37:03+00:00",
+        "status": "active",
+        "storage": "encrypted, user device",
+        "private_key_file": "private/sarah-chen-client-2026.key.pem",
+        "public_key_file": "public/sarah-chen-client-2026.pub.pem",
+        "history": [
+          "2026-10-26 generated"
+        ]
+      },
+      {
+        "key_id": "ehr-data-key-v1",
+        "purpose": "data-encryption",
+        "owner": "EHR key service",
+        "algorithm": "RSA-3072",
+        "public_exponent": 65537,
+        "fingerprint_sha256": "749e29f1c29e3f5b4bc53311b3a13dc443c7f85bcfcb8e62ca3c2303600dda08",
+        "created": "2026-10-26T17:37:03+00:00",
+        "expires": "2028-10-25T17:37:03+00:00",
+        "status": "destroyed",
+        "storage": "encrypted, EHR key service",
+        "private_key_file": "private/ehr-data-key-v1.key.pem",
+        "public_key_file": "public/ehr-data-key-v1.pub.pem",
+        "history": [
+          "2026-10-26 generated",
+          "2026-10-26 retired: rotated to ehr-data-key-v2 (ticket HVMC-PKI-CHG-402)",
+          "2026-10-26 destroyed: all envelopes rewrapped to v2"
+        ]
+      },
+      {
+        "key_id": "ehr-data-key-v2",
+        "purpose": "data-encryption",
+        "owner": "EHR key service",
+        "algorithm": "RSA-3072",
+        "public_exponent": 65537,
+        "fingerprint_sha256": "018f6dc852fac4a0d5151aea22c2f845e9987cbe27c16c7a56c48892abfa8d92",
+        "created": "2026-10-26T17:37:03+00:00",
+        "expires": "2028-10-25T17:37:03+00:00",
+        "status": "active",
+        "storage": "encrypted, EHR key service",
+        "private_key_file": "private/ehr-data-key-v2.key.pem",
+        "public_key_file": "public/ehr-data-key-v2.pub.pem",
+        "history": [
+          "2026-10-26 generated"
+        ]
+      }
+    ],
+    "openssl_oaep_interop": true,
+    "certificates": [
+      {
+        "subject_cn": "HVMC Root CA R1",
+        "issuer_cn": "HVMC Root CA R1",
+        "serial": "32cdfe2a0650ea59\u2026",
+        "key": "RSA-4096",
+        "signature": "sha384WithRSAEncryption",
+        "not_after": "2036-10-23",
+        "ca": true,
+        "path_len": 1,
+        "sha256": "4e0f2629820c5028add49dd796fa47d8e68765deeb4c2acf1d7d1d92374ecbea"
+      },
+      {
+        "subject_cn": "HVMC Issuing CA 1",
+        "issuer_cn": "HVMC Root CA R1",
+        "serial": "2d60dab58e4183dc\u2026",
+        "key": "RSA-3072",
+        "signature": "sha384WithRSAEncryption",
+        "not_after": "2031-10-25",
+        "ca": true,
+        "path_len": 0,
+        "sha256": "9e6085127c811b203733eaf481b2cda9ab99a3e9bd85b02658c44eee911e216b"
+      },
+      {
+        "subject_cn": "portal.hvmc.example",
+        "issuer_cn": "HVMC Issuing CA 1",
+        "serial": "5729f24e8fea641b\u2026",
+        "key": "RSA-2048",
+        "signature": "sha256WithRSAEncryption",
+        "not_after": "2027-11-27",
+        "ca": false,
+        "path_len": null,
+        "sha256": "899c9f55ac03fd23e314d63935594b600a5b7a7d4a5f906263056a5898971b2e"
+      },
+      {
+        "subject_cn": "Sarah Chen",
+        "issuer_cn": "HVMC Issuing CA 1",
+        "serial": "75239f31c4f77253\u2026",
+        "key": "RSA-2048",
+        "signature": "sha256WithRSAEncryption",
+        "not_after": "2027-10-26",
+        "ca": false,
+        "path_len": null,
+        "sha256": "1c6662c70e0dd6a31214ca671867bef1e277c8bda5ae7b0a9be5f448b0a3f4ad"
+      }
+    ],
+    "csr_rejections": [
+      [
+        "portal.evil.example",
+        "DNS name portal.evil.example is outside .hvmc.example (or a wildcard)"
+      ],
+      [
+        "*.hvmc.example",
+        "DNS name *.hvmc.example is outside .hvmc.example (or a wildcard)"
+      ],
+      [
+        "RSA-1024 key",
+        "RSA-1024 is below the HVMC minimum of 2048 bits"
+      ],
+      [
+        "someone@gmail.com",
+        "email someone@gmail.com is outside @hvmc.example"
+      ]
+    ],
+    "path_checks": [
+      [
+        "path ends at a trusted root",
+        true,
+        "CN=HVMC Root CA R1,OU=Information Security,O=Horizon Valley Medical Center,C=US"
+      ],
+      [
+        "portal.hvmc.example: inside validity period",
+        true,
+        "2026-10-26 to 2027-11-27"
+      ],
+      [
+        "portal.hvmc.example: signature (library / from-scratch)",
+        true,
+        "library=True, from-scratch=True"
+      ],
+      [
+        "portal.hvmc.example: CRL signature",
+        true,
+        ""
+      ],
+      [
+        "portal.hvmc.example: CRL is current",
+        true,
+        "next update 2026-11-02 17:37:03+00:00"
+      ],
+      [
+        "portal.hvmc.example: not revoked",
+        true,
+        ""
+      ],
+      [
+        "HVMC Issuing CA 1: inside validity period",
+        true,
+        "2026-10-26 to 2031-10-25"
+      ],
+      [
+        "HVMC Issuing CA 1: signature (library / from-scratch)",
+        true,
+        "library=True, from-scratch=True"
+      ],
+      [
+        "HVMC Issuing CA 1: basicConstraints CA=TRUE, keyCertSign",
+        true,
+        "pathLen=0"
+      ],
+      [
+        "HVMC Issuing CA 1: path length constraint",
+        true,
+        "0 CA(s) below, limit 0"
+      ],
+      [
+        "HVMC Issuing CA 1: CRL signature",
+        true,
+        ""
+      ],
+      [
+        "HVMC Issuing CA 1: CRL is current",
+        true,
+        "next update 2027-04-24 17:37:03+00:00"
+      ],
+      [
+        "HVMC Issuing CA 1: not revoked",
+        true,
+        ""
+      ],
+      [
+        "HVMC Root CA R1: inside validity period",
+        true,
+        "2026-10-26 to 2036-10-23"
+      ],
+      [
+        "HVMC Root CA R1: signature (library / from-scratch)",
+        true,
+        "library=True, from-scratch=True"
+      ],
+      [
+        "HVMC Root CA R1: basicConstraints CA=TRUE, keyCertSign",
+        true,
+        "pathLen=1"
+      ],
+      [
+        "HVMC Root CA R1: path length constraint",
+        true,
+        "1 CA(s) below, limit 1"
+      ],
+      [
+        "leaf: extendedKeyUsage includes serverAuth",
+        true,
+        ""
+      ],
+      [
+        "leaf: hostname portal.hvmc.example in subjectAltName",
+        true,
+        "portal.hvmc.example, ehr.hvmc.example"
+      ]
+    ],
+    "openssl_verify": {
+      "portal_sslserver": "certs/portal.hvmc.example.crt.pem: OK",
+      "sarah_sslclient": "certs/sarah.chen.crt.pem: OK",
+      "sarah_as_server_rejected": true
+    },
+    "key_exchange": {
+      "handshake_log": [
+        "ClientHello: X25519 ephemeral key + 32-byte nonce, SNI portal.hvmc.example",
+        "ServerHello: X25519 ephemeral key + nonce + certificate + RSA-PSS signature over transcript",
+        "Client: server certificate path valid (19 checks) and transcript signature verified",
+        "Server: client certificate valid for clientAuth (Sarah Chen) and signature verified",
+        "Both: HKDF-SHA256 over the X25519 secret and transcript hash -> two AES-256-GCM keys; ephemeral private keys deleted"
+      ],
+      "mitm_key_swap": "server signature over the handshake does not verify (key substitution?)",
+      "impostor_certificate": "server certificate rejected: portal.hvmc.example: signature (library / from-scratch)",
+      "rsa_transport_recovered_after_key_theft": true
+    }
+  },
+  "environment": "Python 3.9.6 on Darwin arm64, 2026-10-26 13:37; cryptography package: 47.0.0; LibreSSL 3.3.6"
+}

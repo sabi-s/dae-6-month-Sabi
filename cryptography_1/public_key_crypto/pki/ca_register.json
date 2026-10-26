@@ -1,0 +1,24 @@
+[
+  {
+    "serial": "5729f24e8fea641b46b15c08ce88a0335de93715",
+    "subject": "CN=portal.hvmc.example,OU=IT Infrastructure,O=Horizon Valley Medical Center,C=US",
+    "profile": "tls-server",
+    "not_before": "2026-10-26T17:32:03+00:00",
+    "not_after": "2027-11-27T17:37:03+00:00",
+    "requested_by": "Kevin O'Brien (change HVMC-PKI-CHG-401)",
+    "status": "valid",
+    "revoked_at": null,
+    "reason": null
+  },
+  {
+    "serial": "75239f31c4f77253a5ef3cb02f80ee8b1d3d7b33",
+    "subject": "1.2.840.113549.1.9.1=sarah.chen@hvmc.example,CN=Sarah Chen,OU=Doctors,O=Horizon Valley Medical Center,C=US",
+    "profile": "client-auth",
+    "not_before": "2026-10-26T17:32:03+00:00",
+    "not_after": "2027-10-26T17:37:03+00:00",
+    "requested_by": "Sarah Chen (approved by Information Security)",
+    "status": "valid",
+    "revoked_at": null,
+    "reason": null
+  }
+]

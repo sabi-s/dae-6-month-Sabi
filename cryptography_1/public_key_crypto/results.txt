@@ -1,0 +1,111 @@
+HVMC Public Key Cryptography - test and demo run
+Python 3.9.6 on Darwin arm64, 2026-10-26 13:37; cryptography package: 47.0.0; LibreSSL 3.3.6
+
+=== Building the HVMC PKI in pki/ ===
+  generated 4 RSA key pairs from scratch in 6.7s (4096, 3072, 2048, 2048 bits)
+
+=== Unit tests ===
+test_crt_and_blinding_match_plain_decryption (__main__.TestRSA) ... ok
+test_keygen_2048_properties_and_library_accepts (__main__.TestRSA) ... ok
+test_number_theory (__main__.TestRSA) ... ok
+test_oaep_interop_with_library_both_ways (__main__.TestRSA) ... ok
+test_oaep_round_trip_random_and_limits (__main__.TestRSA) ... ok
+test_pkcs1v15_verify_on_real_certificates (__main__.TestRSA) ... ok
+test_textbook_example (__main__.TestRSA) ... ok
+test_encrypted_storage_permissions_and_passphrase (__main__.TestKeyManagement) ... ok
+test_expiry_enforced (__main__.TestKeyManagement) ... ok
+test_hybrid_rotation_and_lifecycle (__main__.TestKeyManagement) ... ok
+test_chain_valid_mine_and_library (__main__.TestPKI) ... ok
+test_csr_policy (__main__.TestPKI) ... ok
+test_rejections (__main__.TestPKI) ... ok
+test_authenticated_handshake (__main__.TestKeyExchange) ... ok
+test_handshake_rejects_attacks (__main__.TestKeyExchange) ... ok
+test_hkdf_rfc5869 (__main__.TestKeyExchange) ... ok
+test_rfc7748_vectors (__main__.TestKeyExchange) ... ok
+test_unauthenticated_exchange_is_open_to_mitm (__main__.TestKeyExchange) ... ok
+test_x25519_matches_library (__main__.TestKeyExchange) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 13.011s
+
+OK
+tests run: 19, failures: 0, errors: 0, skipped: 0
+
+=== Demo 1: RSA key pair generation (from scratch) ===
+  toy key: p=61 q=53 n=3233 lambda(n)=780 e=17 d=413; encrypt 65 -> 2790 -> decrypt 65
+  RSA-2048: generated in 0.36s, n has 2048 bits, p and q 1024/1024 bits, d has 2046 bits, |p-q| has 1021 bits (> 924 required)
+  RSA-3072: generated in 1.08s, n has 3072 bits, p and q 1536/1536 bits, d has 3069 bits, |p-q| has 1529 bits (> 1436 required)
+  RSA-4096: generated in 3.16s, n has 4096 bits, p and q 2048/2048 bits, d has 4095 bits, |p-q| has 2042 bits (> 1948 required)
+  the cryptography package loads the from-scratch RSA-4096 key: key_size=4096
+
+=== Demo 2: Key management - storage, inventory, rotation ===
+  key id                   algorithm  purpose          expires     status   fingerprint (SHA-256 of SPKI)
+  hvmc-root-ca-r1          RSA-4096   root-ca          2036-10-23  active   1893a7eca7cdffe4e84352ed…
+  hvmc-issuing-ca-1        RSA-3072   issuing-ca       2031-10-25  active   8a838eb2dc8b84c4a22bcb6e…
+  portal-tls-2026          RSA-2048   tls-server       2027-11-27  active   b843035b68f540dfa2207835…
+  sarah-chen-client-2026   RSA-2048   client-auth      2027-10-26  active   0ffab9ec1a3f1bcd62991b53…
+  -rw-------  private/hvmc-issuing-ca-1.key.pem          -----BEGIN ENCRYPTED PRIVATE KEY-----
+  -rw-------  private/hvmc-root-ca-r1.key.pem            -----BEGIN ENCRYPTED PRIVATE KEY-----
+  -rw-------  private/portal-tls-2026.key.pem            -----BEGIN ENCRYPTED PRIVATE KEY-----
+  -rw-------  private/sarah-chen-client-2026.key.pem     -----BEGIN ENCRYPTED PRIVATE KEY-----
+  load with a wrong passphrase -> refused (ValueError: Incorrect password, could not decrypt key)
+  hybrid encryption of a 169-byte discharge record: RSA-OAEP-wrapped key 384 bytes + AES-256-GCM ciphertext 185 bytes
+  rotation: data key rewrapped under v2; AES ciphertext unchanged = True
+  encrypt with retired v1 -> refused: ehr-data-key-v1 is retired: new encryption not allowed
+  decrypt old envelope with retired v1 still works: True
+  after destruction, v1 envelope -> ehr-data-key-v1 is destroyed: no longer usable; v2 envelope decrypts: True
+
+=== Demo 3: Asymmetric encryption - textbook RSA vs RSA-OAEP ===
+  textbook RSA is deterministic: same message twice -> identical ciphertext = True
+  textbook RSA is malleable: multiply ciphertext by 2^e -> decrypts to 2*m = True (attacker changed the value without the key)
+  OAEP is randomized: two encryptions differ = True; both decrypt correctly = True
+  OAEP rejects a modified ciphertext with a single generic 'decryption error'
+  size limit: RSA-2048 + OAEP-SHA-256 carries at most 190 bytes -> HVMC uses hybrid encryption
+  interop: OpenSSL decrypts from-scratch OAEP = True; from-scratch decrypts OpenSSL OAEP = True
+
+=== Demo 4: The HVMC PKI ===
+  HVMC Root CA R1        issued by HVMC Root CA R1    RSA-4096  sha384WithRSAEncryption  CA=True  pathLen=1    until 2036-10-23
+  HVMC Issuing CA 1      issued by HVMC Root CA R1    RSA-3072  sha384WithRSAEncryption  CA=True  pathLen=0    until 2031-10-25
+  portal.hvmc.example    issued by HVMC Issuing CA 1  RSA-2048  sha256WithRSAEncryption  CA=False pathLen=None until 2027-11-27
+  Sarah Chen             issued by HVMC Issuing CA 1  RSA-2048  sha256WithRSAEncryption  CA=False pathLen=None until 2027-10-26
+  CSR for portal.evil.example  -> rejected: DNS name portal.evil.example is outside .hvmc.example (or a wildcard)
+  CSR for *.hvmc.example       -> rejected: DNS name *.hvmc.example is outside .hvmc.example (or a wildcard)
+  CSR for RSA-1024 key         -> rejected: RSA-1024 is below the HVMC minimum of 2048 bits
+  CSR for someone@gmail.com    -> rejected: email someone@gmail.com is outside @hvmc.example
+  path validation of portal.hvmc.example: VALID (19 checks)
+    [pass] path ends at a trusted root  (CN=HVMC Root CA R1,OU=Information Security,O=Horizon Valley Medical Center,C=US)
+    [pass] portal.hvmc.example: inside validity period  (2026-10-26 to 2027-11-27)
+    [pass] portal.hvmc.example: signature (library / from-scratch)  (library=True, from-scratch=True)
+    [pass] portal.hvmc.example: CRL signature
+    [pass] portal.hvmc.example: CRL is current  (next update 2026-11-02 17:37:03+00:00)
+    [pass] portal.hvmc.example: not revoked
+    [pass] HVMC Issuing CA 1: inside validity period  (2026-10-26 to 2031-10-25)
+    [pass] HVMC Issuing CA 1: signature (library / from-scratch)  (library=True, from-scratch=True)
+    [pass] HVMC Issuing CA 1: basicConstraints CA=TRUE, keyCertSign  (pathLen=0)
+    [pass] HVMC Issuing CA 1: path length constraint  (0 CA(s) below, limit 0)
+    [pass] HVMC Issuing CA 1: CRL signature
+    [pass] HVMC Issuing CA 1: CRL is current  (next update 2027-04-24 17:37:03+00:00)
+    [pass] HVMC Issuing CA 1: not revoked
+    [pass] HVMC Root CA R1: inside validity period  (2026-10-26 to 2036-10-23)
+    [pass] HVMC Root CA R1: signature (library / from-scratch)  (library=True, from-scratch=True)
+    [pass] HVMC Root CA R1: basicConstraints CA=TRUE, keyCertSign  (pathLen=1)
+    [pass] HVMC Root CA R1: path length constraint  (1 CA(s) below, limit 1)
+    [pass] leaf: extendedKeyUsage includes serverAuth
+    [pass] leaf: hostname portal.hvmc.example in subjectAltName  (portal.hvmc.example, ehr.hvmc.example)
+  cryptography.x509.verification agrees: chain of 3 certificates
+  openssl verify: portal (sslserver) -> certs/portal.hvmc.example.crt.pem: OK; sarah (sslclient) -> certs/sarah.chen.crt.pem: OK; sarah as sslserver -> rejected = True
+
+=== Demo 5: Secure key exchange ===
+  unauthenticated X25519 with an attacker in the middle: client and server keys differ = True; attacker holds the client's key = True and the server's key = True -> it can read and re-encrypt everything
+  1. ClientHello: X25519 ephemeral key + 32-byte nonce, SNI portal.hvmc.example
+  2. ServerHello: X25519 ephemeral key + nonce + certificate + RSA-PSS signature over transcript
+  3. Client: server certificate path valid (19 checks) and transcript signature verified
+  4. Server: client certificate valid for clientAuth (Sarah Chen) and signature verified
+  5. Both: HKDF-SHA256 over the X25519 secret and transcript hash -> two AES-256-GCM keys; ephemeral private keys deleted
+  Sarah -> portal: 55-byte record 4d0f0a1191e7b23a3849b20b… -> server reads 'GET /ehr/patients/HVMC-004417/discharge'
+  portal -> Sarah: 185-byte record -> client reads 169 bytes of the record
+  replaying Sarah's first record -> rejected (sequence-number nonce, GCM tag fails)
+  attacker swaps the server's ephemeral key -> server signature over the handshake does not verify (key substitution?)
+  attacker presents its own certificate for portal.hvmc.example -> server certificate rejected: portal.hvmc.example: signature (library / from-scratch)
+  RSA key transport: a recorded session + the server's RSA key stolen later -> session key recovered = True (no forward secrecy)
+  ephemeral X25519: the recording holds only public values and signatures; the ephemeral private keys were deleted, so the stolen RSA key cannot rebuild the session key (forward secrecy)

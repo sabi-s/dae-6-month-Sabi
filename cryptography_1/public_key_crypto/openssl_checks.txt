@@ -1,0 +1,98 @@
+HVMC PKI - independent checks with the OpenSSL command line (run from pki/)
+Python 3.9.6 on Darwin arm64, 2026-10-26 13:37; cryptography package: 47.0.0; LibreSSL 3.3.6
+
+$ openssl pkey -in private/portal-tls-2026.key.pem -passin file:private/.passphrase | openssl pkeyutl -decrypt -inkey /dev/stdin -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256 -pkeyopt rsa_mgf1_md:sha256 -in from_scratch.bin
+HVMC-004417 lab result key
+
+$ openssl pkeyutl -encrypt -pubin -inkey public/portal-tls-2026.pub.pem -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256 -pkeyopt rsa_mgf1_md:sha256 -in msg.txt -out from_openssl.bin
+(ciphertext written)
+
+$ openssl verify -CAfile certs/hvmc-root-ca-r1.crt.pem -untrusted certs/hvmc-issuing-ca-1.crt.pem -purpose sslserver certs/portal.hvmc.example.crt.pem
+certs/portal.hvmc.example.crt.pem: OK
+
+$ openssl verify -CAfile certs/hvmc-root-ca-r1.crt.pem -untrusted certs/hvmc-issuing-ca-1.crt.pem -purpose sslclient certs/sarah.chen.crt.pem
+certs/sarah.chen.crt.pem: OK
+
+$ openssl verify -CAfile certs/hvmc-root-ca-r1.crt.pem -untrusted certs/hvmc-issuing-ca-1.crt.pem -purpose sslserver certs/sarah.chen.crt.pem
+C = US, O = Horizon Valley Medical Center, OU = Doctors, CN = Sarah Chen, emailAddress = sarah.chen@hvmc.example
+error 26 at 0 depth lookup:unsupported certificate purpose
+certs/sarah.chen.crt.pem: verification failed: 26 (unsupported certificate purpose)
+
+$ openssl x509 -in certs/portal.hvmc.example.crt.pem -noout -text
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            57:29:f2:4e:8f:ea:64:1b:46:b1:5c:08:ce:88:a0:33:5d:e9:37:15
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, O=Horizon Valley Medical Center, OU=Information Security, CN=HVMC Issuing CA 1
+        Validity
+            Not Before: Oct 26 17:32:03 2026 GMT
+            Not After : Nov 27 17:37:03 2027 GMT
+        Subject: C=US, O=Horizon Valley Medical Center, OU=IT Infrastructure, CN=portal.hvmc.example
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Subject Alternative Name: 
+                DNS:portal.hvmc.example, DNS:ehr.hvmc.example
+            X509v3 Subject Key Identifier: 
+                3D:16:7E:49:B3:76:CC:01:C7:62:C1:14:2F:F5:2E:F8:71:01:66:0B
+            X509v3 Authority Key Identifier: 
+                keyid:79:35:F1:D5:4C:AF:AC:6B:B1:95:63:2E:D7:83:6F:12:98:E4:E9:70
+
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://pki.hvmc.example/crl/hvmc-issuing-ca-1.crl
+
+    Signature Algorithm: sha256WithRSAEncryption
+         b4:8c:fa:82:bb:c2:af:e9:d4:f5:ee:51:57:c5:31:73:d5:dc:
+         2e:ac:37:7f:8e:0b:c4:91:5c:64:0c:dd:38:40:38:36:7e:b5:
+         b8:a0:ae:83:fd:02:b7:49:ae:31:f9:51:13:47:fc:a5:0c:3c:
+         53:b2:5b:49:37:9a:02:17:31:48:7f:2a:e6:7a:fc:09:f3:fb:
+         b7:74:75:06:be:8b:04:50:87:46:09:1d:30:9d:e3:c9:77:b5:
+         e6:7d:24:c9:bb:62:c1:35:a2:b4:c7:d1:f2:04:9b:1e:c7:83:
+         af:eb:ad:62:2c:66:c0:c5:20:30:04:87:92:f6:98:a1:c7:23:
+         96:e4:f2:16:c6:3f:a4:25:82:b5:16:57:8c:4b:a6:fc:27:b2:
+         db:15:9f:c3:b7:f8:f1:d3:cd:22:e7:64:07:3a:ef:f3:59:2b:
+         5e:5d:ff:a9:80:30:9a:88:3e:72:c8:64:f6:98:bf:e8:c7:96:
+         aa:3e:51:99:35:2c:04:e1:39:74:96:3b:2c:72:b6:cc:bf:7a:
+         fb:a9:8b:9a:54:96:fe:ef:f2:01:9a:b9:6c:4d:d7:a1:c3:71:
+         8b:e7:10:cf:f6:ba:b1:35:15:c4:13:78:d2:93:1c:ac:4c:5c:
+         4b:8a:6d:61:ff:ac:af:17:23:bb:62:f1:0c:dc:b3:31:c1:6e:
+         02:da:f8:91:d0:55:04:4a:be:3a:18:56:90:15:f1:39:c3:23:
+         5b:d4:a1:f9:d0:69:57:cf:ff:01:0b:36:03:71:9e:05:60:db:
+         55:e4:aa:da:d0:2b:0c:3a:7a:47:db:c7:63:66:e1:12:12:10:
+         9d:fd:3e:1f:13:10:e6:a2:fb:e0:f0:bb:31:15:87:a8:89:00:
+         0b:36:bd:4b:6f:73:75:93:c6:d1:15:16:f1:aa:e0:2f:cd:b8:
+         43:58:68:e6:c3:ff:7b:d9:78:53:42:36:6c:2a:23:bd:c8:90:
+         41:39:e5:0d:57:cc:8e:2e:2c:96:d8:f7:27:ad:ca:6f:fe:1e:
+         d3:af:82:66:03:05
+
+$ openssl crl -in crl/hvmc-issuing-ca-1.crl.pem -noout -text
+Certificate Revocation List (CRL):
+        Version 2 (0x1)
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: /C=US/O=Horizon Valley Medical Center/OU=Information Security/CN=HVMC Issuing CA 1
+        Last Update: Oct 26 17:37:03 2026 GMT
+        Next Update: Nov  2 17:37:03 2026 GMT
+        CRL extensions:
+            X509v3 CRL Number: 
+                1
+            X509v3 Authority Key Identifier: 
+                keyid:79:35:F1:D5:4C:AF:AC:6B:B1:95:63:2E:D7:83:6F:12:98:E4:E9:70
+
+No Revoked Certificates.
+    Signature Algorithm: sha256WithRSAEncryption
+
+$ openssl req -in csr/portal.hvmc.example.csr.pem -noout -verify -subject
+subject=/C=US/O=Horizon Valley Medical Center/OU=IT Infrastructure/CN=portal.hvmc.example
+verify OK

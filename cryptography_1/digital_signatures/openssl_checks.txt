@@ -1,0 +1,102 @@
+HVMC digital signatures - independent checks with the OpenSSL command line (run from pki/)
+Python 3.9.6 on Darwin arm64, 2026-10-26 13:57; cryptography package: 47.0.0; LibreSSL 3.3.6
+
+-attime 1793905045 = 2026-11-05 18:57 UTC, the simulated time just after the T0+10d CRL was published
+
+$ openssl dgst -sha256 -verify sarah.pub.pem -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:32 -signature signature.bin signed_attributes.bin
+Verified OK
+
+$ openssl pkey -in private/sarah-chen-sign-2026.key.pem -passin file:private/.passphrase | openssl dgst -sha256 -sign /dev/stdin -out v15.sig discharge_summary.json
+(signature written; private key piped from 'openssl pkey', never on disk)
+
+from-scratch PKCS #1 v1.5 signature == OpenSSL signature (byte for byte): True
+
+$ openssl verify -attime 1793905045 -CAfile certs/hvmc-root-ca-r1.crt.pem -untrusted certs/hvmc-issuing-ca-1.crt.pem -crl_check -CRLfile crl/hvmc-issuing-ca-1.crl.pem certs/sarah.chen.sign.crt.pem
+certs/sarah.chen.sign.crt.pem: OK
+
+$ openssl verify -attime 1793905045 -CAfile certs/hvmc-root-ca-r1.crt.pem -untrusted certs/hvmc-issuing-ca-1.crt.pem -crl_check -CRLfile crl/hvmc-issuing-ca-1.crl.pem certs/carlos.diaz.sign.crt.pem
+C = US, O = Horizon Valley Medical Center, OU = IT, CN = Carlos Diaz, emailAddress = carlos.diaz@hvmc.example
+error 23 at 0 depth lookup:certificate revoked
+certs/carlos.diaz.sign.crt.pem: verification failed: 23 (certificate revoked)
+
+$ openssl verify -attime 1793905045 -CAfile certs/hvmc-root-ca-r1.crt.pem -untrusted certs/hvmc-issuing-ca-1.crt.pem -crl_check -CRLfile crl/hvmc-issuing-ca-1.crl.pem certs/portal.hvmc.example.crt.pem
+C = US, O = Horizon Valley Medical Center, OU = IT Infrastructure, CN = portal.hvmc.example
+error 23 at 0 depth lookup:certificate revoked
+certs/portal.hvmc.example.crt.pem: verification failed: 23 (certificate revoked)
+
+$ openssl verify -attime 1793905045 -CAfile certs/hvmc-root-ca-r1.crt.pem -untrusted certs/hvmc-issuing-ca-1.crt.pem -crl_check -CRLfile crl/hvmc-issuing-ca-1.crl.pem -purpose sslserver certs/portal.hvmc.example.renewed.crt.pem
+certs/portal.hvmc.example.renewed.crt.pem: OK
+
+$ openssl crl -in crl/hvmc-issuing-ca-1.crl.pem -noout -text
+Certificate Revocation List (CRL):
+        Version 2 (0x1)
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: /C=US/O=Horizon Valley Medical Center/OU=Information Security/CN=HVMC Issuing CA 1
+        Last Update: Nov  5 17:57:25 2026 GMT
+        Next Update: Nov 12 17:57:25 2026 GMT
+        CRL extensions:
+            X509v3 CRL Number: 
+                8
+            X509v3 Authority Key Identifier: 
+                keyid:79:35:F1:D5:4C:AF:AC:6B:B1:95:63:2E:D7:83:6F:12:98:E4:E9:70
+
+Revoked Certificates:
+    Serial Number: 5729F24E8FEA641B46B15C08CE88A0335DE93715
+        Revocation Date: Nov  4 19:57:25 2026 GMT
+        CRL entry extensions:
+            X509v3 CRL Reason Code: 
+                Superseded
+    Serial Number: 6A8880EEAE1DA54427417C514B7ED2B3ABA653D3
+        Revocation Date: Nov  2 17:57:25 2026 GMT
+        CRL entry extensions:
+            X509v3 CRL Reason Code: 
+                Key Compromise
+            Invalidity Date: 
+                Nov  1 17:57:25 2026 GMT
+    Serial Number: 505D36E31782C2027E02A05AEE51B2139916D0EB
+        Revocation Date: Oct 30 17:57:25 2026 GMT
+        CRL entry extensions:
+            X509v3 CRL Reason Code: 
+                Cessation Of Operation
+    Signature Algorithm: sha256WithRSAEncryption
+
+$ openssl x509 -in certs/sarah.chen.sign.crt.pem -noout -text
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            20:d3:72:46:c9:77:04:d6:a1:b1:dd:0f:be:99:f0:b1:e8:ce:7b:5b
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, O=Horizon Valley Medical Center, OU=Information Security, CN=HVMC Issuing CA 1
+        Validity
+            Not Before: Oct 26 17:52:25 2026 GMT
+            Not After : Oct 25 17:57:25 2028 GMT
+        Subject: C=US, O=Horizon Valley Medical Center, OU=Doctors, CN=Sarah Chen/emailAddress=sarah.chen@hvmc.example
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (3072 bit)
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Key Usage: critical
+                Digital Signature, Non Repudiation
+            X509v3 Extended Key Usage: 
+                1.3.6.1.5.5.7.3.36, E-mail Protection
+            X509v3 Subject Alternative Name: 
+                email:sarah.chen@hvmc.example
+            X509v3 Certificate Policies: 
+                Policy: 2.25.301168339931612099844041656523656322233
+                  CPS: http://pki.hvmc.example/cps/hvmc-certificate-practice-statement-v1.pdf
+
+            X509v3 Subject Key Identifier: 
+                FC:08:B9:83:60:D5:4C:56:DA:75:CB:B0:D0:75:96:AA:86:25:9C:14
+            X509v3 Authority Key Identifier: 
+                keyid:79:35:F1:D5:4C:AF:AC:6B:B1:95:63:2E:D7:83:6F:12:98:E4:E9:70
+
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://pki.hvmc.example/crl/hvmc-issuing-ca-1.crl
+
+    Signature Algorithm: sha256WithRSAEncryption

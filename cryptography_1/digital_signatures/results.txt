@@ -1,0 +1,240 @@
+HVMC Digital Signatures - test and demo run
+Python 3.9.6 on Darwin arm64, 2026-10-26 13:57; cryptography package: 47.0.0; LibreSSL 3.3.6
+
+=== Setting up: copy of the rubric 4 PKI in pki/ + signing certificates ===
+  5 RSA-3072 key pairs generated from scratch in 7.2s; 4 document-signing certificates and 1 time-stamping certificate issued
+
+=== Unit tests ===
+test_pkcs1v15_matches_library_byte_for_byte (__main__.TestSignatures) ... ok
+test_pss_encoding_structure (__main__.TestSignatures) ... ok
+test_pss_interop_with_library (__main__.TestSignatures) ... ok
+test_pss_round_trip_randomised (__main__.TestSignatures) ... ok
+test_textbook_rsa_forgery (__main__.TestSignatures) ... ok
+test_contractor_capped_and_tsa_profile (__main__.TestCertificates) ... ok
+test_document_signing_profile (__main__.TestCertificates) ... ok
+test_key_separation (__main__.TestCertificates) ... ok
+test_policy_rejects_non_hvmc_email (__main__.TestCertificates) ... ok
+test_revocation_and_crl (__main__.TestCertificates) ... ok
+test_authorisation_and_trust_anchor (__main__.TestVerification) ... ok
+test_long_term_validation (__main__.TestVerification) ... ok
+test_revocation_timing (__main__.TestVerification) ... ok
+test_valid_and_tampering (__main__.TestVerification) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 1.075s
+
+OK
+tests run: 14, failures: 0, errors: 0, skipped: 0
+
+=== Demo 1: RSA signatures from scratch ===
+  RSA-PSS-SHA256 signature by Sarah Chen's RSA-3072 key: 384 bytes, 17 ms; verifies = True
+  signing the same document again gives a different signature (random salt) = True
+  PKCS #1 v1.5 signature is deterministic and identical to the library's = True
+  textbook RSA (no hash, no padding): signatures on m1 and m2 multiply into a valid signature on m1*m2 = True -> existential forgery; hashing + PSS padding stop this
+
+=== Demo 2: Certificate generation and management ===
+  Sarah Chen                       Doctors               RSA-3072  documentSigning, emailProtection         until 2028-10-25  approved by Denise Coleman (Information Security)
+  Angela Brooks                    Nursing               RSA-3072  documentSigning, emailProtection         until 2028-10-25  approved by Denise Coleman (Information Security)
+  David Patel                      Pharmacy              RSA-3072  documentSigning, emailProtection         until 2028-10-25  approved by Denise Coleman (Information Security)
+  Carlos Diaz                      IT                    RSA-3072  documentSigning, emailProtection         until 2026-12-31  approved by Kevin O'Brien (sponsor)
+  HVMC Time-Stamping Authority 1   Information Security  RSA-3072  timeStamping (critical)                  until 2031-10-25  approved by Denise Coleman (Information Security)
+  Carlos Diaz is a contractor: certificate capped at his contract end date 2026-12-31 (not 2 years)
+
+=== Demo 3: Signing, verification, revocation and renewal on a timeline ===
+  T0 = 2026-10-26 17:57 UTC (run time; signing certificates issued). Later events are simulated.
+
+  T0+1h  Sarah Chen, Angela Brooks, David Patel and Carlos Diaz sign their documents (timestamped by the HVMC TSA)
+
+  [VALID] 1. Discharge summary signed by Sarah Chen, verified at T0+2h
+      signer: Sarah Chen (Doctors); trusted signing time: 2026-10-26 18:57 UTC; all checks passed
+      pass  algorithm accepted by the trust policy  (RSASSA-PSS-SHA256)
+      pass  document SHA-256 matches the signed attribute  (fd779d4597eb9cb994d4c70d…)
+      pass  signer certificate matches the signed certificate hash  (Sarah Chen (Doctors))
+      pass  RSA-PSS signature over the signed attributes  (from-scratch=True, library=True)
+      pass  timestamp token: imprint, TSA signature, timeStamping EKU  (HVMC Time-Stamping Authority 1, gen_time 2026-10-26 18:57 UTC)
+      pass  TSA: certificate path to a pinned HVMC trust anchor (at 2026-10-26 18:57 UTC)  (11 checks)
+      pass  TSA: CRL #2 signed by the issuing CA and current  (next update 2026-11-02)
+      pass  TSA: revocation status  (not revoked)
+      pass  signer: certificate path to a pinned HVMC trust anchor (at 2026-10-26 18:57 UTC)  (11 checks)
+      pass  key usage digitalSignature + nonRepudiation, EKU documentSigning
+      pass  certificate policy = HVMC Clinical Document Signing Policy  (2.25.30116833993161209…)
+      pass  signer: CRL #2 signed by the issuing CA and current  (next update 2026-11-02)
+      pass  signer: revocation status  (not revoked)
+      pass  signer's department is authorised for 'discharge-summary'  (Doctors; allowed: Doctors)
+
+  T0+2h  attacks on the signed documents
+
+  [INVALID] 2. Dose changed from 875 mg to 1750 mg after signing
+      signer: None; trusted signing time: none; document was modified after signing
+      pass  algorithm accepted by the trust policy  (RSASSA-PSS-SHA256)
+      FAIL  document SHA-256 matches the signed attribute  (a6a9ae49907b2452c7fc48f5…)
+
+  [INVALID] 3. Signed attribute edited (document moved to another patient's record)
+      signer: David Patel (Pharmacy); trusted signing time: none; signature does not verify
+      pass  algorithm accepted by the trust policy  (RSASSA-PSS-SHA256)
+      pass  document SHA-256 matches the signed attribute  (0318223df7c5dcbf5ae56a82…)
+      pass  signer certificate matches the signed certificate hash  (David Patel (Pharmacy))
+      FAIL  RSA-PSS signature over the signed attributes  (from-scratch=False, library=False)
+
+  [INVALID] 4. Signer certificate swapped for another doctor's
+      signer: David Patel (Pharmacy); trusted signing time: none; signer certificate was substituted
+      pass  algorithm accepted by the trust policy  (RSASSA-PSS-SHA256)
+      pass  document SHA-256 matches the signed attribute  (fd779d4597eb9cb994d4c70d…)
+      FAIL  signer certificate matches the signed certificate hash  (David Patel (Pharmacy))
+
+  [INVALID] 5. A nurse signs a discharge summary (valid key, wrong authority)
+      signer: Angela Brooks (Nursing); trusted signing time: 2026-10-26 19:57 UTC; signer not authorised for this document type
+      pass  algorithm accepted by the trust policy  (RSASSA-PSS-SHA256)
+      pass  document SHA-256 matches the signed attribute  (fd779d4597eb9cb994d4c70d…)
+      pass  signer certificate matches the signed certificate hash  (Angela Brooks (Nursing))
+      pass  RSA-PSS signature over the signed attributes  (from-scratch=True, library=True)
+      pass  timestamp token: imprint, TSA signature, timeStamping EKU  (HVMC Time-Stamping Authority 1, gen_time 2026-10-26 19:57 UTC)
+      pass  TSA: certificate path to a pinned HVMC trust anchor (at 2026-10-26 19:57 UTC)  (11 checks)
+      pass  TSA: CRL #2 signed by the issuing CA and current  (next update 2026-11-02)
+      pass  TSA: revocation status  (not revoked)
+      pass  signer: certificate path to a pinned HVMC trust anchor (at 2026-10-26 19:57 UTC)  (11 checks)
+      pass  key usage digitalSignature + nonRepudiation, EKU documentSigning
+      pass  certificate policy = HVMC Clinical Document Signing Policy  (2.25.30116833993161209…)
+      pass  signer: CRL #2 signed by the issuing CA and current  (next update 2026-11-02)
+      pass  signer: revocation status  (not revoked)
+      FAIL  signer's department is authorised for 'discharge-summary'  (Nursing; allowed: Doctors)
+
+  [INVALID] 6. Attacker's own 'HVMC Root CA R1' issues a 'Sarah Chen' certificate
+      signer: Sarah Chen (Doctors); trusted signing time: 2026-10-26 19:57 UTC; signer certificate not trusted at signing time
+      pass  algorithm accepted by the trust policy  (RSASSA-PSS-SHA256)
+      pass  document SHA-256 matches the signed attribute  (fd779d4597eb9cb994d4c70d…)
+      pass  signer certificate matches the signed certificate hash  (Sarah Chen (Doctors))
+      pass  RSA-PSS signature over the signed attributes  (from-scratch=True, library=True)
+      pass  timestamp token: imprint, TSA signature, timeStamping EKU  (HVMC Time-Stamping Authority 1, gen_time 2026-10-26 19:57 UTC)
+      pass  TSA: certificate path to a pinned HVMC trust anchor (at 2026-10-26 19:57 UTC)  (11 checks)
+      pass  TSA: CRL #2 signed by the issuing CA and current  (next update 2026-11-02)
+      pass  TSA: revocation status  (not revoked)
+      FAIL  signer: certificate path to a pinned HVMC trust anchor (at 2026-10-26 19:57 UTC)  (7 checks; failed: Sarah Chen: signature (library / from-scratch))
+
+  T0+4d  JML-203: Carlos Diaz's contract ends - certificate revoked (cessationOfOperation)
+
+  [VALID] 7. Carlos's change record signed at T0+1h, verified after his revocation
+      signer: Carlos Diaz (IT); trusted signing time: 2026-10-26 18:57 UTC; all checks passed
+      pass  algorithm accepted by the trust policy  (RSASSA-PSS-SHA256)
+      pass  document SHA-256 matches the signed attribute  (a07d3b240f9bc42a9fccd7f3…)
+      pass  signer certificate matches the signed certificate hash  (Carlos Diaz (IT))
+      pass  RSA-PSS signature over the signed attributes  (from-scratch=True, library=True)
+      pass  timestamp token: imprint, TSA signature, timeStamping EKU  (HVMC Time-Stamping Authority 1, gen_time 2026-10-26 18:57 UTC)
+      pass  TSA: certificate path to a pinned HVMC trust anchor (at 2026-10-26 18:57 UTC)  (11 checks)
+      pass  TSA: CRL #3 signed by the issuing CA and current  (next update 2026-11-06)
+      pass  TSA: revocation status  (not revoked)
+      pass  signer: certificate path to a pinned HVMC trust anchor (at 2026-10-26 18:57 UTC)  (11 checks)
+      pass  key usage digitalSignature + nonRepudiation, EKU documentSigning
+      pass  certificate policy = HVMC Clinical Document Signing Policy  (2.25.30116833993161209…)
+      pass  signer: CRL #3 signed by the issuing CA and current  (next update 2026-11-06)
+      pass  signer: revocation status  (revoked 2026-10-30 17:57 (cessationOfOperation) - signed BEFORE the cut-off, so the signature stays valid)
+      pass  signer's department is authorised for 'change-record'  (IT; allowed: IT, Information Security)
+
+  [INVALID] 8. Carlos still has his key file and signs a new change record at T0+5d
+      signer: Carlos Diaz (IT); trusted signing time: 2026-10-31 17:57 UTC; signer certificate was revoked before the signature was made
+      pass  algorithm accepted by the trust policy  (RSASSA-PSS-SHA256)
+      pass  document SHA-256 matches the signed attribute  (50c862fee0f59c5e3c040c78…)
+      pass  signer certificate matches the signed certificate hash  (Carlos Diaz (IT))
+      pass  RSA-PSS signature over the signed attributes  (from-scratch=True, library=True)
+      pass  timestamp token: imprint, TSA signature, timeStamping EKU  (HVMC Time-Stamping Authority 1, gen_time 2026-10-31 17:57 UTC)
+      pass  TSA: certificate path to a pinned HVMC trust anchor (at 2026-10-31 17:57 UTC)  (11 checks)
+      pass  TSA: CRL #4 signed by the issuing CA and current  (next update 2026-11-07)
+      pass  TSA: revocation status  (not revoked)
+      pass  signer: certificate path to a pinned HVMC trust anchor (at 2026-10-31 17:57 UTC)  (11 checks)
+      pass  key usage digitalSignature + nonRepudiation, EKU documentSigning
+      pass  certificate policy = HVMC Clinical Document Signing Policy  (2.25.30116833993161209…)
+      pass  signer: CRL #4 signed by the issuing CA and current  (next update 2026-11-07)
+      FAIL  signer: revocation status  (revoked 2026-10-30 17:57 (cessationOfOperation) - signed AFTER the cut-off)
+
+  T0+7d  Angela Brooks reports her laptop stolen on T0+6d - certificate revoked (keyCompromise, invalidity date T0+6d)
+
+  [INVALID] 9. Note signed with Angela's stolen key at T0+6d12h (before anyone knew)
+      signer: Angela Brooks (Nursing); trusted signing time: 2026-11-02 05:57 UTC; signer certificate was revoked before the signature was made
+      pass  algorithm accepted by the trust policy  (RSASSA-PSS-SHA256)
+      pass  document SHA-256 matches the signed attribute  (8e4d1c6b42ea6e1807d36635…)
+      pass  signer certificate matches the signed certificate hash  (Angela Brooks (Nursing))
+      pass  RSA-PSS signature over the signed attributes  (from-scratch=True, library=True)
+      pass  timestamp token: imprint, TSA signature, timeStamping EKU  (HVMC Time-Stamping Authority 1, gen_time 2026-11-02 05:57 UTC)
+      pass  TSA: certificate path to a pinned HVMC trust anchor (at 2026-11-02 05:57 UTC)  (11 checks)
+      pass  TSA: CRL #5 signed by the issuing CA and current  (next update 2026-11-09)
+      pass  TSA: revocation status  (not revoked)
+      pass  signer: certificate path to a pinned HVMC trust anchor (at 2026-11-02 05:57 UTC)  (11 checks)
+      pass  key usage digitalSignature + nonRepudiation, EKU documentSigning
+      pass  certificate policy = HVMC Clinical Document Signing Policy  (2.25.30116833993161209…)
+      pass  signer: CRL #5 signed by the issuing CA and current  (next update 2026-11-09)
+      FAIL  signer: revocation status  (revoked 2026-11-02 17:57 (keyCompromise), key invalid from 2026-11-01 17:57 - signed AFTER the cut-off)
+
+  [VALID] 10. Angela's genuine note from T0+1h, verified after the compromise
+      signer: Angela Brooks (Nursing); trusted signing time: 2026-10-26 18:57 UTC; all checks passed
+      pass  algorithm accepted by the trust policy  (RSASSA-PSS-SHA256)
+      pass  document SHA-256 matches the signed attribute  (7e3c29b0804f93246781ef81…)
+      pass  signer certificate matches the signed certificate hash  (Angela Brooks (Nursing))
+      pass  RSA-PSS signature over the signed attributes  (from-scratch=True, library=True)
+      pass  timestamp token: imprint, TSA signature, timeStamping EKU  (HVMC Time-Stamping Authority 1, gen_time 2026-10-26 18:57 UTC)
+      pass  TSA: certificate path to a pinned HVMC trust anchor (at 2026-10-26 18:57 UTC)  (11 checks)
+      pass  TSA: CRL #5 signed by the issuing CA and current  (next update 2026-11-09)
+      pass  TSA: revocation status  (not revoked)
+      pass  signer: certificate path to a pinned HVMC trust anchor (at 2026-10-26 18:57 UTC)  (11 checks)
+      pass  key usage digitalSignature + nonRepudiation, EKU documentSigning
+      pass  certificate policy = HVMC Clinical Document Signing Policy  (2.25.30116833993161209…)
+      pass  signer: CRL #5 signed by the issuing CA and current  (next update 2026-11-09)
+      pass  signer: revocation status  (revoked 2026-11-02 17:57 (keyCompromise), key invalid from 2026-11-01 17:57 - signed BEFORE the cut-off, so the signature stays valid)
+      pass  signer's department is authorised for 'nursing-note'  (Nursing; allowed: Nursing)
+
+  [VALID] 11. Angela signs with her NEW key and certificate at T0+8d
+      signer: Angela Brooks (Nursing); trusted signing time: 2026-11-03 17:57 UTC; all checks passed
+      pass  algorithm accepted by the trust policy  (RSASSA-PSS-SHA256)
+      pass  document SHA-256 matches the signed attribute  (0ae4b7a913b29b17faee6da7…)
+      pass  signer certificate matches the signed certificate hash  (Angela Brooks (Nursing))
+      pass  RSA-PSS signature over the signed attributes  (from-scratch=True, library=True)
+      pass  timestamp token: imprint, TSA signature, timeStamping EKU  (HVMC Time-Stamping Authority 1, gen_time 2026-11-03 17:57 UTC)
+      pass  TSA: certificate path to a pinned HVMC trust anchor (at 2026-11-03 17:57 UTC)  (11 checks)
+      pass  TSA: CRL #6 signed by the issuing CA and current  (next update 2026-11-10)
+      pass  TSA: revocation status  (not revoked)
+      pass  signer: certificate path to a pinned HVMC trust anchor (at 2026-11-03 17:57 UTC)  (11 checks)
+      pass  key usage digitalSignature + nonRepudiation, EKU documentSigning
+      pass  certificate policy = HVMC Clinical Document Signing Policy  (2.25.30116833993161209…)
+      pass  signer: CRL #6 signed by the issuing CA and current  (next update 2026-11-10)
+      pass  signer: revocation status  (not revoked)
+      pass  signer's department is authorised for 'nursing-note'  (Nursing; allowed: Nursing)
+
+  Expiry monitor run for 2027-10-28 (45-day window): CN=portal.hvmc.example (tls-server) expires 2027-11-27 - 30 days left
+  T0+9d  renewal (re-key) brought forward to the next change window: new RSA-2048 key portal-tls-2027, new certificate until 2027-12-06; old certificate revoked as 'superseded' after cut-over
+
+  2028-11-24: Sarah's certificate expired on 2028-10-25; an auditor checks the discharge summary
+
+  [VALID] 12. Same document, signature WITH a TSA timestamp
+      signer: Sarah Chen (Doctors); trusted signing time: 2026-10-26 18:57 UTC; all checks passed
+      pass  algorithm accepted by the trust policy  (RSASSA-PSS-SHA256)
+      pass  document SHA-256 matches the signed attribute  (fd779d4597eb9cb994d4c70d…)
+      pass  signer certificate matches the signed certificate hash  (Sarah Chen (Doctors))
+      pass  RSA-PSS signature over the signed attributes  (from-scratch=True, library=True)
+      pass  timestamp token: imprint, TSA signature, timeStamping EKU  (HVMC Time-Stamping Authority 1, gen_time 2026-10-26 18:57 UTC)
+      pass  TSA: certificate path to a pinned HVMC trust anchor (at 2026-10-26 18:57 UTC)  (11 checks)
+      pass  TSA: CRL #7 signed by the issuing CA and current  (next update 2028-12-01)
+      pass  TSA: revocation status  (not revoked)
+      pass  signer: certificate path to a pinned HVMC trust anchor (at 2026-10-26 18:57 UTC)  (11 checks)
+      pass  key usage digitalSignature + nonRepudiation, EKU documentSigning
+      pass  certificate policy = HVMC Clinical Document Signing Policy  (2.25.30116833993161209…)
+      pass  signer: CRL #7 signed by the issuing CA and current  (next update 2028-12-01)
+      pass  signer: revocation status  (not revoked)
+      pass  signer's department is authorised for 'discharge-summary'  (Doctors; allowed: Doctors)
+
+  [INDETERMINATE] 13. Same document, signature WITHOUT a timestamp
+      signer: Sarah Chen (Doctors); trusted signing time: none; signer certificate has expired and there is no trusted timestamp proving the signature was made while it was valid
+      pass  algorithm accepted by the trust policy  (RSASSA-PSS-SHA256)
+      pass  document SHA-256 matches the signed attribute  (fd779d4597eb9cb994d4c70d…)
+      pass  signer certificate matches the signed certificate hash  (Sarah Chen (Doctors))
+      pass  RSA-PSS signature over the signed attributes  (from-scratch=True, library=True)
+      pass  timestamp token  (none - only the signer's own claimed time, which cannot be trusted)
+      FAIL  signer: certificate path to a pinned HVMC trust anchor (at 2028-11-24 17:57 UTC)  (11 checks; failed: Sarah Chen: inside validity period)
+
+  T0+10d published CRL #8 with 3 entries:
+    CN=portal.hvmc.example       revoked 2026-11-04 19:57  reason superseded
+    CN=Angela Brooks             revoked 2026-11-02 17:57  reason keyCompromise
+    CN=Carlos Diaz               revoked 2026-10-30 17:57  reason cessationOfOperation
+
+=== Demo 4: Independent checks with OpenSSL ===
+  openssl dgst verifies the from-scratch RSA-PSS signature: Verified OK
+  from-scratch PKCS #1 v1.5 signature identical to OpenSSL's: True
+  openssl verify -crl_check: Sarah -> certs/sarah.chen.sign.crt.pem: OK; Carlos -> revoked = True; old portal -> revoked = True; renewed portal -> certs/portal.hvmc.example.renewed.crt.pem: OK

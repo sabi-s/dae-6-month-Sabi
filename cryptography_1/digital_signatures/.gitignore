@@ -1,0 +1,3 @@
+# Private keys and the PKI passphrase never leave this machine (copied from the rubric 4 PKI by test_and_demo.py)
+pki/private/
+__pycache__/

@@ -1,0 +1,29 @@
+{
+  "anchors": [
+    {
+      "subject": "CN=HVMC Root CA R1,OU=Information Security,O=Horizon Valley Medical Center,C=US",
+      "sha256": "4e0f2629820c5028add49dd796fa47d8e68765deeb4c2acf1d7d1d92374ecbea",
+      "not_after": "2036-10-23"
+    }
+  ],
+  "required_certificate_policy": "2.25.301168339931612099844041656523656322233",
+  "accepted_algorithms": [
+    "RSASSA-PSS-SHA256"
+  ],
+  "document_policy": {
+    "discharge-summary": [
+      "Doctors"
+    ],
+    "nursing-note": [
+      "Nursing"
+    ],
+    "medication-verification": [
+      "Doctors",
+      "Pharmacy"
+    ],
+    "change-record": [
+      "IT",
+      "Information Security"
+    ]
+  }
+}

@@ -1,0 +1,227 @@
+[
+  {
+    "key_id": "hvmc-root-ca-r1",
+    "purpose": "root-ca",
+    "owner": "Information Security (offline)",
+    "algorithm": "RSA-4096",
+    "public_exponent": 65537,
+    "fingerprint_sha256": "1893a7eca7cdffe4e84352ed8e939985cd0d5c71f9b947613781aa7a68634a48",
+    "created": "2026-10-26T17:37:03+00:00",
+    "expires": "2036-10-23T17:37:03+00:00",
+    "status": "active",
+    "storage": "offline, encrypted (HSM in production)",
+    "private_key_file": "private/hvmc-root-ca-r1.key.pem",
+    "public_key_file": "public/hvmc-root-ca-r1.pub.pem",
+    "history": [
+      "2026-10-26 generated"
+    ]
+  },
+  {
+    "key_id": "hvmc-issuing-ca-1",
+    "purpose": "issuing-ca",
+    "owner": "Information Security",
+    "algorithm": "RSA-3072",
+    "public_exponent": 65537,
+    "fingerprint_sha256": "8a838eb2dc8b84c4a22bcb6eacff30a8587fbdbc8c579492b9e91c234ac29e88",
+    "created": "2026-10-26T17:37:03+00:00",
+    "expires": "2031-10-25T17:37:03+00:00",
+    "status": "active",
+    "storage": "encrypted, CA host only",
+    "private_key_file": "private/hvmc-issuing-ca-1.key.pem",
+    "public_key_file": "public/hvmc-issuing-ca-1.pub.pem",
+    "history": [
+      "2026-10-26 generated"
+    ]
+  },
+  {
+    "key_id": "portal-tls-2026",
+    "purpose": "tls-server",
+    "owner": "IT Infrastructure (Kevin O'Brien)",
+    "algorithm": "RSA-2048",
+    "public_exponent": 65537,
+    "fingerprint_sha256": "b843035b68f540dfa220783525ec5934b5c006f6c4b257d1cd28a5876dbb6eec",
+    "created": "2026-10-26T17:37:03+00:00",
+    "expires": "2027-11-27T17:37:03+00:00",
+    "status": "retired",
+    "storage": "encrypted, web server only",
+    "private_key_file": "private/portal-tls-2026.key.pem",
+    "public_key_file": "public/portal-tls-2026.pub.pem",
+    "history": [
+      "2026-10-26 generated",
+      "2026-11-04 retired: superseded by portal-tls-2027"
+    ]
+  },
+  {
+    "key_id": "sarah-chen-client-2026",
+    "purpose": "client-auth",
+    "owner": "Sarah Chen (Doctors)",
+    "algorithm": "RSA-2048",
+    "public_exponent": 65537,
+    "fingerprint_sha256": "0ffab9ec1a3f1bcd62991b535cf01808cbc60286fb94668fc6bad5a2d5fe1105",
+    "created": "2026-10-26T17:37:03+00:00",
+    "expires": "2027-10-26T17:37:03+00:00",
+    "status": "active",
+    "storage": "encrypted, user device",
+    "private_key_file": "private/sarah-chen-client-2026.key.pem",
+    "public_key_file": "public/sarah-chen-client-2026.pub.pem",
+    "history": [
+      "2026-10-26 generated"
+    ]
+  },
+  {
+    "key_id": "ehr-data-key-v1",
+    "purpose": "data-encryption",
+    "owner": "EHR key service",
+    "algorithm": "RSA-3072",
+    "public_exponent": 65537,
+    "fingerprint_sha256": "749e29f1c29e3f5b4bc53311b3a13dc443c7f85bcfcb8e62ca3c2303600dda08",
+    "created": "2026-10-26T17:37:03+00:00",
+    "expires": "2028-10-25T17:37:03+00:00",
+    "status": "destroyed",
+    "storage": "encrypted, EHR key service",
+    "private_key_file": "private/ehr-data-key-v1.key.pem",
+    "public_key_file": "public/ehr-data-key-v1.pub.pem",
+    "history": [
+      "2026-10-26 generated",
+      "2026-10-26 retired: rotated to ehr-data-key-v2 (ticket HVMC-PKI-CHG-402)",
+      "2026-10-26 destroyed: all envelopes rewrapped to v2"
+    ]
+  },
+  {
+    "key_id": "ehr-data-key-v2",
+    "purpose": "data-encryption",
+    "owner": "EHR key service",
+    "algorithm": "RSA-3072",
+    "public_exponent": 65537,
+    "fingerprint_sha256": "018f6dc852fac4a0d5151aea22c2f845e9987cbe27c16c7a56c48892abfa8d92",
+    "created": "2026-10-26T17:37:03+00:00",
+    "expires": "2028-10-25T17:37:03+00:00",
+    "status": "active",
+    "storage": "encrypted, EHR key service",
+    "private_key_file": "private/ehr-data-key-v2.key.pem",
+    "public_key_file": "public/ehr-data-key-v2.pub.pem",
+    "history": [
+      "2026-10-26 generated"
+    ]
+  },
+  {
+    "key_id": "sarah-chen-sign-2026",
+    "purpose": "document-signing",
+    "owner": "Sarah Chen (Doctors)",
+    "algorithm": "RSA-3072",
+    "public_exponent": 65537,
+    "fingerprint_sha256": "9a233be3060ed0c13d3a899eb88a1a01df452d651ac70715da16e92364d136e7",
+    "created": "2026-10-26T17:57:25+00:00",
+    "expires": "2028-10-25T17:57:25+00:00",
+    "status": "active",
+    "storage": "encrypted, clinician device (smart card in production)",
+    "private_key_file": "private/sarah-chen-sign-2026.key.pem",
+    "public_key_file": "public/sarah-chen-sign-2026.pub.pem",
+    "history": [
+      "2026-10-26 generated"
+    ]
+  },
+  {
+    "key_id": "angela-brooks-sign-2026",
+    "purpose": "document-signing",
+    "owner": "Angela Brooks (Nursing)",
+    "algorithm": "RSA-3072",
+    "public_exponent": 65537,
+    "fingerprint_sha256": "82701b68a85fec03a3e41bf0af1025ccdcdc5159afaa12de2b9daaaa33389426",
+    "created": "2026-10-26T17:57:25+00:00",
+    "expires": "2028-10-25T17:57:25+00:00",
+    "status": "compromised",
+    "storage": "encrypted, clinician device (smart card in production)",
+    "private_key_file": "private/angela-brooks-sign-2026.key.pem",
+    "public_key_file": "public/angela-brooks-sign-2026.pub.pem",
+    "history": [
+      "2026-10-26 generated",
+      "2026-11-02 compromised: laptop stolen, certificate revoked"
+    ]
+  },
+  {
+    "key_id": "david-patel-sign-2026",
+    "purpose": "document-signing",
+    "owner": "David Patel (Pharmacy)",
+    "algorithm": "RSA-3072",
+    "public_exponent": 65537,
+    "fingerprint_sha256": "9a17728341cdbf10fa315be2565bdd482c6f47577c78087953b7a30956f4935f",
+    "created": "2026-10-26T17:57:25+00:00",
+    "expires": "2028-10-25T17:57:25+00:00",
+    "status": "active",
+    "storage": "encrypted, clinician device (smart card in production)",
+    "private_key_file": "private/david-patel-sign-2026.key.pem",
+    "public_key_file": "public/david-patel-sign-2026.pub.pem",
+    "history": [
+      "2026-10-26 generated"
+    ]
+  },
+  {
+    "key_id": "carlos-diaz-sign-2026",
+    "purpose": "document-signing",
+    "owner": "Carlos Diaz (IT)",
+    "algorithm": "RSA-3072",
+    "public_exponent": 65537,
+    "fingerprint_sha256": "3cd08bd2d739c453c4b04ef21046f59a617c97c38650114bc7178cab288feb8e",
+    "created": "2026-10-26T17:57:25+00:00",
+    "expires": "2028-10-25T17:57:25+00:00",
+    "status": "active",
+    "storage": "encrypted, clinician device (smart card in production)",
+    "private_key_file": "private/carlos-diaz-sign-2026.key.pem",
+    "public_key_file": "public/carlos-diaz-sign-2026.pub.pem",
+    "history": [
+      "2026-10-26 generated"
+    ]
+  },
+  {
+    "key_id": "hvmc-tsa-1",
+    "purpose": "timestamping",
+    "owner": "Information Security (TSA)",
+    "algorithm": "RSA-3072",
+    "public_exponent": 65537,
+    "fingerprint_sha256": "1eda15a9488772ee6563ab402aa2f80f2624cb1221a9ab23313c1e5cc3c4ed4b",
+    "created": "2026-10-26T17:57:25+00:00",
+    "expires": "2031-10-25T17:57:25+00:00",
+    "status": "active",
+    "storage": "encrypted, TSA host (HSM in production)",
+    "private_key_file": "private/hvmc-tsa-1.key.pem",
+    "public_key_file": "public/hvmc-tsa-1.pub.pem",
+    "history": [
+      "2026-10-26 generated"
+    ]
+  },
+  {
+    "key_id": "angela-brooks-sign-2026b",
+    "purpose": "document-signing",
+    "owner": "Angela Brooks (Nursing)",
+    "algorithm": "RSA-3072",
+    "public_exponent": 65537,
+    "fingerprint_sha256": "c529857b5ff5dab46b710d52a5569468265357ec26c0df811b322559731e435c",
+    "created": "2026-11-02T19:57:25+00:00",
+    "expires": "2028-11-01T19:57:25+00:00",
+    "status": "active",
+    "storage": "encrypted, clinician device (smart card in production)",
+    "private_key_file": "private/angela-brooks-sign-2026b.key.pem",
+    "public_key_file": "public/angela-brooks-sign-2026b.pub.pem",
+    "history": [
+      "2026-11-02 generated"
+    ]
+  },
+  {
+    "key_id": "portal-tls-2027",
+    "purpose": "tls-server",
+    "owner": "IT Infrastructure (Kevin O'Brien)",
+    "algorithm": "RSA-2048",
+    "public_exponent": 65537,
+    "fingerprint_sha256": "d7e916aa967873eb2ec517f8faf56cac33605f2113dce6c9e9bd85793b373e7a",
+    "created": "2026-11-04T17:57:25+00:00",
+    "expires": "2027-12-06T17:57:25+00:00",
+    "status": "active",
+    "storage": "encrypted, web server only",
+    "private_key_file": "private/portal-tls-2027.key.pem",
+    "public_key_file": "public/portal-tls-2027.pub.pem",
+    "history": [
+      "2026-11-04 generated"
+    ]
+  }
+]

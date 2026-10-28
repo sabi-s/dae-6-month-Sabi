@@ -1,0 +1,15 @@
+# macOS Finder clutter (folder view settings - no value in the repo)
+.DS_Store
+
+# Secrets: API keys, passwords and private keys never go to GitHub
+.env
+.env.*
+!.env.example
+SECRET_*
+*.key.pem
+
+# Python build files and virtual environments
+__pycache__/
+*.pyc
+.venv/
+venv/

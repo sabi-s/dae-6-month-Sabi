@@ -4,3 +4,5 @@ step5_access_review/review_data.json
 step5_access_review/review_items.json
 step6_conditional_access/tenant_ids.json
 __pycache__/
+# Break-glass passwords never leave the local machine
+**/SECRET_*

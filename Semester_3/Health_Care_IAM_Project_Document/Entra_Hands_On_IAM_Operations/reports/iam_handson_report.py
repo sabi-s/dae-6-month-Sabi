@@ -1,4 +1,4 @@
-"""HVMC Healthcare IAM - hands-on Entra ID operations (Steps 1-6) deliverable -> PDF, built from the evidence files."""
+"""HVMC Healthcare IAM - hands-on Entra ID operations (Steps 1-7) deliverable -> PDF, built from the evidence files."""
 import glob
 import html
 import importlib.util
@@ -51,6 +51,10 @@ def build():
     apps = mod("step3_enterprise_apps/enterprise_apps.py", "apps")
     ca = mod("step6_conditional_access/ca_design.py", "ca")
     tests = json.load(open(os.path.join(ROOT, "step6_conditional_access/test_plan.json")))
+    s7_before, s7_after = latest("step7_tenant_hardening/evidence/*_authorizationPolicy_before.json"), \
+        latest("step7_tenant_hardening/evidence/*_authorizationPolicy_after.json")
+    s7_bg = latest("step7_tenant_hardening/evidence/*_breakglass_after.json")
+    th = mod("step7_tenant_hardening/tenant_hardening.py", "th")
 
     # ---- step 1
     org_rows = []
@@ -99,15 +103,35 @@ def build():
         lic.setdefault(p[3], []).append(p[0])
     ca_rows = [(f"<b>{p[0]}</b>", E(p[1].split("-", 1)[1]), E(p[2]), E(p[3]), E(p[4])) for p in ca.POLICIES]
 
+    # ---- step 7
+    s7_rows = []
+    labels = {"allowInvitesFrom": "Who can invite guests", "guestUserRoleId": "Guest directory access",
+              "allowEmailVerifiedUsersToJoinOrganization": "Email-verified self-service sign-up",
+              "allowedToSignUpEmailBasedSubscriptions": "Self-service sign-up for subscriptions",
+              "allowedToCreateApps": "Users can register applications", "allowedToCreateSecurityGroups": "Users can create security groups",
+              "allowedToCreateTenants": "Users can create tenants", "permissionGrantPoliciesAssigned": "User consent to applications"}
+    def v7(k, d):
+        val = d.get(k, d.get("defaultUserRolePermissions", {}).get(k))
+        if k == "permissionGrantPoliciesAssigned":
+            return "Do not allow user consent" if not val else "Allowed (" + str(len(val)) + " consent policies)"
+        if k == "guestUserRoleId":
+            return th.GUEST_ROLE_NAMES.get(val, val)
+        if k == "allowInvitesFrom":
+            return {"everyone": "Everyone, including guests", "adminsAndGuestInviters": "Admins and Guest Inviter role only"}.get(val, val)
+        return "Yes" if val is True else "No" if val is False else str(val)
+    for k, lab in labels.items():
+        s7_rows.append((E(lab), E(v7(k, s7_before)), f"<b>{E(v7(k, s7_after))}</b>"))
+    s7_gas = [("Emergency Access" if a.startswith("bg-") else "Named administrator", a.split("@")[0] + "@&lt;tenant&gt;.onmicrosoft.com" if a.startswith("bg-") else "IAM administrator (Sabitha S Karanavar)") for a in s7_bg["global_admins"]]
+
     style = open(STYLE).read().replace("<title>HVMC Report</title>", "<title>HVMC IAM Hands-On Entra Operations</title>")
     style = style.replace("</style>", "table.tiny{font-size:7.6pt} table.tiny td,table.tiny th{padding:3px 4px} code{font-family:Menlo,monospace;font-size:7.8pt;background:#eef2f8;padding:0 3px} .big{font-size:20pt;font-weight:bold;color:#1f3864}</style>")
     body = f'''{style}
 <div class="runhead">Horizon Valley Medical Center &nbsp;|&nbsp; Healthcare IAM Operations Simulation</div>
 <h1>Hands-On Identity Operations in Microsoft Entra ID</h1>
-<div class="sub">Identity Hygiene · RBAC v2 · Enterprise Applications · Joiner/Mover/Leaver · Access Review · Conditional Access Design</div>
+<div class="sub">Identity Hygiene · RBAC v2 · Enterprise Applications · Joiner/Mover/Leaver · Access Review · Conditional Access Design · Tenant Hardening</div>
 {kv([("Project Name", "Healthcare IAM Operations Simulation"), ("Organization", "Horizon Valley Medical Center (HVMC)"),
                    ("Environment", "Microsoft Entra ID tenant (Free tier), 33 accounts; changes made with Microsoft Graph via scripted, ticketed changes"),
-                   ("Date", "20 October 2026"), ("Document Version", "1.0"), ("Prepared By", "Sabitha S Karanavar"), ("Cost", "$0 — every change used Entra ID Free features")])}
+                   ("Date", "20 October 2026 (Step 7: 28 October 2026)"), ("Document Version", "1.1"), ("Prepared By", "Sabitha S Karanavar"), ("Cost", "$0 — every change used Entra ID Free features")])}
 
 <h2>1. Purpose and approach</h2>
 <p>The Week 1 design (scenario, RBAC matrix, OU structure and group naming) was turned into a working, governed identity environment.
@@ -120,7 +144,8 @@ access always follows the approved design.</p>
     ("3", "Simulated enterprise applications with app roles", "HVMC-IAM-CHG-103", f"{len(s3_first['inventory'])} apps, {sum(i['assignedUsers'] for i in s3_first['inventory'])} assignments"),
     ("4", "Joiner, mover and leaver", "HVMC-JML-201/202/203", "3 lifecycle events + 1 finding fixed"),
     ("5", "Quarterly access review", "HVMC-AR-2026-Q4", f"{len(ar_items)} lines reviewed, {len(remove)} removal"),
-    ("6", "Conditional Access design (report-only, licence-gated)", "—", f"{len(ca.POLICIES)} policies, {len(tests)} test cases")])}
+    ("6", "Conditional Access design (report-only, licence-gated)", "—", f"{len(ca.POLICIES)} policies, {len(tests)} test cases"),
+    ("7", "Free tenant hardening — consent, guests, self-service; break-glass administrators", "HVMC-IAM-CHG-106/107", f"{len(s7_rows)} settings, Global Admins 1 → {len(s7_gas)}")])}
 
 <h2>2. Starting baseline (findings)</h2>
 {table(["#", "Finding", "Why it mattered", "Fixed in"], [
@@ -129,7 +154,8 @@ access always follows the approved design.</p>
     ("F3", "One group per department", "Secondary access in the RBAC matrix (e.g. doctors reading Pharmacy and LIS) was not grantable", "Step 2"),
     ("F4", "Shared test account “Test Nurse - EHR” enabled", "Shared account with ePHI access (risk R07)", "Steps 1 and 5"),
     ("F5", "Contractor without type, sponsor or end date", "Contractor access outlives the contract (risk R06)", "Steps 1 and 4"),
-    ("F6", "Single Global Administrator", "No backup or emergency access (risk R04)", "Step 6 design")])}
+    ("F6", "Single Global Administrator", "No backup or emergency access (risk R04)", "Step 7"),
+    ("F7", "Permissive tenant defaults: user app consent, anyone can invite guests", "Consent phishing and uncontrolled external access (risk R08)", "Step 7")])}
 
 <h2 class="pb">3. Step 1 — Identity hygiene</h2>
 <p>Each department lead became the manager of the department; every staff member received an immutable employee ID
@@ -177,7 +203,7 @@ admin/test accounts: the IAM administrator. HIPAA 45 CFR 164.308(a)(3)(ii)(B)–
 {table(["Finding", "Decision"], [
     ("Disabled shared test account still held Azure role HVMC-Nurse-EHR-ReadOnly on the ePHI storage account — disabling an account does not remove its roles", "Removed (reviewer: Security Supervisor)"),
     ("Legacy app EHR-Simulated (created 12 Oct) assigned per user, outside group control", "Brought under group-driven sync from SG-Doctors-EHR-RW and SG-Nursing-EHR-RW; existing assignments kept for continuity of earlier evidence"),
-    ("Single Global Administrator", "Kept; action: second admin and two break-glass accounts (Step 6 design)"),
+    ("Single Global Administrator", "Kept; action: two break-glass accounts (done in Step 7)"),
     ("Microsoft service identities created by Defender/Sentinel onboarding", "Kept (platform-managed)")])}
 <p class="note">Actions log: {E("; ".join(f"{l.get('user', '')} {l.get('access', '')} → {l['result']}" if 'user' in l else f"{l['action']} → {l['result']}" for l in ar_log["removals"]))}.</p>
 
@@ -189,13 +215,34 @@ without a licence. Full detail: <i>HVMC_Conditional_Access_Design.pdf</i>.</p>
 <p><b>Rollout:</b> P2 trial → break-glass accounts and US named location → 14 days report-only → IT pilot → everyone (security defaults off) →
 clinical device policies and risk-based policies. Licence needs: {E("; ".join(f"{k}: {len(v)} policies" for k, v in lic.items()))}.</p>
 
-<h2>9. Results, lessons learned and next steps</h2>
+<h2 class="pb">9. Step 7 — Free tenant hardening</h2>
+<p>Two open risks from the baseline and the access review were closed with free Entra ID settings, using the same dry-run → approval →
+apply → before/after evidence pattern (<code>step7_tenant_hardening/tenant_hardening.py</code>).</p>
+<h3>Part A — Tenant settings (HVMC-IAM-CHG-106, risk R08)</h3>
+<p>Users could consent to applications themselves — the route used by <b>consent-phishing</b> attacks, where a fake app asks a user for
+access to mail or files — register apps, create tenants and groups outside the IAM process, and anyone (even guests) could invite guests.
+All of these now go through administrators. The settings were re-read from the tenant after the change to confirm them.</p>
+{table(["Setting", "Before", "After"], s7_rows)}
+<h3>Part B — Emergency-access (break-glass) accounts (HVMC-IAM-CHG-107, risk R04)</h3>
+<p>The tenant had a single Global Administrator: a lost phone, a forgotten password or a locked account would have left nobody able to
+administer HVMC’s identities. Microsoft recommends two cloud-only emergency-access accounts. Rather than making a staff member a
+permanent Global Administrator — which would break the least-privilege decision D2 — two dedicated accounts were created.</p>
+{table(["Global Administrator", "Account"], s7_gas)}
+{table(["Control", "Implementation"], [
+    ("Cloud-only, on the .onmicrosoft.com domain", "No dependency on a custom domain, federation or on-premises sync"),
+    ("Strong secret, never displayed", "40-character random passwords (~250 bits), written only to a local file readable by the owner; transferred to a password manager / sealed envelope, then the file deleted"),
+    ("No daily use, no other access", "No licence, no SG-* groups, no application access; job title marks them as emergency-only"),
+    ("MFA", "Security defaults remain on, so each account registers MFA at first sign-in (on a separate authenticator)"),
+    ("Testing and monitoring", "Sign-in test every quarter; sign-in logs reviewed after each use (Free tier keeps 7 days of sign-in logs)")])}
+
+<h2>10. Results, lessons learned and next steps</h2>
 {table(["Outcome", "Evidence"], [
     ("Every active staff member’s access matches the approved RBAC v2 design (30/30), with no excess access", "Step 2 coverage check, re-run after Steps 4–5"),
     ("Application access is group-driven and self-correcting, including the legacy EHR app", "Step 3 sync: 0 additions / 0 removals pending"),
     ("Joiners, movers and leavers are repeatable, ticketed and evidenced", "HVMC-JML-201/202/203 evidence files"),
     ("Quarterly access review produced decisions, justifications and a removal", "HVMC-AR-2026-Q4 decided review pack (Excel)"),
-    ("Zero Trust sign-in policy ready to deploy when licensed", "13 report-only policy files + 13 test cases")])}
+    ("Zero Trust sign-in policy ready to deploy when licensed", "13 report-only policy files + 13 test cases"),
+    ("Tenant defaults hardened and the single-admin risk removed (R04, R08 closed)", "Step 7 before/after policy evidence; 3 Global Administrators")])}
 <h3>Lessons learned</h3>
 <ul><li><b>Disabling is not deprovisioning:</b> a disabled account kept an Azure data role until the access review removed it.</li>
 <li><b>Unmanaged apps defeat good group design:</b> a direct-assigned legacy app kept a transferred nurse’s EHR access (F-JML-01).</li>
@@ -204,10 +251,9 @@ documented design fill the gap until a licence is justified.</li>
 <li><b>Least privilege needs judgement:</b> following the Week 1 matrix literally would have given IT standing ePHI access; RBAC v2 records why it does not.</li></ul>
 <h3>Next steps</h3>
 {table(["Action", "Cost", "Risk"], [
-    ("Restrict user consent to apps, app registration and guest invitations (free tenant settings)", "$0", "R08"),
-    ("Second Global Administrator and two break-glass accounts", "$0", "R04"),
+    ("Register MFA on both break-glass accounts and schedule the quarterly sign-in test", "$0", "R04"),
     ("Start the 30-day P2 trial; deploy the 13 policies in report-only; then PIM and native access reviews", "$0 (trial)", "R04, R12"),
-    ("Week 2: domain controller on the Ubuntu server and mirroring of the 31 identities", "$0", "—")])}
+    ("Domain controller hvmc-dc01 (HVMC.LAN) is built: join client HVMC-CLIENT01 and mirror the 31 identities by script", "$0", "—")])}
 
 <h2>Appendix — change register and files</h2>
 {table(["Ticket", "Date", "Description"], [
@@ -215,9 +261,12 @@ documented design fill the gap until a licence is justified.</li>
     ("HVMC-IAM-CHG-102", "20 Oct 2026", f"RBAC v2, {len(s2_log)} group/membership/description changes"),
     ("HVMC-IAM-CHG-103", "20 Oct 2026", f"Enterprise applications, {len(s3_first['log'])} app/assignment changes"),
     ("HVMC-JML-201/202/203", "20 Oct 2026", "Joiner Olivia Bennett, mover Noah Fischer, leaver Carlos Diaz"),
-    ("HVMC-AR-2026-Q4", "20 Oct 2026", "Access review: 94 lines, 1 removal, legacy app brought under management")], "tiny")}
+    ("HVMC-AR-2026-Q4", "20 Oct 2026", "Access review: 94 lines, 1 removal, legacy app brought under management"),
+    ("HVMC-IAM-CHG-106", "28 Oct 2026", "Tenant settings: user consent, app registration, tenant and group creation, guest invitations and access, self-service sign-up"),
+    ("HVMC-IAM-CHG-107", "28 Oct 2026", "Two emergency-access (break-glass) Global Administrator accounts")], "tiny")}
 <p class="note">Scripts: step1_identity_hygiene/identity_hygiene.py · step2_rbac_v2/rbac_v2.py · step3_enterprise_apps/enterprise_apps.py ·
-step4_jml/jml.py · step5_access_review/build_review_pack.py, apply_decisions.py · step6_conditional_access/ca_design.py, deploy_ca.py.
+step4_jml/jml.py · step5_access_review/build_review_pack.py, apply_decisions.py · step6_conditional_access/ca_design.py, deploy_ca.py ·
+step7_tenant_hardening/tenant_hardening.py.
 Each runs as a dry run by default and changes nothing without --apply.</p>
 <div class="foot">Horizon Valley Medical Center · Healthcare IAM Operations Simulation · Hands-on Entra ID operations · Sabitha S Karanavar</div>
 </body></html>'''

@@ -1,4 +1,4 @@
-"""HVMC Healthcare IAM - hands-on Entra ID operations (Steps 1-7) deliverable -> PDF, built from the evidence files."""
+"""HVMC Healthcare IAM - hands-on Entra ID operations (Steps 1-8) deliverable -> PDF, built from the evidence files."""
 import glob
 import html
 import importlib.util
@@ -55,6 +55,9 @@ def build():
         latest("step7_tenant_hardening/evidence/*_authorizationPolicy_after.json")
     s7_bg = latest("step7_tenant_hardening/evidence/*_breakglass_after.json")
     th = mod("step7_tenant_hardening/tenant_hardening.py", "th")
+    nhi_reg = json.load(open(os.path.join(ROOT, "step8_nonhuman_identities/nhi_register.json")))[0]
+    nhi_test = latest("step8_nonhuman_identities/evidence/*_nhi_test.json")
+    nhi_inv = first("step8_nonhuman_identities/evidence/*_nhi_inventory_before.json")
 
     # ---- step 1
     org_rows = []
@@ -128,10 +131,10 @@ def build():
     body = f'''{style}
 <div class="runhead">Horizon Valley Medical Center &nbsp;|&nbsp; Healthcare IAM Operations Simulation</div>
 <h1>Hands-On Identity Operations in Microsoft Entra ID</h1>
-<div class="sub">Identity Hygiene · RBAC v2 · Enterprise Applications · Joiner/Mover/Leaver · Access Review · Conditional Access Design · Tenant Hardening</div>
+<div class="sub">Identity Hygiene · RBAC v2 · Enterprise Applications · Joiner/Mover/Leaver · Access Review · Conditional Access Design · Tenant Hardening · Non-Human Identities</div>
 {kv([("Project Name", "Healthcare IAM Operations Simulation"), ("Organization", "Horizon Valley Medical Center (HVMC)"),
                    ("Environment", "Microsoft Entra ID tenant (Free tier), 33 accounts; changes made with Microsoft Graph via scripted, ticketed changes"),
-                   ("Date", "20 October 2026 (Step 7: 28 October 2026)"), ("Document Version", "1.1"), ("Prepared By", "Sabitha S Karanavar"), ("Cost", "$0 — every change used Entra ID Free features")])}
+                   ("Date", "20 October 2026 (Step 7: 28 Oct; Step 8: 29 Oct 2026)"), ("Document Version", "1.2"), ("Prepared By", "Sabitha S Karanavar"), ("Cost", "$0 — every change used Entra ID Free features")])}
 
 <h2>1. Purpose and approach</h2>
 <p>The Week 1 design (scenario, RBAC matrix, OU structure and group naming) was turned into a working, governed identity environment.
@@ -145,7 +148,8 @@ access always follows the approved design.</p>
     ("4", "Joiner, mover and leaver", "HVMC-JML-201/202/203", "3 lifecycle events + 1 finding fixed"),
     ("5", "Quarterly access review", "HVMC-AR-2026-Q4", f"{len(ar_items)} lines reviewed, {len(remove)} removal"),
     ("6", "Conditional Access design (report-only, licence-gated)", "—", f"{len(ca.POLICIES)} policies, {len(tests)} test cases"),
-    ("7", "Free tenant hardening — consent, guests, self-service; break-glass administrators", "HVMC-IAM-CHG-106/107", f"{len(s7_rows)} settings, Global Admins 1 → {len(s7_gas)}")])}
+    ("7", "Free tenant hardening — consent, guests, self-service; break-glass administrators", "HVMC-IAM-CHG-106/107", f"{len(s7_rows)} settings, Global Admins 1 → {len(s7_gas)}"),
+    ("8", "Non-human identity with certificate credential and least-privilege Graph permission", "HVMC-IAM-CHG-108", f"1 NHI, {sum(r['pass'] for r in nhi_test['results'])}/{len(nhi_test['results'])} least-privilege tests passed")])}
 
 <h2>2. Starting baseline (findings)</h2>
 {table(["#", "Finding", "Why it mattered", "Fixed in"], [
@@ -155,7 +159,8 @@ access always follows the approved design.</p>
     ("F4", "Shared test account “Test Nurse - EHR” enabled", "Shared account with ePHI access (risk R07)", "Steps 1 and 5"),
     ("F5", "Contractor without type, sponsor or end date", "Contractor access outlives the contract (risk R06)", "Steps 1 and 4"),
     ("F6", "Single Global Administrator", "No backup or emergency access (risk R04)", "Step 7"),
-    ("F7", "Permissive tenant defaults: user app consent, anyone can invite guests", "Consent phishing and uncontrolled external access (risk R08)", "Step 7")])}
+    ("F7", "Permissive tenant defaults: user app consent, anyone can invite guests", "Consent phishing and uncontrolled external access (risk R08)", "Step 7"),
+    ("F8", "No governed pattern for non-human (workload) identities", "Service accounts with shared passwords or broad API permissions are a common breach path", "Step 8")])}
 
 <h2 class="pb">3. Step 1 — Identity hygiene</h2>
 <p>Each department lead became the manager of the department; every staff member received an immutable employee ID
@@ -235,23 +240,53 @@ permanent Global Administrator — which would break the least-privilege decisio
     ("MFA", "Security defaults remain on, so each account registers MFA at first sign-in (on a separate authenticator)"),
     ("Testing and monitoring", "Sign-in test every quarter; sign-in logs reviewed after each use (Free tier keeps 7 days of sign-in logs)")])}
 
-<h2>10. Results, lessons learned and next steps</h2>
+<h2 class="pb">10. Step 8 — Non-human identities</h2>
+<p>Hospital systems talk to each other without a person signing in: an interface engine, a lab system, a backup job. These
+<b>non-human identities (NHIs)</b> often outnumber people and are a common breach path when they use shared passwords, never-expiring
+secrets or broad permissions. Step 8 inventoried HVMC’s NHIs and created the first one using the secure pattern
+(<code>step8_nonhuman_identities/nhi.py</code>, change HVMC-IAM-CHG-108).</p>
+<h3>Baseline inventory (read-only)</h3>
+{table(["Category", "Count", "Assessment"], [
+    ("User accounts used as service accounts", 0, "None — matches Microsoft guidance to use workload identities instead"),
+    ("HVMC application service principals", nhi_inv["own"], "No secrets, certificates or API permissions — cannot authenticate on their own"),
+    ("Managed identities", len(nhi_inv["managed_identities"]), "Created by Defender for Storage (SecOps lab); probably orphaned since the subscription was disabled — noted for HVMC-AR-2027-Q1"),
+    ("Microsoft / third-party service principals", nhi_inv["microsoft_and_third_party"], "Present in every tenant; no action")])}
+<h3>The new NHI: {E(nhi_reg["nhi"])}</h3>
+{table(["Control", "Implementation"], [
+    ("Purpose and ownership", f"{E(nhi_reg['purpose'])}. Technical owner: {E(nhi_reg['owner'])}; business owner: {E(nhi_reg['business_owner'])}"),
+    ("Identity type", "Single-tenant application service principal, tagged HVMC-NHI, ticket in its notes"),
+    ("Credential", "X.509 certificate (RSA-2048) issued by <b>HVMC Issuing CA 1</b> from the project’s own PKI; <b>no client secret</b>. Private key kept locally (mode 0600, not in Git), to move into Azure Key Vault"),
+    ("Lifetime", f"Expires {nhi_reg['credential_expires']}; rotate by {nhi_reg['rotate_by']}"),
+    ("Permission", "Microsoft Graph <b>GroupMember.Read.All</b> (application) only, granted by admin consent"),
+    ("Review", f"Recorded in the NHI register; reviewed in {nhi_reg['next_review']}")])}
+<p>The NHI then signed in <b>as itself, with its certificate</b> (OAuth 2.0 client credentials with a signed JWT assertion). Its token
+carried exactly one permission (<code>{E(", ".join(nhi_test["roles_in_token"]))}</code>) and the identity type “application”.
+Three calls proved least privilege:</p>
+{table(["Call made by the NHI", "Expected", "Result"], [(E(r["test"]), r["expected"], f"HTTP {r['status']} {E(r['detail'])} — <b>{'PASS' if r['pass'] else 'FAIL'}</b>") for r in nhi_test["results"]])}
+<p class="note">Next for NHIs: move the private key into Azure Key Vault and use a managed identity (instructor-approved, needs an
+active subscription); a GitHub Actions identity with a federated credential (no secret at all); Workload ID Premium controls
+(Conditional Access and risk detection for workload identities) documented as a licensed design.</p>
+
+<h2>11. Results, lessons learned and next steps</h2>
 {table(["Outcome", "Evidence"], [
     ("Every active staff member’s access matches the approved RBAC v2 design (30/30), with no excess access", "Step 2 coverage check, re-run after Steps 4–5"),
     ("Application access is group-driven and self-correcting, including the legacy EHR app", "Step 3 sync: 0 additions / 0 removals pending"),
     ("Joiners, movers and leavers are repeatable, ticketed and evidenced", "HVMC-JML-201/202/203 evidence files"),
     ("Quarterly access review produced decisions, justifications and a removal", "HVMC-AR-2026-Q4 decided review pack (Excel)"),
     ("Zero Trust sign-in policy ready to deploy when licensed", "13 report-only policy files + 13 test cases"),
-    ("Tenant defaults hardened and the single-admin risk removed (R04, R08 closed)", "Step 7 before/after policy evidence; 3 Global Administrators")])}
+    ("Tenant defaults hardened and the single-admin risk removed (R04, R08 closed)", "Step 7 before/after policy evidence; 3 Global Administrators"),
+    ("First non-human identity built secret-less and proven least-privilege", "Step 8 certificate sign-in: 1 allowed call, 2 denied calls")])}
 <h3>Lessons learned</h3>
 <ul><li><b>Disabling is not deprovisioning:</b> a disabled account kept an Azure data role until the access review removed it.</li>
 <li><b>Unmanaged apps defeat good group design:</b> a direct-assigned legacy app kept a transferred nurse’s EHR access (F-JML-01).</li>
 <li><b>Licences shape the design:</b> on the Free tier, group-to-app assignment and Conditional Access are unavailable, so automation and
 documented design fill the gap until a licence is justified.</li>
+<li><b>Non-human identities need owners and expiry dates:</b> a certificate with a rotate-by date and a named owner is reviewable; a forgotten secret is not.</li>
 <li><b>Least privilege needs judgement:</b> following the Week 1 matrix literally would have given IT standing ePHI access; RBAC v2 records why it does not.</li></ul>
 <h3>Next steps</h3>
 {table(["Action", "Cost", "Risk"], [
-    ("Register MFA on both break-glass accounts and schedule the quarterly sign-in test", "$0", "R04"),
+    ("Quarterly break-glass sign-in test (next about 28 Jan 2027)", "$0", "R04"),
+    ("Azure Key Vault for the NHI private key, plus a managed identity (instructor-approved)", "Needs an active subscription", "NHI"),
     ("Start the 30-day P2 trial; deploy the 13 policies in report-only; then PIM and native access reviews", "$0 (trial)", "R04, R12"),
     ("Domain controller hvmc-dc01 (HVMC.LAN) is built: join client HVMC-CLIENT01 and mirror the 31 identities by script", "$0", "—")])}
 
@@ -263,10 +298,11 @@ documented design fill the gap until a licence is justified.</li>
     ("HVMC-JML-201/202/203", "20 Oct 2026", "Joiner Olivia Bennett, mover Noah Fischer, leaver Carlos Diaz"),
     ("HVMC-AR-2026-Q4", "20 Oct 2026", "Access review: 94 lines, 1 removal, legacy app brought under management"),
     ("HVMC-IAM-CHG-106", "28 Oct 2026", "Tenant settings: user consent, app registration, tenant and group creation, guest invitations and access, self-service sign-up"),
-    ("HVMC-IAM-CHG-107", "28 Oct 2026", "Two emergency-access (break-glass) Global Administrator accounts")], "tiny")}
+    ("HVMC-IAM-CHG-107", "28 Oct 2026", "Two emergency-access (break-glass) Global Administrator accounts"),
+    ("HVMC-IAM-CHG-108", "29 Oct 2026", "Non-human identity HVMC Lab Results Sync: certificate credential, GroupMember.Read.All, least-privilege test")], "tiny")}
 <p class="note">Scripts: step1_identity_hygiene/identity_hygiene.py · step2_rbac_v2/rbac_v2.py · step3_enterprise_apps/enterprise_apps.py ·
 step4_jml/jml.py · step5_access_review/build_review_pack.py, apply_decisions.py · step6_conditional_access/ca_design.py, deploy_ca.py ·
-step7_tenant_hardening/tenant_hardening.py.
+step7_tenant_hardening/tenant_hardening.py · step8_nonhuman_identities/nhi.py.
 Each runs as a dry run by default and changes nothing without --apply.</p>
 <div class="foot">Horizon Valley Medical Center · Healthcare IAM Operations Simulation · Hands-on Entra ID operations · Sabitha S Karanavar</div>
 </body></html>'''

@@ -1,0 +1,5 @@
+Ticket,Event,EmployeeId,GivenName,Surname,Department,JobTitle,ManagerEmployeeId,EffectiveDate,Note
+HVMC-JML-201,Join,HVMC-1108,Olivia,Bennett,Nursing,Registered Nurse,HVMC-1101,2026-10-21,Processed on 20 Oct by step4_jml/jml.py - re-run test (must report already done)
+HVMC-JML-204,Join,HVMC-1304,Ethan,Morales,Laboratory,Lab Technician,HVMC-1301,2026-11-02,New hire - night-shift lab technician
+HVMC-JML-205,Move,HVMC-1603,,,Security,Security Officer,HVMC-1701,2026-11-02,Internal transfer IT -> Security (separation of duties: IT admin access removed first)
+HVMC-JML-206,Leave,HVMC-1802,,,,,,2026-11-06,Resignation - last working day 6 Nov (deprovisioned by the daily leaver check)

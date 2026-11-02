@@ -1,4 +1,4 @@
-"""HVMC Healthcare IAM - hands-on Entra ID operations (Steps 1-9) deliverable -> PDF, built from the evidence files."""
+"""HVMC Healthcare IAM - hands-on Entra ID operations (Steps 1-9, 8b) deliverable -> PDF, built from the evidence files."""
 import glob
 import html
 import importlib.util
@@ -59,6 +59,24 @@ def build():
     nhi_test = latest("step8_nonhuman_identities/evidence/*_nhi_test.json")
     nhi_inv = first("step8_nonhuman_identities/evidence/*_nhi_inventory_before.json")
     pr = latest("step9_credential_cleanup/evidence/*_password_reset.json")
+    lc_run = latest("step8b_lifecycle_automation/evidence/*_lifecycle_run.json")
+    lc_now = {u["employeeId"]: u for u in latest("step8b_lifecycle_automation/evidence/*_lifecycle_verification.json")["users"]}
+    lc_done = [e for e in lc_run["events"] if e["status"] == "Done"]
+    lc_steps = sum(len(e["results"]) for e in lc_done)
+    lc_ok = sum(r["result"] == "ok" for e in lc_done for r in e["results"])
+    lc_dir = os.path.join(ROOT, "step8b_lifecycle_automation/evidence")
+    lc_rerun = open(os.path.join(lc_dir, "20261102_rerun_dryrun.txt")).read()
+    lc_today = open(os.path.join(lc_dir, "20261102_leavercheck_dryrun_today.txt")).read()
+    lc_sim = open(os.path.join(lc_dir, "20261102_leavercheck_dryrun_simulated_20261107.txt")).read()
+    lc_eid = {"HVMC-JML-204": "HVMC-1304", "HVMC-JML-205": "HVMC-1603", "HVMC-JML-206": "HVMC-1802"}
+    lc_rows = []
+    for e in lc_done:
+        now_ = lc_now[lc_eid[e["ticket"]]]
+        before_ = e["before"]
+        lc_rows.append((e["ticket"], E(e["employee"].split(" (")[0]), E(e["event"]),
+                        "no account" if not before_ else E(f"{before_['department']}; groups: {', '.join(before_['groups'])}"),
+                        E(f"{now_['department']}; groups: {', '.join(now_['groups'])}; apps: {', '.join(now_['apps'])}")
+                        + (f"; leave date {E(str(now_['employeeLeaveDateTime'])[:10])}" if now_.get("employeeLeaveDateTime") else "")))
     pr_disabled = 1   # Carlos Diaz (HVMC-JML-203) - reset as well, so the old password is useless if the account is re-enabled
 
     # ---- step 1
@@ -133,10 +151,10 @@ def build():
     body = f'''{style}
 <div class="runhead">Horizon Valley Medical Center &nbsp;|&nbsp; Healthcare IAM Operations Simulation</div>
 <h1>Hands-On Identity Operations in Microsoft Entra ID</h1>
-<div class="sub">Identity Hygiene · RBAC v2 · Enterprise Applications · Joiner/Mover/Leaver · Access Review · Conditional Access Design · Tenant Hardening · Non-Human Identities · Credential Clean-up</div>
+<div class="sub">Identity Hygiene · RBAC v2 · Enterprise Applications · Joiner/Mover/Leaver · Access Review · Conditional Access Design · Tenant Hardening · Non-Human Identities · Lifecycle Automation · Credential Clean-up</div>
 {kv([("Project Name", "Healthcare IAM Operations Simulation"), ("Organization", "Horizon Valley Medical Center (HVMC)"),
-                   ("Environment", "Microsoft Entra ID tenant (Free tier), 33 accounts; changes made with Microsoft Graph via scripted, ticketed changes"),
-                   ("Date", "20 October 2026 (Steps 7–9: 28–29 Oct 2026)"), ("Document Version", "1.3"), ("Prepared By", "Sabitha S Karanavar"), ("Cost", "$0 — every change used Entra ID Free features")])}
+                   ("Environment", "Microsoft Entra ID tenant (Free tier), 36 accounts on 2 Nov 2026; changes made with Microsoft Graph via scripted, ticketed changes"),
+                   ("Date", "20 October 2026 (Steps 7–9: 28–29 Oct; Step 8b: 2 Nov 2026)"), ("Document Version", "1.4"), ("Prepared By", "Sabitha S Karanavar"), ("Cost", "$0 — every change used Entra ID Free features")])}
 
 <h2>1. Purpose and approach</h2>
 <p>The Week 1 design (scenario, RBAC matrix, OU structure and group naming) was turned into a working, governed identity environment.
@@ -152,6 +170,7 @@ access always follows the approved design.</p>
     ("6", "Conditional Access design (report-only, licence-gated)", "—", f"{len(ca.POLICIES)} policies, {len(tests)} test cases"),
     ("7", "Free tenant hardening — consent, guests, self-service; break-glass administrators", "HVMC-IAM-CHG-106/107", f"{len(s7_rows)} settings, Global Admins 1 → {len(s7_gas)}"),
     ("8", "Non-human identity with certificate credential and least-privilege Graph permission", "HVMC-IAM-CHG-108", f"1 NHI, {sum(r['pass'] for r in nhi_test['results'])}/{len(nhi_test['results'])} least-privilege tests passed"),
+    ("8b", "Lifecycle automation in PowerShell — HR feed and daily leaver check", "HVMC-JML-204/205/206", f"3 events, {lc_ok}/{lc_steps} steps ok, safe to re-run"),
     ("9", "Credential clean-up — reset the passwords exposed in the bulk-create file", "HVMC-IAM-CHG-109", f"{pr['reset_ok']}/{pr['reset_ok'] + pr['failed']} passwords reset, plain-text file deleted")])}
 
 <h2>2. Starting baseline (findings)</h2>
@@ -164,7 +183,8 @@ access always follows the approved design.</p>
     ("F6", "Single Global Administrator", "No backup or emergency access (risk R04)", "Step 7"),
     ("F7", "Permissive tenant defaults: user app consent, anyone can invite guests", "Consent phishing and uncontrolled external access (risk R08)", "Step 7"),
     ("F8", "No governed pattern for non-human (workload) identities", "Service accounts with shared passwords or broad API permissions are a common breach path", "Step 8"),
-    ("F9", "Initial passwords of all staff kept in a plain-text bulk-create file (one shown on screen)", "Anyone who saw or copied the file could sign in as any staff member", "Step 9")])}
+    ("F9", "Initial passwords of all staff kept in a plain-text bulk-create file (one shown on screen)", "Anyone who saw or copied the file could sign in as any staff member", "Step 9"),
+    ("F10", "Lifecycle changes run by hand, one event at a time; no check that leave dates are acted on", "A leaver whose date passes unnoticed keeps access (risk R06)", "Step 8b")])}
 
 <h2 class="pb">3. Step 1 — Identity hygiene</h2>
 <p>Each department lead became the manager of the department; every staff member received an immutable employee ID
@@ -271,7 +291,43 @@ Three calls proved least privilege:</p>
 active subscription); a GitHub Actions identity with a federated credential (no secret at all); Workload ID Premium controls
 (Conditional Access and risk detection for workload identities) documented as a licensed design.</p>
 
-<h2 class="pb">11. Step 9 — Credential clean-up (HVMC-IAM-CHG-109)</h2>
+<h2 class="pb">11. Step 8b — Lifecycle automation in PowerShell</h2>
+<p>In Step 4 each joiner, mover and leaver was a separate scripted change, started by hand (finding F10). Step 8b turns this into a
+repeatable process driven by the HR system, written in <b>PowerShell 7 with the Microsoft Graph SDK</b> — the standard tooling for
+Microsoft identity administration (<code>step8b_lifecycle_automation/</code>).</p>
+{table(["Part", "What it does"], [
+    ("<b>HR feed</b> (CSV)", "One row per event exported by HR: ticket, Join / Move / Leave, employee ID, department, title, manager, effective date"),
+    ("<b>Invoke-HvmcLifecycle.ps1</b>", "Reads the feed and plans each event from the RBAC v2 matrix (exported to <code>config/rbac_matrix.json</code>, so rbac_v2.py stays the single source of truth); shows the plan, and changes nothing without <code>-Apply</code>"),
+    ("<b>Invoke-HvmcLeaverCheck.ps1</b>", "Daily safety net: deprovisions anyone whose leave date has passed (including disabled accounts still in groups), warns 14 days ahead, flags contractors with no end date"),
+    ("<b>HVMC.Lifecycle.psm1</b>", "Shared functions: sign-in, desired groups, user state, plans, evidence"),
+])}
+<h3>Controls built in</h3>
+<ul>
+<li><b>Dry run first</b>, then <code>-Apply</code>; evidence (plan, results, before/after) saved for every applied run, with no passwords.</li>
+<li><b>Safe to re-run:</b> an event already in effect is reported as “already done”; a future date is “not due yet”.</li>
+<li><b>Separation of duties on transfer:</b> the old role’s groups are removed <i>before</i> the new role’s are added.</li>
+<li><b>Admin accounts are never touched</b>: anyone holding an Entra ID role (the IAM administrator, both break-glass accounts) is excluded.</li>
+<li><b>Validation:</b> employee-ID format, known department, existing groups and manager, unique user name — an invalid row is skipped, not guessed.</li>
+<li><b>Joiner passwords</b> are random, never shown or stored, and must be changed at first sign-in.</li>
+</ul>
+<h3>Run of 2 November 2026 (HR feed hr_feed_2026-11-02.csv)</h3>
+{table(["Ticket", "Employee", "Event", "Before", "After (including the application sync)"], lc_rows, "tiny")}
+<p>All {lc_ok} of {lc_steps} steps succeeded and the application sync applied {E(lc_run["appSync"].split(" ")[0])} matching changes. Jason Park’s IT
+administration access was removed before he received the Security portal. Victor Mensah keeps his access until his last day; the
+leaver check removes it after that.</p>
+<h3>Tests</h3>
+{table(["Test", "Result"], [
+    ("Re-run the same feed", "All 4 events “already done” (including JML-201 from 20 October); " + E([l for l in lc_rerun.splitlines() if "event(s)" in l][0].strip())),
+    ("Leaver check, 2 Nov", E([l for l in lc_today.splitlines() if "Daily leaver check" in l][0].split("(")[1].rstrip(")")) + "; 1 notice: " + E([l for l in lc_today.splitlines() if l.startswith("NOTICE")][0].split(None, 1)[1].split("  ")[0].strip()) + " leaves in 5 days"),
+    ("Leaver check, simulated 7 Nov", f"1 action: disable, revoke sessions, remove {sum('REMOVE from' in l for l in lc_sim.splitlines())} groups — exactly the deprovisioning HVMC-JML-206 requires"),
+    ("RBAC coverage after the run", "31/31 active staff fully match the matrix; 0 missing, 0 extra; 0 application assignments pending"),
+    ("Defect found by testing", "The first run’s evidence took its “after” snapshot before the application sync; fixed, and the post-sync state re-recorded"),
+])}
+<p class="note">Scheduling: in production the leaver check runs daily as an <b>Azure Automation</b> runbook with a managed identity (no
+stored credential) — planned together with Key Vault once a subscription is active. Until then it is run manually; Victor Mensah’s
+deprovisioning is due on 7 November.</p>
+
+<h2 class="pb">12. Step 9 — Credential clean-up (HVMC-IAM-CHG-109)</h2>
 <p>The 30 staff accounts were created in bulk from a CSV file that held every <b>initial password in plain text</b> (finding F9).
 One of those passwords had been displayed on screen during an earlier working session. A file like this is a common way
 credentials leak: it gets copied, backed up or shared. Step 9 made every password in that file useless
@@ -290,15 +346,16 @@ so the administrator can keep signing in as test staff; in production each user 
 (2) The archive uses standard ZIP encryption so it opens on any Mac; it is weak against offline attack, so it never leaves the
 workstation. A password manager or an AES-encrypted vault (e.g. Azure Key Vault, once the subscription exists) is the target state.</p>
 
-<h2>12. Results, lessons learned and next steps</h2>
+<h2>13. Results, lessons learned and next steps</h2>
 {table(["Outcome", "Evidence"], [
-    ("Every active staff member’s access matches the approved RBAC v2 design (30/30), with no excess access", "Step 2 coverage check, re-run after Steps 4–5"),
+    ("Every active staff member’s access matches the approved RBAC v2 design (31/31 on 2 Nov), with no excess access", "Step 2 coverage check, re-run after Steps 4–5 and 8b"),
     ("Application access is group-driven and self-correcting, including the legacy EHR app", "Step 3 sync: 0 additions / 0 removals pending"),
     ("Joiners, movers and leavers are repeatable, ticketed and evidenced", "HVMC-JML-201/202/203 evidence files"),
     ("Quarterly access review produced decisions, justifications and a removal", "HVMC-AR-2026-Q4 decided review pack (Excel)"),
     ("Zero Trust sign-in policy ready to deploy when licensed", "13 report-only policy files + 13 test cases"),
     ("Tenant defaults hardened and the single-admin risk removed (R04, R08 closed)", "Step 7 before/after policy evidence; 3 Global Administrators"),
     ("First non-human identity built secret-less and proven least-privilege", "Step 8 certificate sign-in: 1 allowed call, 2 denied calls"),
+    ("Joiners, movers and leavers run from an HR feed, with a daily leaver check (F10 closed)", f"Step 8b: {lc_ok}/{lc_steps} steps ok; re-run changes nothing; simulated leaver check"),
     ("No staff password from the bulk-create file still works (F9 closed)", f"Step 9: {pr['reset_ok']}/{pr['reset_ok'] + pr['failed']} reset, file deleted, evidence without passwords")])}
 <h3>Lessons learned</h3>
 <ul><li><b>Disabling is not deprovisioning:</b> a disabled account kept an Azure data role until the access review removed it.</li>
@@ -306,10 +363,13 @@ workstation. A password manager or an AES-encrypted vault (e.g. Azure Key Vault,
 <li><b>Licences shape the design:</b> on the Free tier, group-to-app assignment and Conditional Access are unavailable, so automation and
 documented design fill the gap until a licence is justified.</li>
 <li><b>Non-human identities need owners and expiry dates:</b> a certificate with a rotate-by date and a named owner is reviewable; a forgotten secret is not.</li>
+<li><b>Automation must be safe to run twice:</b> checking the current state first turns a repeated run into “already done” instead of duplicate accounts.</li>
 <li><b>Setup files become secrets:</b> a convenience CSV used once to create accounts kept working passwords for every staff member; clean-up is part of the change.</li>
 <li><b>Least privilege needs judgement:</b> following the Week 1 matrix literally would have given IT standing ePHI access; RBAC v2 records why it does not.</li></ul>
 <h3>Next steps</h3>
 {table(["Action", "Cost", "Risk"], [
+    ("Run the leaver check on 7 Nov to deprovision Victor Mensah (HVMC-JML-206)", "$0", "R06"),
+    ("Schedule the daily leaver check (Azure Automation runbook with a managed identity)", "Needs an active subscription", "R06"),
     ("Quarterly break-glass sign-in test (next about 28 Jan 2027)", "$0", "R04"),
     ("Azure Key Vault for the NHI private key, plus a managed identity (instructor-approved)", "Needs an active subscription", "NHI"),
     ("Start the 30-day P2 trial; deploy the 13 policies in report-only; then PIM and native access reviews", "$0 (trial)", "R04, R12"),
@@ -325,10 +385,11 @@ documented design fill the gap until a licence is justified.</li>
     ("HVMC-IAM-CHG-106", "28 Oct 2026", "Tenant settings: user consent, app registration, tenant and group creation, guest invitations and access, self-service sign-up"),
     ("HVMC-IAM-CHG-107", "28 Oct 2026", "Two emergency-access (break-glass) Global Administrator accounts"),
     ("HVMC-IAM-CHG-108", "29 Oct 2026", "Non-human identity HVMC Lab Results Sync: certificate credential, GroupMember.Read.All, least-privilege test"),
+    ("HVMC-JML-204/205/206", "2 Nov 2026", "Step 8b: joiner Ethan Morales, mover Jason Park (IT to Security), leaver Victor Mensah (leave date 6 Nov)"),
     ("HVMC-IAM-CHG-109", "29 Oct 2026", f"Credential clean-up: {pr['reset_ok']} staff passwords reset, plain-text bulk-create file deleted")], "tiny")}
 <p class="note">Scripts: step1_identity_hygiene/identity_hygiene.py · step2_rbac_v2/rbac_v2.py · step3_enterprise_apps/enterprise_apps.py ·
 step4_jml/jml.py · step5_access_review/build_review_pack.py, apply_decisions.py · step6_conditional_access/ca_design.py, deploy_ca.py ·
-step7_tenant_hardening/tenant_hardening.py · step8_nonhuman_identities/nhi.py · step9_credential_cleanup/password_reset.py.
+step7_tenant_hardening/tenant_hardening.py · step8_nonhuman_identities/nhi.py · step8b_lifecycle_automation/Invoke-HvmcLifecycle.ps1, Invoke-HvmcLeaverCheck.ps1 (-Apply) · step9_credential_cleanup/password_reset.py.
 Each runs as a dry run by default and changes nothing without --apply.</p>
 <div class="foot">Horizon Valley Medical Center · Healthcare IAM Operations Simulation · Hands-on Entra ID operations · Sabitha S Karanavar</div>
 </body></html>'''

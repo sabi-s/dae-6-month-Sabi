@@ -1,0 +1,55 @@
+{
+  "source": "step2_rbac_v2/rbac_v2.py (RBAC v2, HVMC-IAM-CHG-102)",
+  "groups": {
+    "Doctors": [
+      "SG-Doctors-EHR-RW",
+      "SG-Doctors-LIS-Read",
+      "SG-Doctors-Pharmacy-Read"
+    ],
+    "Nursing": [
+      "SG-Nursing-EHR-RW",
+      "SG-Nursing-LIS-Read",
+      "SG-Nursing-Pharmacy-Read"
+    ],
+    "Pharmacy": [
+      "SG-Pharmacy-EHR-Read",
+      "SG-Pharmacy-PharmacySystem-RW"
+    ],
+    "Laboratory": [
+      "SG-Lab-EHR-Read",
+      "SG-Lab-LIS-RW"
+    ],
+    "Human Resources": [
+      "SG-HR-HRPortal-RW",
+      "SG-HR-Payroll-RW"
+    ],
+    "Finance": [
+      "SG-Finance-FinanceERP-RW",
+      "SG-Finance-HRPortal-Read",
+      "SG-Finance-Payroll-RW"
+    ],
+    "IT": [
+      "SG-IT-ITAdmin-Admin",
+      "SG-IT-Scheduling-Admin",
+      "SG-IT-VPN-Read"
+    ],
+    "Security": [
+      "SG-Security-SecurityPortal-Admin"
+    ],
+    "Reception": [
+      "SG-Reception-EHR-Read",
+      "SG-Reception-Scheduling-RW"
+    ],
+    "Contractors": [
+      "SG-Contractors-ITAdmin-Limited",
+      "SG-Contractors-VPN-Read"
+    ]
+  },
+  "held": [
+    "Contractors / EHR / Limited: No Business Associate Agreement on file for the contractor (risk R06) - ePHI access held until signed.",
+    "IT / EHR / Read: D1 least privilege / HIPAA minimum necessary: IT staff get no standing ePHI access; break-fix access to be just-in-time.",
+    "IT / Pharmacy / Read: D1 least privilege / HIPAA minimum necessary: no standing ePHI access for IT.",
+    "IT / LIS / Read: D1 least privilege / HIPAA minimum necessary: no standing ePHI access for IT.",
+    "IT / SecurityPortal / Admin: D2 separation of duties: only the Security team administers security monitoring of IT's own actions."
+  ]
+}

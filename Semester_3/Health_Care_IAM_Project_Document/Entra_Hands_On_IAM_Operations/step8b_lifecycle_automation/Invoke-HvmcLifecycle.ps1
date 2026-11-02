@@ -13,8 +13,9 @@
              department's SG-* groups
       Move   update department, title and manager; remove groups of the old role FIRST, then add the new role's
              groups (no moment with both roles' access - separation of duties)
-      Leave  record the leave date now; on or after that date disable sign-in, revoke sessions and remove all SG-*
-             groups. Future leave dates are picked up by Invoke-HvmcLeaverCheck.ps1 (daily)
+      Leave  record the leave date now; once it has passed, disable sign-in, revoke sessions and remove all SG-*
+             groups. Access ends at the end of the last day (23:59:59 UTC) unless the optional EffectiveTime column
+             (HH:mm, UTC) gives the end of the last shift. Future leave times are enforced by Invoke-HvmcLeaverCheck.ps1
 
     After changes, application access is synced from groups (step 3 tool). Evidence goes to evidence/ (not in Git).
 
@@ -46,6 +47,8 @@ function Test-Row($row, $plan) {
     if ($row.EmployeeId -notmatch '^HVMC-(\d{4}|C\d{3})$') { $plan.Status = 'Invalid'; $plan.Message = "bad employee ID '$($row.EmployeeId)'"; return $false }
     if ($row.Event -notin 'Join', 'Move', 'Leave') { $plan.Status = 'Invalid'; $plan.Message = "unknown event '$($row.Event)'"; return $false }
     try { [void][datetime]::ParseExact($row.EffectiveDate, 'yyyy-MM-dd', $null) } catch { $plan.Status = 'Invalid'; $plan.Message = "bad date '$($row.EffectiveDate)'"; return $false }
+    if ($row.PSObject.Properties['EffectiveTime'] -and $row.EffectiveTime -and $row.EffectiveTime -notmatch '^([01]\d|2[0-3]):[0-5]\d$') {
+        $plan.Status = 'Invalid'; $plan.Message = "bad time '$($row.EffectiveTime)' (use HH:mm, UTC)"; return $false }
     if ($row.Event -ne 'Leave') {
         try { $want = Get-HvmcDesiredGroups -Department $row.Department } catch { $plan.Status = 'Invalid'; $plan.Message = $_.Exception.Message; return $false }
         $absent = $want | Where-Object { -not $groups.ContainsKey($_) }
@@ -128,16 +131,18 @@ $plans = foreach ($row in $rows) {
         'Leave' {
             if (-not $user) { $plan.Status = 'Invalid'; $plan.Message = 'employee not found'; break }
             $uid = $user.Id
-            $leave = "$($row.EffectiveDate)T23:59:59Z"
-            $recorded = if ($user.EmployeeLeaveDateTime) { ([datetime]$user.EmployeeLeaveDateTime).ToUniversalTime().ToString('yyyy-MM-dd') }
-            if ($recorded -ne $row.EffectiveDate) {
-                Add-HvmcStep $plan "record leave date -> $($row.EffectiveDate) (last working day)" {
+            $time = if ($row.PSObject.Properties['EffectiveTime'] -and $row.EffectiveTime) { "$($row.EffectiveTime):00" } else { '23:59:59' }
+            $leave = "$($row.EffectiveDate)T$($time)Z"
+            $leaveAt = [datetime]::Parse($leave).ToUniversalTime()
+            $recorded = if ($user.EmployeeLeaveDateTime) { ([datetime]$user.EmployeeLeaveDateTime).ToUniversalTime().ToString("yyyy-MM-dd'T'HH:mm:ss'Z'") }
+            if ($recorded -ne $leave) {
+                Add-HvmcStep $plan "record leave date -> $($row.EffectiveDate) $($time.Substring(0, 5)) UTC (end of last working day)" {
                     Update-MgUser -UserId $uid -BodyParameter @{ employeeLeaveDateTime = $leave }
                 }.GetNewClosure()
             }
-            if ($effective -gt $Today) {
-                $plan.Message = "leaves $($row.EffectiveDate): access stays until then; the daily leaver check removes it"
-                if ($plan.Steps.Count -eq 0) { $plan.Status = 'AlreadyDone'; $plan.Message = "leave date $($row.EffectiveDate) already recorded; the daily leaver check removes access" }
+            if ($leaveAt -gt [datetime]::UtcNow) {
+                $plan.Message = "access ends $($row.EffectiveDate) $($time.Substring(0, 5)) UTC; until then it stays, then the leaver check removes it"
+                if ($plan.Steps.Count -eq 0) { $plan.Status = 'AlreadyDone'; $plan.Message = "leave $($row.EffectiveDate) $($time.Substring(0, 5)) UTC already recorded; the leaver check removes access" }
                 break
             }
             if ($user.AccountEnabled) {

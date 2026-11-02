@@ -45,7 +45,7 @@ foreach ($u in $users | Sort-Object DisplayName) {
         if (-not $u.AccountEnabled -and -not $member) { continue }            # fully deprovisioned - nothing to do
         $plan = New-HvmcPlan -Ticket 'HVMC-LVC' -Event 'Leave' -Employee $who
         $plan.UserId = $uid
-        $plan.Message = "leave date $($leave.ToString('yyyy-MM-dd')) has passed"
+        $plan.Message = "leave date $($leave.ToString('yyyy-MM-dd HH:mm')) UTC has passed"
         if ($u.AccountEnabled) {
             Add-HvmcStep $plan 'disable sign-in' { Update-MgUser -UserId $uid -AccountEnabled:$false }.GetNewClosure()
             Add-HvmcStep $plan 'revoke all sign-in sessions' { Revoke-MgUserSignInSession -UserId $uid }.GetNewClosure()
@@ -60,7 +60,7 @@ foreach ($u in $users | Sort-Object DisplayName) {
         $findings.Add([ordered]@{ level = 'ACTION'; user = $who; detail = $plan.Message })
     } elseif ($leave -and $leave -le $Now.AddDays($NoticeDays)) {
         $findings.Add([ordered]@{ level = 'NOTICE'; user = $who
-                                  detail = "leaves $($leave.ToString('yyyy-MM-dd')) ($([math]::Ceiling(($leave - $Now).TotalDays)) days) - tell the manager/sponsor; access is removed automatically" })
+                                  detail = "access ends $($leave.ToString('yyyy-MM-dd HH:mm')) UTC (in $(if (($leave - $Now).TotalHours -lt 24) { '{0:N1} hours' -f ($leave - $Now).TotalHours } else { '{0:N0} days' -f ($leave - $Now).TotalDays })) - tell the manager/sponsor; removed automatically" })
     }
     if ($u.EmployeeType -eq 'Contractor' -and $u.AccountEnabled -and -not $leave) {
         $findings.Add([ordered]@{ level = 'WARNING'; user = $who; detail = 'enabled contractor with no end date (policy: contractors must expire)' })

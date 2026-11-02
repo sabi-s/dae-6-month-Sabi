@@ -1,4 +1,4 @@
-"""HVMC Healthcare IAM - hands-on Entra ID operations (Steps 1-8) deliverable -> PDF, built from the evidence files."""
+"""HVMC Healthcare IAM - hands-on Entra ID operations (Steps 1-9) deliverable -> PDF, built from the evidence files."""
 import glob
 import html
 import importlib.util
@@ -58,6 +58,8 @@ def build():
     nhi_reg = json.load(open(os.path.join(ROOT, "step8_nonhuman_identities/nhi_register.json")))[0]
     nhi_test = latest("step8_nonhuman_identities/evidence/*_nhi_test.json")
     nhi_inv = first("step8_nonhuman_identities/evidence/*_nhi_inventory_before.json")
+    pr = latest("step9_credential_cleanup/evidence/*_password_reset.json")
+    pr_disabled = 1   # Carlos Diaz (HVMC-JML-203) - reset as well, so the old password is useless if the account is re-enabled
 
     # ---- step 1
     org_rows = []
@@ -131,10 +133,10 @@ def build():
     body = f'''{style}
 <div class="runhead">Horizon Valley Medical Center &nbsp;|&nbsp; Healthcare IAM Operations Simulation</div>
 <h1>Hands-On Identity Operations in Microsoft Entra ID</h1>
-<div class="sub">Identity Hygiene · RBAC v2 · Enterprise Applications · Joiner/Mover/Leaver · Access Review · Conditional Access Design · Tenant Hardening · Non-Human Identities</div>
+<div class="sub">Identity Hygiene · RBAC v2 · Enterprise Applications · Joiner/Mover/Leaver · Access Review · Conditional Access Design · Tenant Hardening · Non-Human Identities · Credential Clean-up</div>
 {kv([("Project Name", "Healthcare IAM Operations Simulation"), ("Organization", "Horizon Valley Medical Center (HVMC)"),
                    ("Environment", "Microsoft Entra ID tenant (Free tier), 33 accounts; changes made with Microsoft Graph via scripted, ticketed changes"),
-                   ("Date", "20 October 2026 (Step 7: 28 Oct; Step 8: 29 Oct 2026)"), ("Document Version", "1.2"), ("Prepared By", "Sabitha S Karanavar"), ("Cost", "$0 — every change used Entra ID Free features")])}
+                   ("Date", "20 October 2026 (Steps 7–9: 28–29 Oct 2026)"), ("Document Version", "1.3"), ("Prepared By", "Sabitha S Karanavar"), ("Cost", "$0 — every change used Entra ID Free features")])}
 
 <h2>1. Purpose and approach</h2>
 <p>The Week 1 design (scenario, RBAC matrix, OU structure and group naming) was turned into a working, governed identity environment.
@@ -149,7 +151,8 @@ access always follows the approved design.</p>
     ("5", "Quarterly access review", "HVMC-AR-2026-Q4", f"{len(ar_items)} lines reviewed, {len(remove)} removal"),
     ("6", "Conditional Access design (report-only, licence-gated)", "—", f"{len(ca.POLICIES)} policies, {len(tests)} test cases"),
     ("7", "Free tenant hardening — consent, guests, self-service; break-glass administrators", "HVMC-IAM-CHG-106/107", f"{len(s7_rows)} settings, Global Admins 1 → {len(s7_gas)}"),
-    ("8", "Non-human identity with certificate credential and least-privilege Graph permission", "HVMC-IAM-CHG-108", f"1 NHI, {sum(r['pass'] for r in nhi_test['results'])}/{len(nhi_test['results'])} least-privilege tests passed")])}
+    ("8", "Non-human identity with certificate credential and least-privilege Graph permission", "HVMC-IAM-CHG-108", f"1 NHI, {sum(r['pass'] for r in nhi_test['results'])}/{len(nhi_test['results'])} least-privilege tests passed"),
+    ("9", "Credential clean-up — reset the passwords exposed in the bulk-create file", "HVMC-IAM-CHG-109", f"{pr['reset_ok']}/{pr['reset_ok'] + pr['failed']} passwords reset, plain-text file deleted")])}
 
 <h2>2. Starting baseline (findings)</h2>
 {table(["#", "Finding", "Why it mattered", "Fixed in"], [
@@ -160,7 +163,8 @@ access always follows the approved design.</p>
     ("F5", "Contractor without type, sponsor or end date", "Contractor access outlives the contract (risk R06)", "Steps 1 and 4"),
     ("F6", "Single Global Administrator", "No backup or emergency access (risk R04)", "Step 7"),
     ("F7", "Permissive tenant defaults: user app consent, anyone can invite guests", "Consent phishing and uncontrolled external access (risk R08)", "Step 7"),
-    ("F8", "No governed pattern for non-human (workload) identities", "Service accounts with shared passwords or broad API permissions are a common breach path", "Step 8")])}
+    ("F8", "No governed pattern for non-human (workload) identities", "Service accounts with shared passwords or broad API permissions are a common breach path", "Step 8"),
+    ("F9", "Initial passwords of all staff kept in a plain-text bulk-create file (one shown on screen)", "Anyone who saw or copied the file could sign in as any staff member", "Step 9")])}
 
 <h2 class="pb">3. Step 1 — Identity hygiene</h2>
 <p>Each department lead became the manager of the department; every staff member received an immutable employee ID
@@ -267,7 +271,26 @@ Three calls proved least privilege:</p>
 active subscription); a GitHub Actions identity with a federated credential (no secret at all); Workload ID Premium controls
 (Conditional Access and risk detection for workload identities) documented as a licensed design.</p>
 
-<h2>11. Results, lessons learned and next steps</h2>
+<h2 class="pb">11. Step 9 — Credential clean-up (HVMC-IAM-CHG-109)</h2>
+<p>The 30 staff accounts were created in bulk from a CSV file that held every <b>initial password in plain text</b> (finding F9).
+One of those passwords had been displayed on screen during an earlier working session. A file like this is a common way
+credentials leak: it gets copied, backed up or shared. Step 9 made every password in that file useless
+(<code>step9_credential_cleanup/password_reset.py</code>), using the same dry-run → approval → apply → evidence pattern.</p>
+{table(["Check", "Result"], [
+    ("Dry run", f"{pr['reset_ok'] + pr['failed']} accounts in the file found in Entra ID; 0 hold an admin role (the script stops if one does); {pr_disabled} disabled leaver account"),
+    ("Passwords reset", f"<b>{pr['reset_ok']} of {pr['reset_ok'] + pr['failed']}</b>, including the disabled leaver, so the old password is dead if the account is ever re-enabled; {pr['failed']} failures"),
+    ("Administrator accounts", "Not touched — the IAM administrator and both break-glass accounts were not in the file"),
+    ("New passwords", "16 random characters, all four character classes; generated in memory and <b>never displayed or logged</b>; sent to Graph through a temporary file readable only by the owner, not on the command line"),
+    ("Storage", "Written straight into a password-protected archive kept on the administrator’s workstation, outside the repository; archive tested (opens and holds all rows) before anything was deleted" if pr["zip_verified"] else "Archive test failed"),
+    ("Old plain-text file", "<b>Deleted</b> after the archive test passed" if pr["old_csv_deleted"] else "Kept — a step failed"),
+    ("Evidence", "Who was reset and when, with masked user names and <b>no passwords</b>")])}
+<p class="note"><b>Lab trade-offs, recorded on purpose.</b> (1) The new passwords are <i>not</i> forced to change at next sign-in,
+so the administrator can keep signing in as test staff; in production each user would get a one-time password or a
+<b>Temporary Access Pass</b> and set their own, and passwordless sign-in would remove the shared secret altogether.
+(2) The archive uses standard ZIP encryption so it opens on any Mac; it is weak against offline attack, so it never leaves the
+workstation. A password manager or an AES-encrypted vault (e.g. Azure Key Vault, once the subscription exists) is the target state.</p>
+
+<h2>12. Results, lessons learned and next steps</h2>
 {table(["Outcome", "Evidence"], [
     ("Every active staff member’s access matches the approved RBAC v2 design (30/30), with no excess access", "Step 2 coverage check, re-run after Steps 4–5"),
     ("Application access is group-driven and self-correcting, including the legacy EHR app", "Step 3 sync: 0 additions / 0 removals pending"),
@@ -275,13 +298,15 @@ active subscription); a GitHub Actions identity with a federated credential (no 
     ("Quarterly access review produced decisions, justifications and a removal", "HVMC-AR-2026-Q4 decided review pack (Excel)"),
     ("Zero Trust sign-in policy ready to deploy when licensed", "13 report-only policy files + 13 test cases"),
     ("Tenant defaults hardened and the single-admin risk removed (R04, R08 closed)", "Step 7 before/after policy evidence; 3 Global Administrators"),
-    ("First non-human identity built secret-less and proven least-privilege", "Step 8 certificate sign-in: 1 allowed call, 2 denied calls")])}
+    ("First non-human identity built secret-less and proven least-privilege", "Step 8 certificate sign-in: 1 allowed call, 2 denied calls"),
+    ("No staff password from the bulk-create file still works (F9 closed)", f"Step 9: {pr['reset_ok']}/{pr['reset_ok'] + pr['failed']} reset, file deleted, evidence without passwords")])}
 <h3>Lessons learned</h3>
 <ul><li><b>Disabling is not deprovisioning:</b> a disabled account kept an Azure data role until the access review removed it.</li>
 <li><b>Unmanaged apps defeat good group design:</b> a direct-assigned legacy app kept a transferred nurse’s EHR access (F-JML-01).</li>
 <li><b>Licences shape the design:</b> on the Free tier, group-to-app assignment and Conditional Access are unavailable, so automation and
 documented design fill the gap until a licence is justified.</li>
 <li><b>Non-human identities need owners and expiry dates:</b> a certificate with a rotate-by date and a named owner is reviewable; a forgotten secret is not.</li>
+<li><b>Setup files become secrets:</b> a convenience CSV used once to create accounts kept working passwords for every staff member; clean-up is part of the change.</li>
 <li><b>Least privilege needs judgement:</b> following the Week 1 matrix literally would have given IT standing ePHI access; RBAC v2 records why it does not.</li></ul>
 <h3>Next steps</h3>
 {table(["Action", "Cost", "Risk"], [
@@ -299,10 +324,11 @@ documented design fill the gap until a licence is justified.</li>
     ("HVMC-AR-2026-Q4", "20 Oct 2026", "Access review: 94 lines, 1 removal, legacy app brought under management"),
     ("HVMC-IAM-CHG-106", "28 Oct 2026", "Tenant settings: user consent, app registration, tenant and group creation, guest invitations and access, self-service sign-up"),
     ("HVMC-IAM-CHG-107", "28 Oct 2026", "Two emergency-access (break-glass) Global Administrator accounts"),
-    ("HVMC-IAM-CHG-108", "29 Oct 2026", "Non-human identity HVMC Lab Results Sync: certificate credential, GroupMember.Read.All, least-privilege test")], "tiny")}
+    ("HVMC-IAM-CHG-108", "29 Oct 2026", "Non-human identity HVMC Lab Results Sync: certificate credential, GroupMember.Read.All, least-privilege test"),
+    ("HVMC-IAM-CHG-109", "29 Oct 2026", f"Credential clean-up: {pr['reset_ok']} staff passwords reset, plain-text bulk-create file deleted")], "tiny")}
 <p class="note">Scripts: step1_identity_hygiene/identity_hygiene.py · step2_rbac_v2/rbac_v2.py · step3_enterprise_apps/enterprise_apps.py ·
 step4_jml/jml.py · step5_access_review/build_review_pack.py, apply_decisions.py · step6_conditional_access/ca_design.py, deploy_ca.py ·
-step7_tenant_hardening/tenant_hardening.py · step8_nonhuman_identities/nhi.py.
+step7_tenant_hardening/tenant_hardening.py · step8_nonhuman_identities/nhi.py · step9_credential_cleanup/password_reset.py.
 Each runs as a dry run by default and changes nothing without --apply.</p>
 <div class="foot">Horizon Valley Medical Center · Healthcare IAM Operations Simulation · Hands-on Entra ID operations · Sabitha S Karanavar</div>
 </body></html>'''

@@ -1,0 +1,3 @@
+HVMC-DEMO-NOTE | Finance | FICTIONAL training record - no real employee
+Payroll batch: DEMO-2026-11   Cost centre: 4100   Total: 0.00
+Note: demo text only.

@@ -1,0 +1,3 @@
+HVMC-DEMO-NOTE | Doctors | FICTIONAL training record - no real patient
+Patient: Jane Testcase   MRN: DEMO-4471   Ward: 3B
+Note: follow-up in two weeks; demo text only.

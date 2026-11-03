@@ -1,0 +1,53 @@
+{
+  "ticket": "IAM-0004",
+  "title": "MFA Support: Lost Phone",
+  "related": "Board task Activity 4 — MFA Support; Step 10 of the Entra ID hands-on (Invoke-HvmcMfaSupport.ps1)",
+  "request_type": "MFA support: lost device (Microsoft Authenticator)",
+  "priority": "High (the user cannot sign in, and the lost phone could be used to approve sign-ins)",
+  "status": "Resolved and closed",
+  "date": "November 2026",
+  "opened": "",
+  "closed": "",
+  "requester": "Dr. Sarah Chen, Physician, Doctors (fictional)",
+  "approver": "IT Security",
+  "handled_by": "Sabitha S Karanavar (IT)",
+  "employee": "Sarah Chen (HVMC-1001), Doctors (fictional)",
+  "request": "Dr. Chen called the help desk: she lost her phone this morning and cannot approve Microsoft Authenticator sign-in requests. She needs access to the clinical apps for her shift and has a new phone ready.",
+  "verification_note": "The caller's identity was confirmed before any change, because help-desk calls are a known way for attackers to take over accounts (for example, the 2023 MGM Resorts attack began with a call to the help desk).",
+  "resolution_notes": [
+    "Sessions were revoked first, so anyone holding the lost phone was signed out before the MFA method was removed.",
+    "Only the MFA methods were removed; the password and the password-reset email were kept, so the user could sign in and register again straight away.",
+    "The user registered the new phone herself; the help desk never handled her credentials.",
+    "The Entra ID audit log records both the admin removal and the user's new registration, which is the evidence for this ticket."
+  ],
+  "lessons": [
+    "A Temporary Access Pass (a time-limited, one-time code issued by the help desk after the identity check) would let the user register the new phone without relying on the password alone. It is worth evaluating for HVMC's MFA-recovery process.",
+    "The identity check is the most important control in this process: a reset without it would hand the account to an attacker."
+  ],
+  "figures": [
+    [
+      "01_status_before.png",
+      "Before: Sarah's registered methods (Microsoft Authenticator on the old phone)"
+    ],
+    [
+      "02_reset_dryrun.png",
+      "Dry run: the planned steps, nothing changed"
+    ],
+    [
+      "03_reset_apply.png",
+      "Reset applied after the identity check: sessions revoked, Authenticator removed"
+    ],
+    [
+      "04_reregister.png",
+      "Sarah registers Microsoft Authenticator on her new phone (Security info page)"
+    ],
+    [
+      "05_verify.png",
+      "Verify: new method registered after the reset, audit trail, all checks passed"
+    ],
+    [
+      "06_audit_portal.png",
+      "Entra admin center: audit log entries for the removal and the new registration"
+    ]
+  ]
+}

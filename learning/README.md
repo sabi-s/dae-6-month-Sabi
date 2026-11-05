@@ -37,25 +37,70 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 
 ---
 
-### Entry 2 (Task 1) — fill in after completing
+### ✅ Entry 2 (Task 1)
 
-**📆 Date:** YYYY-MM-DD  
+**📆 Date:** 2026-11-05  
 **🛠️ Task:** Created resource group and RBAC-enabled Key Vault; stored first dummy secrets.
+
+**What I built**
+
+| Item | Setting |
+|---|---|
+| Resource group | `HVMC-KeyVault-RG` (East US), tags `project=HVMC-AccessGuard`, `purpose=learning-keyvault`, `data=dummy-only` |
+| Vault | `hvmc-accessguard-kv`, **Standard** tier |
+| Permission model | **Azure RBAC** (no legacy access policies) |
+| Soft delete / purge protection | On, 7-day retention / **On** (cannot be turned off) |
+| My access | **Key Vault Secrets Officer** at the vault scope only |
+| Secrets | `servicenow-lab-password`, `accessguard-api-key`: random dummy values, never printed or saved |
 
 **🔍 Evidence:**
 
 -   Branch: `feature/azure-key-vault-setup`
 -   Draft PR: _link here_
+-   Script: [scripts/task1_create_vault.sh](./scripts/task1_create_vault.sh) (dry run by default, `--apply` to create)
+-   Screenshot: [PROOF/01_keyvault_overview.png](./PROOF/01_keyvault_overview.png)
 -   Command output:
     ```bash
-    az keyvault show --name <vault-name> --query "{rbac:properties.enableRbacAuthorization, purgeProtection:properties.enablePurgeProtection}"
-    # paste real output here (do not paste secret values)
+    $ az keyvault show -n hvmc-accessguard-kv --query "{name:name,sku:properties.sku.name,rbacAuthorization:properties.enableRbacAuthorization,softDelete:properties.enableSoftDelete,retentionDays:properties.softDeleteRetentionInDays,purgeProtection:properties.enablePurgeProtection}" -o table
+    Name                 Sku       RbacAuthorization    SoftDelete    RetentionDays    PurgeProtection
+    -------------------  --------  -------------------  ------------  ---------------  -----------------
+    hvmc-accessguard-kv  standard  True                 True          7                True
+
+    $ az keyvault secret show --vault-name hvmc-accessguard-kv -n servicenow-lab-password   # value masked
+    {
+      "contentType": "dummy lab value",
+      "created": "2026-11-05T17:41:19+00:00",
+      "enabled": true,
+      "name": "servicenow-lab-password",
+      "value": "********  (masked, 32 chars)"
+    }
+
+    $ az keyvault secret show --vault-name hvmc-accessguard-kv -n accessguard-api-key       # value masked
+    {
+      "contentType": "dummy lab value",
+      "created": "2026-11-05T17:41:20+00:00",
+      "enabled": true,
+      "name": "accessguard-api-key",
+      "value": "********  (masked, 32 chars)"
+    }
+
+    $ az role assignment list --scope <vault-id> --query "[].{role:roleDefinitionName,type:principalType}" -o table
+    Role
+    -------------------------
+    Key Vault Secrets Officer
     ```
 
 **📝 Notes:**
 
 -   Challenges faced and how I solved them:
+    -   **No active subscription.** My free trial had ended, and the portal would not create a new subscription until the account was upgraded. Upgrading would have restarted ~$90–130/month of old lab resources. I saved a read-only evidence snapshot first, upgraded with the free Basic support plan, then straight away set a $10/month budget with e-mail alerts, paused the flow log, capped Log Analytics data, and removed only the NAT gateway, load balancer and their public IPs (screenshots already taken). Expected cost now: about $2–5/month.
+    -   **Owner is not enough to write secrets.** With the RBAC model, Owner manages the vault (control plane) but cannot read or write secrets (data plane). I gave myself **Key Vault Secrets Officer** on this vault only, not the subscription, and waited about a minute for the role to take effect.
+    -   **Keeping secret values out of logs.** The script generates each value in Python, writes it to a temporary file readable only by me, uploads it with `--file` (so it never appears on the command line or in shell history), and deletes the file. Proof output masks the value.
+    -   **After the upgrade, Azure stayed read-only for about 8 minutes** (`ReadOnlyDisabledSubscription`) even though the status said Enabled. The script was safe to re-run, so I retried until it worked.
 -   Areas to improve or explore further:
+    -   Task 2: map the Day 2 RBAC groups to Key Vault Administrator / Reader / Secrets User and prove least privilege (Reader denied secret values).
+    -   Task 3: read a secret from Python with `DefaultAzureCredential` and send vault audit logs to Log Analytics.
+    -   Network hardening (firewall / private endpoint) is out of scope for this month; public access is used for the lab only.
 
 ---
 

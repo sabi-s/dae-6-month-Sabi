@@ -1,0 +1,26 @@
+TLS tests run from the office Mac on 5 Nov 2026 (read-only, $0)
+=== handshake test: hvmcehrstorage.blob.core.windows.net
+  tls1_3: ACCEPTED (TLSv1.3, AEAD-AES256-GCM-SHA384)
+  tls1_2: ACCEPTED (TLSv1.2, ECDHE-RSA-AES256-GCM-SHA384)
+  tls1_1: ACCEPTED (TLSv1.1, ECDHE-RSA-AES256-SHA)
+  tls1: ACCEPTED (TLSv1, ECDHE-RSA-AES256-SHA)
+=== handshake test: hvmc-accessguard-kv.vault.azure.net
+  tls1_3: ACCEPTED (TLSv1.3, AEAD-AES256-GCM-SHA384)
+  tls1_2: ACCEPTED (TLSv1.2, ECDHE-RSA-AES256-GCM-SHA384)
+  tls1_1: REFUSED (no cipher agreed)
+  tls1: REFUSED (no cipher agreed)
+=== handshake test: login.microsoftonline.com
+  tls1_3: ACCEPTED (TLSv1.3, AEAD-AES256-GCM-SHA384)
+  tls1_2: ACCEPTED (TLSv1.2, ECDHE-RSA-AES256-GCM-SHA384)
+  tls1_1: REFUSED (no cipher agreed)
+  tls1: REFUSED (no cipher agreed)
+=== request test: storage account with minimum TLS 1.2 (enforced per request)
+  TLS 1.0 -> HTTP 400 The TLS version of the connection is not permitted on this storage account. 
+  TLS 1.1 -> HTTP 400 The TLS version of the connection is not permitted on this storage account. 
+  TLS 1.2 -> HTTP 409 Public access is not permitted on this storage account. 
+=== plain HTTP to the storage account (HTTPS only), run 5 Nov 2026 16:4x
+  http:// -> HTTP 400 The account being accessed does not support http.
+=== plain HTTP to login.microsoftonline.com
+  HTTP/1.1 302 Found
+  Location: https://login.microsoftonline.com:443/
+client: LibreSSL 3.3.6, curl 8.7.1

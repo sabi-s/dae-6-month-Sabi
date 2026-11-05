@@ -1,0 +1,17 @@
+=== login.microsoftonline.com
+  -tls1_3  ACCEPTED  TLSv1.3 AEAD-AES256-GCM-SHA384
+  -tls1_2  ACCEPTED  TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384
+  -tls1_1  REFUSED (handshake failed)
+  -tls1  REFUSED (handshake failed)
+  issuer= /C=US/O=DigiCert Inc/CN=DigiCert Global G2 TLS RSA SHA256 2020 CA1
+=== graph.microsoft.com
+  -tls1_3  ACCEPTED  TLSv1.3 AEAD-AES256-GCM-SHA384
+  -tls1_2  ACCEPTED  TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256
+  -tls1_1  REFUSED (handshake failed)
+  -tls1  REFUSED (handshake failed)
+  issuer= /C=US/O=DigiCert Inc/CN=DigiCert Global G2 TLS RSA SHA256 2020 CA1
+=== http://login.microsoftonline.com (plain HTTP)
+  HTTP/1.1 302 Found
+  Location: https://login.microsoftonline.com:443/
+=== HSTS on https://login.microsoftonline.com
+  Strict-Transport-Security: max-age=31536000; includeSubDomains

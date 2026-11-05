@@ -1,0 +1,6164 @@
+{
+ "flows": [
+  {
+   "k": [
+    "192.168.64.30",
+    55524,
+    "151.101.65.91",
+    443
+   ],
+   "frame": 48,
+   "t": 3.159,
+   "server_ip": "151.101.65.91",
+   "ch": {
+    "sni": "firefox.settings.services.mozilla.com",
+    "versions": [
+     "TLS 1.2"
+    ],
+    "suites": [
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1"
+    ],
+    "keyshares": [],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 10
+   },
+   "ch_frame": 48,
+   "sh": {
+    "version": "TLS 1.2",
+    "suite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "keyshare": null,
+    "alpn": "h2",
+    "hrr": false
+   },
+   "sh_frame": 58,
+   "appdata": 27
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    55518,
+    "151.101.65.91",
+    443
+   ],
+   "frame": 49,
+   "t": 3.16,
+   "server_ip": "151.101.65.91",
+   "ch": {
+    "sni": "firefox.settings.services.mozilla.com",
+    "versions": [
+     "TLS 1.2"
+    ],
+    "suites": [
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1"
+    ],
+    "keyshares": [],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 10
+   },
+   "ch_frame": 49,
+   "sh": {
+    "version": "TLS 1.2",
+    "suite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "keyshare": null,
+    "alpn": "h2",
+    "hrr": false
+   },
+   "sh_frame": 86,
+   "appdata": 2
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    55918,
+    "151.101.1.91",
+    443
+   ],
+   "frame": 50,
+   "t": 3.161,
+   "server_ip": "151.101.1.91",
+   "ch": {
+    "sni": "ads-img.mozilla.org",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 50,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_128_GCM_SHA256",
+    "keyshare": "x25519",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 66,
+   "appdata": 6
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    55902,
+    "151.101.1.91",
+    443
+   ],
+   "frame": 53,
+   "t": 3.162,
+   "server_ip": "151.101.1.91",
+   "ch": {
+    "sni": "ads-img.mozilla.org",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 53,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_128_GCM_SHA256",
+    "keyshare": "x25519",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 61,
+   "appdata": 9
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    45010,
+    "34.149.226.178",
+    443
+   ],
+   "frame": 54,
+   "t": 3.162,
+   "server_ip": "34.149.226.178",
+   "ch": {
+    "sni": "content-signature-2.cdn.mozilla.net",
+    "versions": [
+     "TLS 1.2"
+    ],
+    "suites": [
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1"
+    ],
+    "keyshares": [],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 10
+   },
+   "ch_frame": 54,
+   "sh": {
+    "version": "TLS 1.2",
+    "suite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "keyshare": null,
+    "alpn": "h2",
+    "hrr": false
+   },
+   "sh_frame": 81,
+   "appdata": 6
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    56290,
+    "34.107.243.93",
+    443
+   ],
+   "frame": 162,
+   "t": 6.271,
+   "server_ip": "34.107.243.93",
+   "ch": {
+    "sni": "push.services.mozilla.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 162,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_128_GCM_SHA256",
+    "keyshare": "x25519",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 164,
+   "appdata": 9
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    56298,
+    "34.107.243.93",
+    443
+   ],
+   "frame": 191,
+   "t": 9.417,
+   "server_ip": "34.107.243.93",
+   "ch": {
+    "sni": "push.services.mozilla.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 14
+   },
+   "ch_frame": 191,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_128_GCM_SHA256",
+    "keyshare": "x25519",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 193,
+   "appdata": 7
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    49190,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 256,
+   "t": 13.263,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 256,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 272,
+   "appdata": 4
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    49180,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 261,
+   "t": 13.264,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 261,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 271,
+   "appdata": 4
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    49168,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 262,
+   "t": 13.266,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 262,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 275,
+   "appdata": 4
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    49192,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 263,
+   "t": 13.267,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 263,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 276,
+   "appdata": 4
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    49182,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 267,
+   "t": 13.268,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 267,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 280,
+   "appdata": 4
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    49202,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 268,
+   "t": 13.269,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 268,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 279,
+   "appdata": 4
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    40980,
+    "20.190.157.9",
+    443
+   ],
+   "frame": 287,
+   "t": 13.302,
+   "server_ip": "20.190.157.9",
+   "ch": {
+    "sni": "login.microsoftonline.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 287,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 306,
+   "appdata": 49
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    54800,
+    "20.184.175.2",
+    443
+   ],
+   "frame": 304,
+   "t": 13.348,
+   "server_ip": "20.184.175.2",
+   "ch": {
+    "sni": "browser.events.data.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 304,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 324,
+   "appdata": 14
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    54786,
+    "20.184.175.2",
+    443
+   ],
+   "frame": 305,
+   "t": 13.349,
+   "server_ip": "20.184.175.2",
+   "ch": {
+    "sni": "browser.events.data.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 305,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 322,
+   "appdata": 103
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    60512,
+    "13.107.226.40",
+    443
+   ],
+   "frame": 378,
+   "t": 16.788,
+   "server_ip": "13.107.226.40",
+   "ch": {
+    "sni": "aadcdn.msauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 378,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 390,
+   "appdata": 15
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    60568,
+    "13.107.226.40",
+    443
+   ],
+   "frame": 379,
+   "t": 16.789,
+   "server_ip": "13.107.226.40",
+   "ch": {
+    "sni": "aadcdn.msauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 379,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 400,
+   "appdata": 29
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    60552,
+    "13.107.226.40",
+    443
+   ],
+   "frame": 386,
+   "t": 16.795,
+   "server_ip": "13.107.226.40",
+   "ch": {
+    "sni": "aadcdn.msauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 386,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 429,
+   "appdata": 10
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    60540,
+    "13.107.226.40",
+    443
+   ],
+   "frame": 387,
+   "t": 16.797,
+   "server_ip": "13.107.226.40",
+   "ch": {
+    "sni": "aadcdn.msauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 387,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 433,
+   "appdata": 11
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    60526,
+    "13.107.226.40",
+    443
+   ],
+   "frame": 388,
+   "t": 16.798,
+   "server_ip": "13.107.226.40",
+   "ch": {
+    "sni": "aadcdn.msauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 388,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 419,
+   "appdata": 11
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    57784,
+    "13.107.226.40",
+    443
+   ],
+   "frame": 708,
+   "t": 22.672,
+   "server_ip": "13.107.226.40",
+   "ch": {
+    "sni": "aadcdn.msauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 708,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 711,
+   "appdata": 15
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    44174,
+    "20.184.175.2",
+    443
+   ],
+   "frame": 733,
+   "t": 22.728,
+   "server_ip": "20.184.175.2",
+   "ch": {
+    "sni": "browser.events.data.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 733,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 758,
+   "appdata": 7
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    44192,
+    "20.184.175.2",
+    443
+   ],
+   "frame": 736,
+   "t": 22.73,
+   "server_ip": "20.184.175.2",
+   "ch": {
+    "sni": "browser.events.data.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 736,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 747,
+   "appdata": 36
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    44176,
+    "20.184.175.2",
+    443
+   ],
+   "frame": 739,
+   "t": 22.733,
+   "server_ip": "20.184.175.2",
+   "ch": {
+    "sni": "browser.events.data.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 739,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 753,
+   "appdata": 7
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    32898,
+    "20.190.135.4",
+    443
+   ],
+   "frame": 742,
+   "t": 22.745,
+   "server_ip": "20.190.135.4",
+   "ch": {
+    "sni": "login.live.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 742,
+   "sh": {
+    "version": "TLS 1.2",
+    "suite": "ECDHE-RSA-AES256-GCM-SHA384",
+    "keyshare": null,
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 743
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    47184,
+    "13.107.226.40",
+    443
+   ],
+   "frame": 1022,
+   "t": 41.93,
+   "server_ip": "13.107.226.40",
+   "ch": {
+    "sni": "aadcdn.msauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 14
+   },
+   "ch_frame": 1022,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1024,
+   "appdata": 11
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    34094,
+    "20.190.135.4",
+    443
+   ],
+   "frame": 1044,
+   "t": 42.298,
+   "server_ip": "20.190.135.4",
+   "ch": {
+    "sni": "login.live.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1044,
+   "sh": {
+    "version": "TLS 1.2",
+    "suite": "ECDHE-RSA-AES256-GCM-SHA384",
+    "keyshare": null,
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1051
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    48998,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 1064,
+   "t": 44.794,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1064,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1066,
+   "appdata": 8
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    49008,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 1103,
+   "t": 45.602,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1103,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1104,
+   "appdata": 19
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    49014,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 1118,
+   "t": 45.973,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1118,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1126,
+   "appdata": 34
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    49034,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 1165,
+   "t": 46.232,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1165,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1175,
+   "appdata": 18
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    49050,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 1171,
+   "t": 46.233,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1171,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1179,
+   "appdata": 12
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    49054,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 1173,
+   "t": 46.233,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1173,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1180,
+   "appdata": 29
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    49060,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 1174,
+   "t": 46.234,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1174,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1176,
+   "appdata": 16
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    33282,
+    "23.205.22.59",
+    443
+   ],
+   "frame": 1464,
+   "t": 49.323,
+   "server_ip": "23.205.22.59",
+   "ch": {
+    "sni": "static2.sharepointonline.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1464,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "x25519",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1470,
+   "appdata": 33
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    50322,
+    "20.190.156.64",
+    443
+   ],
+   "frame": 1479,
+   "t": 49.348,
+   "server_ip": "20.190.156.64",
+   "ch": {
+    "sni": "api.mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1479,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1498,
+   "appdata": 7
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    50302,
+    "20.190.156.64",
+    443
+   ],
+   "frame": 1480,
+   "t": 49.348,
+   "server_ip": "20.190.156.64",
+   "ch": {
+    "sni": "api.mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1480,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1499,
+   "appdata": 5
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    50290,
+    "20.190.156.64",
+    443
+   ],
+   "frame": 1481,
+   "t": 49.349,
+   "server_ip": "20.190.156.64",
+   "ch": {
+    "sni": "api.mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1481,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1505,
+   "appdata": 11
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    50318,
+    "20.190.156.64",
+    443
+   ],
+   "frame": 1482,
+   "t": 49.35,
+   "server_ip": "20.190.156.64",
+   "ch": {
+    "sni": "api.mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1482,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1511,
+   "appdata": 7
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    46650,
+    "96.16.14.99",
+    443
+   ],
+   "frame": 1620,
+   "t": 52.487,
+   "server_ip": "96.16.14.99",
+   "ch": {
+    "sni": "res-1.cdn.office.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1620,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "x25519",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1626,
+   "appdata": 10
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    46656,
+    "96.16.14.99",
+    443
+   ],
+   "frame": 1623,
+   "t": 52.489,
+   "server_ip": "96.16.14.99",
+   "ch": {
+    "sni": "res-1.cdn.office.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1623,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "x25519",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1628,
+   "appdata": 20
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    54980,
+    "40.126.62.130",
+    443
+   ],
+   "frame": 1840,
+   "t": 56.441,
+   "server_ip": "40.126.62.130",
+   "ch": {
+    "sni": "login.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1840,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1847,
+   "appdata": 6
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    38550,
+    "13.107.226.40",
+    443
+   ],
+   "frame": 1900,
+   "t": 59.807,
+   "server_ip": "13.107.226.40",
+   "ch": {
+    "sni": "aadcdn.msauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1900,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1912,
+   "appdata": 10
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    38532,
+    "13.107.226.40",
+    443
+   ],
+   "frame": 1901,
+   "t": 59.808,
+   "server_ip": "13.107.226.40",
+   "ch": {
+    "sni": "aadcdn.msauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1901,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1916,
+   "appdata": 11
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    38540,
+    "13.107.226.40",
+    443
+   ],
+   "frame": 1904,
+   "t": 59.81,
+   "server_ip": "13.107.226.40",
+   "ch": {
+    "sni": "aadcdn.msauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1904,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1926,
+   "appdata": 10
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    38560,
+    "13.107.226.40",
+    443
+   ],
+   "frame": 1907,
+   "t": 59.811,
+   "server_ip": "13.107.226.40",
+   "ch": {
+    "sni": "aadcdn.msauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1907,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 1936,
+   "appdata": 17
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    38562,
+    "13.107.226.40",
+    443
+   ],
+   "frame": 1974,
+   "t": 59.864,
+   "server_ip": "13.107.226.40",
+   "ch": {
+    "sni": "aadcdn.msauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 1974,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2017,
+   "appdata": 20
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    37358,
+    "20.190.135.4",
+    443
+   ],
+   "frame": 2302,
+   "t": 63.061,
+   "server_ip": "20.190.135.4",
+   "ch": {
+    "sni": "login.live.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 2302,
+   "sh": {
+    "version": "TLS 1.2",
+    "suite": "ECDHE-RSA-AES256-GCM-SHA384",
+    "keyshare": null,
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2303,
+   "appdata": 2
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    40734,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 2379,
+   "t": 71.484,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 2379,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2396,
+   "appdata": 1
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    40772,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 2386,
+   "t": 71.486,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 2386,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2397,
+   "appdata": 1
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    40756,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 2387,
+   "t": 71.487,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 2387,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2405,
+   "appdata": 1
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    40744,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 2390,
+   "t": 71.488,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 2390,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2400,
+   "appdata": 1
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    40786,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 2391,
+   "t": 71.489,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 2391,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2404,
+   "appdata": 1
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    40802,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 2418,
+   "t": 71.544,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 2418,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2420,
+   "appdata": 23
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    40812,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 2454,
+   "t": 71.678,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 2454,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2463,
+   "appdata": 25
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    40818,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 2459,
+   "t": 71.69,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 2459,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2477,
+   "appdata": 11
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    58464,
+    "13.107.226.40",
+    443
+   ],
+   "frame": 2743,
+   "t": 74.446,
+   "server_ip": "13.107.226.40",
+   "ch": {
+    "sni": "aadcdn.msauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 14
+   },
+   "ch_frame": 2743,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2745,
+   "appdata": 11
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    38716,
+    "40.126.62.130",
+    443
+   ],
+   "frame": 2947,
+   "t": 79.806,
+   "server_ip": "40.126.62.130",
+   "ch": {
+    "sni": "login.microsoftonline.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 2947,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2948,
+   "appdata": 11
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    40826,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 2973,
+   "t": 80.248,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 2973,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2992,
+   "appdata": 25
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    40830,
+    "20.190.151.72",
+    443
+   ],
+   "frame": 2981,
+   "t": 80.254,
+   "server_ip": "20.190.151.72",
+   "ch": {
+    "sni": "mysignins.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 2981,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 2995,
+   "appdata": 9
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    38200,
+    "40.126.62.130",
+    443
+   ],
+   "frame": 3094,
+   "t": 80.533,
+   "server_ip": "40.126.62.130",
+   "ch": {
+    "sni": "login.microsoftonline.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3094,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3112,
+   "appdata": 5
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    38224,
+    "40.126.62.130",
+    443
+   ],
+   "frame": 3097,
+   "t": 80.543,
+   "server_ip": "40.126.62.130",
+   "ch": {
+    "sni": "login.microsoftonline.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3097,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3122,
+   "appdata": 5
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    38208,
+    "40.126.62.130",
+    443
+   ],
+   "frame": 3100,
+   "t": 80.546,
+   "server_ip": "40.126.62.130",
+   "ch": {
+    "sni": "login.microsoftonline.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3100,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3123,
+   "appdata": 11
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    38230,
+    "40.126.62.130",
+    443
+   ],
+   "frame": 3220,
+   "t": 80.847,
+   "server_ip": "40.126.62.130",
+   "ch": {
+    "sni": "login.microsoftonline.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3220,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3232,
+   "appdata": 5
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    34394,
+    "52.110.2.178",
+    443
+   ],
+   "frame": 3502,
+   "t": 83.365,
+   "server_ip": "52.110.2.178",
+   "ch": {
+    "sni": "webshell.suite.office.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3502,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3531,
+   "appdata": 36
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    34388,
+    "52.110.2.178",
+    443
+   ],
+   "frame": 3504,
+   "t": 83.366,
+   "server_ip": "52.110.2.178",
+   "ch": {
+    "sni": "webshell.suite.office.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3504,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3530,
+   "appdata": 7
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    57952,
+    "150.171.110.19",
+    443
+   ],
+   "frame": 3505,
+   "t": 83.366,
+   "server_ip": "150.171.110.19",
+   "ch": {
+    "sni": "amcdn.msftauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3505,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3534,
+   "appdata": 19
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    46088,
+    "20.190.151.136",
+    443
+   ],
+   "frame": 3509,
+   "t": 83.368,
+   "server_ip": "20.190.151.136",
+   "ch": {
+    "sni": "api.myaccount.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3509,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3545,
+   "appdata": 7
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    35440,
+    "20.190.152.106",
+    443
+   ],
+   "frame": 3514,
+   "t": 83.373,
+   "server_ip": "20.190.152.106",
+   "ch": {
+    "sni": "graph.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3514,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3557,
+   "appdata": 7
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    35428,
+    "20.190.152.106",
+    443
+   ],
+   "frame": 3518,
+   "t": 83.374,
+   "server_ip": "20.190.152.106",
+   "ch": {
+    "sni": "graph.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3518,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3552,
+   "appdata": 91
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    35416,
+    "20.190.152.106",
+    443
+   ],
+   "frame": 3523,
+   "t": 83.375,
+   "server_ip": "20.190.152.106",
+   "ch": {
+    "sni": "graph.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3523,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3564,
+   "appdata": 7
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    35412,
+    "20.190.152.106",
+    443
+   ],
+   "frame": 3524,
+   "t": 83.376,
+   "server_ip": "20.190.152.106",
+   "ch": {
+    "sni": "graph.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3524,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3565,
+   "appdata": 7
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    35402,
+    "20.190.152.106",
+    443
+   ],
+   "frame": 3525,
+   "t": 83.376,
+   "server_ip": "20.190.152.106",
+   "ch": {
+    "sni": "graph.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3525,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3568,
+   "appdata": 7
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    35396,
+    "20.190.152.106",
+    443
+   ],
+   "frame": 3528,
+   "t": 83.378,
+   "server_ip": "20.190.152.106",
+   "ch": {
+    "sni": "graph.microsoft.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3528,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3569,
+   "appdata": 7
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    57958,
+    "150.171.110.19",
+    443
+   ],
+   "frame": 3696,
+   "t": 83.462,
+   "server_ip": "150.171.110.19",
+   "ch": {
+    "sni": "amcdn.msftauth.net",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 3696,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 3741,
+   "appdata": 22
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    38244,
+    "40.126.62.130",
+    443
+   ],
+   "frame": 4031,
+   "t": 83.845,
+   "server_ip": "40.126.62.130",
+   "ch": {
+    "sni": "login.microsoftonline.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 4031,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 4039,
+   "appdata": 8
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    49606,
+    "172.253.63.95",
+    443
+   ],
+   "frame": 4212,
+   "t": 86.569,
+   "server_ip": "172.253.63.95",
+   "ch": {
+    "sni": "safebrowsing.googleapis.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 4212,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "x25519",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 4217,
+   "appdata": 14
+  },
+  {
+   "k": [
+    "192.168.64.30",
+    57696,
+    "150.171.109.69",
+    443
+   ],
+   "frame": 4215,
+   "t": 86.571,
+   "server_ip": "150.171.109.69",
+   "ch": {
+    "sni": "js.monitor.azure.com",
+    "versions": [
+     "TLS 1.3",
+     "TLS 1.2"
+    ],
+    "suites": [
+     "TLS_AES_128_GCM_SHA256",
+     "TLS_CHACHA20_POLY1305_SHA256",
+     "TLS_AES_256_GCM_SHA384",
+     "ECDHE-ECDSA-AES128-GCM-SHA256",
+     "ECDHE-RSA-AES128-GCM-SHA256",
+     "ECDHE-ECDSA-CHACHA20-POLY1305",
+     "ECDHE-RSA-CHACHA20-POLY1305",
+     "ECDHE-ECDSA-AES256-GCM-SHA384",
+     "ECDHE-RSA-AES256-GCM-SHA384",
+     "ECDHE-ECDSA-AES256-CBC-SHA",
+     "ECDHE-ECDSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES128-CBC-SHA",
+     "ECDHE-RSA-AES256-CBC-SHA",
+     "RSA-AES128-GCM-SHA256",
+     "RSA-AES256-GCM-SHA384",
+     "RSA-AES128-CBC-SHA",
+     "RSA-AES256-CBC-SHA"
+    ],
+    "groups": [
+     "x25519",
+     "secp256r1",
+     "secp384r1",
+     "secp521r1",
+     "ffdhe2048",
+     "ffdhe3072"
+    ],
+    "keyshares": [
+     "x25519",
+     "secp256r1"
+    ],
+    "alpn": [
+     "h2",
+     "http/1.1"
+    ],
+    "sigalgs": [
+     "ecdsa_secp256r1_sha256",
+     "ecdsa_secp384r1_sha384",
+     "ecdsa_secp521r1_sha512",
+     "rsa_pss_rsae_sha256",
+     "rsa_pss_rsae_sha384",
+     "rsa_pss_rsae_sha512",
+     "rsa_pkcs1_sha256",
+     "rsa_pkcs1_sha384",
+     "rsa_pkcs1_sha512",
+     "ecdsa_sha1",
+     "rsa_pkcs1_sha1"
+    ],
+    "ech": false,
+    "ext_count": 15
+   },
+   "ch_frame": 4215,
+   "sh": {
+    "version": "TLS 1.3",
+    "suite": "TLS_AES_256_GCM_SHA384",
+    "keyshare": "secp256r1",
+    "alpn": null,
+    "hrr": false
+   },
+   "sh_frame": 4224,
+   "appdata": 13
+  }
+ ],
+ "certs_in_clear": 3,
+ "appdata": {
+  "s2c": 638,
+  "c2s": 473
+ },
+ "alerts": [
+  [
+   124,
+   true,
+   "0000000000000002a4f9458851fd11dbea6a61fc89ec342517af"
+  ],
+  [
+   134,
+   false,
+   "0000000000000002ce4f07f8b7064754846271044594632a4084"
+  ],
+  [
+   879,
+   true,
+   "0000000000000001e21ce699a990fe63d1cf54df57a356ead621"
+  ],
+  [
+   1322,
+   true,
+   "0000000000000001373151f96990d64734473856eafa1929fe91"
+  ]
+ ],
+ "stats": {}
+}

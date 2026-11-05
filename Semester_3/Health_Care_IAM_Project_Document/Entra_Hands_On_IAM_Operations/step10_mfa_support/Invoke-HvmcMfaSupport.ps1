@@ -31,7 +31,8 @@ param(
     [string]$EmployeeId = 'HVMC-1001',
     [string]$Ticket = 'IAM-0004',
     [switch]$Apply,
-    [string]$VerifiedBy
+    [string]$VerifiedBy,
+    [switch]$DeviceCode
 )
 $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot '../step8b_lifecycle_automation/HVMC.Lifecycle.psm1') -Force
@@ -44,10 +45,29 @@ function Connect-MfaGraph {
     $ctx = Get-MgContext
     $missing = if ($ctx) { @($Scopes | Where-Object { $ctx.Scopes -notcontains $_ }) } else { $Scopes }
     if ($missing.Count) {
-        Write-Host 'A browser window opens: sign in with your HVMC admin account and approve MFA (once per session).'
-        Connect-MgGraph -Scopes $Scopes -NoWelcome
+        if ($DeviceCode) {
+            Write-Host 'Sign-in needed. Within 2 minutes: open https://login.microsoft.com/device in a normal browser window,'
+            Write-Host '  type the code below, sign in as helpdesk.admin, approve MFA and accept the permissions.'
+        } else {
+            Write-Host 'Sign-in needed: a browser window opens. Sign in as helpdesk.admin (the help-desk account), approve MFA, accept the'
+            Write-Host '  permissions, and keep the tab open until this window continues (use -DeviceCode if no browser opens).'
+        }
+        # The admin is a personal (gmail) Microsoft account, so the HVMC tenant must be named or the sign-in
+        # lands in the wrong directory ("You don't have access to this"). The ID comes from the Azure CLI sign-in.
+        $tenant = $env:HVMC_TENANT_ID
+        if (-not $tenant) { $tenant = (& az account show --query tenantId -o tsv 2>$null) }
+        if (-not $tenant) { throw 'Tenant ID not found - run "az login" first, or set $env:HVMC_TENANT_ID.' }
+        $cm = @{ TenantId = $tenant.Trim(); Scopes = $Scopes; NoWelcome = $true }
+        if ($DeviceCode) { $cm.UseDeviceCode = $true }
+        Connect-MgGraph @cm
     }
-    Write-Host ('Connected to Microsoft Graph as {0}' -f ((Get-MgContext).Account -replace '@.*', '@<tenant>'))
+    $ctx = Get-MgContext
+    if (-not $ctx -or -not $ctx.Account) {
+        throw 'Not signed in to Microsoft Graph - the sign-in did not finish. Run the command again and complete the sign-in.'
+    }
+    $still = @($Scopes | Where-Object { $ctx.Scopes -notcontains $_ })
+    if ($still.Count) { throw ('Signed in, but these permissions were not granted: {0}' -f ($still -join ', ')) }
+    Write-Host ('Connected to Microsoft Graph as {0}' -f ($ctx.Account -replace '@.*', '@<tenant>'))
 }
 
 function Hide-Phone([string]$n) { if ($n.Length -gt 4) { ($n.Substring(0, [Math]::Min(3, $n.Length)) + ' *** *** **' + $n.Substring($n.Length - 2)) } else { '****' } }
@@ -88,7 +108,7 @@ function Get-SecurityAudit([string]$uid, [datetime]$since) {
     $rows | Sort-Object { [datetime]$_.activityDateTime } | ForEach-Object {
         $by = $_.initiatedBy.user.userPrincipalName ?? $_.initiatedBy.app.displayName ?? 'system'
         [pscustomobject]@{ Time = ([datetime]$_.activityDateTime).ToUniversalTime(); Activity = $_.activityDisplayName
-                           Result = $_.result; By = ($by -replace '@.*', '@<tenant>') }
+                           Result = $_.result; By = (($by -replace '^.*#EXT#@.*$', 'Global Admin (IAM admin)') -replace '@.*', '@<tenant>') }
     }
 }
 
@@ -161,11 +181,18 @@ switch ($Action) {
             if (-not $pending.Count) { break }
         }
         foreach ($r in $results) { Write-Host ("  {0}  {1,-60} {2}" -f $r.time, $r.step, $r.result) }
-        Start-Sleep -Seconds 3
+        # Entra replicates the deletion: the method can still be listed for a short time after a successful delete.
+        Write-Host '  waiting for Entra ID to show the change (up to 2 minutes)...'
+        foreach ($i in 1..24) {
+            Start-Sleep -Seconds 5
+            if (-not @(Get-Methods $user.Id | Where-Object IsMfa).Count) { break }
+        }
         $after = Show-Status $user $started.AddMinutes(-1)
-        $okAll = -not ($results | Where-Object { $_.result -ne 'ok' }) -and $after.mfaMethods -eq 0
-        Write-Host ($okAll ? "`nRESET DONE: sessions revoked and all MFA methods removed. Ask the user to sign in and register the new phone." `
-                           : "`nRESET INCOMPLETE - see the FAILED lines above.")
+        $failed = @($results | Where-Object { $_.result -ne 'ok' })
+        $okAll = -not $failed.Count -and $after.mfaMethods -eq 0
+        Write-Host $(if ($okAll) { "`nRESET DONE: sessions revoked and all MFA methods removed. Ask the user to sign in and register the new phone." }
+                     elseif ($failed.Count) { "`nRESET INCOMPLETE - see the FAILED lines above." }
+                     else { "`nRESET SENT, NOT YET VISIBLE: every step returned ok but the method is still listed. Wait a few minutes and run -Action Status." })
         $ev = Save-Evidence 'mfa_reset' ([ordered]@{ ticket = $Ticket; action = 'reset'; mode = 'apply'; startedAt = $started.ToString('s') + 'Z'
             identityVerifiedBy = $VerifiedBy; results = $results; before = $before; after = $after; complete = $okAll })
         Write-Host "Evidence: $ev"
@@ -176,11 +203,20 @@ switch ($Action) {
         $reset = Get-Content $last.FullName -Raw | ConvertFrom-Json
         $resetAt = ([datetime]$reset.startedAt).ToUniversalTime()
         $s = Show-Status $user $resetAt.AddMinutes(-1)
-        $new = @(Get-Methods $user.Id | Where-Object { $_.IsMfa -and $_.Created -and $_.Created -gt $resetAt })
+        # Old methods removed: the reset saw 0 methods itself, or every step returned ok and a later status check saw 0
+        # (Entra can list a deleted method for a short time, so the reset's own re-check may have been too early).
+        $laterZero = @(Get-ChildItem $Evidence -Filter '*_mfa_status.json' | ForEach-Object { Get-Content $_.FullName -Raw | ConvertFrom-Json } |
+                       Where-Object { ([datetime]$_.at).ToUniversalTime() -gt $resetAt -and $_.state.mfaMethods -eq 0 })
+        $removed = [bool]$reset.complete -or (-not @($reset.results | Where-Object { $_.result -ne 'ok' }).Count -and $laterZero.Count -gt 0)
+        # New method: Authenticator entries often have no creation date, so also accept "MFA method present now + user
+        # registered security info after the reset" (the old one was removed, so any method now is new).
+        $mfaNow = @(Get-Methods $user.Id | Where-Object IsMfa)
+        $regAfter = [bool]($s.audit | Where-Object { $_.Time -gt $resetAt -and $_.Activity -match 'register.*security info|registered.*authentication method' })
+        $newOk = @($mfaNow | Where-Object { $_.Created -and $_.Created -gt $resetAt }).Count -gt 0 -or ($mfaNow.Count -gt 0 -and $removed -and $regAfter)
         $checks = [ordered]@{
             'identity verified before the reset'          = [bool]$reset.identityVerifiedBy
-            'old MFA methods removed at reset'            = [bool]$reset.complete
-            'new MFA method registered after the reset'   = $new.Count -gt 0
+            'old MFA methods removed at reset'            = $removed
+            'new MFA method registered after the reset'   = $newOk
             'audit: admin deleted security info'          = [bool]($s.audit | Where-Object { $_.Activity -match 'delete.*security info|delete.*authentication method' })
             'audit: user registered security info'        = [bool]($s.audit | Where-Object { $_.Activity -match 'register.*security info|registered.*authentication method' })
             'account still enabled'                       = [bool]$user.AccountEnabled

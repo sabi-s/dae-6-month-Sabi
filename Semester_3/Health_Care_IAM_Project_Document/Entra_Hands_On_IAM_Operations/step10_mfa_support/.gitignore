@@ -1,2 +1,4 @@
 evidence/
 __pycache__/
+SECRET_*
+*.html

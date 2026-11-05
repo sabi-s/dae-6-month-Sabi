@@ -156,15 +156,25 @@ def build():
         s7_rows.append((E(lab), E(v7(k, s7_before)), f"<b>{E(v7(k, s7_after))}</b>"))
     s7_gas = [("Emergency Access" if a.startswith("bg-") else "Named administrator", a.split("@")[0] + "@&lt;tenant&gt;.onmicrosoft.com" if a.startswith("bg-") else "IAM administrator (Sabitha S Karanavar)") for a in s7_bg["global_admins"]]
 
+    s10_dir = os.path.join(ROOT, "step10_mfa_support")
+    s10_verify = latest(os.path.join(s10_dir, "evidence", "*_mfa_verify.json"))
+    s10_reset = latest(os.path.join(s10_dir, "evidence", "*_mfa_reset.json"))
+    s10_pass = sum(1 for v in s10_verify["checks"].values() if v)
+    def s10_fig(name, cap):
+        import base64
+        b = base64.b64encode(open(os.path.join(s10_dir, "ticket", "screenshots", name), "rb").read()).decode()
+        return (f'<div style="break-inside:avoid;margin:8px 0 12px;text-align:center"><img style="max-width:100%;border:1px solid #c9d3e3" '
+                f'src="data:image/png;base64,{b}"><div style="font-size:8.4pt;font-style:italic;color:#444">{cap}</div></div>')
+
     style = open(STYLE).read().replace("<title>HVMC Report</title>", "<title>HVMC IAM Hands-On Entra Operations</title>")
     style = style.replace("</style>", "table.tiny{font-size:7.6pt} table.tiny td,table.tiny th{padding:3px 4px} code{font-family:Menlo,monospace;font-size:7.8pt;background:#eef2f8;padding:0 3px} .big{font-size:20pt;font-weight:bold;color:#1f3864}</style>")
     body = f'''{style}
 <div class="runhead">Horizon Valley Medical Center &nbsp;|&nbsp; Healthcare IAM Operations Simulation</div>
 <h1>Hands-On Identity Operations in Microsoft Entra ID</h1>
-<div class="sub">Identity Hygiene · RBAC v2 · Enterprise Applications · Joiner/Mover/Leaver · Access Review · Conditional Access Design · Tenant Hardening · Non-Human Identities · Lifecycle Automation · Credential Clean-up</div>
+<div class="sub">Identity Hygiene · RBAC v2 · Enterprise Applications · Joiner/Mover/Leaver · Access Review · Conditional Access Design · Tenant Hardening · Non-Human Identities · Lifecycle Automation · Credential Clean-up · MFA Support</div>
 {kv([("Project Name", "Healthcare IAM Operations Simulation"), ("Organization", "Horizon Valley Medical Center (HVMC)"),
                    ("Environment", "Microsoft Entra ID tenant (Free tier), 36 accounts on 2 Nov 2026; changes made with Microsoft Graph via scripted, ticketed changes"),
-                   ("Date", "20 October 2026 (Steps 7–9: 28–29 Oct; Step 8b: 2 Nov 2026)"), ("Document Version", "1.5"), ("Prepared By", "Sabitha S Karanavar"), ("Cost", "$0 — every change used Entra ID Free features")])}
+                   ("Date", "20 October 2026 (Steps 7–9: 28–29 Oct; Step 8b: 2 Nov; Step 10: 5 Nov 2026)"), ("Document Version", "1.6"), ("Prepared By", "Sabitha S Karanavar"), ("Cost", "$0 — every change used Entra ID Free features")])}
 
 <h2>1. Purpose and approach</h2>
 <p>The Week 1 design (scenario, RBAC matrix, OU structure and group naming) was turned into a working, governed identity environment.
@@ -364,7 +374,42 @@ so the administrator can keep signing in as test staff; in production each user 
 (2) The archive uses standard ZIP encryption so it opens on any Mac; it is weak against offline attack, so it never leaves the
 workstation. A password manager or an AES-encrypted vault (e.g. Azure Key Vault, once the subscription exists) is the target state.</p>
 
-<h2>13. Results, lessons learned and next steps</h2>
+<h2 class="pb">13. Step 10 — MFA support for a lost phone (ticket IAM-0004)</h2>
+<p>Board Activity 4. Dr. Sarah Chen (HVMC-1001) lost the phone holding her Microsoft Authenticator. The help desk checked it was really
+her, signed her out everywhere, removed the lost phone’s MFA method, and she registered her new phone herself
+(<code>step10_mfa_support/Invoke-HvmcMfaSupport.ps1</code>, actions Status / Reset / Verify).</p>
+<h3>Least privilege: a dedicated help-desk account</h3>
+<p>The first sign-in attempts with the Global Administrator (a personal Microsoft account) were blocked by <b>security defaults</b>
+(AADSTS530035) for Microsoft Graph PowerShell. Security defaults were kept on. Instead, a help-desk account was created inside the tenant:</p>
+{table(["Item", "Setting"], [
+    ("Account", "HVMC Help Desk Admin (helpdesk.admin@&lt;tenant&gt;), IT, HVMC-ADM-01, its own Microsoft Authenticator"),
+    ("Roles", "<b>Authentication Administrator</b> (reset MFA and revoke sessions for non-admin users only) + <b>Reports Reader</b> (audit logs)"),
+    ("App approval", "Microsoft Graph Command Line Tools approved for <b>this account only</b> (consent type Principal) — users cannot approve apps themselves since Step 7"),
+    ("Effect", "The Global Administrator only set things up; the reset itself was done by an account that cannot change admins, roles or settings")])}
+<h3>The run (5 November 2026)</h3>
+{table(["Step", "Result"], [
+    ("1. Status before", "Sarah enabled; 1 MFA method: Microsoft Authenticator on the lost iPhone"),
+    ("2. Identity check", E(s10_reset["identityVerifiedBy"]) + " — required: the script refuses <code>-Apply</code> without <code>-VerifiedBy</code>"),
+    ("3. Dry run", "Plan shown: revoke all sessions, remove the Authenticator; password and reset e-mail kept; nothing changed"),
+    ("4. Reset (-Apply)", "; ".join(f"{E(r['time'])} UTC {E(r['step'])}: {E(r['result'])}" for r in s10_reset["results"])),
+    ("5. New phone", "Sarah signed in with her password and registered Microsoft Authenticator again (3:52 PM local)"),
+    ("6. Verify", f"<b>{s10_pass}/{len(s10_verify['checks'])} checks passed</b>, including the audit events below"),
+    ("7. Audit log", "“Admin deleted security info” by HVMC Help Desk Admin; “User registered security info” by Sarah Chen")])}
+{s10_fig("06a_audit_admin_deleted.png", "Entra audit log: “Admin deleted security info” (Microsoft Authenticator), initiated by HVMC Help Desk Admin — not the Global Administrator.")}
+{s10_fig("05_verify.png", "Verify run: 6/6 checks passed after the user registered her new phone.")}
+<h3>Findings</h3>
+<ul>
+<li><b>Replication delay:</b> both reset steps returned ok, but a re-check 3 seconds later still listed the deleted method. The script now waits up
+to 2 minutes and only reports “incomplete” when a step really failed; Verify was adjusted to match.</li>
+<li><b>Lab note:</b> Sarah’s password was also reset by the IAM administrator during the lab because the test password was not at hand. In a
+real lost-phone case the password is not part of the MFA reset.</li>
+<li><b>Next improvement:</b> a <b>Temporary Access Pass</b> issued after the identity check would let the user register the new phone without
+relying on the password alone.</li>
+</ul>
+<p class="note">Ticket: <code>step10_mfa_support/ticket/Ticket_IAM-0004_MFA_Support.pdf</code> (opened 3:25 PM, closed 3:54 PM, 9 figures).
+Full run log: <code>step10_mfa_support/HVMC_Step10_MFA_Support_Run_2026-11-05.pdf</code>.</p>
+
+<h2>14. Results, lessons learned and next steps</h2>
 {table(["Outcome", "Evidence"], [
     ("Every active staff member’s access matches the approved RBAC v2 design (30/30 on 2 Nov), with no excess access", "Step 2 coverage check, re-run after Steps 4–5 and 8b"),
     ("Application access is group-driven and self-correcting, including the legacy EHR app", "Step 3 sync: 0 additions / 0 removals pending"),
@@ -374,7 +419,8 @@ workstation. A password manager or an AES-encrypted vault (e.g. Azure Key Vault,
     ("Tenant defaults hardened and the single-admin risk removed (R04, R08 closed)", "Step 7 before/after policy evidence; 3 Global Administrators"),
     ("First non-human identity built secret-less and proven least-privilege", "Step 8 certificate sign-in: 1 allowed call, 2 denied calls"),
     ("Joiners, movers and leavers run from an HR feed, with a daily leaver check (F10 closed)", f"Step 8b: {lc_ok}/{lc_steps} steps ok; re-run changes nothing; leaver removed 5 minutes after his shift ended"),
-    ("No staff password from the bulk-create file still works (F9 closed)", f"Step 9: {pr['reset_ok']}/{pr['reset_ok'] + pr['failed']} reset, file deleted, evidence without passwords")])}
+    ("No staff password from the bulk-create file still works (F9 closed)", f"Step 9: {pr['reset_ok']}/{pr['reset_ok'] + pr['failed']} reset, file deleted, evidence without passwords"),
+    ("Lost-phone MFA recovery is identity-checked, least-privileged and evidenced", f"Step 10 / IAM-0004: Verify {s10_pass}/{len(s10_verify['checks'])}; reset done by the help-desk account")])}
 <h3>Lessons learned</h3>
 <ul><li><b>Disabling is not deprovisioning:</b> a disabled account kept an Azure data role until the access review removed it.</li>
 <li><b>Unmanaged apps defeat good group design:</b> a direct-assigned legacy app kept a transferred nurse’s EHR access (F-JML-01).</li>
@@ -383,6 +429,7 @@ documented design fill the gap until a licence is justified.</li>
 <li><b>Non-human identities need owners and expiry dates:</b> a certificate with a rotate-by date and a named owner is reviewable; a forgotten secret is not.</li>
 <li><b>Automation must be safe to run twice:</b> checking the current state first turns a repeated run into “already done” instead of duplicate accounts.</li>
 <li><b>Setup files become secrets:</b> a convenience CSV used once to create accounts kept working passwords for every staff member; clean-up is part of the change.</li>
+<li><b>The help desk is an attack path:</b> an MFA reset without an identity check hands the account to an attacker; the check is the control, and the help-desk account must not be a Global Administrator.</li>
 <li><b>Least privilege needs judgement:</b> following the Week 1 matrix literally would have given IT standing ePHI access; RBAC v2 records why it does not.</li></ul>
 <h3>Next steps</h3>
 {table(["Action", "Cost", "Risk"], [
@@ -404,10 +451,11 @@ documented design fill the gap until a licence is justified.</li>
     ("HVMC-IAM-CHG-108", "29 Oct 2026", "Non-human identity HVMC Lab Results Sync: certificate credential, GroupMember.Read.All, least-privilege test"),
     ("HVMC-JML-204/205/206", "2 Nov 2026", "Step 8b: joiner Ethan Morales, mover Jason Park (IT to Security), leaver Victor Mensah (last day 2 Nov, removed by the leaver check)"),
     ("HVMC-IAM-CHG-110", "2 Nov 2026", f"Hire dates recorded for {hd['verified']} staff accounts from an HR extract (simulated lab data)"),
-    ("HVMC-IAM-CHG-109", "29 Oct 2026", f"Credential clean-up: {pr['reset_ok']} staff passwords reset, plain-text bulk-create file deleted")], "tiny")}
+    ("HVMC-IAM-CHG-109", "29 Oct 2026", f"Credential clean-up: {pr['reset_ok']} staff passwords reset, plain-text bulk-create file deleted"),
+    ("IAM-0004", "5 Nov 2026", "MFA support, lost phone (Sarah Chen): help-desk account HVMC Help Desk Admin created (Authentication Administrator + Reports Reader); sessions revoked, Authenticator removed and re-registered; Verify 6/6")], "tiny")}
 <p class="note">Scripts: step1_identity_hygiene/identity_hygiene.py · step2_rbac_v2/rbac_v2.py · step3_enterprise_apps/enterprise_apps.py ·
 step4_jml/jml.py · step5_access_review/build_review_pack.py, apply_decisions.py · step6_conditional_access/ca_design.py, deploy_ca.py ·
-step7_tenant_hardening/tenant_hardening.py · step8_nonhuman_identities/nhi.py · step8b_lifecycle_automation/Invoke-HvmcLifecycle.ps1, Invoke-HvmcLeaverCheck.ps1, Set-HvmcHireDates.ps1 (-Apply) · step9_credential_cleanup/password_reset.py.
+step7_tenant_hardening/tenant_hardening.py · step8_nonhuman_identities/nhi.py · step8b_lifecycle_automation/Invoke-HvmcLifecycle.ps1, Invoke-HvmcLeaverCheck.ps1, Set-HvmcHireDates.ps1 (-Apply) · step9_credential_cleanup/password_reset.py · step10_mfa_support/Invoke-HvmcMfaSupport.ps1 (-Apply -VerifiedBy).
 Each runs as a dry run by default and changes nothing without --apply.</p>
 <div class="foot">Horizon Valley Medical Center · Healthcare IAM Operations Simulation · Hands-on Entra ID operations · Sabitha S Karanavar</div>
 </body></html>'''

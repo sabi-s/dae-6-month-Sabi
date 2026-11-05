@@ -67,6 +67,21 @@ python3 ticket/build_ticket.py
 → `ticket/Ticket_IAM-0004_MFA_Support.pdf`, filled from the evidence and your screenshots. Then tell Claude to add Step 10
 to the IAM report and push.
 
+## Run of 5 November 2026 — done (Verify 6/6)
+Ticket: [`ticket/Ticket_IAM-0004_MFA_Support.pdf`](ticket/Ticket_IAM-0004_MFA_Support.pdf) (opened 3:25 PM, closed 3:54 PM) ·
+run log: [`HVMC_Step10_MFA_Support_Run_2026-11-05.pdf`](HVMC_Step10_MFA_Support_Run_2026-11-05.pdf) · masked screenshots in `ticket/screenshots/`.
+
+**Changes since the guide was written** (the guide PDF still shows the original plan):
+- **Sign in as the help-desk account, not the Global Admin.** Security defaults block the personal-account Global Admin from
+  Microsoft Graph PowerShell (AADSTS530035). The reset is done by `helpdesk.admin@<tenant>` ("HVMC Help Desk Admin"),
+  roles **Authentication Administrator** + **Reports Reader**, with its own Authenticator — least privilege.
+- One-time set-up by the Global Admin (Azure CLI sign-in): `./grant_helpdesk_consent.sh` approves Microsoft Graph Command
+  Line Tools for **helpdesk.admin only** (consent type Principal). Undo: `./grant_helpdesk_consent.sh --undo`.
+- Sign-in opens a browser window by default (`-DeviceCode` for the code method); the tenant is named at run time.
+- After `-Apply` the script waits up to 2 minutes for Entra ID to show the change (a deleted method can still be listed for a
+  short time); Verify accepts a later Status run showing 0 MFA methods.
+- Audit actors from a personal account are shown as "Global Admin (IAM admin)".
+
 ## Safety built in
 - Dry run unless `-Apply`; `-Apply` refuses to run without `-VerifiedBy`.
 - Accounts with an admin role are refused (admin MFA recovery uses the break-glass process).

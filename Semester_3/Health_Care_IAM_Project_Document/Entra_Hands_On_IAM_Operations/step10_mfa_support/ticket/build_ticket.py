@@ -50,10 +50,11 @@ rows = [
     ["Username", "sarah.chen", "sarah.chen"],
     ["Account state", "Enabled" if not before or before["accountEnabled"] else "Disabled",
      "Enabled" if not final or final["accountEnabled"] else "Disabled"],
-    ["MFA methods", methods(before) or ph("from the Status run"), methods(final) or ph("from the Verify run")],
+    ["MFA methods", (methods(before) + " (old phone)") if methods(before) else ph("from the Status run"),
+     ("Removed at reset; then " + methods(final) + " newly registered by the user (new phone)") if methods(final) else ph("from the Verify run")],
     ["Sign-in sessions", "Active, including on the lost phone",
      f'Revoked at {hhmm(reset["startedAt"])}' if reset else ph("from the Reset run")],
-    ["Password", "Unchanged", "Unchanged (not part of an MFA reset)"],
+    ["Password", "Set", T.get("password_after", "Unchanged (not part of an MFA reset)")],
     ["Group and app access", "SG-Doctors-EHR-RW and its apps", "Unchanged"],
 ]
 

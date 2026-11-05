@@ -5,12 +5,12 @@
   "request_type": "MFA support: lost device (Microsoft Authenticator)",
   "priority": "High (the user cannot sign in, and the lost phone could be used to approve sign-ins)",
   "status": "Resolved and closed",
-  "date": "November 2026",
-  "opened": "",
-  "closed": "",
+  "date": "November 5, 2026",
+  "opened": "November 5, 2026, 3:25 PM",
+  "closed": "November 5, 2026, 3:54 PM",
   "requester": "Dr. Sarah Chen, Physician, Doctors (fictional)",
   "approver": "IT Security",
-  "handled_by": "Sabitha S Karanavar (IT)",
+  "handled_by": "Sabitha S Karanavar (IT), using the help-desk account helpdesk.admin (Authentication Administrator + Reports Reader)",
   "employee": "Sarah Chen (HVMC-1001), Doctors (fictional)",
   "request": "Dr. Chen called the help desk: she lost her phone this morning and cannot approve Microsoft Authenticator sign-in requests. She needs access to the clinical apps for her shift and has a new phone ready.",
   "verification_note": "The caller's identity was confirmed before any change, because help-desk calls are a known way for attackers to take over accounts (for example, the 2023 MGM Resorts attack began with a call to the help desk).",
@@ -22,7 +22,11 @@
   ],
   "lessons": [
     "A Temporary Access Pass (a time-limited, one-time code issued by the help desk after the identity check) would let the user register the new phone without relying on the password alone. It is worth evaluating for HVMC's MFA-recovery process.",
-    "The identity check is the most important control in this process: a reset without it would hand the account to an attacker."
+    "The identity check is the most important control in this process: a reset without it would hand the account to an attacker.",
+    "The reset was done by a dedicated help-desk account with only the Authentication Administrator and Reports Reader roles, not by the Global Admin. That role can reset MFA for normal users but never for admins (least privilege, separation of duties).",
+    "Security defaults blocked the personal-account Global Admin from Microsoft Graph PowerShell (AADSTS530035). Security defaults were kept on; the dedicated in-tenant help-desk account was the fix.",
+    "Entra ID can still list a deleted method for a short time. The script's first re-check 3 seconds after the reset was too early; it now waits up to 2 minutes, and a Status check two minutes later confirmed MFA methods: 0.",
+    "Lab note: Sarah's password was also reset by the IAM admin during the lab because the test password was not at hand. In a real lost-phone case the password is not touched."
   ],
   "figures": [
     [
@@ -38,6 +42,10 @@
       "Reset applied after the identity check: sessions revoked, Authenticator removed"
     ],
     [
+      "03b_status_after_reset.png",
+      "Status two minutes after the reset: only the password is left, MFA methods: 0, audit shows the session revocation by helpdesk.admin"
+    ],
+    [
       "04_reregister.png",
       "Sarah registers Microsoft Authenticator on her new phone (Security info page)"
     ],
@@ -46,8 +54,17 @@
       "Verify: new method registered after the reset, audit trail, all checks passed"
     ],
     [
+      "06a_audit_admin_deleted.png",
+      "Entra admin center audit log: “Admin deleted security info” (Microsoft Authenticator) at 3:27 PM, initiated by HVMC Help Desk Admin, not the Global Admin"
+    ],
+    [
+      "06b_audit_registered.png",
+      "Entra admin center audit log: “User registered security info” by Sarah Chen: the old phone on 4 Nov and the new phone on 5 Nov at 3:52 PM"
+    ],
+    [
       "06_audit_portal.png",
-      "Entra admin center: audit log entries for the removal and the new registration"
+      "Full audit trail for Sarah Chen on 5 Nov (domain and admin e-mail masked)"
     ]
-  ]
+  ],
+  "password_after": "Reset by the IAM admin during the lab only (the test password was not at hand), then changed by the user. Not part of the MFA reset; in a real case the password is left alone."
 }

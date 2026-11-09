@@ -59,6 +59,7 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 -   Draft PR: _link here_
 -   Script: [scripts/task1_create_vault.sh](./scripts/task1_create_vault.sh) (dry run by default, `--apply` to create)
 -   Screenshot: [PROOF/01_keyvault_overview.png](./PROOF/01_keyvault_overview.png)
+-   Report (PDF): [PROOF/HVMC_KeyVault_Task1_Report.pdf](./PROOF/HVMC_KeyVault_Task1_Report.pdf)
 -   Command output:
     ```bash
     $ az keyvault show -n hvmc-accessguard-kv --query "{name:name,sku:properties.sku.name,rbacAuthorization:properties.enableRbacAuthorization,softDelete:properties.enableSoftDelete,retentionDays:properties.softDeleteRetentionInDays,purgeProtection:properties.enablePurgeProtection}" -o table

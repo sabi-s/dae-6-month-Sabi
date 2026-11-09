@@ -169,12 +169,12 @@ def build():
     style = open(STYLE).read().replace("<title>HVMC Report</title>", "<title>HVMC IAM Hands-On Entra Operations</title>")
     style = style.replace("</style>", "table.tiny{font-size:7.6pt} table.tiny td,table.tiny th{padding:3px 4px} code{font-family:Menlo,monospace;font-size:7.8pt;background:#eef2f8;padding:0 3px} .big{font-size:20pt;font-weight:bold;color:#1f3864}</style>")
     body = f'''{style}
-<div class="runhead">Horizon Valley Medical Center &nbsp;|&nbsp; Healthcare IAM Operations Simulation</div>
+<div class="runhead">AccessGuard Health &nbsp;|&nbsp; Horizon Valley Medical Center &nbsp;|&nbsp; Healthcare IAM Operations Simulation</div>
 <h1>Hands-On Identity Operations in Microsoft Entra ID</h1>
 <div class="sub">Identity Hygiene · RBAC v2 · Enterprise Applications · Joiner/Mover/Leaver · Access Review · Conditional Access Design · Tenant Hardening · Non-Human Identities · Lifecycle Automation · Credential Clean-up · MFA Support</div>
 {kv([("Project Name", "Healthcare IAM Operations Simulation"), ("Organization", "Horizon Valley Medical Center (HVMC)"),
                    ("Environment", "Microsoft Entra ID tenant (Free tier), 36 accounts on 2 Nov 2026; changes made with Microsoft Graph via scripted, ticketed changes"),
-                   ("Date", "20 October 2026 (Steps 7–9: 28–29 Oct; Step 8b: 2 Nov; Step 10: 5 Nov 2026)"), ("Document Version", "1.6"), ("Prepared By", "Sabitha S Karanavar"), ("Cost", "$0 — every change used Entra ID Free features")])}
+                   ("Date", "20 October 2026 (Steps 7–9: 28–29 Oct; Step 8b: 2 Nov; Step 10: 5 Nov 2026)"), ("Document Version", "1.7"), ("Prepared By", "Sabitha S Karanavar"), ("Cost", "$0 — every change used Entra ID Free features")])}
 
 <h2>1. Purpose and approach</h2>
 <p>The Week 1 design (scenario, RBAC matrix, OU structure and group naming) was turned into a working, governed identity environment.
@@ -191,7 +191,8 @@ access always follows the approved design.</p>
     ("7", "Free tenant hardening — consent, guests, self-service; break-glass administrators", "HVMC-IAM-CHG-106/107", f"{len(s7_rows)} settings, Global Admins 1 → {len(s7_gas)}"),
     ("8", "Non-human identity with certificate credential and least-privilege Graph permission", "HVMC-IAM-CHG-108", f"1 NHI, {sum(r['pass'] for r in nhi_test['results'])}/{len(nhi_test['results'])} least-privilege tests passed"),
     ("8b", "Lifecycle automation in PowerShell — HR feed and daily leaver check", "HVMC-JML-204/205/206", f"3 events, {lc_ok}/{lc_steps} steps ok; leaver removed by the daily check"),
-    ("9", "Credential clean-up — reset the passwords exposed in the bulk-create file", "HVMC-IAM-CHG-109", f"{pr['reset_ok']}/{pr['reset_ok'] + pr['failed']} passwords reset, plain-text file deleted")])}
+    ("9", "Credential clean-up — reset the passwords exposed in the bulk-create file", "HVMC-IAM-CHG-109", f"{pr['reset_ok']}/{pr['reset_ok'] + pr['failed']} passwords reset, plain-text file deleted"),
+    ("10", "MFA support for a lost phone, done by a least-privileged help-desk account", "IAM-0004", f"Verify {s10_pass}/{len(s10_verify['checks'])}")])}
 
 <h2>2. Starting baseline (findings)</h2>
 {table(["#", "Finding", "Why it mattered", "Fixed in"], [

@@ -122,7 +122,7 @@ EXTRA = """
 """
 
 body = f"""
-<div class="runhead">Horizon Valley Medical Center &nbsp;|&nbsp; Cryptography 1 &nbsp;|&nbsp; Rubric 6</div>
+<div class="runhead">AccessGuard Health &nbsp;|&nbsp; Horizon Valley Medical Center &nbsp;|&nbsp; Cryptography 1 &nbsp;|&nbsp; Rubric 6</div>
 <h1>Configure Cryptographic Protocols</h1>
 <div class="sub">TLS · HTTPS · Secure Channels · SSH Key-Based Authentication · Wireshark Analysis</div>
 <div class="tag">How the HVMC identity platform protects data in transit: configured, tested and analysed on the real Microsoft

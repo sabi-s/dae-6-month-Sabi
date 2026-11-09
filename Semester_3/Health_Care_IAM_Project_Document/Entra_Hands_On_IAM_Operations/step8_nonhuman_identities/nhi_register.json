@@ -1,0 +1,25 @@
+[
+  {
+    "nhi": "HVMC Lab Results Sync",
+    "type": "Application service principal (single tenant)",
+    "ticket": "HVMC-IAM-CHG-108",
+    "purpose": "Read members of the laboratory groups for the lab results interface",
+    "owner": "IAM administrator (Sabitha S Karanavar)",
+    "business_owner": "Laboratory lead (Daniel Osei)",
+    "credential": "X.509 certificate, RSA-2048, issued by HVMC Issuing CA 1; no client secrets",
+    "certificate_sha256": "a163e77db5386fae8938bc397b89a52c87b04b8b741a22da4c550fcabb493673",
+    "credential_expires": "2027-10-29",
+    "rotate_by": "2027-09-29",
+    "private_key_location": "Local, mode 0600 (to move into Azure Key Vault)",
+    "permissions": [
+      "Microsoft Graph GroupMember.Read.All (application, admin consent)"
+    ],
+    "verified_least_privilege": {
+      "read members of SG-Lab-LIS-RW": 200,
+      "list all users in the directory": 403,
+      "change the description of SG-Lab-LIS-RW": 403
+    },
+    "created": "2026-10-29",
+    "next_review": "HVMC-AR-2027-Q1"
+  }
+]

@@ -40,7 +40,7 @@ figcaption { font-size:8.8pt; color:#444; font-style:italic; margin-top:4px; }
 """
 
 body = f"""
-<div class="runhead">Horizon Valley Medical Center &nbsp;|&nbsp; Healthcare IAM Operations Simulation</div>
+<div class="runhead">AccessGuard Health &nbsp;|&nbsp; Horizon Valley Medical Center &nbsp;|&nbsp; Healthcare IAM Operations Simulation</div>
 <h1>Step 10: MFA Support for a Lost Phone</h1>
 <div class="sub">Board Activity 4 · Ticket IAM-0004 · Completed 5 November 2026</div>
 <div class="tag">Dr. Sarah Chen (HVMC-1001, Doctors) lost the phone with her Microsoft Authenticator app. The help desk revoked

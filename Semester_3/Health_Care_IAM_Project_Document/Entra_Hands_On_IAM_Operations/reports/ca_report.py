@@ -76,7 +76,7 @@ def build():
     why = "".join(f"<tr><td><b>{p[0]}</b></td><td>{E(p[2])}</td><td>{E(p[5])}</td></tr>" for p in ca.POLICIES)
     tests = "".join("<tr>" + "".join(f"<td>{E(x)}</td>" for x in t) + "</tr>" for t in ca.TEST_PLAN)
     body = f'''{style}
-<div class="runhead">Horizon Valley Medical Center &nbsp;|&nbsp; Healthcare IAM Operations Simulation</div>
+<div class="runhead">AccessGuard Health &nbsp;|&nbsp; Horizon Valley Medical Center &nbsp;|&nbsp; Healthcare IAM Operations Simulation</div>
 <h1>Conditional Access Design</h1>
 <div class="sub">Zero Trust sign-in policy for the HVMC Entra ID tenant · Hands-on Step 6</div>
 <div class="tag">Prepared by Sabitha S Karanavar · 20 October 2026 · Version 1.0 · Status: design approved for report-only deployment</div>

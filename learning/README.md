@@ -134,24 +134,43 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 
 ---
 
-### Entry 4 (Task 3) — fill in after completing
+### ✅ Entry 4 (Task 3)
 
-**📆 Date:** YYYY-MM-DD  
+**📆 Date:** 2026-11-10  
 **🛠️ Task:** Replaced a hardcoded secret in a Python script with a Key Vault lookup and enabled audit logging.
 
 **🔍 Evidence:**
 
--   Branch: `feature/keyvault-python-integration`
--   Draft PR: _link here_
+-   Branch: `feature/azure-key-vault-setup`
+-   Report (PDF): [PROOF/HVMC_KeyVault_Task3_Report.pdf](./PROOF/HVMC_KeyVault_Task3_Report.pdf)
+-   Script: [scripts/lab_results_sync.py](./scripts/lab_results_sync.py) — reads `accessguard-api-key` with `DefaultAzureCredential`; the value is never printed ([run.sh](./scripts/run.sh), [requirements.txt](./scripts/requirements.txt))
+-   Audit logging: vault diagnostic setting `kv-audit-to-law` (AuditEvent) → Log Analytics workspace `HVMC-SecOps-LAW`
 -   Test Output:
-    ```bash
-    # paste real script run and Log Analytics SecretGet result here
+    ```text
+    $ ./run.sh
+      secret : accessguard-api-key
+      identity source : AzureCliCredential
+      secret found    : yes, 32 characters
+      secret value    : ******** (never printed or saved)
+      RESULT : OK - no secret stored in this script or its folder
+
+    Log Analytics (AzureDiagnostics, OperationName == "SecretGet"):
+      2026-11-10 19:39:18 UTC  SecretGet  accessguard-api-key  user  lab_results_sync.py (Azure SDK)  OK  200
+
+    $ ./check_no_secret.sh      # real values read into memory only, never printed
+      accessguard-api-key     : files containing the value = 0   commits that ever added it = 0
+      servicenow-lab-password : files containing the value = 0   commits that ever added it = 0
     ```
 
 **📝 Notes:**
 
 -   Challenges faced and how I solved them:
+    -   **Slow first logs.** A new diagnostic setting took several minutes to start; reads in the first 20 minutes were never logged, and the first `SecretGet` appeared about 35 minutes after enabling. I checked ingestion and the daily cap were fine, then made a fresh read.
+    -   **Query before data.** The Key Vault columns only exist after the first event, so the query uses `column_ifexists()`.
+    -   **Wrong caller label.** My first query showed "Application". Inspecting the raw event showed the right fields: `identity_claim_idtyp_s` (user / app) and `clientInfo_s`, which also separates the script from Azure CLI commands. Every read is logged, even the admin's own check.
 -   Areas to improve or explore further:
+    -   Run the script as the application (certificate) or with a managed identity, so no person's login is involved.
+    -   Alert on unusual `SecretGet` activity; add secret expiry and rotation.
 
 ---
 

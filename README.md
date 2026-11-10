@@ -20,7 +20,7 @@ MFA support, non-human identities and secrets management with Azure Key Vault.
 | [Semester_2](./Semester_2/) | Healthcare IAM design documents, IAM Security Analyst activity, weekly status updates |
 | [Semester_3](./Semester_3/) | **AccessGuard Health** — weekly deliverables, Entra ID hands-on operations, Azure Key Vault |
 | [semester_4](./semester_4/) | Status updates (Week 6, monthly Weeks 5–8) |
-| [semester_5](./semester_5/) | Field Day presentation and Azure project walkthrough |
+| [semester_5](./semester_5/) | Field Day presentation, Azure project walkthrough, Week 9 status update |
 | [learning](./learning/) | Self-learning plan and log: Azure Key Vault (latest work on branch `feature/azure-key-vault-setup`) |
 
 ### Security course rubrics (all applied to the HVMC scenario)

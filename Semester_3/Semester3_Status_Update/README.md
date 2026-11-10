@@ -4,8 +4,8 @@ Progress updates for the AccessGuard Health project.
 
 | File | Period |
 |---|---|
-| [Semester3_Week1_Status_Update.pptx](./Semester3_Week1_Status_Update.pptx) | Week 1 |
-| [Semester3_Week3_Status_Update.key](./Semester3_Week3_Status_Update.key) | Week 3 (Apple Keynote) |
-| [Semester3_Monthly_Status_Update_Sabitha_3.pptx](./Semester3_Monthly_Status_Update_Sabitha_3.pptx) | Monthly update |
+| [week1_status_update.pptx](./week1_status_update.pptx) | Week 1 |
+| [week3_status_update.key](./week3_status_update.key) | Week 3 (Apple Keynote) |
+| [week4_status_update.pptx](./week4_status_update.pptx) | Week 4 (monthly update) |
 
-Project documents: [AccessGuard Health](../README.md).
+Project documents: [AccessGuard Health](../AccessGuard_Health_IAM_Project/README.md).

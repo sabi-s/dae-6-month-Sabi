@@ -38,7 +38,6 @@ MFA support, non-human identities and secrets management with Azure Key Vault.
 |---|---|
 | [design_1](./design_1/) · [figma_1](./figma_1/) · [logic_1](./logic_1/) · [unix_1](./unix_1/) · [unix_2](./unix_2/) · [version_control_1](./version_control_1/) | Smart Deal Alert presentation for each foundation course |
 | [markdown_activity](./markdown_activity/) | Markdown practice |
-| [monthly_status_update](./monthly_status_update/) | Semester 3 monthly status update |
 | [docs](./docs/) | My portfolio website (Jekyll / GitHub Pages) |
 
 ## Tools and skills

@@ -27,13 +27,15 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(os.path.dirname(HERE), "step2_rbac_v2"))
 from rbac_v2 import MATRIX, group_name          # noqa: E402
 
-CAMPAIGN, DUE = "HVMC-AR-2026-Q4", "2026-10-31"
+CAMPAIGN = os.environ.get("HVMC_CAMPAIGN", "HVMC-AR-2026-Q4")
+DUE = os.environ.get("HVMC_DUE", "2026-10-31")
+DATA = os.environ.get("HVMC_DATA", "review_data.json")
 IAM_ADMIN, SECURITY = "Sabitha S Karanavar (IAM Administrator)", "Denise Coleman (Security Supervisor)"
 NAVY, AMBER, RED, GREEN = "1F3864", "FFF2CC", "FDE2DF", "E6F2E8"
 
 
 def load():
-    return json.load(open(os.path.join(HERE, "review_data.json")))
+    return json.load(open(os.path.join(HERE, DATA)))
 
 
 def sp_name(object_id):
@@ -67,12 +69,18 @@ def rows(data, ehr_mode):
         for uid in members:
             u = users.get(uid)
             if not u:
+                out.append(dict(reviewer=SECURITY, user=f"{sp_name(uid)} (application)", employeeId="", department="Workload identity", title="",
+                                status="n/a", employeeType="Non-human identity", kind="Group", access=g, expected="Yes" if "KeyVault-SecretsUser" in g else "Review",
+                                flag="WORKLOAD IDENTITY", recommendation="Keep" if "KeyVault-SecretsUser" in g else "Reviewer decides",
+                                reason="App reads its own secret (Key Vault Task 2/3)" if "KeyVault-SecretsUser" in g else "Application in a security group"))
                 continue
             want = {group_name(u.get("department"), a, x) for a, x in MATRIX.get(u.get("department"), {}).items()}
             if not u["accountEnabled"]:
                 add(u, "Group", g, "No", "DISABLED ACCOUNT", "Remove", "Disabled account still holds access")
             elif g in want:
                 add(u, "Group", g, "Yes", "", "Keep", "Matches RBAC v2 for department")
+            elif "-KeyVault-" in g:
+                add(u, "Group", g, "Yes", "", "Keep", "Key Vault access designed in Key Vault Task 2 (vault scope only)")
             else:
                 add(u, "Group", g, "No", "NOT IN RBAC", "Remove", f"Not granted to {u.get('department')} by RBAC v2")
 
@@ -93,13 +101,26 @@ def rows(data, ehr_mode):
         for uid in members:
             u = users.get(uid)
             if u:
+                if role == "Global Administrator" and len(members) == 1:
+                    why = "Only Global Administrator; keep, but add a second admin and a break-glass account (risk R04)"
+                elif u["userPrincipalName"].startswith("bg-"):
+                    why = "Break-glass emergency account (HVMC-IAM-CHG-107); quarterly sign-in test due ~28 Jan 2027"
+                elif (u.get("employeeId") or "").startswith("HVMC-ADM"):
+                    why = f"Help-desk role ({role}): least privilege for MFA support (Step 10, IAM-0004); confirm still needed"
+                else:
+                    why = f"{role}: {len(members)} holder(s); review that it is still needed"
                 add(u, "Entra directory role", role, "Privileged", "PRIVILEGED - SOLE HOLDER" if len(members) == 1 else "PRIVILEGED",
-                    "Keep", "Only Global Administrator; keep, but add a second admin and a break-glass account (risk R04)", SECURITY)
+                    "Keep", why, SECURITY)
 
     for r in data.get("azure_rbac", []):
         name = r.get("principalName") or r.get("principalId")
         u = next((x for x in users.values() if x["userPrincipalName"] == name or x["id"] == r.get("principalId")), None)
-        scope = r["scope"].split("/")[-1] or r["scope"]
+        scope = "subscription (Azure subscription 1)" if r["scope"].strip("/").count("/") == 1 else (r["scope"].split("/")[-1] or r["scope"])
+        if not u and r.get("principalType") == "Group":
+            out.append(dict(reviewer=SECURITY, user=f"{name} (security group)", employeeId="", department="Group", title="", status="n/a",
+                            employeeType="Group", kind="Azure RBAC role", access=f"{r['roleDefinitionName']} on {scope}", expected="Yes",
+                            flag="", recommendation="Keep", reason="Key Vault role at vault scope (Key Vault Task 2)"))
+            continue
         if u:
             if not u["accountEnabled"]:
                 add(u, "Azure RBAC role", f"{r['roleDefinitionName']} on {scope}", "No", "DISABLED ACCOUNT", "Remove",

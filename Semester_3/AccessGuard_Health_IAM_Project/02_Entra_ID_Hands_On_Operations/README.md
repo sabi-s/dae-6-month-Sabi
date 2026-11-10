@@ -15,6 +15,7 @@ Hands-on IAM work for AccessGuard Health in a Microsoft Entra ID tenant (Entra I
 | 03 | [step03_enterprise_apps](./step03_enterprise_apps/) | 10 hospital applications with app roles; access assigned from the groups | HVMC-IAM-CHG-103 |
 | 04 | [step04_jml](./step04_jml/) | Joiner, mover and leaver processes | JML-201 – JML-203 |
 | 05 | [step05_access_review](./step05_access_review/) | Quarterly access review: review pack, decisions, removals | HVMC-AR-2026-Q4 |
+| 05b | [step05b_second_review_and_matrix](./step05b_second_review_and_matrix/) | Second access review (compared with Q4: 0 new findings) and User Access Matrix v2 (32/32 accounts match) | HVMC-AR-2026-Q4-R2 |
 | 06 | [step06_conditional_access](./step06_conditional_access/) | Conditional Access design: 13 report-only policies and a test plan (needs Entra P1/P2 to deploy) | Design only |
 | 07 | [step07_tenant_hardening](./step07_tenant_hardening/) | Tenant hardening (user consent, app registration, guest settings) and two break-glass admin accounts | HVMC-IAM-CHG-106 / 107 |
 | 08 | [step08_nonhuman_identities](./step08_nonhuman_identities/) | Non-human identity *HVMC Lab Results Sync*: certificate credential, least-privilege permission | HVMC-IAM-CHG-108 |

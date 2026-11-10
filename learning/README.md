@@ -3,7 +3,7 @@
 This folder documents my self-learning and integration of **Azure Key Vault** into my existing project, **AccessGuard Health** (Horizon Valley Medical Center IAM simulation).  
 It contains my initial plan, daily progress log, and supporting evidence (e.g. test output, branches, and PRs) that demonstrate what I learned and how I applied it.
 
-**Status (10 Nov 2026):** ✅ Tasks 1–3 complete · ✅ tutorial, reflection and mock interview written · Draft PR: _link here_
+**Status (10 Nov 2026):** ✅ Tasks 1–3 complete · ✅ tutorial, reflection and mock interview written · Draft PR: [#1](https://github.com/sabi-s/dae-6-month-Sabi/pull/1)
 
 **Next phase:** HashiCorp Vault — see [HASHICORP_VAULT_NEXT_PHASE.md](./HASHICORP_VAULT_NEXT_PHASE.md).
 
@@ -58,7 +58,7 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 **🔍 Evidence:**
 
 -   Branch: `feature/azure-key-vault-setup`
--   Draft PR: _link here_
+-   Draft PR: [#1](https://github.com/sabi-s/dae-6-month-Sabi/pull/1)
 -   Script: [scripts/task1_create_vault.sh](./scripts/task1_create_vault.sh) (dry run by default, `--apply` to create)
 -   Screenshot: [PROOF/01_keyvault_overview.png](./PROOF/01_keyvault_overview.png)
 -   Report (PDF): [PROOF/HVMC_KeyVault_Task1_Report.pdf](./PROOF/HVMC_KeyVault_Task1_Report.pdf)
@@ -184,7 +184,7 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 **🔍 Evidence:**
 
 -   Branch: `feature/...`
--   Draft PR: _link here_
+-   Draft PR: [#1](https://github.com/sabi-s/dae-6-month-Sabi/pull/1)
 -   Test Output:  
     \```bash  
     _Insert console output or command log_  

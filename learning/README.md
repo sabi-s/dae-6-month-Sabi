@@ -3,7 +3,9 @@
 This folder documents my self-learning and integration of **Azure Key Vault** into my existing project, **AccessGuard Health** (Horizon Valley Medical Center IAM simulation).  
 It contains my initial plan, daily progress log, and supporting evidence (e.g. test output, branches, and PRs) that demonstrate what I learned and how I applied it.
 
-**Future consideration:** HashiCorp Vault will be integrated in a later phase of the project (see [PLAN.md](./PLAN.md)).
+**Status (10 Nov 2026):** ✅ Tasks 1–3 complete · ✅ tutorial, reflection and mock interview written · Draft PR: _link here_
+
+**Next phase:** HashiCorp Vault — see [HASHICORP_VAULT_NEXT_PHASE.md](./HASHICORP_VAULT_NEXT_PHASE.md).
 
 ---
 
@@ -11,7 +13,7 @@ It contains my initial plan, daily progress log, and supporting evidence (e.g. t
 
 [PLAN.md](./PLAN.md) – My initial plan with chosen technology, rationale, and integration tasks.
 
-Other files in this folder: [NOTES.md](./NOTES.md) (observability notes), [TUTORIAL.md](./TUTORIAL.md) (mini-tutorial), [mock_interview.md](./mock_interview.md) (interview prep).
+Other files in this folder: [TUTORIAL.md](./TUTORIAL.md) (mini-tutorial) · [REFLECTION.md](./REFLECTION.md) (what I learned) · [mock_interview.md](./mock_interview.md) (interview prep) · [NOTES.md](./NOTES.md) (observability notes) · [HASHICORP_VAULT_NEXT_PHASE.md](./HASHICORP_VAULT_NEXT_PHASE.md) (next phase) · [PROOF/](./PROOF/) (reports) · [scripts/](./scripts/)
 
 ---
 

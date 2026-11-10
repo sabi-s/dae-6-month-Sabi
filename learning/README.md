@@ -105,13 +105,16 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 
 ---
 
-### Entry 3 (Task 2) — fill in after completing
+### ⏳ Entry 3 (Task 2) — in progress (Reader test pending)
 
-**📆 Date:** YYYY-MM-DD  
+**📆 Date:** 2026-11-09  
 **🛠️ Task:** Mapped Day 2 security groups to Key Vault roles and tested least privilege.
 
 **🔍 Evidence:**
 
+-   Deliverable (PDF, IDs masked): [PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf](./PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf)
+-   Done: 3 groups (SG-IT-KeyVault-Admin, SG-Security-KeyVault-Read, SG-Services-KeyVault-SecretsUser), members, 3 role assignments at vault scope; Secrets User test passed (read allowed, create/delete Forbidden)
+-   Pending: Reader test (Forbidden on secret values)
 -   Screenshots: `PROOF/role-assignments.png`, `PROOF/reader-forbidden.png`
 -   Test Output:
     ```bash

@@ -40,7 +40,6 @@ MFA support, non-human identities and secrets management with Azure Key Vault.
 | [markdown_activity](./markdown_activity/) | Markdown practice |
 | [monthly_status_update](./monthly_status_update/) | Semester 3 monthly status update |
 | [docs](./docs/) | My portfolio website (Jekyll / GitHub Pages) |
-| [docs_template](./docs_template/) | Template the portfolio website was built from |
 
 ## Tools and skills
 Microsoft Entra ID · Samba Active Directory · Microsoft Graph · PowerShell · Python · Azure (Key Vault, Log Analytics,

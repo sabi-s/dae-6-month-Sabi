@@ -19,7 +19,7 @@ set -euo pipefail
 export PATH="$HOME/.azure-cli-env/bin:$PATH" PYTHONWARNINGS=ignore AZURE_CORE_ONLY_SHOW_ERRORS=true
 HERE="$(cd "$(dirname "$0")" && pwd)"; EVID="$HERE/../evidence"; mkdir -p "$EVID"
 
-ALERT_EMAIL="sabithaskaranavar@gmail.com"
+ALERT_EMAIL="${ALERT_EMAIL:-<admin-email>}"   # set ALERT_EMAIL before running
 SUB=$(az account show --query id -o tsv)
 RG=HVMC-CloudSecurity-RG
 LAW_ID=$(az monitor log-analytics workspace show -g $RG -n HVMC-SecOps-LAW --query id -o tsv)

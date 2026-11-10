@@ -25,7 +25,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 EVID = os.path.join(HERE, "evidence")
 AZ = shutil.which("az") or os.path.expanduser("~/.azure-cli-env/bin/az")
 G = "https://graph.microsoft.com/v1.0"
-DOMAIN = "sabithaskaranavargmail.onmicrosoft.com"
+DOMAIN = os.environ.get("HVMC_TENANT_DOMAIN", "<tenant>.onmicrosoft.com")  # set HVMC_TENANT_DOMAIN to run
 CONTRACT_END = "2026-12-31T23:59:59Z"
 
 # department -> (lead, [members in employee-ID order])

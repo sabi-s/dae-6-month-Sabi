@@ -2,7 +2,7 @@ $ az rest --method get --url "https://management.azure.com/subscriptions/c364079
   --query "{emails:properties.emails,enabled:properties.isEnabled,notifyRoles:properties.notificationsByRole.roles,alertMinSeverity:properties.notificationsSources[0].minimalSeverity}" -o json
 {
   "alertMinSeverity": "Medium",
-  "emails": "sabithaskaranavar@gmail.com",
+  "emails": "<admin-email>",
   "enabled": true,
   "notifyRoles": [
     "Owner"

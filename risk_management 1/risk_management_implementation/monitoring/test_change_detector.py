@@ -44,7 +44,7 @@ class TestChangeDetection(unittest.TestCase):
     def test_owner_assignment_is_high_and_user_is_low(self):
         new = copy.deepcopy(BASE)
         new["role_assignments"].append("new.admin@example.com|Owner|c3640794")
-        new["users"].append("new.hire@sabithaskaranavargmail.onmicrosoft.com")
+        new["users"].append("new.hire@<tenant>.onmicrosoft.com")
         ch = diff(BASE, new)
         self.assertEqual(sev(ch, "new.admin"), "High")
         self.assertEqual(sev(ch, "new.hire"), "Low")

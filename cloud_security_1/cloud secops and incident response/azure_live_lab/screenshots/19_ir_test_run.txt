@@ -18,7 +18,7 @@ $ bash scripts/04_run_ir_tests.sh PB-03     # and, in parallel, PB-01
 [2026-10-15T18:00:48Z] PB-01 start: adding an explicit Deny-Internet-inbound rule to the Data NSG (tightens R03)
 [2026-10-15T18:00:52Z]   rule Deny-Internet-Inbound-Data created at 2026-10-15T18:00:49Z
 [2026-10-15T18:07:39Z]   1 Identification: OK - Azure Monitor alert HVMC-NSG-Rule-Changed fired at 2026-10-15T18:07:26Z; e-mail sent to the Security Lead
-[2026-10-15T18:07:41Z]   2-3 Triage, containment decision and investigation: OK - who: sabithaskaranavar@gmail.com; what: Inbound Deny from Internet to port *; matches ap
+[2026-10-15T18:07:41Z]   2-3 Triage, containment decision and investigation: OK - who: <admin-email>; what: Inbound Deny from Internet to port *; matches ap
 [2026-10-15T18:07:44Z]   4 Eradication (exposure sweep): OK - sweep of all NSGs: no Internet-facing allow rule except the approved Web HTTPS 443 rule
 [2026-10-15T18:07:45Z]   5 Recovery (baseline updated): OK - baseline updated with the approved change; difference from previous baseline: ['Deny-Internet-Inbound-Data p4
 [2026-10-15T18:07:45Z] Waiting for Microsoft Sentinel incidents (analytics rules run every 5 min; ingestion adds 5-10 min)

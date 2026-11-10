@@ -27,7 +27,7 @@ sys.path.insert(0, os.path.join(ROOT, "step2_rbac_v2"))
 from rbac_v2 import MATRIX, group_name, graph, G          # noqa: E402
 
 EVID = os.path.join(HERE, "evidence")
-DOMAIN = "sabithaskaranavargmail.onmicrosoft.com"
+DOMAIN = os.environ.get("HVMC_TENANT_DOMAIN", "<tenant>.onmicrosoft.com")  # set HVMC_TENANT_DOMAIN to run
 
 CASES = {
     "joiner": dict(ticket="HVMC-JML-201", summary="New hire: Olivia Bennett, Registered Nurse, starts 2026-10-21",

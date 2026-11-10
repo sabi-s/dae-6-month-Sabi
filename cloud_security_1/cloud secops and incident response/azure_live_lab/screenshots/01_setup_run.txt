@@ -22,7 +22,7 @@ $ bash ~/Downloads/HVMC_Cloud_SecOps_IR/scripts/01_setup_logging_alerting.sh
 === 5/8 VNet flow logs (VPC Flow Logs equivalent) + Traffic Analytics
   flow log -> hvmcseclogsc36407 (30-day retention), Traffic Analytics every 10 min -> HVMC-SecOps-LAW
 
-=== 6/8 action group HVMC-SecOps-AG (e-mail sabithaskaranavar@gmail.com)
+=== 6/8 action group HVMC-SecOps-AG (e-mail <admin-email>)
 
 === 7/8 security alert rules (activity-log alerts, free)
   HVMC-NSG-Rule-Changed

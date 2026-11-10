@@ -11,7 +11,7 @@ $ bash ~/Downloads/HVMC_Cloud_SecOps_IR/scripts/02_setup_threat_detection.sh
   Arm plan -> Standard
 
 === 4/6 Defender security contact (e-mail on alerts of Medium severity and above)
-  security contact -> sabithaskaranavar@gmail.com
+  security contact -> <admin-email>
 
 === 5/6 Microsoft Sentinel on HVMC-SecOps-LAW + Defender for Cloud connector
   Sentinel enabled (31-day free trial)

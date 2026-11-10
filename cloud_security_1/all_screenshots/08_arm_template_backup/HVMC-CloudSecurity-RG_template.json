@@ -14,7 +14,7 @@
         "azureFunctionReceivers": [],
         "emailReceivers": [
           {
-            "emailAddress": "sabithaskaranavar@gmail.com",
+            "emailAddress": "<admin-email>",
             "name": "SecurityLead",
             "useCommonAlertSchema": true
           }

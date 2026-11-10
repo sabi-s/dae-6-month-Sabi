@@ -105,26 +105,32 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 
 ---
 
-### ⏳ Entry 3 (Task 2) — in progress (Reader test pending)
+### ✅ Entry 3 (Task 2)
 
-**📆 Date:** 2026-11-09  
+**📆 Date:** 2026-11-09 – 2026-11-10  
 **🛠️ Task:** Mapped Day 2 security groups to Key Vault roles and tested least privilege.
 
 **🔍 Evidence:**
 
--   Deliverable (PDF, IDs masked): [PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf](./PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf)
--   Done: 3 groups (SG-IT-KeyVault-Admin, SG-Security-KeyVault-Read, SG-Services-KeyVault-SecretsUser), members, 3 role assignments at vault scope; Secrets User test passed (read allowed, create/delete Forbidden)
--   Pending: Reader test (Forbidden on secret values)
--   Screenshots: `PROOF/role-assignments.png`, `PROOF/reader-forbidden.png`
--   Test Output:
-    ```bash
-    # paste real allowed/denied output here
+-   Deliverable v1.1 (PDF, IDs masked): [PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf](./PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf)
+-   3 groups at vault scope: SG-IT-KeyVault-Admin (Key Vault Administrator), SG-Security-KeyVault-Read (Key Vault Reader), SG-Services-KeyVault-SecretsUser (Key Vault Secrets User)
+-   Test results:
+    ```text
+    Secrets User (app, certificate sign-in):  read secret = allowed | create = 403 ForbiddenByRbac | delete = 403 ForbiddenByRbac
+    Reader (app moved temporarily, option B): list names = allowed  | read value = 403 ForbiddenByRbac | create = 403 ForbiddenByRbac
     ```
 
 **📝 Notes:**
 
 -   Challenges faced and how I solved them:
+    -   **Roles add up.** To test the Reader role on its own, the app was moved out of the Secrets User group into the Reader group for the test, then moved back. Every move is in the Entra audit log.
+    -   **Certificate sign-in rejected (AADSTS7000215).** Newer Azure CLI needs `--certificate` instead of `-p`.
+    -   **The CLI group member list does not show service principals.** Checked membership from the app's side (`memberOf`) and in the audit log before changing anything.
+    -   **Wrong identity in a terminal tab.** An old tab was still signed in as the app ("Insufficient privileges"), and a new tab silently used the admin login. Lesson: always confirm who is signed in (`az account show`) before trusting a result.
+    -   **Group changes are cached.** After the app was moved back, access was still denied for over 40 minutes although membership and role assignment were correct. The access-restore re-check is pending.
 -   Areas to improve or explore further:
+    -   Option A (test the Reader role as Denise Coleman, a real user) for a second confirmation.
+    -   Task 3: read the secret from Python with `DefaultAzureCredential` and send vault audit logs to Log Analytics.
 
 ---
 

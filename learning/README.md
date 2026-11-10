@@ -112,7 +112,7 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 
 **🔍 Evidence:**
 
--   Deliverable v1.1 (PDF, IDs masked): [PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf](./PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf)
+-   Deliverable v1.2 (PDF, IDs masked): [PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf](./PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf)
 -   3 groups at vault scope: SG-IT-KeyVault-Admin (Key Vault Administrator), SG-Security-KeyVault-Read (Key Vault Reader), SG-Services-KeyVault-SecretsUser (Key Vault Secrets User)
 -   Test results:
     ```text
@@ -127,7 +127,7 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
     -   **Certificate sign-in rejected (AADSTS7000215).** Newer Azure CLI needs `--certificate` instead of `-p`.
     -   **The CLI group member list does not show service principals.** Checked membership from the app's side (`memberOf`) and in the audit log before changing anything.
     -   **Wrong identity in a terminal tab.** An old tab was still signed in as the app ("Insufficient privileges"), and a new tab silently used the admin login. Lesson: always confirm who is signed in (`az account show`) before trusting a result.
-    -   **Group changes are cached.** After the app was moved back, access was still denied for over 40 minutes although membership and role assignment were correct. The access-restore re-check is pending.
+    -   **Group changes are cached.** After the app was moved back, access was still denied for over 40 minutes although membership and role assignment were correct. Access returned after about two hours, and the re-check passed (the app reads its secret again).
 -   Areas to improve or explore further:
     -   Option A (test the Reader role as Denise Coleman, a real user) for a second confirmation.
     -   Task 3: read the secret from Python with `DefaultAzureCredential` and send vault audit logs to Log Analytics.

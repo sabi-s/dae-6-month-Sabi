@@ -1,0 +1,5 @@
+# Private keys and the PKI passphrase never go to GitHub
+pki/private/
+home_kit_build/
+*.zip
+__pycache__/

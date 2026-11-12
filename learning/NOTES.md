@@ -1,6 +1,8 @@
 # Observability & Logging: Project Notes
 
-This document tracks observability for the Azure Key Vault integration in AccessGuard Health. **Updated 2026-11-10:** the audit logging (sections 3–4) is built and verified; the health-check script (sections 1–2) is still a plan and is marked as such.
+This document records the observability features of the Azure Key Vault integration in AccessGuard Health:
+a health check, a test for it, an application log event, and the Key Vault audit log in Log Analytics.
+**All sections are built and verified (last run 12 Nov 2026).**
 
 ---
 
@@ -9,28 +11,51 @@ This document tracks observability for the Azure Key Vault integration in Access
 **Have you implemented a health-check endpoint?**  
 (Replace `[ ]` with `[x]`)
 
--   [ ] Yes
+-   [x] Yes
 -   [ ] No
--   [x] Not applicable to my project
+-   [ ] Not applicable to my project
 
-AccessGuard Health is an IAM simulation and scripts project, not a running web service, so there is no HTTP endpoint. A separate health-check script is **not built yet**; for now `scripts/lab_results_sync.py` acts as the check: it exits with a clear message for "no identity", "403 Forbidden" or "secret not found", and prints `RESULT : OK` when the vault, identity and role all work.
+AccessGuard Health is an IAM simulation and scripts project, not a running web service, so the health check is a
+**command-line health-check script** instead of an HTTP endpoint. In one command it confirms that authentication,
+network access and the RBAC role assignment all work, by reading one secret. It prints a JSON result, writes a JSON log
+event, and exits with code 0 (ok) or 1 (error). The secret value is never printed, logged or saved.
 
 **Your endpoint path:**  
-Not applicable (planned script: `scripts/vault_health_check.py`; current check: `scripts/run.sh`)
+`learning/scripts/vault_health_check.py` (run: `python vault_health_check.py [secret-name]`; vault URL from `KEY_VAULT_URL`)
 
 ```
-# Planned sample output (replace with real output after running):
+$ python vault_health_check.py
 {
   "status": "ok",
-  "vault": "<vault-name>",
+  "vault": "hvmc-accessguard-kv",
+  "secret": "accessguard-api-key",
   "secret_read": true,
-  "checked_at": "YYYY-MM-DDTHH:MM:SSZ"
+  "identity_source": "AzureCliCredential",
+  "checked_at": "2026-11-12T17:50:28Z"
 }
+exit code: 0
+
+$ KEY_VAULT_URL=https://does-not-exist-hvmc-0000.vault.azure.net python vault_health_check.py
+{
+  "status": "error",
+  "vault": "does-not-exist-hvmc-0000",
+  "secret": "accessguard-api-key",
+  "secret_read": false,
+  "identity_source": null,
+  "checked_at": "2026-11-12T17:50:29Z",
+  "error": "vault not reachable (wrong URL or network)"
+}
+exit code: 1
 ```
+
+The check also reports clear errors for "no identity available", "403 Forbidden — no Key Vault role allows reading this
+secret" and "secret not found".
 
 **Why is this useful?**
 
-> It lets me confirm in one command that authentication, network access, and the RBAC role assignment for the app identity all work, before debugging anything else.
+> It lets me confirm in one command that authentication, network access, and the RBAC role assignment for the identity all
+> work, before debugging anything else. A scheduler or pipeline can use the exit code to alert when the vault is unreachable
+> or a role has been removed.
 
 ---
 
@@ -38,14 +63,15 @@ Not applicable (planned script: `scripts/vault_health_check.py`; current check: 
 
 **Did you write a test for the health-check endpoint?**
 
--   [ ] Yes
+-   [x] Yes
 -   [ ] No
 
 **Paste your test code or description here:**
 
-```
-# Planned test (Python + pytest); tick "Yes" after it passes
-from scripts.vault_health_check import check_vault
+`learning/scripts/test_vault_health_check.py` (pytest, 3 tests):
+
+```python
+from vault_health_check import check_vault
 
 def test_vault_health_ok():
     result = check_vault()
@@ -53,10 +79,29 @@ def test_vault_health_ok():
     assert result["secret_read"] is True
 
 def test_vault_health_fails_without_access(monkeypatch):
-    # simulate a wrong vault URL; the check should report failure, not crash
-    monkeypatch.setenv("VAULT_URL", "https://does-not-exist.vault.azure.net")
+    # a vault that does not exist: the check must report an error, not crash
+    monkeypatch.setenv("KEY_VAULT_URL", "https://does-not-exist-hvmc-0000.vault.azure.net")
     result = check_vault()
     assert result["status"] == "error"
+    assert result["secret_read"] is False
+    assert "error" in result
+
+def test_log_event_never_contains_secret(caplog):
+    caplog.set_level(logging.INFO, logger="accessguard.vault")
+    check_vault()
+    events = [json.loads(r.getMessage()) for r in caplog.records if r.name == "accessguard.vault"]
+    assert events and events[-1]["event"] == "secret_retrieved"
+    assert "value" not in events[-1]
+```
+
+Real result (12 Nov 2026):
+
+```
+$ pytest -v test_vault_health_check.py
+test_vault_health_check.py::test_vault_health_ok PASSED                  [ 33%]
+test_vault_health_check.py::test_vault_health_fails_without_access PASSED [ 66%]
+test_vault_health_check.py::test_log_event_never_contains_secret PASSED  [100%]
+============================== 3 passed in 1.06s ===============================
 ```
 
 ---
@@ -64,31 +109,33 @@ def test_vault_health_fails_without_access(monkeypatch):
 ## 3. Log Event or Metric
 
 **Name of log event or metric:**  
-`SecretGet` (Azure Key Vault audit log) — **implemented and verified**. A JSON application log (`secret_retrieved`) is still a plan.
+Two levels, both implemented and verified:
+
+1. **Application log event** `secret_retrieved` / `secret_access_failed` — written by `vault_health_check.py` as one JSON line.
+2. **Key Vault audit event** `SecretGet` — written by Azure for every secret read, sent to Log Analytics.
 
 **What triggers this?**  
-Each time any identity reads a secret value from the vault. A denied attempt (for example the Key Vault Reader trying to read a value) is recorded with a Forbidden result.
+Each time the health check (or any identity) reads a secret from the vault. A failed attempt — wrong vault, missing identity
+or a role without permission (for example the Key Vault Reader reading a value) — produces `secret_access_failed` in the
+application log and a Forbidden result in the audit log.
 
 **Sample output format or log:**
 
 ```
-# Planned application log (JSON; never log the secret value)
-{
-  "event": "secret_retrieved",
-  "secret_name": "servicenow-lab-password",
-  "identity": "<app-identity>",
-  "timestamp": "YYYY-MM-DDTHH:MM:SSZ"
-}
-```
+# Application log (stderr, JSON — never contains the secret value)
+{"event": "secret_retrieved", "secret_name": "accessguard-api-key", "vault": "hvmc-accessguard-kv", "identity_source": "AzureCliCredential", "timestamp": "2026-11-12T17:50:28Z"}
+{"event": "secret_access_failed", "secret_name": "accessguard-api-key", "vault": "does-not-exist-hvmc-0000", "identity_source": null, "timestamp": "2026-11-12T17:50:29Z", "error": "vault not reachable (wrong URL or network)"}
 
-**Where is this implemented?**  
-Vault diagnostic setting `kv-audit-to-law` (category `AuditEvent`) → Log Analytics workspace `HVMC-SecOps-LAW`. No code needed. Real result (10 Nov 2026):
-
-```
+# Key Vault audit log in Log Analytics (10 Nov 2026)
 TimeGenerated (UTC)   OperationName  SecretName           IdentityType  Client                               Result
 2026-11-10 19:39:18   SecretGet      accessguard-api-key  user          lab_results_sync.py (Azure SDK)      OK 200
 2026-11-10 19:39:17   SecretGet      accessguard-api-key  user          Azure CLI command (no-secret check)  OK 200
 ```
+
+**Where is this implemented in your code?**  
+- Application log: `learning/scripts/vault_health_check.py → check_vault()` (logger `accessguard.vault`). The Azure SDK's own
+  request logging is turned down to WARNING so request dumps (which include the caller's IP address) are never printed.
+- Audit log: vault diagnostic setting `kv-audit-to-law` (category `AuditEvent`) → Log Analytics workspace `HVMC-SecOps-LAW`.
 
 ---
 
@@ -118,16 +165,24 @@ AzureDiagnostics
 # What it shows (verified): each secret read, its result (OK / Forbidden), whether a user or an app made it, and which client.
 ```
 
+Screenshot: Figure 2 of [PROOF/HVMC_KeyVault_Task3_Report.pdf](./PROOF/HVMC_KeyVault_Task3_Report.pdf).
+
 ---
 
 ## 5. Reflection & Learning
 
 **What did you learn while implementing observability in your project?**
 
-> Secrets management is not only about storing secrets safely; it is also about proving who accessed them. The audit log recorded every read — even my own admin checks. I also learned to read it critically: my first query labelled the caller "Application" when it was really a user, and the right fields were `identity_claim_idtyp_s` and `clientInfo_s`. A new diagnostic setting did not log reads in its first ~20 minutes.
+> Secrets management is not only about storing secrets safely; it is also about proving who accessed them. The audit log
+> recorded every read — even my own admin checks. I also learned to read it critically: my first query labelled the caller
+> "Application" when it was really a user, and the right fields were `identity_claim_idtyp_s` and `clientInfo_s`. A new
+> diagnostic setting did not log reads in its first ~20 minutes. When I built the health check I found that the Azure SDK's
+> default request logging prints the caller's IP address and tenant ID, so I turned it down — logging must not leak data either.
 
 **Anything you would do differently or improve in the future?**
 
-> Turn logging on before any secret is read; add alerts for unusual `SecretGet` activity and repeated Forbidden attempts; build the health-check script and a JSON application log; rotate secrets on a schedule; and, in the next phase, compare with HashiCorp Vault's audit device ([HASHICORP_VAULT_NEXT_PHASE.md](./HASHICORP_VAULT_NEXT_PHASE.md)).
+> Turn logging on before any secret is read; add alerts for unusual `SecretGet` activity and repeated Forbidden attempts;
+> run the health check on a schedule; rotate secrets on a schedule; and, in the next phase, compare with HashiCorp Vault's
+> audit device ([HASHICORP_VAULT_NEXT_PHASE.md](./HASHICORP_VAULT_NEXT_PHASE.md)).
 
 ---

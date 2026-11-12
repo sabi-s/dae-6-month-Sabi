@@ -3,7 +3,7 @@
 This folder documents my self-learning and integration of **Azure Key Vault** into my existing project, **AccessGuard Health** (Horizon Valley Medical Center IAM simulation).  
 It contains my initial plan, daily progress log, and supporting evidence (e.g. test output, branches, and PRs) that demonstrate what I learned and how I applied it.
 
-**Status (10 Nov 2026):** ✅ Tasks 1–3 complete · ✅ tutorial, reflection and mock interview written · Draft PR: [#1](https://github.com/sabi-s/dae-6-month-Sabi/pull/1)
+**Status (12 Nov 2026):** ✅ Tasks 1–3 complete · ✅ health check, tests and logging (Entry 5) · ✅ tutorial, reflection and mock interview written · Pull request [#1](https://github.com/sabi-s/dae-6-month-Sabi/pull/1) merged into `main`
 
 **Next phase:** HashiCorp Vault — see [HASHICORP_VAULT_NEXT_PHASE.md](./HASHICORP_VAULT_NEXT_PHASE.md).
 
@@ -13,7 +13,7 @@ It contains my initial plan, daily progress log, and supporting evidence (e.g. t
 
 [PLAN.md](./PLAN.md) – My initial plan with chosen technology, rationale, and integration tasks.
 
-Other files in this folder: [TUTORIAL.md](./TUTORIAL.md) (mini-tutorial) · [REFLECTION.md](./REFLECTION.md) (what I learned) · [mock_interview.md](./mock_interview.md) (interview prep) · [NOTES.md](./NOTES.md) (observability notes) · [HASHICORP_VAULT_NEXT_PHASE.md](./HASHICORP_VAULT_NEXT_PHASE.md) (next phase) · [PROOF/](./PROOF/) (reports) · [scripts/](./scripts/)
+Other files in this folder: [NOTES.md](./NOTES.md) (observability: health check, tests, logging) · [TUTORIAL.md](./TUTORIAL.md) (mini-tutorial) · [REFLECTION.md](./REFLECTION.md) (what I learned) · [mock_interview.md](./mock_interview.md) (interview prep) · [HASHICORP_VAULT_NEXT_PHASE.md](./HASHICORP_VAULT_NEXT_PHASE.md) (next phase) · [PROOF/](./PROOF/) (reports) · [scripts/](./scripts/)
 
 ---
 
@@ -58,7 +58,7 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 **🔍 Evidence:**
 
 -   Branch: `feature/azure-key-vault-setup`
--   Draft PR: [#1](https://github.com/sabi-s/dae-6-month-Sabi/pull/1)
+-   Pull request: [#1](https://github.com/sabi-s/dae-6-month-Sabi/pull/1) (merged 12 Nov 2026)
 -   Script: [scripts/task1_create_vault.sh](./scripts/task1_create_vault.sh) (dry run by default, `--apply` to create)
 -   Screenshot: [PROOF/01_keyvault_overview.png](./PROOF/01_keyvault_overview.png)
 -   Report (PDF): [PROOF/HVMC_KeyVault_Task1_Report.pdf](./PROOF/HVMC_KeyVault_Task1_Report.pdf)
@@ -176,6 +176,38 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 
 ---
 
+### ✅ Entry 5 (Observability: health check, tests and logging)
+
+**📆 Date:** 2026-11-12  
+**🛠️ Task:** Added a vault health check with a JSON log event and pytest tests (plan, Week 3: "add tests/logging").
+
+**🔍 Evidence:**
+
+-   Scripts: [scripts/vault_health_check.py](./scripts/vault_health_check.py), [scripts/test_vault_health_check.py](./scripts/test_vault_health_check.py)
+-   Details and real output: [NOTES.md](./NOTES.md)
+-   Test Output:
+    ```text
+    $ python vault_health_check.py
+    {"event": "secret_retrieved", "secret_name": "accessguard-api-key", "vault": "hvmc-accessguard-kv", "identity_source": "AzureCliCredential", ...}
+    "status": "ok", "secret_read": true          (exit code 0)
+
+    $ KEY_VAULT_URL=https://does-not-exist-hvmc-0000.vault.azure.net python vault_health_check.py
+    "status": "error", "error": "vault not reachable (wrong URL or network)"   (exit code 1)
+
+    $ pytest -v test_vault_health_check.py
+    3 passed in 1.06s
+    ```
+
+**📝 Notes:**
+
+-   Challenges faced and how I solved them:
+    -   **The Azure SDK's request logging leaked data.** At INFO level it printed full request/response headers, including my IP address and the tenant ID. I set that logger to WARNING so only my own JSON event is written.
+    -   **No web service to probe.** AccessGuard Health is a scripts project, so the health check is a command-line script with an exit code instead of an HTTP endpoint.
+-   Areas to improve or explore further:
+    -   Run the health check on a schedule and alert on a non-zero exit code.
+
+---
+
 ## 🧱 Entry Template (copy and update each time)
 
 **📆 Date:** YYYY-MM-DD  
@@ -184,7 +216,7 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 **🔍 Evidence:**
 
 -   Branch: `feature/...`
--   Draft PR: [#1](https://github.com/sabi-s/dae-6-month-Sabi/pull/1)
+-   Pull request: _link here_
 -   Test Output:  
     \```bash  
     _Insert console output or command log_  

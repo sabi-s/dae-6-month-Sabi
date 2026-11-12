@@ -174,4 +174,4 @@ Full evidence with screenshots: [Task 1](./PROOF/HVMC_KeyVault_Task1_Report.pdf)
 ## 👤 Authored by: Sabitha S Karanavar
 
 🗓️ Date: 2026-11-03 (updated 2026-11-10 with the real steps and results)  
-🔁 Validated by: [Educator or Peer Name if applicable]
+🔁 Validated by: pending educator review

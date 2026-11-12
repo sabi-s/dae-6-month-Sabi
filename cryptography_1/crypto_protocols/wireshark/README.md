@@ -8,7 +8,7 @@ HVMC help-desk user signed in to mysignins.microsoft.com.
 | File | Format |
 |---|---|
 | `microsoft-login-dump.pcap` | pcap (Linux cooked capture) |
-| `microsoft-login-dumo.pcapng` | the same packets in pcapng format |
+| `microsoft-login-dump.pcapng` | the same packets in pcapng format |
 
 Summary of the analysis: 79 TLS connections on TCP 443 — 73 TLS 1.3 and 6 TLS 1.2, all AES-GCM with ephemeral ECDHE key
 exchange; no TLS 1.1/1.0, SSL or plain HTTP; QUIC (HTTP/3) on UDP 443; DNS in clear text on UDP 53.

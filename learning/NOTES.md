@@ -1,6 +1,6 @@
 # Observability & Logging: Project Notes
 
-This document tracks my progress and implementation of observability features for the Azure Key Vault integration in AccessGuard Health. The design below is my plan; I tick each box and replace sample output with real output only after I have built and verified it.
+This document tracks observability for the Azure Key Vault integration in AccessGuard Health. **Updated 2026-11-10:** the audit logging (sections 3–4) is built and verified; the health-check script (sections 1–2) is still a plan and is marked as such.
 
 ---
 
@@ -13,10 +13,10 @@ This document tracks my progress and implementation of observability features fo
 -   [ ] No
 -   [x] Not applicable to my project
 
-AccessGuard Health is an IAM simulation and scripts project, not a running web service, so there is no HTTP endpoint. Instead, I plan a small **vault health-check script** that confirms the app can reach Key Vault and read a test secret.
+AccessGuard Health is an IAM simulation and scripts project, not a running web service, so there is no HTTP endpoint. A separate health-check script is **not built yet**; for now `scripts/lab_results_sync.py` acts as the check: it exits with a clear message for "no identity", "403 Forbidden" or "secret not found", and prints `RESULT : OK` when the vault, identity and role all work.
 
 **Your endpoint path:**  
-Not applicable (script: `scripts/vault_health_check.py`, run from the command line)
+Not applicable (planned script: `scripts/vault_health_check.py`; current check: `scripts/run.sh`)
 
 ```
 # Planned sample output (replace with real output after running):
@@ -64,10 +64,10 @@ def test_vault_health_fails_without_access(monkeypatch):
 ## 3. Log Event or Metric
 
 **Name of log event or metric:**  
-`secret_retrieved` (application log) and `SecretGet` (Azure Key Vault audit log). I also plan to watch for `secret_access_denied` (Forbidden results).
+`SecretGet` (Azure Key Vault audit log) — **implemented and verified**. A JSON application log (`secret_retrieved`) is still a plan.
 
 **What triggers this?**  
-Each time the AccessGuard Health script reads a secret from Key Vault (`SecretGet`). A denied attempt, such as the Key Vault Reader identity trying to read a secret value, produces a Forbidden result.
+Each time any identity reads a secret value from the vault. A denied attempt (for example the Key Vault Reader trying to read a value) is recorded with a Forbidden result.
 
 **Sample output format or log:**
 
@@ -81,8 +81,14 @@ Each time the AccessGuard Health script reads a secret from Key Vault (`SecretGe
 }
 ```
 
-**Where is this implemented in your code?**  
-Planned: `scripts/keyvault_client.py → get_secret()` for the application log. The `SecretGet` audit events come from Azure diagnostic settings on the vault (no code needed).
+**Where is this implemented?**  
+Vault diagnostic setting `kv-audit-to-law` (category `AuditEvent`) → Log Analytics workspace `HVMC-SecOps-LAW`. No code needed. Real result (10 Nov 2026):
+
+```
+TimeGenerated (UTC)   OperationName  SecretName           IdentityType  Client                               Result
+2026-11-10 19:39:18   SecretGet      accessguard-api-key  user          lab_results_sync.py (Azure SDK)      OK 200
+2026-11-10 19:39:17   SecretGet      accessguard-api-key  user          Azure CLI command (no-secret check)  OK 200
+```
 
 ---
 
@@ -90,24 +96,26 @@ Planned: `scripts/keyvault_client.py → get_secret()` for the application log. 
 
 **Did you use monitoring tools (e.g. Grafana, Prometheus, Kibana)?**
 
--   [ ] Yes
+-   [x] Yes
 -   [ ] No
 
 **Tool name(s):**  
-Planned: Azure Monitor with a Log Analytics workspace (Key Vault diagnostic setting, category `AuditEvent`).
+Azure Monitor — Log Analytics workspace `HVMC-SecOps-LAW` (Key Vault diagnostic setting, category `AuditEvent`).
 
 **Screenshot or description of what the tool shows:**
 
 ```
-# Planned query to show who accessed which secret:
+# Query used (leaves out the caller's e-mail and IP address):
 AzureDiagnostics
-| where ResourceProvider == "MICROSOFT.KEYVAULT"
-| where OperationName == "SecretGet"
-| project TimeGenerated, OperationName, ResultSignature, CallerIPAddress, identity_claim_appid_g
+| where ResourceProvider == "MICROSOFT.KEYVAULT" and OperationName == "SecretGet"
+| extend SecretName = tostring(split(column_ifexists("id_s", ""), "/")[4])
+| extend IdentityType = column_ifexists("identity_claim_idtyp_s", "")
+| extend ci = column_ifexists("clientInfo_s", "")
+| extend Client = case(ci has "keyvault-secrets", "lab_results_sync.py (Azure SDK)", ci has "AZURECLI", "Azure CLI command", ci)
+| project TimeGenerated, OperationName, SecretName, IdentityType, Client, ResultSignature, httpStatusCode_d
 | order by TimeGenerated desc
 
-# Description to confirm after running it:
-Shows each secret read, whether it succeeded (OK) or was denied (Forbidden), and which identity made it.
+# What it shows (verified): each secret read, its result (OK / Forbidden), whether a user or an app made it, and which client.
 ```
 
 ---
@@ -116,10 +124,10 @@ Shows each secret read, whether it succeeded (OK) or was denied (Forbidden), and
 
 **What did you learn while implementing observability in your project?**
 
-> Draft (edit to match what actually happened): Secrets management is not only about storing secrets safely; it is also about proving who accessed them. The Key Vault audit log gives Security the evidence it needs for access reviews without ever exposing secret values.
+> Secrets management is not only about storing secrets safely; it is also about proving who accessed them. The audit log recorded every read — even my own admin checks. I also learned to read it critically: my first query labelled the caller "Application" when it was really a user, and the right fields were `identity_claim_idtyp_s` and `clientInfo_s`. A new diagnostic setting did not log reads in its first ~20 minutes.
 
 **Anything you would do differently or improve in the future?**
 
-> Draft: Add alerts for repeated Forbidden attempts, rotate secrets on a schedule, and, in a later phase, add HashiCorp Vault for on-premises secrets (such as the Samba4 domain controller) and compare its audit logging with Key Vault's.
+> Turn logging on before any secret is read; add alerts for unusual `SecretGet` activity and repeated Forbidden attempts; build the health-check script and a JSON application log; rotate secrets on a schedule; and, in the next phase, compare with HashiCorp Vault's audit device ([HASHICORP_VAULT_NEXT_PHASE.md](./HASHICORP_VAULT_NEXT_PHASE.md)).
 
 ---

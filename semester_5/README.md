@@ -7,3 +7,4 @@
 | [week9_status_update.pdf](./week9_status_update.pdf) | AccessGuard Health — Week 9 status update |
 | [week11_status_update.pdf](./week11_status_update.pdf) | AccessGuard Health — Week 11 status update (Oct 26–29, 2026: project work and cryptography) |
 | [week 12_monthly_status_update.pdf](./week%2012_monthly_status_update.pdf) | Week 12 — 4-week status update, Oct 8 – Nov 5, 2026 (14 pages) |
+| [week13_status_update.pdf](./week13_status_update.pdf) | AccessGuard Health — Week 13 status update (Nov 9–12, 2026: GitHub clean-up, Azure Key Vault, open-source research, security learning) |

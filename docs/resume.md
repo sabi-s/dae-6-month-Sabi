@@ -8,10 +8,10 @@ permalink: /resume/
 
 You can view or download my latest resumes using the buttons below:
 
-<div style="margin: 2rem 0; display: flex; gap: 1rem;">
+<!-- <div style="margin: 2rem 0; display: flex; gap: 1rem;">
   <a href="{{ '/assets/files/Sabitha_S_Karanavar_Web_Developer.pdf' | relative_url }}" class="btn btn--primary btn--large" download>Download PDF Resume</a>
   <a href="{{ '/assets/files/Sabitha S - Webdeveloper.docx' | relative_url }}" class="btn btn--light btn--large" style="border: 1px solid #eee;" download>Download DOCX Resume</a>
-</div>
+</div> -->
 
 ---
 

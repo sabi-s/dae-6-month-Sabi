@@ -22,6 +22,7 @@ Hands-on IAM work for AccessGuard Health in a Microsoft Entra ID tenant (Entra I
 | 08b | [step08b_lifecycle_automation](./step08b_lifecycle_automation/) | PowerShell lifecycle automation from an HR feed, with a daily leaver check | JML-204 – JML-206, CHG-110 |
 | 09 | [step09_credential_cleanup](./step09_credential_cleanup/) | Credential clean-up: reset of the lab accounts' initial passwords | HVMC-IAM-CHG-109 |
 | 10 | [step10_mfa_support](./step10_mfa_support/) | MFA support for a lost phone, done by a least-privileged help-desk account | IAM-0004 |
+| 11 | [step11_identity_resilience](./step11_identity_resilience/) | Identity resilience: break-glass accounts and exclusion group, consent controls and app-permission audit, compromised-account drill, Maester posture report with two fixes | Phases 1, 3, 6 |
 
 ## Notes
 

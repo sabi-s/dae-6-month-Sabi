@@ -55,7 +55,7 @@ hipaa_nc_rows = []
 for ref, res in sorted(H["noncompliant_by_policy"].items(), key=lambda x: -len(x[1])):
     hipaa_nc_rows.append(row(html.escape(H["policy_display_names"].get(ref) or ref), ", ".join(map(html.escape, res))))
 
-style = (Path(__file__).resolve().parents[4] / "semester_3/AccessGuard_Health_IAM_Project/02_Entra_ID_Hands_On_Operations/_tooling/report_style.html")
+style = (Path(__file__).resolve().parents[4] / "semester_3/01_AccessGuard_Health_IAM_Project/02_Entra_ID_Hands_On_Operations/_tooling/report_style.html")
 base = style.read_text(encoding="utf-8")
 head_css = base[:base.index("</style>")] + """
 pre.term { background:#1e2430; color:#e6edf3; font-family: Consolas, "Courier New", monospace; font-size:7.4pt; line-height:1.35;

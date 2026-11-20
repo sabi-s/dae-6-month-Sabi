@@ -15,22 +15,22 @@ Python · Azure (Key Vault, Log Analytics) · ServiceNow-style tickets.
 
 | If you want to see… | Open |
 |---|---|
-| The main report of the hands-on IAM work | [HVMC_IAM_Hands_On_Entra_Operations.pdf](./AccessGuard_Health_IAM_Project/02_Entra_ID_Hands_On_Operations/HVMC_IAM_Hands_On_Entra_Operations.pdf) |
-| Everything in the project, by week | [AccessGuard_Health_IAM_Project](./AccessGuard_Health_IAM_Project/README.md) |
-| The 10 hands-on Entra ID steps (scripts, tickets, results) | [02_Entra_ID_Hands_On_Operations](./AccessGuard_Health_IAM_Project/02_Entra_ID_Hands_On_Operations/README.md) |
-| Standard Operating Procedures (create, disable, MFA reset, access review) | [SOPs](./AccessGuard_Health_IAM_Project/02_Entra_ID_Hands_On_Operations/SOPs/) |
-| Secrets management with Azure Key Vault | [03_Azure_Key_Vault](./AccessGuard_Health_IAM_Project/03_Azure_Key_Vault/README.md) |
-| Weekly and monthly status updates | [semester3_status_update](./semester3_status_update/) |
+| The main report of the hands-on IAM work | [HVMC_IAM_Hands_On_Entra_Operations.pdf](./01_AccessGuard_Health_IAM_Project/02_Entra_ID_Hands_On_Operations/HVMC_IAM_Hands_On_Entra_Operations.pdf) |
+| Everything in the project, by week | [01_AccessGuard_Health_IAM_Project](./01_AccessGuard_Health_IAM_Project/README.md) |
+| The 10 hands-on Entra ID steps (scripts, tickets, results) | [02_Entra_ID_Hands_On_Operations](./01_AccessGuard_Health_IAM_Project/02_Entra_ID_Hands_On_Operations/README.md) |
+| Standard Operating Procedures (create, disable, MFA reset, access review) | [SOPs](./01_AccessGuard_Health_IAM_Project/02_Entra_ID_Hands_On_Operations/SOPs/) |
+| Secrets management with Azure Key Vault | [03_Azure_Key_Vault](./01_AccessGuard_Health_IAM_Project/03_Azure_Key_Vault/README.md) |
+| Weekly and monthly status updates | [02_semester3_status_update](./02_semester3_status_update/) |
 
 ## Folder structure
 
 ```
 semester_3/
-├── AccessGuard_Health_IAM_Project/
+├── 01_AccessGuard_Health_IAM_Project/
 │   ├── 01_Weekly_Deliverables/          Week-by-week documents (Weeks 1, 2, 5, 7, 8)
 │   ├── 02_Entra_ID_Hands_On_Operations/ Main report, SOPs and Steps 01–10 in Microsoft Entra ID
 │   └── 03_Azure_Key_Vault/              Link page for the Key Vault learning work
-└── semester3_status_update/             Status update decks
+└── 02_semester3_status_update/          Status update decks
 ```
 
 ## About Weeks 3, 4 and 6

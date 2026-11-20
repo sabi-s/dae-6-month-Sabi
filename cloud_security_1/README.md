@@ -11,4 +11,4 @@ Six cloud security rubrics, all applied to Horizon Valley Medical Center's Azure
 | Cloud infrastructure security and container protection | [05_cloud infrastructure security and container protection](./05_cloud%20infrastructure%20security%20and%20container%20protection/) | VM hardening scripts, hardened Dockerfile with image scanning, serverless Function with managed identity (Bicep). The report uses **simulated** results — nothing was deployed. |
 | Cloud SecOps and incident response | [06_cloud secops and incident response](./06_cloud%20secops%20and%20incident%20response/) | **Live Azure lab:** Log Analytics, activity-log alerts, Defender for Cloud, Microsoft Sentinel with custom rules, workbook, incident-response playbook and tests; [06_Defender for Cloud video walkthrough](./06_cloud%20secops%20and%20incident%20response/video/) |
 
-Other files: [all_screenshots](./all_screenshots/) (evidence by topic) and the 12-week project board (Excel).
+Other files: [all_screenshots](./all_screenshots/) (evidence by topic).

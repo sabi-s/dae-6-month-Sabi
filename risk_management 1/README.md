@@ -10,5 +10,3 @@ Six risk management rubrics for Horizon Valley Medical Center.
 | Risk mitigation planning | [HVMC_Risk_Mitigation_Planning.pdf](./HVMC_Risk_Mitigation_Planning.pdf), [HVMC_Risk_Mitigation_Workbook.xlsx](./HVMC_Risk_Mitigation_Workbook.xlsx) |
 | Risk communication | [risk_communication](./risk_communication/) — board risk report, KPI tracker, risk dashboard, KRI monitor script |
 | Risk management implementation | [risk_management_implementation](./risk_management_implementation/) — implementation report, risk register v2, continuous-monitoring and change-detection scripts with tests |
-
-Also: the 12-week project board (Numbers).

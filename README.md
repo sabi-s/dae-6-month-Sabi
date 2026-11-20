@@ -9,16 +9,16 @@ A simulated Identity and Access Management programme for **Horizon Valley Medica
 Samba Active Directory, Microsoft Entra ID, role-based access, joiner / mover / leaver automation, access reviews,
 MFA support, non-human identities and secrets management with Azure Key Vault.
 
-👉 **Start here:** [Semester_3 — AccessGuard Health](./Semester_3/README.md)
+👉 **Start here:** [semester_3 — AccessGuard Health](./semester_3/README.md)
 
 ## Repository map
 
 ### Programme by semester
 | Folder | What is inside |
 |---|---|
-| [Semester_1](./Semester_1/) | Python foundations — Smart Deal Alert price-tracker project (several versions) |
-| [Semester_2](./Semester_2/) | Healthcare IAM design documents, IAM Security Analyst activity, weekly status updates |
-| [Semester_3](./Semester_3/) | **AccessGuard Health** — weekly deliverables, Entra ID hands-on operations, Azure Key Vault |
+| [semester_1](./semester_1/) | Python foundations — Smart Deal Alert price-tracker project (several versions) |
+| [semester_2](./semester_2/) | Healthcare IAM design documents, IAM Security Analyst activity, weekly status updates |
+| [semester_3](./semester_3/) | **AccessGuard Health** — weekly deliverables, Entra ID hands-on operations, Azure Key Vault |
 | [semester_4](./semester_4/) | Status updates (Week 6, monthly Weeks 5–8) |
 | [semester_5](./semester_5/) | Field Day presentation, Azure project walkthrough, Week 9 status update |
 | [learning](./learning/) | Self-learning plan and log: Azure Key Vault (latest work on branch `feature/azure-key-vault-setup`) |
@@ -26,12 +26,12 @@ MFA support, non-human identities and secrets management with Azure Key Vault.
 ### Security course rubrics (all applied to the HVMC scenario)
 | Folder | Topics |
 |---|---|
-| [risk_management 1](./risk_management%201/) | Risk fundamentals, assessment techniques, evaluation, mitigation planning, communication, implementation |
+| [risk_management_1](./risk_management_1/) | Risk fundamentals, assessment techniques, evaluation, mitigation planning, communication, implementation |
 | [cryptography_1](./cryptography_1/) | Fundamentals, hashing and integrity, symmetric and public-key cryptography, digital signatures, TLS protocols |
 | [cloud_security_1](./cloud_security_1/) | Azure security fundamentals, architecture patterns, compliance, infrastructure, SecOps and incident response |
 | [compliance_1](./compliance_1/) | Compliance auditing, documentation and reporting, legal and ethical implementation |
-| [network_security_ 1](./network_security_%201/) | Network security fundamentals, tools, topology and design, access control, secure wireless |
-| [cyber_threats_and _vulnerabilities_1](./cyber_threats_and%20_vulnerabilities_1/) | Threat intelligence, vulnerability assessment, malware diagnosis, monitoring and incident response |
+| [network_security_1](./network_security_1/) | Network security fundamentals, tools, topology and design, access control, secure wireless |
+| [cyber_threats_and_vulnerabilities_1](./cyber_threats_and_vulnerabilities_1/) | Threat intelligence, vulnerability assessment, malware diagnosis, monitoring and incident response |
 
 ### Foundation course activities
 | Folder | Activity |

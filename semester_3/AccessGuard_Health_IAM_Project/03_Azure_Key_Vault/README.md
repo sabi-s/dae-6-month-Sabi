@@ -8,9 +8,9 @@ folder. It was built on the branch `feature/azure-key-vault-setup` and merged in
 
 | Task | What | Status | Evidence |
 |---|---|---|---|
-| 1 | RBAC-enabled vault with soft delete and purge protection; first dummy secrets | ✅ Done (5 Nov 2026) | [Task 1 report](https://github.com/sabi-s/dae-6-month-Sabi/blob/main/learning/PROOF/HVMC_KeyVault_Task1_Report.pdf) |
-| 2 | Map the Day 2 RBAC model to Key Vault roles; test least privilege (Reader denied secret values, Secrets User cannot create or delete) | ✅ Done (10 Nov 2026) | [Task 2 deliverable](https://github.com/sabi-s/dae-6-month-Sabi/blob/main/learning/PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf) |
-| 3 | Python script reads a secret with `DefaultAzureCredential` (no secret in code); vault audit logs in Log Analytics | ✅ Done (10 Nov 2026) | [Task 3 report](https://github.com/sabi-s/dae-6-month-Sabi/blob/main/learning/PROOF/HVMC_KeyVault_Task3_Report.pdf) |
+| 1 | RBAC-enabled vault with soft delete and purge protection; first dummy secrets | ✅ Done (5 Nov 2026) | [Task 1 report](https://github.com/sabi-s/dae-6-month-Sabi/blob/main/learning/proof/HVMC_KeyVault_Task1_Report.pdf) |
+| 2 | Map the Day 2 RBAC model to Key Vault roles; test least privilege (Reader denied secret values, Secrets User cannot create or delete) | ✅ Done (10 Nov 2026) | [Task 2 deliverable](https://github.com/sabi-s/dae-6-month-Sabi/blob/main/learning/proof/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf) |
+| 3 | Python script reads a secret with `DefaultAzureCredential` (no secret in code); vault audit logs in Log Analytics | ✅ Done (10 Nov 2026) | [Task 3 report](https://github.com/sabi-s/dae-6-month-Sabi/blob/main/learning/proof/HVMC_KeyVault_Task3_Report.pdf) |
 
 Pull request (merged): [#1 Azure Key Vault integration](https://github.com/sabi-s/dae-6-month-Sabi/pull/1) · Tutorial, reflection and interview prep: [TUTORIAL.md](https://github.com/sabi-s/dae-6-month-Sabi/blob/main/learning/TUTORIAL.md), [REFLECTION.md](https://github.com/sabi-s/dae-6-month-Sabi/blob/main/learning/REFLECTION.md), [mock_interview.md](https://github.com/sabi-s/dae-6-month-Sabi/blob/main/learning/mock_interview.md) · Next phase: [HashiCorp Vault](https://github.com/sabi-s/dae-6-month-Sabi/blob/main/learning/HASHICORP_VAULT_NEXT_PHASE.md)
 

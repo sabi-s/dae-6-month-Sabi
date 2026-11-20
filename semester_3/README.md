@@ -25,7 +25,7 @@ Python · Azure (Key Vault, Log Analytics) · ServiceNow-style tickets.
 ## Folder structure
 
 ```
-Semester_3/
+semester_3/
 ├── AccessGuard_Health_IAM_Project/
 │   ├── 01_Weekly_Deliverables/          Week-by-week documents (Weeks 1, 2, 5, 7, 8)
 │   ├── 02_Entra_ID_Hands_On_Operations/ Main report, SOPs and Steps 01–10 in Microsoft Entra ID
@@ -38,7 +38,7 @@ Semester_3/
 There are no separate project documents for Weeks 3, 4 and 6. In those weeks the main focus was the course **rubrics**, while
 project work continued in parallel in the Entra ID hands-on steps. The rubric work is in its own folders:
 
-- [Risk management](../risk_management%201/) — risk assessment techniques and evaluation methods
+- [Risk management](../risk_management_1/) — risk assessment techniques and evaluation methods
 - [Cryptography](../cryptography_1/) — fundamentals, hashing, symmetric and public-key cryptography, digital signatures, protocols
 - [Cloud security](../cloud_security_1/) — architecture, implementation, compliance, infrastructure, SecOps and incident response
 

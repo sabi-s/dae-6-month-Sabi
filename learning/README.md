@@ -13,7 +13,7 @@ It contains my initial plan, daily progress log, and supporting evidence (e.g. t
 
 [PLAN.md](./PLAN.md) – My initial plan with chosen technology, rationale, and integration tasks.
 
-Other files in this folder: [NOTES.md](./NOTES.md) (observability: health check, tests, logging) · [TUTORIAL.md](./TUTORIAL.md) (mini-tutorial) · [REFLECTION.md](./REFLECTION.md) (what I learned) · [mock_interview.md](./mock_interview.md) (interview prep) · [HASHICORP_VAULT_NEXT_PHASE.md](./HASHICORP_VAULT_NEXT_PHASE.md) (next phase) · [PROOF/](./PROOF/) (reports) · [scripts/](./scripts/)
+Other files in this folder: [NOTES.md](./NOTES.md) (observability: health check, tests, logging) · [TUTORIAL.md](./TUTORIAL.md) (mini-tutorial) · [REFLECTION.md](./REFLECTION.md) (what I learned) · [mock_interview.md](./mock_interview.md) (interview prep) · [HASHICORP_VAULT_NEXT_PHASE.md](./HASHICORP_VAULT_NEXT_PHASE.md) (next phase) · [proof/](./proof/) (reports) · [scripts/](./scripts/)
 
 ---
 
@@ -60,8 +60,8 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 -   Branch: `feature/azure-key-vault-setup`
 -   Pull request: [#1](https://github.com/sabi-s/dae-6-month-Sabi/pull/1) (merged 12 Nov 2026)
 -   Script: [scripts/task1_create_vault.sh](./scripts/task1_create_vault.sh) (dry run by default, `--apply` to create)
--   Screenshot: [PROOF/01_keyvault_overview.png](./PROOF/01_keyvault_overview.png)
--   Report (PDF): [PROOF/HVMC_KeyVault_Task1_Report.pdf](./PROOF/HVMC_KeyVault_Task1_Report.pdf)
+-   Screenshot: [proof/01_keyvault_overview.png](./proof/01_keyvault_overview.png)
+-   Report (PDF): [proof/HVMC_KeyVault_Task1_Report.pdf](./proof/HVMC_KeyVault_Task1_Report.pdf)
 -   Command output:
     ```bash
     $ az keyvault show -n hvmc-accessguard-kv --query "{name:name,sku:properties.sku.name,rbacAuthorization:properties.enableRbacAuthorization,softDelete:properties.enableSoftDelete,retentionDays:properties.softDeleteRetentionInDays,purgeProtection:properties.enablePurgeProtection}" -o table
@@ -114,7 +114,7 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 
 **🔍 Evidence:**
 
--   Deliverable v1.2 (PDF, IDs masked): [PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf](./PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf)
+-   Deliverable v1.2 (PDF, IDs masked): [proof/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf](./proof/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf)
 -   3 groups at vault scope: SG-IT-KeyVault-Admin (Key Vault Administrator), SG-Security-KeyVault-Read (Key Vault Reader), SG-Services-KeyVault-SecretsUser (Key Vault Secrets User)
 -   Test results:
     ```text
@@ -144,7 +144,7 @@ _Add one dated entry each time you make progress. Include short notes, outputs, 
 **🔍 Evidence:**
 
 -   Branch: `feature/azure-key-vault-setup`
--   Report (PDF): [PROOF/HVMC_KeyVault_Task3_Report.pdf](./PROOF/HVMC_KeyVault_Task3_Report.pdf)
+-   Report (PDF): [proof/HVMC_KeyVault_Task3_Report.pdf](./proof/HVMC_KeyVault_Task3_Report.pdf)
 -   Script: [scripts/lab_results_sync.py](./scripts/lab_results_sync.py) — reads `accessguard-api-key` with `DefaultAzureCredential`; the value is never printed ([run.sh](./scripts/run.sh), [requirements.txt](./scripts/requirements.txt))
 -   Audit logging: vault diagnostic setting `kv-audit-to-law` (AuditEvent) → Log Analytics workspace `HVMC-SecOps-LAW`
 -   Test Output:

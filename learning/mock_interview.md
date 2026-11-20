@@ -153,8 +153,8 @@ service-account passwords on the Samba AD domain controller, dynamic credentials
 
 ### Evidence
 
-[Task 1 report](./PROOF/HVMC_KeyVault_Task1_Report.pdf) · [Task 2 deliverable](./PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf) ·
-[Task 3 report](./PROOF/HVMC_KeyVault_Task3_Report.pdf) · [Daily log](./README.md) · [Reflection](./REFLECTION.md)
+[Task 1 report](./proof/HVMC_KeyVault_Task1_Report.pdf) · [Task 2 deliverable](./proof/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf) ·
+[Task 3 report](./proof/HVMC_KeyVault_Task3_Report.pdf) · [Daily log](./README.md) · [Reflection](./REFLECTION.md)
 
 ---
 

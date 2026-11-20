@@ -165,7 +165,7 @@ AzureDiagnostics
 # What it shows (verified): each secret read, its result (OK / Forbidden), whether a user or an app made it, and which client.
 ```
 
-Screenshot: Figure 2 of [PROOF/HVMC_KeyVault_Task3_Report.pdf](./PROOF/HVMC_KeyVault_Task3_Report.pdf).
+Screenshot: Figure 2 of [proof/HVMC_KeyVault_Task3_Report.pdf](./proof/HVMC_KeyVault_Task3_Report.pdf).
 
 ---
 

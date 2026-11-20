@@ -27,4 +27,4 @@ Users and their tracked products are saved in `users_data.json`.
 | File read and write | Read: `json.load(file)` (line 49); write: `json.dump(all_users, file, indent=2)` (line 87) |
 | Exception handling | `load_all_users()` lines 46–64 — `try` reads the file; `except FileNotFoundError` creates sample accounts; `except json.JSONDecodeError` handles a damaged file; `else` confirms how many accounts were loaded; `finally` always prints "User data check complete." Also `try`/`except ValueError` for number input (lines 97, 221, 271) |
 
-The Semester 1 version of this program is in [Semester_1/python_1/Smart_Deal_Alert_Final](../Semester_1/python_1/Smart_Deal_Alert_Final/).
+The Semester 1 version of this program is in [semester_1/python_1/Smart_Deal_Alert_Final](../semester_1/python_1/Smart_Deal_Alert_Final/).

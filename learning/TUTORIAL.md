@@ -139,8 +139,8 @@ $ ./scripts/run.sh
     `(Forbidden) ... Action: 'Microsoft.KeyVault/vaults/secrets/getSecret/action' ... ForbiddenByRbac`.
 -   Log Analytics shows a `SecretGet` row with result `OK` / `200` for each read.
 
-Full evidence with screenshots: [Task 1](./PROOF/HVMC_KeyVault_Task1_Report.pdf) ·
-[Task 2](./PROOF/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf) · [Task 3](./PROOF/HVMC_KeyVault_Task3_Report.pdf)
+Full evidence with screenshots: [Task 1](./proof/HVMC_KeyVault_Task1_Report.pdf) ·
+[Task 2](./proof/AccessGuard_Health_KeyVault_Task2_Deliverable.pdf) · [Task 3](./proof/HVMC_KeyVault_Task3_Report.pdf)
 
 ---
 

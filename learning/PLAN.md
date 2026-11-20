@@ -57,7 +57,7 @@ For each task include Title, Description, Start date, Target completion date, a 
 -   **Start date:** 2026-11-06
 -   **Target completion date:** 2026-11-10
 -   **Success criterion (explicit):** The Key Vault Reader identity can list secret names but is denied (Forbidden) when reading a secret value, and the Secrets User identity can read a secret but cannot create or delete one.
--   **Proof method (what I will capture to show success):** Screenshots of the role assignments and terminal output showing the allowed and denied results, saved in `PROOF/` and linked from `learning/README.md`.
+-   **Proof method (what I will capture to show success):** Screenshots of the role assignments and terminal output showing the allowed and denied results, saved in `proof/` and linked from `learning/README.md`.
 
 **Task 3 — Title: Replace a hardcoded secret in a Python script and enable audit logging**
 

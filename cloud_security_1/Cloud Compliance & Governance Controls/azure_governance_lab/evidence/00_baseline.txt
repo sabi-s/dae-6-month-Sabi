@@ -1,0 +1,62 @@
+== Baseline captured: 2026-11-20T18:59Z
+
+== Policy assignments
+Name                                                              Enforcement
+----------------------------------------------------------------  -------------
+ASC Default (subscription: <sub-id>)  Default
+
+== Resource groups and tags
+[
+  {
+    "Location": "eastus",
+    "Name": "HVMC-CloudSecurity-RG",
+    "Tags": null
+  },
+  {
+    "Location": "eastus",
+    "Name": "NetworkWatcherRG",
+    "Tags": null
+  },
+  {
+    "Location": "eastus",
+    "Name": "HVMC-KeyVault-RG",
+    "Tags": {
+      "data": "dummy-only",
+      "owner": "IAM-Admin",
+      "project": "HVMC-AccessGuard",
+      "purpose": "learning-keyvault"
+    }
+  }
+]
+
+== Resources without Owner/Environment/DataClassification tags
+Name                                          RG                     Type
+--------------------------------------------  ---------------------  ------------------------------------------
+hvmcehrstorage                                HVMC-CloudSecurity-RG  Microsoft.Storage/storageAccounts
+HVMC-Prod-VNet                                HVMC-CloudSecurity-RG  Microsoft.Network/virtualNetworks
+NetworkWatcher_eastus                         NetworkWatcherRG       Microsoft.Network/networkWatchers
+HVMC-Web-NSG                                  HVMC-CloudSecurity-RG  Microsoft.Network/networkSecurityGroups
+HVMC-App-NSG                                  HVMC-CloudSecurity-RG  Microsoft.Network/networkSecurityGroups
+HVMC-Data-NSG                                 HVMC-CloudSecurity-RG  Microsoft.Network/networkSecurityGroups
+HVMC-SecOps-LAW                               HVMC-CloudSecurity-RG  Microsoft.OperationalInsights/workspaces
+hvmcseclogsc36407                             HVMC-CloudSecurity-RG  Microsoft.Storage/storageAccounts
+NetworkWatcher_eastus/HVMC-Prod-VNet-FlowLog  NetworkWatcherRG       Microsoft.Network/networkWatchers/flowLogs
+HVMC-SecOps-AG                                HVMC-CloudSecurity-RG  Microsoft.Insights/actiongroups
+HVMC-NSG-Rule-Changed                         HVMC-CloudSecurity-RG  Microsoft.Insights/activityLogAlerts
+HVMC-NSG-Rule-Deleted                         HVMC-CloudSecurity-RG  Microsoft.Insights/activityLogAlerts
+HVMC-Role-Assignment-Added                    HVMC-CloudSecurity-RG  Microsoft.Insights/activityLogAlerts
+HVMC-Role-Assignment-Removed                  HVMC-CloudSecurity-RG  Microsoft.Insights/activityLogAlerts
+HVMC-Storage-Config-Changed                   HVMC-CloudSecurity-RG  Microsoft.Insights/activityLogAlerts
+HVMC-Storage-Keys-Listed                      HVMC-CloudSecurity-RG  Microsoft.Insights/activityLogAlerts
+HVMC-Public-IP-Created                        HVMC-CloudSecurity-RG  Microsoft.Insights/activityLogAlerts
+HVMC-Diagnostic-Setting-Deleted               HVMC-CloudSecurity-RG  Microsoft.Insights/activityLogAlerts
+HVMC-Defender-Security-Alert                  HVMC-CloudSecurity-RG  Microsoft.Insights/activityLogAlerts
+SecurityInsights(HVMC-SecOps-LAW)             HVMC-CloudSecurity-RG  Microsoft.OperationsManagement/solutions
+eda8f5c9-299b-502b-a766-8e578bc2e56b          HVMC-CloudSecurity-RG  Microsoft.Insights/workbooks
+hvmc-accessguard-kv                           HVMC-KeyVault-RG       Microsoft.KeyVault/vaults
+
+Total resources: 22
+Resources missing mandatory tags: 22
+
+== Resource locks
+

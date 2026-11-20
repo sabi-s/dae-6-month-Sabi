@@ -1,0 +1,53 @@
+== Step 1 run: 2026-11-20T19:00Z
+{
+  "id": "/subscriptions/<sub-id>/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Resources/tags/default",
+  "name": "default",
+  "properties": {
+    "tags": {
+      "CostCenter": "hvmc-capstone",
+      "DataClassification": "ephi-simulated",
+      "Environment": "lab",
+      "Owner": "IAM-Admin"
+    }
+  },
+  "resourceGroup": "HVMC-CloudSecurity-RG",
+  "type": "Microsoft.Resources/tags"
+}
+{
+  "id": "/subscriptions/<sub-id>/resourceGroups/HVMC-KeyVault-RG/providers/Microsoft.Resources/tags/default",
+  "name": "default",
+  "properties": {
+    "tags": {
+      "CostCenter": "hvmc-capstone",
+      "DataClassification": "secrets",
+      "Environment": "lab",
+      "data": "dummy-only",
+      "owner": "IAM-Admin",
+      "project": "HVMC-AccessGuard",
+      "purpose": "learning-keyvault"
+    }
+  },
+  "resourceGroup": "HVMC-KeyVault-RG",
+  "type": "Microsoft.Resources/tags"
+}
+{
+  "id": "/subscriptions/<sub-id>/resourceGroups/NetworkWatcherRG/providers/Microsoft.Resources/tags/default",
+  "name": "default",
+  "properties": {
+    "tags": {
+      "CostCenter": "hvmc-capstone",
+      "DataClassification": "internal",
+      "Environment": "lab",
+      "Owner": "IAM-Admin"
+    }
+  },
+  "resourceGroup": "NetworkWatcherRG",
+  "type": "Microsoft.Resources/tags"
+}
+
+== Resource groups after tagging
+Name                   Owner      Environment    DataClassification    CostCenter
+---------------------  ---------  -------------  --------------------  -------------
+HVMC-CloudSecurity-RG  IAM-Admin  lab            ephi-simulated        hvmc-capstone
+NetworkWatcherRG       IAM-Admin  lab            internal              hvmc-capstone
+HVMC-KeyVault-RG                  lab            secrets               hvmc-capstone

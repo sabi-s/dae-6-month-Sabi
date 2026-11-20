@@ -1,0 +1,15 @@
+== Step 3 run: 2026-11-20T19:05Z
+{
+  "level": "CanNotDelete",
+  "name": "HVMC-Protect-SecOps-LAW"
+}
+{
+  "level": "CanNotDelete",
+  "name": "HVMC-Protect-SecurityLogs"
+}
+
+== Locks after Step 3
+Name                       Level         Notes
+-------------------------  ------------  ----------------------------------------------------------------------
+HVMC-Protect-SecurityLogs  CanNotDelete  HIPAA 164.312(b) audit controls - security log archive
+HVMC-Protect-SecOps-LAW    CanNotDelete  HIPAA 164.312(b) audit controls - do not delete the Sentinel workspace

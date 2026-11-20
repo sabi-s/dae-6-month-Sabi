@@ -1,0 +1,55 @@
+== Step 5b run: 2026-11-20T19:26Z
+TAGGED  HVMC-CloudSecurity-RG/hvmcehrstorage
+TAGGED  HVMC-CloudSecurity-RG/HVMC-Prod-VNet
+TAGGED  HVMC-CloudSecurity-RG/HVMC-Web-NSG
+TAGGED  HVMC-CloudSecurity-RG/HVMC-App-NSG
+TAGGED  HVMC-CloudSecurity-RG/HVMC-Data-NSG
+TAGGED  HVMC-CloudSecurity-RG/HVMC-SecOps-LAW
+TAGGED  HVMC-CloudSecurity-RG/hvmcseclogsc36407
+TAGGED  HVMC-CloudSecurity-RG/HVMC-SecOps-AG
+TAGGED  HVMC-CloudSecurity-RG/HVMC-NSG-Rule-Changed
+TAGGED  HVMC-CloudSecurity-RG/HVMC-NSG-Rule-Deleted
+TAGGED  HVMC-CloudSecurity-RG/HVMC-Role-Assignment-Added
+TAGGED  HVMC-CloudSecurity-RG/HVMC-Role-Assignment-Removed
+TAGGED  HVMC-CloudSecurity-RG/HVMC-Storage-Config-Changed
+TAGGED  HVMC-CloudSecurity-RG/HVMC-Storage-Keys-Listed
+TAGGED  HVMC-CloudSecurity-RG/HVMC-Public-IP-Created
+TAGGED  HVMC-CloudSecurity-RG/HVMC-Diagnostic-Setting-Deleted
+TAGGED  HVMC-CloudSecurity-RG/HVMC-Defender-Security-Alert
+TAGGED  HVMC-CloudSecurity-RG/SecurityInsights(HVMC-SecOps-LAW)
+TAGGED  HVMC-CloudSecurity-RG/eda8f5c9-299b-502b-a766-8e578bc2e56b
+TAGGED  HVMC-KeyVault-RG/hvmc-accessguard-kv
+
+Missing mandatory tags (all RGs): 3
+Name                                          RG
+--------------------------------------------  ----------------
+NetworkWatcher_eastus                         NetworkWatcherRG
+NetworkWatcher_eastus/HVMC-Prod-VNet-FlowLog  NetworkWatcherRG
+hvmc-accessguard-kv                           HVMC-KeyVault-RG
+
+-- Starting a new compliance scan
+
+== Step 5b addendum: 2026-11-20T19:29Z
+Key Vault RG and vault: rename tag key 'owner' -> 'Owner' (Replace with the full tag set; existing tags kept)
+{
+  "CostCenter": "hvmc-capstone",
+  "DataClassification": "secrets",
+  "Environment": "lab",
+  "Owner": "IAM-Admin",
+  "data": "dummy-only",
+  "project": "HVMC-AccessGuard",
+  "purpose": "learning-keyvault"
+}
+{
+  "CostCenter": "hvmc-capstone",
+  "DataClassification": "secrets",
+  "Environment": "lab",
+  "Owner": "IAM-Admin",
+  "data": "dummy-only",
+  "project": "HVMC-AccessGuard",
+  "purpose": "learning-keyvault"
+}
+NetworkWatcherRG resources (outside policy scope): tagged manually for inventory completeness
+TAGGED  NetworkWatcherRG/NetworkWatcher_eastus
+TAGGED  NetworkWatcherRG/HVMC-Prod-VNet-FlowLog
+Missing mandatory tags (all resources): 0 of 22

@@ -1,0 +1,16 @@
+== Step 5 remediation results: 2026-11-20T19:26Z
+Task                                                   State
+-----------------------------------------------------  -------
+hvmc-inherit-costcenter-hvmc-cloudsecurity-rg          Failed
+hvmc-inherit-dataclassification-hvmc-cloudsecurity-rg  Failed
+hvmc-inherit-environment-hvmc-cloudsecurity-rg         Failed
+hvmc-inherit-owner-hvmc-cloudsecurity-rg               Failed
+Task                                              State
+------------------------------------------------  ---------
+hvmc-inherit-costcenter-hvmc-keyvault-rg          Failed
+hvmc-inherit-dataclassification-hvmc-keyvault-rg  Failed
+hvmc-inherit-environment-hvmc-keyvault-rg         Failed
+hvmc-inherit-owner-hvmc-keyvault-rg               Succeeded
+
+== Sample failure
+Failed to remediate resource: '/subscriptions/<sub-id>/resourceGroups/HVMC-CloudSecurity-RG/providers/Microsoft.Insights/activityLogAlerts/HVMC-Public-IP-Created'. The 'PATCH' request failed with status code: 'Forbidden'. Inner Error: 'Resource 'HVMC-Public-IP-Created' was disallowed by policy. Reasons: 'Resource is missing an HVMC mandatory tag - Owner, Environment, DataClassification','Resource is missing an HVMC mandatory tag - Owner, Environment, DataClassification'. See error details for policy resource IDs.', Correlation Id: '112af203-ee7c-44fc-90b9-885a2ee8a7a6'.

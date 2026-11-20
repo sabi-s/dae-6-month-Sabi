@@ -1,0 +1,117 @@
+{
+  "hvmc-guardrails": {
+    "evaluations": 35,
+    "latest_evaluation": "2026-11-20T19:46:43.737449+00:00",
+    "resources_evaluated": 25,
+    "resources_compliant": 22,
+    "resources_noncompliant": 3,
+    "policies_evaluated": 8,
+    "policies_noncompliant": 2,
+    "noncompliant_by_policy": {
+      "audit-storage-sharedkey": [
+        "hvmcehrstorage",
+        "hvmcseclogsc36407"
+      ],
+      "audit-keyvault-firewall": [
+        "hvmc-accessguard-kv"
+      ]
+    },
+    "control_groups": 1,
+    "control_groups_noncompliant": 1,
+    "_ref_to_def": {
+      "audit-storage-sharedkey": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
+      "audit-keyvault-firewall": "55615ac9-af46-4a59-874e-391cc3dfb490"
+    }
+  },
+  "hvmc-tags-hvmc-cloudsecurity-rg": {
+    "evaluations": 133,
+    "latest_evaluation": "2026-11-20T19:46:43.737507+00:00",
+    "resources_evaluated": 19,
+    "resources_compliant": 19,
+    "resources_noncompliant": 0,
+    "policies_evaluated": 7,
+    "policies_noncompliant": 0,
+    "noncompliant_by_policy": {},
+    "control_groups": 1,
+    "control_groups_noncompliant": 0,
+    "_ref_to_def": {}
+  },
+  "hvmc-tags-hvmc-keyvault-rg": {
+    "evaluations": 7,
+    "latest_evaluation": "2026-11-20T19:37:46.458664+00:00",
+    "resources_evaluated": 1,
+    "resources_compliant": 1,
+    "resources_noncompliant": 0,
+    "policies_evaluated": 7,
+    "policies_noncompliant": 0,
+    "noncompliant_by_policy": {},
+    "control_groups": 1,
+    "control_groups_noncompliant": 0,
+    "_ref_to_def": {}
+  },
+  "hvmc-hipaa-hitrust": {
+    "evaluations": 522,
+    "latest_evaluation": "2026-11-20T19:46:13.346244+00:00",
+    "resources_evaluated": 13,
+    "resources_compliant": 7,
+    "resources_noncompliant": 6,
+    "policies_evaluated": 512,
+    "policies_noncompliant": 9,
+    "noncompliant_by_policy": {
+      "disableunrestrictednetworktostorageaccountmonitoring": [
+        "hvmcehrstorage",
+        "hvmcseclogsc36407"
+      ],
+      "storageaccountsshoulduseavirtualnetworkserviceendpoint": [
+        "hvmcehrstorage",
+        "hvmcseclogsc36407"
+      ],
+      "auditdiagnosticsetting": [
+        "hvmc-accessguard-kv",
+        "hvmc-prod-vnet"
+      ],
+      "keyvaultshoulduseavirtualnetworkserviceendpoint": [
+        "hvmc-accessguard-kv"
+      ],
+      "auditspecificadministrativeoperationswithoutactivitylogalerts": [
+        "(subscription)"
+      ],
+      "identityremovedeprecatedaccountwithownerpermissionsmonitoring": [
+        "(subscription)"
+      ],
+      "identityremoveexternalaccountwithownerpermissionsmonitoring": [
+        "(subscription)"
+      ],
+      "identitydesignatemorethanoneownermonitoring": [
+        "(subscription)"
+      ],
+      "userbacrulesmonitoring": [
+        "(roledefinitions 4f2bc18d...)"
+      ]
+    },
+    "control_groups": 510,
+    "control_groups_noncompliant": 16,
+    "_ref_to_def": {
+      "disableunrestrictednetworktostorageaccountmonitoring": "34c877ad-507e-4c82-993e-3452a6e0ad3c",
+      "storageaccountsshoulduseavirtualnetworkserviceendpoint": "60d21c4f-21a3-4d94-85f4-b924e6aeeda4",
+      "auditdiagnosticsetting": "7f89b1eb-583c-429a-8828-af049802c1d9",
+      "keyvaultshoulduseavirtualnetworkserviceendpoint": "ea4d6841-2173-4317-9747-ff522a45120f",
+      "auditspecificadministrativeoperationswithoutactivitylogalerts": "b954148f-4c11-4c38-8221-be76711e194a",
+      "identityremovedeprecatedaccountwithownerpermissionsmonitoring": "0cfea604-3201-4e14-88fc-fae4c427a6c5",
+      "identityremoveexternalaccountwithownerpermissionsmonitoring": "339353f6-2387-4a45-abe4-7f529d121046",
+      "identitydesignatemorethanoneownermonitoring": "09024ccc-0c5f-475e-9457-b7c0d9ed487b",
+      "userbacrulesmonitoring": "a451c1ef-c6ca-483d-87ed-f49761e3ffb5"
+    },
+    "policy_display_names": {
+      "disableunrestrictednetworktostorageaccountmonitoring": "Storage accounts should restrict network access",
+      "storageaccountsshoulduseavirtualnetworkserviceendpoint": "Storage Accounts should use a virtual network service endpoint",
+      "auditdiagnosticsetting": "Audit diagnostic setting for selected resource types",
+      "keyvaultshoulduseavirtualnetworkserviceendpoint": "Key Vault should use a virtual network service endpoint",
+      "auditspecificadministrativeoperationswithoutactivitylogalerts": "An activity log alert should exist for specific Administrative operations",
+      "identityremovedeprecatedaccountwithownerpermissionsmonitoring": "Blocked accounts with owner permissions on Azure resources should be removed",
+      "identityremoveexternalaccountwithownerpermissionsmonitoring": "Guest accounts with owner permissions on Azure resources should be removed",
+      "identitydesignatemorethanoneownermonitoring": "There should be more than one owner assigned to your subscription",
+      "userbacrulesmonitoring": "Audit usage of custom RBAC roles"
+    }
+  }
+}

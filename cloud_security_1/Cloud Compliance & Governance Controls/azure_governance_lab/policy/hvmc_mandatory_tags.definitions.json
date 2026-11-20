@@ -1,0 +1,65 @@
+[
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/ea3f2387-9b95-492a-a190-fcdc54f7b070",
+    "policyDefinitionReferenceId": "Inherit-Owner",
+    "parameters": {
+      "tagName": {
+        "value": "Owner"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/ea3f2387-9b95-492a-a190-fcdc54f7b070",
+    "policyDefinitionReferenceId": "Inherit-Environment",
+    "parameters": {
+      "tagName": {
+        "value": "Environment"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/ea3f2387-9b95-492a-a190-fcdc54f7b070",
+    "policyDefinitionReferenceId": "Inherit-DataClassification",
+    "parameters": {
+      "tagName": {
+        "value": "DataClassification"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/ea3f2387-9b95-492a-a190-fcdc54f7b070",
+    "policyDefinitionReferenceId": "Inherit-CostCenter",
+    "parameters": {
+      "tagName": {
+        "value": "CostCenter"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/871b6d14-10aa-478d-b590-94f262ecfa99",
+    "policyDefinitionReferenceId": "Require-Owner",
+    "parameters": {
+      "tagName": {
+        "value": "Owner"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/871b6d14-10aa-478d-b590-94f262ecfa99",
+    "policyDefinitionReferenceId": "Require-Environment",
+    "parameters": {
+      "tagName": {
+        "value": "Environment"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/871b6d14-10aa-478d-b590-94f262ecfa99",
+    "policyDefinitionReferenceId": "Require-DataClassification",
+    "parameters": {
+      "tagName": {
+        "value": "DataClassification"
+      }
+    }
+  }
+]

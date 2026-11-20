@@ -1,0 +1,121 @@
+== Step 6 run: 2026-11-20T19:49Z
+
+== Remediation tasks (tag inheritance) - see 05_remediation_failures.txt for why 7 of 8 failed
+Task                                                   State
+-----------------------------------------------------  -------
+hvmc-inherit-costcenter-hvmc-cloudsecurity-rg          Failed
+hvmc-inherit-dataclassification-hvmc-cloudsecurity-rg  Failed
+hvmc-inherit-environment-hvmc-cloudsecurity-rg         Failed
+hvmc-inherit-owner-hvmc-cloudsecurity-rg               Failed
+Task                                              State
+------------------------------------------------  ---------
+hvmc-inherit-costcenter-hvmc-keyvault-rg          Failed
+hvmc-inherit-dataclassification-hvmc-keyvault-rg  Failed
+hvmc-inherit-environment-hvmc-keyvault-rg         Failed
+hvmc-inherit-owner-hvmc-keyvault-rg               Succeeded
+
+== Resources missing mandatory tags (after backfill)
+Total resources: 22
+Missing Owner/Environment/DataClassification: 0
+
+== Compliance by assignment (latest states)
+hvmc-tags-hvmc-cloudsecurity-rg	0	0
+hvmc-guardrails	3	2
+hvmc-hipaa-hitrust	6	9
+securitycenterbuiltin	5	23
+hvmc-tags-hvmc-keyvault-rg	0	0
+
+== HVMC-Guardrails: non-compliant resources by rule (latest states)
+audit-storage-sharedkey	hvmcseclogsc36407
+audit-keyvault-firewall	hvmc-accessguard-kv
+audit-storage-sharedkey	hvmcehrstorage
+
+== Policy deny events in the activity log (lab day, from 18:55 UTC; time  resource)
+Deny events: 87
+19:05:35  HVMC-PolicyTest-RG
+19:05:39  hvmcpolicytest7270
+19:05:42  hvmcpolicytest7270
+19:05:45  hvmcpolicytest7270
+19:06:48  HVMC-PolicyTest-RG
+19:06:51  hvmcpolicytest30035
+19:06:54  hvmcpolicytest30035
+19:06:57  hvmcpolicytest30035
+19:24:36  HVMC-SecOps-LAW
+19:24:36  hvmcseclogsc36407
+19:24:36  hvmcehrstorage
+19:24:36  eda8f5c9-299b-502b-a766-8e578bc2e56b
+19:24:36  SecurityInsights(HVMC-SecOps-LAW)
+19:24:36  HVMC-NSG-Rule-Changed
+19:24:38  HVMC-Data-NSG
+19:24:38  HVMC-App-NSG
+19:24:38  HVMC-Web-NSG
+19:24:38  HVMC-Prod-VNet
+19:24:38  SecurityInsights(HVMC-SecOps-LAW)
+19:24:39  hvmcseclogsc36407
+19:24:39  hvmcehrstorage
+19:24:39  HVMC-NSG-Rule-Changed
+19:24:39  eda8f5c9-299b-502b-a766-8e578bc2e56b
+19:24:39  HVMC-SecOps-LAW
+19:24:40  HVMC-Prod-VNet
+19:24:40  HVMC-Data-NSG
+19:24:40  HVMC-App-NSG
+19:24:40  HVMC-Web-NSG
+19:24:42  HVMC-SecOps-LAW
+19:24:42  eda8f5c9-299b-502b-a766-8e578bc2e56b
+19:24:42  SecurityInsights(HVMC-SecOps-LAW)
+19:24:42  hvmcseclogsc36407
+19:24:42  HVMC-NSG-Rule-Changed
+19:24:42  hvmcehrstorage
+19:24:43  HVMC-App-NSG
+19:24:43  HVMC-Prod-VNet
+19:24:44  HVMC-Data-NSG
+19:24:44  HVMC-Web-NSG
+19:24:44  SecurityInsights(HVMC-SecOps-LAW)
+19:24:44  hvmcseclogsc36407
+19:24:44  eda8f5c9-299b-502b-a766-8e578bc2e56b
+19:24:44  HVMC-SecOps-LAW
+19:24:44  hvmcehrstorage
+19:24:44  HVMC-NSG-Rule-Changed
+19:24:44  HVMC-Role-Assignment-Added
+19:24:44  HVMC-Storage-Config-Changed
+19:24:44  HVMC-Diagnostic-Setting-Deleted
+19:24:45  HVMC-Role-Assignment-Removed
+19:24:45  HVMC-Defender-Security-Alert
+19:24:45  HVMC-Storage-Keys-Listed
+19:24:45  HVMC-SecOps-AG
+19:24:45  HVMC-NSG-Rule-Deleted
+19:24:45  HVMC-Public-IP-Created
+19:24:46  HVMC-Prod-VNet
+19:24:46  HVMC-App-NSG
+19:24:46  HVMC-Data-NSG
+19:24:47  HVMC-Web-NSG
+19:24:47  HVMC-NSG-Rule-Deleted
+19:24:47  HVMC-Diagnostic-Setting-Deleted
+19:24:47  HVMC-Role-Assignment-Added
+19:24:48  HVMC-SecOps-AG
+19:24:48  HVMC-Public-IP-Created
+19:24:48  HVMC-Role-Assignment-Removed
+19:24:48  HVMC-Defender-Security-Alert
+19:24:48  HVMC-Storage-Config-Changed
+19:24:48  HVMC-Storage-Keys-Listed
+19:24:50  HVMC-SecOps-AG
+19:24:50  HVMC-Defender-Security-Alert
+19:24:50  HVMC-NSG-Rule-Deleted
+19:24:50  HVMC-Role-Assignment-Removed
+19:24:50  HVMC-Public-IP-Created
+19:24:50  HVMC-Storage-Keys-Listed
+19:24:50  HVMC-Role-Assignment-Added
+19:24:50  HVMC-Storage-Config-Changed
+19:24:50  hvmc-accessguard-kv
+19:24:51  HVMC-Diagnostic-Setting-Deleted
+19:24:52  hvmc-accessguard-kv
+19:24:53  HVMC-Storage-Keys-Listed
+19:24:53  HVMC-Public-IP-Created
+19:24:53  HVMC-Role-Assignment-Removed
+19:24:53  HVMC-SecOps-AG
+19:24:53  HVMC-Defender-Security-Alert
+19:24:54  HVMC-Role-Assignment-Added
+19:24:54  HVMC-Diagnostic-Setting-Deleted
+19:24:54  HVMC-NSG-Rule-Deleted
+19:24:54  HVMC-Storage-Config-Changed
+19:24:55  hvmc-accessguard-kv

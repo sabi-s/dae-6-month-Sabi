@@ -1,0 +1,17 @@
+== Test 5 follow-up: 2026-11-20T19:06Z
+Azure retired TLS 1.0/1.1 on 2026-02-03, so the CLI replaced TLS1_0 with TLS1_2: the request became compliant and was ALLOWED.
+The test account (empty) was checked and then deleted. Tags applied automatically by HVMC-Mandatory-Tags (Modify / inherit from RG):
+{
+  "allowBlobPublicAccess": false,
+  "minimumTlsVersion": "TLS1_2",
+  "name": "hvmcpolicytest7270",
+  "tags": {
+    "CostCenter": "hvmc-capstone",
+    "DataClassification": "ephi-simulated",
+    "Environment": "lab",
+    "Owner": "IAM-Admin"
+  }
+}
+Test account deleted.
+hvmcehrstorage
+hvmcseclogsc36407

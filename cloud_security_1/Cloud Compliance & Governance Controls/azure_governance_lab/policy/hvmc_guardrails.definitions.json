@@ -1,0 +1,96 @@
+[
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
+    "policyDefinitionReferenceId": "Restrict-Regions",
+    "parameters": {
+      "listOfAllowedLocations": {
+        "value": [
+          "eastus"
+        ]
+      },
+      "effect": {
+        "value": "Deny"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
+    "policyDefinitionReferenceId": "Restrict-Regions-ResourceGroups",
+    "parameters": {
+      "listOfAllowedLocations": {
+        "value": [
+          "eastus"
+        ]
+      },
+      "effect": {
+        "value": "Deny"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/4fa4b6c0-31ca-4c0d-b10d-24b96f62a751",
+    "policyDefinitionReferenceId": "Deny-Public-Storage",
+    "parameters": {
+      "effect": {
+        "value": "Deny"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/404c3081-a854-4457-ae30-26a93ef643f9",
+    "policyDefinitionReferenceId": "Deny-Insecure-Transfer",
+    "parameters": {
+      "effect": {
+        "value": "Deny"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/fe83a0eb-a853-422d-aac2-1bffd182c5d0",
+    "policyDefinitionReferenceId": "Deny-Old-TLS",
+    "parameters": {
+      "effect": {
+        "value": "Deny"
+      },
+      "minimumTlsVersion": {
+        "value": "TLS1_2"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
+    "policyDefinitionReferenceId": "Audit-Storage-SharedKey",
+    "parameters": {
+      "effect": {
+        "value": "Audit"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/55615ac9-af46-4a59-874e-391cc3dfb490",
+    "policyDefinitionReferenceId": "Audit-KeyVault-Firewall",
+    "parameters": {
+      "effect": {
+        "value": "Audit"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/cf820ca0-f99e-4f3e-84fb-66e913812d21",
+    "policyDefinitionReferenceId": "Audit-KeyVault-Logs",
+    "parameters": {
+      "effect": {
+        "value": "AuditIfNotExists"
+      }
+    }
+  },
+  {
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/98728c90-32c7-4049-8429-847dc0f4fe37",
+    "policyDefinitionReferenceId": "Audit-Secret-Expiry",
+    "parameters": {
+      "effect": {
+        "value": "Audit"
+      }
+    }
+  }
+]

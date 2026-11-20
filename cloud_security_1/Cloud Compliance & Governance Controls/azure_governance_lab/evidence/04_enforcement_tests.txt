@@ -1,0 +1,33 @@
+== Step 4 run: 2026-11-20T19:06Z
+
+---- TEST 1: Create a resource group outside the approved region (westus)
+Expected: DENIED by Restrict-Regions-ResourceGroups
+ERROR: (RequestDisallowedByPolicy) Resource 'HVMC-PolicyTest-RG' was disallowed by policy. Reasons: 'Blocked by HVMC-Guardrails policy - see Cloud Compliance and Governance Controls v2.0'. See error details for policy resource IDs.
+Code: RequestDisallowedByPolicy
+    "policyDefinitionReferenceId": "Restrict-Regions-ResourceGroups",
+RESULT: DENIED by policy (as expected)
+
+---- TEST 2: Create a storage account in westus
+Expected: DENIED by Restrict-Regions
+ERROR: (RequestDisallowedByPolicy) Resource 'hvmcpolicytest30035' was disallowed by policy. Reasons: 'Blocked by HVMC-Guardrails policy - see Cloud Compliance and Governance Controls v2.0','Blocked by HVMC-Guardrails policy - see Cloud Compliance and Governance Controls v2.0','Blocked by HVMC-Guardrails policy - see Cloud Compliance and Governance Controls v2.0'. See error details for policy resource IDs.
+Code: RequestDisallowedByPolicy
+    "policyDefinitionReferenceId": "Restrict-Regions",
+    "policyDefinitionReferenceId": "Deny-Public-Storage",
+    "policyDefinitionReferenceId": "Deny-Old-TLS",
+RESULT: DENIED by policy (as expected)
+
+---- TEST 3: Create a storage account that allows public blob access
+Expected: DENIED by Deny-Public-Storage
+ERROR: (RequestDisallowedByPolicy) Resource 'hvmcpolicytest30035' was disallowed by policy. Reasons: 'Blocked by HVMC-Guardrails policy - see Cloud Compliance and Governance Controls v2.0','Blocked by HVMC-Guardrails policy - see Cloud Compliance and Governance Controls v2.0'. See error details for policy resource IDs.
+Code: RequestDisallowedByPolicy
+    "policyDefinitionReferenceId": "Deny-Public-Storage",
+    "policyDefinitionReferenceId": "Deny-Old-TLS",
+RESULT: DENIED by policy (as expected)
+
+---- TEST 4: Create a storage account with HTTP (non-TLS) traffic allowed
+Expected: DENIED by Deny-Insecure-Transfer
+ERROR: (RequestDisallowedByPolicy) Resource 'hvmcpolicytest30035' was disallowed by policy. Reasons: 'Blocked by HVMC-Guardrails policy - see Cloud Compliance and Governance Controls v2.0','Blocked by HVMC-Guardrails policy - see Cloud Compliance and Governance Controls v2.0'. See error details for policy resource IDs.
+Code: RequestDisallowedByPolicy
+    "policyDefinitionReferenceId": "Deny-Insecure-Transfer",
+    "policyDefinitionReferenceId": "Deny-Old-TLS",
+RESULT: DENIED by policy (as expected)

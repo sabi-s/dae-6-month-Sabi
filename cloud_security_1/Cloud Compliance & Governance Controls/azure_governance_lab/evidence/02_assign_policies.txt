@@ -1,0 +1,43 @@
+== Step 2 run: 2026-11-20T19:03Z
+{
+  "name": "hvmc-guardrails",
+  "policies": 9
+}
+{
+  "name": "hvmc-mandatory-tags",
+  "policies": 7
+}
+{
+  "enforcement": "Default",
+  "name": "hvmc-guardrails",
+  "scope": "/subscriptions/<sub-id>"
+}
+{
+  "identity": "SystemAssigned",
+  "name": "hvmc-tags-hvmc-cloudsecurity-rg",
+  "scope": "/subscriptions/<sub-id>/resourceGroups/HVMC-CloudSecurity-RG"
+}
+{
+  "role": null,
+  "scope": "/subscriptions/<sub-id>/resourceGroups/HVMC-CloudSecurity-RG"
+}
+{
+  "identity": "SystemAssigned",
+  "name": "hvmc-tags-hvmc-keyvault-rg",
+  "scope": "/subscriptions/<sub-id>/resourceGroups/HVMC-KeyVault-RG"
+}
+{
+  "role": null,
+  "scope": "/subscriptions/<sub-id>/resourceGroups/HVMC-KeyVault-RG"
+}
+{
+  "name": "hvmc-hipaa-hitrust",
+  "scope": "/subscriptions/<sub-id>"
+}
+
+== Policy assignments after Step 2
+Name                                                              Enforcement
+----------------------------------------------------------------  -------------
+HITRUST/HIPAA (audit only)                                        Default
+HVMC-Guardrails (subscription)                                    Default
+ASC Default (subscription: <sub-id>)  Default

@@ -20,7 +20,7 @@ Python · Azure (Key Vault, Log Analytics) · ServiceNow-style tickets.
 | The 10 hands-on Entra ID steps (scripts, tickets, results) | [02_Entra_ID_Hands_On_Operations](./AccessGuard_Health_IAM_Project/02_Entra_ID_Hands_On_Operations/README.md) |
 | Standard Operating Procedures (create, disable, MFA reset, access review) | [SOPs](./AccessGuard_Health_IAM_Project/02_Entra_ID_Hands_On_Operations/SOPs/) |
 | Secrets management with Azure Key Vault | [03_Azure_Key_Vault](./AccessGuard_Health_IAM_Project/03_Azure_Key_Vault/README.md) |
-| Weekly and monthly status updates | [Semester3_Status_Update](./Semester3_Status_Update/) |
+| Weekly and monthly status updates | [semester3_status_update](./semester3_status_update/) |
 
 ## Folder structure
 
@@ -30,7 +30,7 @@ semester_3/
 │   ├── 01_Weekly_Deliverables/          Week-by-week documents (Weeks 1, 2, 5, 7, 8)
 │   ├── 02_Entra_ID_Hands_On_Operations/ Main report, SOPs and Steps 01–10 in Microsoft Entra ID
 │   └── 03_Azure_Key_Vault/              Link page for the Key Vault learning work
-└── Semester3_Status_Update/             Status update decks
+└── semester3_status_update/             Status update decks
 ```
 
 ## About Weeks 3, 4 and 6

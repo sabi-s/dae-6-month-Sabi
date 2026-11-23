@@ -13,8 +13,8 @@ Every tool was run only against the author's own two virtual machines. The two r
 
 | Report | Criterion |
 |---|---|
-| `Network Security Tools Documents.pdf` | 6 — Utilize Network Security Tools |
-| `Monitor and Respond to Network Security Events.pdf` | 7 — Monitor and Respond to Network Security Events |
+| `../06_Network_Security_Tools_Documents.pdf` | 6 — Utilize Network Security Tools |
+| `../07_Monitor_And_Respond_To_Network_Security_Events.pdf` | 7 — Monitor and Respond to Network Security Events |
 
 ## Evidence files (this folder)
 

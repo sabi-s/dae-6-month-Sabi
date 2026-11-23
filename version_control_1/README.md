@@ -1,4 +1,4 @@
 # Version Control — Foundation Course
 
-[Smart_Deal_Alert_Presentation.pptx](./Smart_Deal_Alert_Presentation.pptx) — presentation of the Smart Deal Alert project
-(see [semester_1](../semester_1/) for the code), submitted for the Version Control course.
+The Version Control course project is the Smart Deal Alert app. Its code and Git history are in
+[semester_1](../semester_1/).

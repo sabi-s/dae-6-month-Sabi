@@ -1,0 +1,8 @@
+Nov 23 00:35:29 hvmc-dc01 sshd[2810]: Invalid user itbadlogin from 192.168.56.11 port 51720
+Nov 23 00:35:29 hvmc-dc01 sshd[2810]: Connection closed by invalid user itbadlogin 192.168.56.11 port 51720 [preauth]
+Nov 23 00:35:30 hvmc-dc01 sshd[2812]: Invalid user itbadlogin from 192.168.56.11 port 51730
+Nov 23 00:35:30 hvmc-dc01 sshd[2812]: Connection closed by invalid user itbadlogin 192.168.56.11 port 51730 [preauth]
+Nov 23 00:35:32 hvmc-dc01 sshd[2815]: Invalid user itbadlogin from 192.168.56.11 port 51742
+Nov 23 00:35:32 hvmc-dc01 sshd[2815]: Connection closed by invalid user itbadlogin 192.168.56.11 port 51742 [preauth]
+Nov 23 00:35:33 hvmc-dc01 sshd[2817]: Invalid user itbadlogin from 192.168.56.11 port 51744
+Nov 23 00:35:33 hvmc-dc01 sshd[2817]: Connection closed by invalid user itbadlogin 192.168.56.11 port 51744 [preauth]

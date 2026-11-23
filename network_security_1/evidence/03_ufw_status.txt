@@ -1,0 +1,14 @@
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW IN    192.168.56.0/24            # SSH from lab subnet only
+53                         ALLOW IN    192.168.56.0/24            # AD service 53 (lab only)
+88                         ALLOW IN    192.168.56.0/24            # AD service 88 (lab only)
+389                        ALLOW IN    192.168.56.0/24            # AD service 389 (lab only)
+636                        ALLOW IN    192.168.56.0/24            # AD service 636 (lab only)
+445                        ALLOW IN    192.168.56.0/24            # AD service 445 (lab only)
+

@@ -1,0 +1,65 @@
+# Nmap 7.94SVN scan initiated Mon Nov 23 00:25:32 2026 as: nmap -sV -O -sC --open -oA /home/ubuntu/network_security_1_evidence_scripts/evidence/c6_02_scan_dc_20261123_002457/02_services 192.168.56.10
+Nmap scan report for 192.168.56.10
+Host is up (0.0022s latency).
+Not shown: 994 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT    STATE SERVICE      VERSION
+22/tcp  open  ssh          OpenSSH 9.6p1 Ubuntu 3ubuntu13.20 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 dd:09:27:92:bd:03:68:cc:f5:39:51:41:7a:5f:50:ff (ECDSA)
+|_  256 35:69:22:bb:20:71:95:0f:19:4a:b6:f2:d9:5a:13:83 (ED25519)
+53/tcp  open  domain       (generic dns response: NOTIMP)
+| fingerprint-strings: 
+|   DNSVersionBindReqTCP: 
+|     version
+|_    bind
+88/tcp  open  kerberos-sec (server time: 2026-11-23 00:25:57Z)
+| fingerprint-strings: 
+|   Kerberos: 
+|     d~b0`
+|     20261123002557Z
+|     krbtgt
+|_    client in request
+389/tcp open  ldap         (Anonymous bind OK)
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=HVMC-DC01.hvmc.lan/organizationName=Samba Administration
+| Not valid before: 2026-10-26T04:47:16
+|_Not valid after:  2028-09-25T04:47:16
+445/tcp open  netbios-ssn  Samba smbd 4.6.2
+636/tcp open  ssl/ldap     (Anonymous bind OK)
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=HVMC-DC01.hvmc.lan/organizationName=Samba Administration
+| Not valid before: 2026-10-26T04:47:16
+|_Not valid after:  2028-09-25T04:47:16
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port53-TCP:V=7.94SVN%I=7%D=11/23%Time=6B03881A%P=x86_64-pc-linux-gnu%r(
+SF:DNSVersionBindReqTCP,2B,"\0\)\0\x06\x81\x80\0\x01\0\0\0\0\0\x01\x07vers
+SF:ion\x04bind\0\0\x10\0\x03\0\0\)\x02\0\0\0\0\0\0\0")%r(DNSStatusRequestT
+SF:CP,E,"\0\x0c\0\0\x90\x04\0\0\0\0\0\0\0\0");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port88-TCP:V=7.94SVN%I=7%D=11/23%Time=6B03881A%P=x86_64-pc-linux-gnu%r(
+SF:Kerberos,68,"\0\0\0d~b0`\xa0\x03\x02\x01\x05\xa1\x03\x02\x01\x1e\xa4\x1
+SF:1\x18\x0f20261123002557Z\xa5\x05\x02\x03\x04\x15\xc4\xa6\x03\x02\x01\x0
+SF:6\xa9\x04\x1b\x02NM\xaa\x170\x15\xa0\x03\x02\x01\0\xa1\x0e0\x0c\x1b\x06
+SF:krbtgt\x1b\x02NM\xab\x16\x1b\x14No\x20client\x20in\x20request");
+MAC Address: 08:00:27:76:4D:5A (Oracle VirtualBox virtual NIC)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose|storage-misc
+Running (JUST GUESSING): Linux 5.X|4.X|3.X|2.6.X (97%), Synology DiskStation Manager 5.X (91%)
+OS CPE: cpe:/o:linux:linux_kernel:5 cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:3 cpe:/a:synology:diskstation_manager:5.2 cpe:/o:linux:linux_kernel:2.6
+Aggressive OS guesses: Linux 5.0 - 5.5 (97%), Linux 5.0 - 5.4 (97%), Linux 4.15 - 5.8 (95%), Linux 3.2 - 4.9 (91%), Synology DiskStation Manager 5.2-5644 (91%), Linux 2.6.32 - 3.10 (91%), Linux 2.6.32 - 3.13 (91%), Linux 2.6.39 (91%), Linux 5.4 (90%), Linux 2.6.32 (90%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+| smb2-time: 
+|   date: 2026-11-23T00:26:18
+|_  start_date: N/A
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Nov 23 00:26:57 2026 -- 1 IP address (1 host up) scanned in 85.63 seconds

@@ -1,0 +1,35 @@
+Wireshark/tshark capture analysis
+Capture file : evidence/c6_01_capture_kerberos_logon_20261123_001252/kerberos_logon.pcap
+Analyzed     : Mon Nov 23 12:22:03 AM UTC 2026
+Lab          : AccessGuard Health — hvmc-client01 -> hvmc-dc01 (192.168.56.10), realm HVMC.LAN
+
+1. Protocol hierarchy
+
+===================================================================
+Protocol Hierarchy Statistics
+Filter: 
+
+eth                                      frames:20 bytes:3826
+  ip                                     frames:20 bytes:3826
+    tcp                                  frames:20 bytes:3826
+      kerberos                           frames:4 bytes:2738
+===================================================================
+
+2. Kerberos messages (10=AS-REQ, 11=AS-REP, 12=TGS-REQ, 13=TGS-REP, 30=ERROR)
+4	192.168.56.11	192.168.56.10	10	sarah.chen	HVMC.LAN
+6	192.168.56.10	192.168.56.11	30	sarah.chen	HVMC.LAN
+14	192.168.56.11	192.168.56.10	10	sarah.chen	HVMC.LAN
+16	192.168.56.10	192.168.56.11	11	sarah.chen	HVMC.LAN
+
+3. TCP/UDP ports seen to the DC (88 Kerberos, 389 LDAP, 636 LDAPS, 53 DNS)
+     12 88
+      4 51702
+      4 55914
+
+4. Cleartext check — any HTTP or plain credentials in this capture?
+   None. The logon used Kerberos over ports 88/389/636; ticket data is encrypted.
+
+5. Reading note
+   The AS-REQ/AS-REP pair shows the client requesting a Ticket-Granting Ticket from the
+   KDC on hvmc-dc01. The pre-auth and ticket fields are encrypted, so even though the
+   exchange is captured in full, no password or usable credential is visible on the wire.

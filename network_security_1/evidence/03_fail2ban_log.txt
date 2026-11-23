@@ -1,0 +1,17 @@
+2026-11-22 23:48:24,439 fail2ban.jail           [2287]: INFO    Creating new jail 'sshd'
+2026-11-22 23:48:25,306 fail2ban.jail           [2287]: INFO    Jail 'sshd' uses systemd {}
+2026-11-22 23:48:25,351 fail2ban.filtersystemd  [2287]: INFO    [sshd] Added journal match for: '_SYSTEMD_UNIT=sshd.service + _COMM=sshd'
+2026-11-22 23:48:25,356 fail2ban.jail           [2287]: INFO    Jail 'sshd' started
+2026-11-22 23:48:25,396 fail2ban.filtersystemd  [2287]: INFO    [sshd] Jail is in operation now (process new journal entries)
+2026-11-22 23:48:39,604 fail2ban.actions        [2287]: NOTICE  [sshd] Flush ticket(s) with nftables
+2026-11-22 23:48:39,656 fail2ban.jail           [2287]: INFO    Jail 'sshd' stopped
+2026-11-22 23:48:39,947 fail2ban.jail           [2501]: INFO    Creating new jail 'sshd'
+2026-11-22 23:48:40,091 fail2ban.jail           [2501]: INFO    Jail 'sshd' uses systemd {}
+2026-11-22 23:48:40,119 fail2ban.filtersystemd  [2501]: INFO    [sshd] Added journal match for: '_SYSTEMD_UNIT=sshd.service + _COMM=sshd'
+2026-11-22 23:48:40,127 fail2ban.jail           [2501]: INFO    Jail 'sshd' started
+2026-11-22 23:48:40,131 fail2ban.filtersystemd  [2501]: INFO    [sshd] Jail is in operation now (process new journal entries)
+2026-11-23 00:35:30,187 fail2ban.filter         [2501]: INFO    [sshd] Found 192.168.56.11 - 2026-11-23 00:35:29
+2026-11-23 00:35:31,203 fail2ban.filter         [2501]: INFO    [sshd] Found 192.168.56.11 - 2026-11-23 00:35:30
+2026-11-23 00:35:32,707 fail2ban.filter         [2501]: INFO    [sshd] Found 192.168.56.11 - 2026-11-23 00:35:32
+2026-11-23 00:35:33,952 fail2ban.filter         [2501]: INFO    [sshd] Found 192.168.56.11 - 2026-11-23 00:35:33
+2026-11-23 00:35:34,039 fail2ban.actions        [2501]: NOTICE  [sshd] Ban 192.168.56.11

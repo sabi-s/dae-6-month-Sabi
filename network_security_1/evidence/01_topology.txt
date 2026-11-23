@@ -1,0 +1,45 @@
+============================================================
+ AccessGuard Health — real network topology (read-only)
+ Lab subnet 192.168.56.0/24  |  Sun Nov 22 11:34:50 PM UTC 2026
+============================================================
+
+VBoxManage not found — you are probably running this INSIDE a VM, not on the Mac.
+
+### PART B — this machine's own view (run inside each VM too) ###
+
+--- Interfaces and addresses ---
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp0s3           UP             10.0.2.15/24 metric 100 fe80::a00:27ff:fe50:6a68/64 
+enp0s8           UP             192.168.56.11/24 fe80::a00:27ff:fee0:c218/64 
+
+--- Routing table (should show 192.168.56.0/24) ---
+default via 10.0.2.2 dev enp0s3 proto dhcp src 10.0.2.15 metric 100 
+10.0.2.0/24 dev enp0s3 proto kernel scope link src 10.0.2.15 metric 100 
+10.0.2.2 dev enp0s3 proto dhcp scope link src 10.0.2.15 metric 100 
+192.168.56.0/24 dev enp0s8 proto kernel scope link src 192.168.56.11 
+
+--- Hostname ---
+hvmc-client01
+
+--- Reach the centre of the star: the domain controller ---
+PING 192.168.56.10 (192.168.56.10) 56(84) bytes of data.
+64 bytes from 192.168.56.10: icmp_seq=1 ttl=64 time=1.45 ms
+64 bytes from 192.168.56.10: icmp_seq=2 ttl=64 time=1.56 ms
+64 bytes from 192.168.56.10: icmp_seq=3 ttl=64 time=1.32 ms
+
+--- 192.168.56.10 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2002ms
+rtt min/avg/max/mdev = 1.320/1.443/1.561/0.098 ms
+
+--- The DC is the DNS centre of the domain ---
+Server:		192.168.56.10
+Address:	192.168.56.10#53
+
+Name:	hvmc.lan
+Address: 192.168.56.10
+
+
+============================================================
+ Done. Screenshot this output, plus the VirtualBox
+ Host-Only Network settings window, as your topology evidence.
+============================================================

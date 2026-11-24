@@ -36,7 +36,11 @@ MFA support, non-human identities and secrets management with Azure Key Vault.
 ### Foundation course activities
 | Folder | Activity |
 |---|---|
-| [design_1](./design_1/) · [figma_1](./figma_1/) · [logic_1](./logic_1/) · [unix_1](./unix_1/) · [version_control_1](./version_control_1/) | Smart Deal Alert presentation for each foundation course |
+| [design_1](./design_1/) | HVMC Active Directory OU diagram, Azure cloud architecture diagram, security patterns guide |
+| [figma_1](./figma_1/) | Smart Deal Alert FigJam board, HVMC patient-portal architecture (Lucidchart) |
+| [logic_1](./logic_1/) | Smart Deal Alert program logic (pseudocode and flowchart) |
+| [unix_1](./unix_1/) | Unix 1 terminal commands project document |
+| [version_control_1](./version_control_1/) | Version Control course: Smart Deal Alert code and Git history in [semester_1](./semester_1/) |
 | [unix_2](./unix_2/) | Unix 2 final project: rubric evidence PDF and terminal screenshots |
 | [markdown_activity](./markdown_activity/) | Markdown practice |
 | [docs](./docs/) | My portfolio website (Jekyll / GitHub Pages) |

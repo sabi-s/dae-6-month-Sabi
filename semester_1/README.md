@@ -11,7 +11,7 @@ they watch drops below their target price. Each folder is a step in how the prog
 | [02_python_1/02_Smart_Deal_Alert_With_JSON/](./02_python_1/02_Smart_Deal_Alert_With_JSON/) | Tracked products saved in a JSON file |
 | [02_python_1/03_smart_deal/](./02_python_1/03_smart_deal/) | Watch list read from a CSV file |
 | [02_python_1/04_Smart_Deal_Alert_Multiuser/](./02_python_1/04_Smart_Deal_Alert_Multiuser/) | Several users, each with their own data |
-| [02_python_1/05_Smart_Deal_Alert_Final/](./02_python_1/05_Smart_Deal_Alert_Final/) | Final version built from the pseudocode, plus a Git & GitHub beginners guide |
+| [02_python_1/05_Smart_Deal_Alert_Final/](./02_python_1/05_Smart_Deal_Alert_Final/) | Final version built from the pseudocode |
 | [02_python_1/functions.py](./02_python_1/functions.py), [home_destiny_guru.py](./02_python_1/home_destiny_guru.py) | Practice exercises (functions, loops, input) |
 
 **Concepts:** variables, loops, conditions, functions, file handling (JSON, CSV), simple data structures.
